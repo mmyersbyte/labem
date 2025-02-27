@@ -1,0 +1,161 @@
+/* ============= DESKTOP (992px para cima) ============= */
+@media (min-width: 992px) {
+    .avisoDesk {
+      display: none !important;
+    }
+  
+    .navbar-toggler {
+        display: none; /* Esconde o botão hamburguer */
+      }
+    
+      /* Transforma o offcanvas em navbar horizontal */
+      .offcanvas {
+        position: static;
+        visibility: visible;
+        transform: none;
+        width: auto;
+        max-width: none;
+        background: transparent;
+        border: none;
+      }
+    
+      .offcanvas-header {
+        display: none; /* Esconde o cabeçalho do offcanvas */
+      }
+    
+      .offcanvas-body {
+        display: flex !important;
+        padding: 0;
+      }
+    
+      /* Estilização dos links */
+      .navbar-nav {
+        flex-direction: row;
+        align-items: center;
+        gap: 1rem;
+        height: 90px; /* Altura específica para desktop */
+        padding: 0 1rem; /* Espaçamento interno horizontal */
+          
+
+      }
+    
+      .nav-link {
+        color: #146677 !important;
+        font-weight: 600;
+        transition: color 0.3s;
+        position: relative;
+      }
+    
+      .nav-link:hover {
+        color: #0FBCE1 !important;
+      }
+    
+      .nav-link.active {
+        color: #0FBCE1 !important;
+        border-bottom: 2px solid #0FBCE1;
+      }
+    
+      /* Ajustes do logo */
+      .logo-mobile {
+        width: 70px;
+      }
+    
+      /* Altura da navbar */
+      .navbar {
+        height: 90px;
+        padding: 0 2rem;
+      }
+  
+    /* BANNER PRINCIPAL */
+  
+  
+    .banner-conteudo h1 {
+      font-size: 3rem;
+      max-width: 800px;
+      margin: 0 auto 1.5rem;
+    }
+  
+    /* SEÇÃO O QUE É LABEM */
+    .apresentacao {
+      padding: 4rem 0;
+    }
+    .apresentacao {
+        background-color: white;
+        padding: 25px 8px;
+        text-align: center;
+        margin-top: 0px;
+      
+      }
+      .apresentacao h2 {
+        font-size: 4em !important;
+        margin-bottom: 20px;
+        color: var(--azul-escuro);
+      }
+      .apresentacao img {
+        display: block; /* Para evitar espaçamentos extras */
+        max-width: calc(100% - 40px); /* Garante que respeita o espaço das margens */
+        margin-left: auto;
+        margin-right: auto;
+    }
+    
+      .apresentacao p {
+        font-size: 1.4rem !important;
+        color: #555;
+        max-width: 800px;
+        margin: 0 auto 40px;
+      }
+
+    .destaques {
+      display: flex;
+      gap: 20rem !important;
+      margin-top: 3rem;
+    }
+  
+    .destaque-item {
+      padding: 2px;
+    }
+  
+    /* CARROSSEL PRINCIPAL */
+    .carousel-caption {
+      bottom: 3rem;
+    }
+  
+    .small-caption {
+      font-size: 1.2rem;
+    }
+  
+    /* ATUALIZAÇÕES */
+    .update-box {
+      max-width: 800px;
+      margin: 2rem auto;
+      padding: 2rem;
+    }
+  
+    /* INSTAGRAM SECTION */
+    .instagram-content {
+      display: flex;
+      align-items: center;
+      gap: 3rem;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+  
+    .instagram-content i {
+      font-size: 8rem;
+    }
+  
+    /* CONTATO */
+    .contato-container-unico {
+      display: flex;
+      gap: 3rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+  
+    .formulario-contato,
+    .mapa-contato {
+      flex: 1;
+    }
+  }
+
+  

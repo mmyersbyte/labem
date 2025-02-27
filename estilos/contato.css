@@ -1,0 +1,73 @@
+#contato-unico {
+    padding: 50px;
+    background-color: #f9f9f9;
+    text-align: center;
+}
+
+.titulo-contato {
+    font-size: 28px;
+    color: #333;
+}
+
+.descricao-contato {
+    font-size: 18px;
+    color: #666;
+    margin-bottom: 20px;
+}
+
+.contato-container-unico {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+.formulario-contato {
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.formulario-contato label {
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.formulario-contato input, 
+.formulario-contato textarea {
+    width: 100%;
+    padding: 20px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+}
+
+.botao-enviar-contato {
+    margin-top: 15px;
+    background-color: var(--azul-escuro);
+    color: #fff;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.botao-enviar-contato:hover {
+    background-color: var(--azul-escuro);
+}
+
+.mapa-contato {
+    width: 400px;
+    text-align: center;
+}
+
+.titulo-mapa {
+    margin-bottom: 10px;
+    font-size: 22px;
+    color: #333;
+}

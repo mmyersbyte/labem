@@ -1,0 +1,78 @@
+body{
+    height: 520px !important;
+
+}
+about body {
+    font-family: 'Barlow', sans-serif;
+    font-weight: 700;
+    display: flex;
+    flex-direction: column;
+    max-height: 100vh;
+
+}
+
+
+.about-section {
+    padding: 60px 20px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.titulo_principal_about{
+    font-size: 1.8em;
+    margin-top: 8px;
+    font-family: 'Barlow', sans-serif;
+    font-weight: 600;
+    padding: 35px;
+    color: var(--azul-escuro);
+}
+
+
+.about-section p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: #555;
+}
+
+.about-section .highlight {
+    color: var(--azul-turquesa);
+    font-weight: bold;
+}
+
+.outrosAbout {
+    margin-top: 40px;
+}
+
+
+.img_about{
+    max-width: 100%; /* Largura máxima da imagem igual à largura do contêiner */
+    height: auto; /* Altura ajustada automaticamente para manter a proporção */
+    display: block; /* Evita espaços em branco abaixo da imagem */
+    padding-bottom: 16px;
+}
+.main_about, .h2_about{
+    font-size: 1.4em;
+    font-family: 'Barlow', sans-serif;
+    font-weight: 600;
+    padding: 35px;
+    color: var(--azul-escuro);
+
+}
+.main_about, ul, li{
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: #555;
+
+}
+
+.outras{
+    white-space: nowrap;
+    text-align: start;
+    font-size: 1em;
+    padding: 30px;
+
+    color: black;
+    font-weight: 800;
+
+}

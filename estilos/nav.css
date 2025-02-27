@@ -1,0 +1,96 @@
+input[type=checkbox] {
+    border: 2px solid var(--azul-turquesa);
+    box-shadow: none;
+  }
+    
+  input[type=checkbox]:checked,
+  input[type="checkbox"]:focus {
+    background-color: var(--azul-turquesa);
+    border-color: var(--azul-turquesa);
+    box-shadow: none;
+    outline: none;
+  }
+  .navbar.fixed-top {
+    background-color: white !important;
+}
+
+  
+  .navbar{
+    width: 100%;
+    height: 100px; 
+  }
+  .logo-mobile{
+    width: 55%;
+    max-width: 100%; 
+    height: auto;  
+  }
+
+
+
+  .logoP{
+    font-size: 2rem;
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: 500;
+    padding: 20px 40px;
+    margin: 0;
+    color: white;
+    display: inline-block; 
+    text-align: center;
+  }
+  .pLogo{
+    text-align: center;
+    font-weight: 400;
+    color: white;
+  }
+
+.custom-dot {
+  background-color: #0FBCE1 !important; /* Cor azul-turquesa */
+}
+
+
+.navbar-toggler {
+  border: none; /* Remove a borda padrão */
+  padding: 0.8rem; /* Espaçamento interno */
+  outline: none; /* Remove o outline ao focar */
+}
+
+.navbar-toggler-icon {
+  background-image: none; 
+  position: relative;
+  width: 24px; /* Largura do ícone */
+  height: 2px; /* Altura das linhas */
+  background-color: #146677; /* Cor das linhas */
+  transition: all 0.3s ease; /* Transição suave */
+}
+
+.navbar-toggler-icon::before,
+.navbar-toggler-icon::after {
+  content: '';
+  position: absolute;
+  width: 24px; /* Largura das linhas */
+  height: 2px; /* Altura das linhas */
+  background-color: #146677; /* Cor das linhas */
+  left: 0;
+  transition: all 0.3s ease; /* Transição suave */
+}
+
+.navbar-toggler-icon::before {
+  transform: translateY(-6px); /* Posiciona a linha de cima */
+}
+
+.navbar-toggler-icon::after {
+  transform: translateY(6px); /* Posiciona a linha de baixo */
+}
+
+/* Animação ao abrir o menu */
+.navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
+  background-color: transparent; /* Remove a linha do meio */
+}
+
+.navbar-toggler[aria-expanded="true"] .navbar-toggler-icon::before {
+  transform: rotate(45deg); /* Gira a linha de cima */
+}
+
+.navbar-toggler[aria-expanded="true"] .navbar-toggler-icon::after {
+  transform: rotate(-45deg); /* Gira a linha de baixo */
+}

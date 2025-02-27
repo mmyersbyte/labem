@@ -1,0 +1,227 @@
+@import url(estilos/banner-principal.css);
+@import url(estilos/reset.css);
+@import url(estilos/nav.css);
+@import url(estilos/carrossel.css);
+@import url(estilos/carrossel-br.css);
+@import url(estilos/about.css);
+@import url(estilos/diretoria.css);
+@import url(estilos/contato.css);
+@import url(estilos/telasMaiores.css);
+
+:root {
+    --azul-escuro: #146677;
+    --azul-claro: #EDFAFF;
+    --azul-turquesa: #0FBCE1;
+    --azul-pastel: #E5F7FF;
+    --azul-unisul: #02408d;
+  }
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden; /* Evita rolagem horizontal */
+    color: #333;
+    font-family: 'Barlow', sans-serif;
+    height: 5200px;
+  }
+  
+ 
+
+.avisoDesk{
+  display: none;
+}
+.apresentacao {
+  background-color: white;
+  padding: 25px 8px;
+  text-align: center;
+  margin-top: 0px;
+
+}
+.apresentacao h2 {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+  color: var(--azul-escuro);
+}
+.apresentacao, img{
+    max-width: 100%; 
+    height: auto; 
+    display: block; 
+    padding-bottom: 16px;
+  }
+.apresentacao p {
+  font-size: 1.1rem;
+  color: #555;
+  max-width: 800px;
+  margin: 0 auto 40px;
+}
+.destaques {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+.destaque-item {
+  max-width: 200px;
+}
+.destaque-item i {
+  font-size: 2.5rem;
+  color: #007bff;
+  margin-bottom: 15px;
+}
+.destaque-item h3 {
+  font-size: 1.2rem;
+  color: #333;
+  margin-bottom: 10px;
+}
+.destaque-item p {
+  font-size: 0.95rem;
+  color: #666;
+}
+.btn-saiba-mais {
+  margin-top: 30px;
+  background-color: var(--azul-escuro);
+  color: #fff;
+  padding: 10px 30px;
+  border-radius: 25px;
+  text-decoration: none;
+  transition: background-color 0.3s;
+}
+.btn-saiba-mais:hover {
+  background-color: #0056b3;
+}
+
+
+.btn-liga {
+  background: var(--azul-escuro);
+  color: white;
+}
+
+footer p {
+  font-size: 0.9em;
+  color: #555;
+  padding:3.9px
+}
+footer {
+  padding: 15px 20px;
+  text-align: center;
+}
+footer a{
+  padding-left: 2px;
+  color: slategrey;
+  font-size: 18px;
+}
+
+footer :hover{
+  color: var(--azul-escuro);
+  font-size: 1em;
+}
+footer a :hover{
+  font-size: 19px;
+  color: #02408d;
+}
+
+
+.atualizacoes {
+  background: linear-gradient(135deg, #146677, #0b3d4b);
+  color: white;
+  padding: 50px 0;
+}
+
+.atualizacoes h2 {
+  font-weight: 700;
+  margin-bottom: 30px;
+}
+
+.update-box {
+  display: flex;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 20px;
+  border-radius: 10px;
+  margin-bottom: 15px;
+  transition: transform 0.3s;
+}
+
+.update-box:hover {
+  transform: scale(1.02);
+}
+
+.update-box i {
+  font-size: 2rem;
+  margin-right: 15px;
+  color: white;
+}
+
+.update-text h3 {
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+.update-text p {
+  margin: 5px 0 0;
+  font-size: 1rem;
+}
+
+/* @media (max-width: 768px) {
+  .update-box {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .update-box i {
+    margin-bottom: 10px;
+  }
+} */
+
+
+.instagram-section {
+  padding: 40px 20px;
+  text-align: center;
+}
+
+.instagram-section h2 {
+  font-size: 22px;
+  margin-bottom: 20px;
+}
+
+.instagram-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+}
+
+.instagram-content i {
+  font-size: 50px;
+
+}
+
+.instagram-info {
+  font-size: 16px;
+  max-width: 500px;
+}
+
+.instagram-info a {
+  color: #d6249f;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.instagram-info a:hover {
+  text-decoration: underline;
+}
+@media screen and (min-width: 1024px) and (max-width: 1366px) {
+  /* header, #miniCarrossel, .banner-principal, main, hr, .apresentacao, .carrossel, .atualizacoes, footer, #contato-unico{
+    display: none;
+  } */
+.avisoDesk{
+  display: block;
+}
+
+
+}

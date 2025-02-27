@@ -1,0 +1,18 @@
+.mini-carrossel {
+    height: 50px;
+    background-color: var(--azul-escuro); 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden; 
+  }
+  .carousel-item {
+    text-align: center;
+    font-size: 1rem; 
+    color: white; 
+    font-weight: bold;
+  }
+  /* Aumenta a velocidade do carrossel */
+  .carousel-inner {
+    transition-duration: 1000s; 
+  }

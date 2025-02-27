@@ -1,0 +1,121 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
+body {
+    background-color: white;
+    color: #555;
+
+}
+
+.card {
+    background: linear-gradient(to right, #146677, #022c33);
+    
+    border: none;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    min-height: 250px;
+    border-radius: 26px;
+    box-shadow: 8px 8px 20px rgba(0, 0, 0, 0.2); /* Sombra suave */
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+
+}
+.card:hover{
+    transform: translateY(-5px);
+    box-shadow: 6px 6px 20px rgba(0, 0, 0, 0.3); /* Efeito ao passar o mouse */
+}
+
+/* Ajuste do tamanho da imagem */
+.card img {
+    width: 180px;
+    height: 180px;
+    object-fit: cover !important; 
+    margin: 10px auto;
+    display: block; 
+}
+
+/* Ícones de redes sociais */
+.social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 15px; /* Espaçamento entre os ícones */
+    margin-bottom: 2px;
+}
+
+.social-icons a {
+    text-decoration: none;
+    font-size: 1.8em;
+    transition: transform 0.2s ease-in-out;
+}
+
+.social-icons a:hover {
+    transform: scale(1.1);
+}
+
+.instagram-icon {
+    color: #E4405F;
+}
+
+.linkedin-icon {
+    color: #0077B5;
+}
+
+.btn-liga {
+    background: var(--azul-escuro);
+    color: white;
+}
+
+/* Ajuste de margens */
+main {
+    margin-top: 10px;
+}
+
+.titulos {
+    margin-top: 70px;
+}
+
+h2 {
+    font-size: 2.2em;
+    font-family: 'Barlow', sans-serif;
+    font-weight: 600;
+    padding: 35px;
+}
+.card_apresentacao p{
+    color: white;
+    font-size: 1.2em;
+    font-style: italic;
+    padding-top: 3px;
+    font-weight: 400;
+    font-family: "Playfair Display", serif;
+
+}
+
+.main_p {
+    font-size: 1em;
+    font-family: 'Barlow', sans-serif;
+    font-weight: 560;
+    text-align: center;
+    padding: 20px;
+}
+
+.card_apresentacao {
+    padding: 10px 0;
+}
+
+.card_apresentacao h3 {
+    font-size: 1.5em;
+    color: beige;
+    margin: 0;
+}
+
+.texto_apresentacao_card{
+    font-size: 0.9em;
+    padding: 10px;
+}
+.comissao{
+    font-size: 1.5em;
+    font-family: 'Barlow', sans-serif;
+    font-weight: 600;
+    text-align: center;
+    color: var(--azul-escuro);
+    padding: 20px;
+    padding-top: 40px;
+}
