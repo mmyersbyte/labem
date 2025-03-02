@@ -1,27 +1,27 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const mysql = require('mysql2');
-const cors = require('cors'); // Importe o pacote cors
+const { Client } = require('pg'); // Importe  o Client do pg
+const cors = require('cors'); // Importe o pacotwe cors
+
+// Cria a aplicação Express
 const app = express();
 const port = 3000;
 
 // Habilita o CORS
 app.use(cors());
 
-// Configuração do banco de dados MySQL/MariaDB
-const db = mysql.createConnection({
-  host: 'localhost',
-  user: 'root',
-  password: 'sua_senha',
-  database: 'contatos_db'
+// Configuracao do banco de dados Neon (PostgreSQL)
+const client = new Client({
+  connectionString: 'postgresql://neondb_owner:npg_akCQIUW4Aw6v@ep-royal-pine-a89zrpwb-pooler.eastus2.azure.neon.tech/contatos_db?sslmode=require', // string de conexão do Neon
+  ssl: { rejectUnauthorized: false } // Configuração SSL para o Neon
 });
 
-// Conecta ao banco de dados
-db.connect((err) => {
+// Conecta ao banco de dadoss
+client.connect((err) => {
   if (err) {
     console.error('Erro ao conectar ao banco de dados:', err);
   } else {
-    console.log('Conectado ao banco de dados MySQL/MariaDB');
+    console.log('Conectado ao banco de dados Neon');
   }
 });
 
@@ -36,9 +36,9 @@ app.post('/contato', (req, res) => {
   // Insere os dados no banco de dados
   const query = `
     INSERT INTO contatos (nome, email, assunto, mensagem)
-    VALUES (?, ?, ?, ?)
+    VALUES ($1, $2, $3, $4)
   `;
-  db.query(query, [nome, email, assunto, mensagem], (err, result) => {
+  client.query(query, [nome, email, assunto, mensagem], (err, result) => {
     if (err) {
       console.error('Erro ao salvar contato:', err);
       res.status(500).send('Erro ao salvar contato');

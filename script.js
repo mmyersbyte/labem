@@ -53,7 +53,7 @@ document.getElementById('formulario-contato').addEventListener('submit', functio
   };
 
   // Envia os dados para o backend
-  fetch('http://localhost:3000/contato', {
+  fetch('https://labem-backend.onrender.com/contato', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
