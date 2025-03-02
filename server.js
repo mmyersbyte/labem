@@ -1,22 +1,26 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const { Client } = require('pg'); // Importe  o Client do pg
-const cors = require('cors'); // Importe o pacotwe cors
+const { Client } = require('pg'); // Importe o Client do pg
+const cors = require('cors'); // Importe o pacote cors
 
 // Cria a aplicação Express
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000; // Usa a porta do ambiente ou 3000
 
-// Habilita o CORS
-app.use(cors());
+// Configuração do CORS
+app.use(cors({
+  origin: 'https://labem.vercel.app', // Permite apenas requisições do seu frontend
+  methods: ['GET', 'POST'], // Métodos permitidos
+  credentials: true // Permite cookies e cabeçalhos de autenticação
+}));
 
-// Configuracao do banco de dados Neon (PostgreSQL)
+// Configuração do banco de dados Neon (PostgreSQL)
 const client = new Client({
   connectionString: 'postgresql://neondb_owner:npg_akCQIUW4Aw6v@ep-royal-pine-a89zrpwb-pooler.eastus2.azure.neon.tech/contatos_db?sslmode=require', // string de conexão do Neon
   ssl: { rejectUnauthorized: false } // Configuração SSL para o Neon
 });
 
-// Conecta ao banco de dadoss
+// Conecta ao banco de dados
 client.connect((err) => {
   if (err) {
     console.error('Erro ao conectar ao banco de dados:', err);
