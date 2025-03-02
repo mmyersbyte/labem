@@ -7,8 +7,19 @@ const app = express();
 const port = process.env.PORT || 3000;
 
 // Configuração do CORS
+const allowedOrigins = [
+  'http://127.0.0.1:5501', // Frontend local
+  'https://labem.vercel.app' // Frontend no Vercel
+];
+
 app.use(cors({
-  origin: 'https://labem.vercel.app', // Permite apenas requisições do seu frontend
+  origin: function (origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('Origem não permitida pelo CORS'));
+    }
+  },
   methods: ['GET', 'POST'], // Métodos permitidos
   credentials: true // Permite cookies e cabeçalhos de autenticação
 }));
@@ -34,11 +45,6 @@ app.use(bodyParser.json());
 
 // Rota para receber dados do formulário
 app.post('/contato', (req, res) => {
-  // Configura os cabeçalhos CORS manualmente
-  res.header('Access-Control-Allow-Origin', 'https://labem.vercel.app');
-  res.header('Access-Control-Allow-Methods', 'GET, POST');
-  res.header('Access-Control-Allow-Headers', 'Content-Type');
-
   const { nome, email, assunto, mensagem } = req.body;
 
   // Insere os dados no banco de dados
