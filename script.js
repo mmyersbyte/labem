@@ -8,10 +8,7 @@ document.getElementById('formulario-contato').addEventListener('submit', functio
     mensagem: document.getElementById('mensagem-unico').value,
   };
 
-  // Altere a URL conforme o ambiente:
-  // - Local: http://localhost:3000/contato
-  // - Produção: https://labem-backend.onrender.com/contato
-  fetch('http://localhost:3000/contato', { // ← Use a URL LOCAL para testes!
+  fetch('https://labem.onrender.com', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
