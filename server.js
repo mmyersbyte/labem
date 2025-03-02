@@ -1,11 +1,10 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const { Client } = require('pg'); // Importe o Client do pg
-const cors = require('cors'); // Importe o pacote cors
+const { Client } = require('pg');
+const cors = require('cors');
 
-// Cria a aplicação Express
 const app = express();
-const port = process.env.PORT || 3000; // Usa a porta do ambiente ou 3000
+const port = process.env.PORT || 3000;
 
 // Configuração do CORS
 app.use(cors({
@@ -14,10 +13,10 @@ app.use(cors({
   credentials: true // Permite cookies e cabeçalhos de autenticação
 }));
 
-// Configuração do banco de dados Neon (PostgreSQL)
+// Configuração do banco de dados Neon
 const client = new Client({
-  connectionString: 'postgresql://neondb_owner:npg_akCQIUW4Aw6v@ep-royal-pine-a89zrpwb-pooler.eastus2.azure.neon.tech/contatos_db?sslmode=require', // string de conexão do Neon
-  ssl: { rejectUnauthorized: false } // Configuração SSL para o Neon
+  connectionString: 'postgresql://neondb_owner:npg_akCQIUW4Aw6v@ep-royal-pine-a89zrpwb-pooler.eastus2.azure.neon.tech/contatos_db?sslmode=require',
+  ssl: { rejectUnauthorized: false }
 });
 
 // Conecta ao banco de dados
@@ -35,6 +34,11 @@ app.use(bodyParser.json());
 
 // Rota para receber dados do formulário
 app.post('/contato', (req, res) => {
+  // Configura os cabeçalhos CORS manualmente
+  res.header('Access-Control-Allow-Origin', 'https://labem.vercel.app');
+  res.header('Access-Control-Allow-Methods', 'GET, POST');
+  res.header('Access-Control-Allow-Headers', 'Content-Type');
+
   const { nome, email, assunto, mensagem } = req.body;
 
   // Insere os dados no banco de dados

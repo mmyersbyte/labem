@@ -60,7 +60,12 @@ document.getElementById('formulario-contato').addEventListener('submit', functio
     },
     body: JSON.stringify(formData),
   })
-    .then((response) => response.text())
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error('Erro ao enviar o contato');
+      }
+      return response.json();
+    })
     .then((data) => {
       // Exibe o pop-up de confirmação
       Swal.fire({
@@ -68,11 +73,11 @@ document.getElementById('formulario-contato').addEventListener('submit', functio
         title: 'Contato enviado!',
         text: 'Sua mensagem foi enviada com sucesso.',
       });
-
+  
       // Limpa o campo de mensagem
       document.getElementById('mensagem-unico').value = '';
-
-      // (Opcional) Limpa todos os campos do formulário
+  
+      // Limpa todos os campos do formulário
       document.getElementById('nome-unico').value = '';
       document.getElementById('email-unico').value = '';
       document.getElementById('assunto-unico').value = '';
