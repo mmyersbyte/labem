@@ -6,23 +6,12 @@ const cors = require('cors');
 const app = express();
 const port = process.env.PORT || 3000;
 
-// Configuração do CORS (DEVE VIR ANTES DAS ROTAS!)
-const allowedOrigins = [
-  'http://127.0.0.1:5501', 
-  'https://labem.vercel.app'
-];
-
+// Configuração do CORS 
 app.use(cors({
-  origin: function (origin, callback) {
-    if (!origin || allowedOrigins.includes(origin)) {
-      callback(null, true);
-    } else {
-      callback(new Error('Origem não permitida por CORS'));
-    }
-  },
-  methods: ['GET', 'POST', 'OPTIONS'],
-  allowedHeaders: ['Content-Type'],
-  credentials: true
+  origin: '*', 
+  methods: ['GET', 'POST', 'OPTIONS'], // Métodos permitidos
+  allowedHeaders: ['Content-Type'], // Cabeçalhos permitidos
+  credentials: true // Permite credenciais (cookies, tokens)
 }));
 
 // Middleware para processar dados do formulário
@@ -35,7 +24,7 @@ const pool = new Pool({
   ssl: { rejectUnauthorized: false }
 });
 
-// Rota raiz (FORA da rota POST!)
+// Rota raiz (para verificar se o backend está funcionando)
 app.get('/', (req, res) => {
   res.send('Backend está funcionando!');
 });
@@ -44,10 +33,12 @@ app.get('/', (req, res) => {
 app.post('/contato', (req, res) => {
   const { nome, email, assunto, mensagem } = req.body;
 
+  // Verifica se todos os campos foram preenchidos
   if (!nome || !email || !assunto || !mensagem) {
     return res.status(400).json({ error: 'Todos os campos são obrigatórios' });
   }
 
+  // Insere os dados no banco de dados
   const query = `INSERT INTO contatos (nome, email, assunto, mensagem) VALUES ($1, $2, $3, $4)`;
   
   pool.query(query, [nome, email, assunto, mensagem])
