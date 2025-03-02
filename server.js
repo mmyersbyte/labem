@@ -43,6 +43,14 @@ client.connect((err) => {
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
+// Rota para lidar com requisições OPTIONS (preflight)
+app.options('/contato', (req, res) => {
+  res.header('Access-Control-Allow-Origin', 'https://labem.vercel.app');
+  res.header('Access-Control-Allow-Methods', 'GET, POST');
+  res.header('Access-Control-Allow-Headers', 'Content-Type');
+  res.status(200).send();
+});
+
 // Rota para receber dados do formulário
 app.post('/contato', (req, res) => {
   const { nome, email, assunto, mensagem } = req.body;
