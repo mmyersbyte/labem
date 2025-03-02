@@ -1,73 +1,91 @@
-#contato-unico {
-    padding: 50px;
-    background-color: #f9f9f9;
-    text-align: center;
-}
-
-.titulo-contato {
-    font-size: 28px;
-    color: #333;
-}
-
-.descricao-contato {
-    font-size: 18px;
-    color: #666;
-    margin-bottom: 20px;
-}
-
-.contato-container-unico {
-    display: flex;
-    justify-content: center;
-    gap: 30px;
-    flex-wrap: wrap;
-}
 
 .formulario-contato {
-    width: 400px;
     display: flex;
     flex-direction: column;
-    background: #fff;
+    gap: 10px;
     padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-.formulario-contato label {
+label {
     font-weight: bold;
-    margin-top: 10px;
 }
 
-.formulario-contato input, 
-.formulario-contato textarea {
-    width: 100%;
-    padding: 20px;
-    margin-top: 5px;
+input, textarea {
+    padding: 10px;
     border: 1px solid #ccc;
-    border-radius: 8px;
+    border-radius: 5px;
 }
 
 .botao-enviar-contato {
-    margin-top: 15px;
     background-color: var(--azul-escuro);
-    color: #fff;
+    color: white;
     padding: 10px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    font-size: 16px;
 }
 
 .botao-enviar-contato:hover {
-    background-color: var(--azul-escuro);
+    background-color: #0056b3;
 }
 
-.mapa-contato {
-    width: 400px;
+/* Estilos para telas maiores */
+@media (min-width: 768px) {
+    .formulario-contato {
+        max-width: 500px;
+        margin: 0 auto;
+    }
+}
+
+
+h4{
+    font-size: 1.4em;
+    font-weight: bold;
     text-align: center;
+    padding: 20px;
 }
 
-.titulo-mapa {
-    margin-bottom: 10px;
-    font-size: 22px;
-    color: #333;
+.map-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    border-radius: 8px;
+}
+
+.map-container iframe {
+    width: 100%;
+    border: none;
+}
+
+.map-container {
+    padding: 30px;
+    text-align: center;
+    font-size: bold;
+}
+
+@media (min-width: 768px) {
+    .map-container {
+        flex-direction: row;
+    }
+
+    .map-container iframe {
+        width: 70%;
+        height: 100%;
+    }
+
+    .map-container .address {
+        width: 40%;
+        text-align: left;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding-left: 40px;
+    }
+}
+
+.address {
+    padding: 15px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    color: var(--azul-unisul);
 }
