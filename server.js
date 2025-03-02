@@ -1,6 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const { Client } = require('pg');
+const { Pool } = require('pg'); // Usamos Pool em vez de Client
 const cors = require('cors');
 
 const app = express();
@@ -24,14 +24,17 @@ app.use(cors({
   credentials: true // Permite cookies e cabeçalhos de autenticação
 }));
 
-// Configuração do banco de dados Neon
-const client = new Client({
+// Configuração do banco de dados Neon com Pool
+const pool = new Pool({
   connectionString: 'postgresql://neondb_owner:npg_akCQIUW4Aw6v@ep-royal-pine-a89zrpwb-pooler.eastus2.azure.neon.tech/contatos_db?sslmode=require',
-  ssl: { rejectUnauthorized: false }
+  ssl: { rejectUnauthorized: false },
+  max: 10, // Número máximo de conexões no pool
+  idleTimeoutMillis: 30000, // Tempo máximo de inatividade de uma conexão
+  connectionTimeoutMillis: 2000 // Tempo máximo para estabelecer uma conexão
 });
 
-// Conecta ao banco de dados
-client.connect((err) => {
+// Testa a conexão com o banco de dados
+pool.query('SELECT 1', (err, result) => {
   if (err) {
     console.error('Erro ao conectar ao banco de dados:', err);
   } else {
@@ -60,7 +63,7 @@ app.post('/contato', (req, res) => {
     INSERT INTO contatos (nome, email, assunto, mensagem)
     VALUES ($1, $2, $3, $4)
   `;
-  client.query(query, [nome, email, assunto, mensagem], (err, result) => {
+  pool.query(query, [nome, email, assunto, mensagem], (err, result) => {
     if (err) {
       console.error('Erro ao salvar contato:', err);
       res.status(500).send('Erro ao salvar contato');
