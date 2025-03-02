@@ -30,6 +30,18 @@ document.getElementById('formulario-contato').addEventListener('submit', functio
         title: 'Contato enviado!',
         text: 'Sua mensagem foi enviada com sucesso.',
       });
+  
+      // Limpa o campo de mensagem
+      document.getElementById('mensagem-unico').value = '';
+  
+      // (Opcional) Limpa todos os campos do formulário
+      document.getElementById('nome-unico').value = '';
+      document.getElementById('email-unico').value = '';
+      document.getElementById('assunto-unico').value = '';
+    })
+    .catch((error) => {
+      console.error('Erro:', error);
+      alert('Ocorreu um erro ao enviar o contato. Tente novamente.');
 
       // Limpa o campo de mensagem
       document.getElementById('mensagem-unico').value = '';
