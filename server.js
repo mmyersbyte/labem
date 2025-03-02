@@ -7,22 +7,18 @@ const app = express();
 const port = process.env.PORT || 3000;
 
 // Configuração do CORS
-const allowedOrigins = [
-  'http://127.0.0.1:5501', // Frontend local
-  'https://labem.vercel.app' // Frontend no Vercel
-];
+const cors = require('cors');
 
+// Configuração do CORS
 app.use(cors({
-  origin: function (origin, callback) {
-    if (!origin || allowedOrigins.includes(origin)) {
-      callback(null, true);
-    } else {
-      callback(new Error('Origem não permitida pelo CORS'));
-    }
-  },
-  methods: ['GET', 'POST'], // Métodos permitidos
-  credentials: true // Permite cookies e cabeçalhos de autenticação
+  origin: '*', // Permite todas as origens (pode restringir depois)
+  methods: ['GET', 'POST', 'OPTIONS'],
+  allowedHeaders: ['Content-Type']
 }));
+
+// Middleware para processar dados do formulário
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 
 // Configuração do banco de dados Neon com Pool
 const pool = new Pool({
@@ -47,19 +43,24 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 // Rota para lidar com requisições OPTIONS (preflight)
-app.options('/contato', (req, res) => {
-  res.header('Access-Control-Allow-Origin', 'https://labem.vercel.app');
-  res.header('Access-Control-Allow-Methods', 'GET, POST');
-  res.header('Access-Control-Allow-Headers', 'Content-Type');
+app.options('*', (req, res) => {
+  res.set({
+    'Access-Control-Allow-Origin': '*',
+    'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
+    'Access-Control-Allow-Headers': 'Content-Type'
+  });
   res.status(200).send();
 });
 
+
 // Rota para receber dados do formulário
 app.post('/contato', (req, res) => {
-  // Configura os cabeçalhos CORS manualmente
-  res.header('Access-Control-Allow-Origin', 'https://labem.vercel.app');
-  res.header('Access-Control-Allow-Methods', 'GET, POST');
-  res.header('Access-Control-Allow-Headers', 'Content-Type');
+  res.set({
+    'Access-Control-Allow-Origin': '*',
+    'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
+    'Access-Control-Allow-Headers': 'Content-Type'
+  });
+  
 
   const { nome, email, assunto, mensagem } = req.body;
 
