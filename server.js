@@ -46,6 +46,10 @@ app.options('*', cors());
 app.post('/contato', (req, res) => {
   const { nome, email, assunto, mensagem } = req.body;
 
+app.get('/', (req, res) => {
+    res.send('Backend está funcionando!');
+  });
+
   if (!nome || !email || !assunto || !mensagem) {
     return res.status(400).json({ error: 'Todos os campos são obrigatórios' });
   }
@@ -67,3 +71,4 @@ app.post('/contato', (req, res) => {
 app.listen(port, () => {
   console.log(`Servidor rodando em http://localhost:${port}`);
 });
+
