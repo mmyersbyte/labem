@@ -7,7 +7,7 @@ document.getElementById('loginForm').addEventListener('submit', async function (
     const mensagem = document.getElementById('mensagem');
   
     try {
-      const response = await fetch('https://labem-2.onrender.com', { // URL do Render
+      const response = await fetch('https://labem-2.onrender.com/login', { // URL do Render
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
