@@ -1,0 +1,207 @@
+
+:root {
+    --primary-color: #146677;
+    --secondary-color: #e3f5f8;
+    --accent-color: #ff6b6b;
+    --text-color: #2c3e50;
+  }
+  
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', system-ui, sans-serif;
+  }
+  
+  body {
+    background-color: var(--primary-color);
+    color: var(--text-color);
+    line-height: 1.6;
+  }
+  
+  /* Navbar Estilizada */
+  .navbar {
+    padding: 1.5rem;
+    font-weight: bold;
+    background: white;
+    color: var(--primary-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  }
+  
+  .nav-brand {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+  
+  .logo {
+    width: 40px;
+    height: 40px;
+  }
+  
+  /* Hero Section */
+  .hero {
+    text-align: center;
+    padding: 3rem 1rem;
+  }
+  
+  .hero-title {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: white;
+  }
+  
+  .highlight {
+    color: var(--accent-color);
+  }
+  
+  .hero-subtitle {
+    font-size: 1.2rem;
+    color: #7f8c8d;
+  }
+  
+  /* Cards de Encontros */
+  .encontros-grid {
+    display: grid;
+    gap: 1.5rem;
+    padding: 1rem;
+  }
+  
+  .encontro-card {
+    background: white;
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    transition: transform 0.3s ease;
+  }
+  
+  .encontro-card:hover {
+    transform: translateY(-3px);
+  }
+  
+  .card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    position: relative;
+  }
+  
+
+  
+  .download-btn {
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    margin: 0.5rem 0;
+    background: var(--secondary-color);
+    border-radius: 8px;
+    color: var(--primary-color);
+    text-decoration: none;
+    transition: all 0.2s ease;
+  }
+  
+  .download-btn:hover {
+    background: var(--primary-color);
+    color: white;
+  }
+  
+  .download-btn i {
+    margin-right: 1rem;
+    font-size: 1.2rem;
+  }
+  
+  .file-size {
+    margin-left: auto;
+    font-size: 0.9rem;
+    opacity: 0.8;
+  }
+  
+  /* Progress Bar */
+  .progress-bar {
+    height: 6px;
+    background: #ecf0f1;
+    border-radius: 3px;
+    overflow: hidden;
+  }
+  
+  .progress {
+    height: 100%;
+    background: var(--primary-color);
+    transition: width 0.5s ease;
+  }
+  
+  /* Botão PWA Moderno */
+  .install-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1rem 2rem;
+    background: white;
+    color: var(--primary-color);
+    border: none;
+    border-radius: 50px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin: 2rem auto;
+    box-shadow: 0 4px 15px rgba(20,102,119,0.2);
+  }
+  
+  .install-btn:hover {
+    background: #0e4d5a;
+    transform: scale(1.05);
+  }
+  
+  /* Animações */
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  
+  .encontro-card {
+    animation: fadeIn 0.6s ease forwards;
+  }
+  
+  /* Mobile First */
+  @media (min-width: 768px) {
+    .encontros-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  
+  @media (min-width: 1024px) {
+    .encontros-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  footer p {
+    font-size: 0.6em;
+    color: white;
+  }
+  footer {
+    padding: 15px 20px;
+    text-align: center;
+    background-color: var(--primary-color);
+  }
+  footer a{
+    padding-left: 2px;
+    color: white;
+    font-size: 18px;
+  }
+  
+  footer :hover{
+    color: var(--azul-escuro);
+    font-size: 1em;
+  }
+  footer a :hover{
+    font-size: 19px;
+    color: #02408d;
+  }
+.bi{
+    color: #02408d;
+}

@@ -1,12 +1,127 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Página Secreta</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#146677">
+  <title>Ligantes da UNISUL</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link rel="stylesheet" href="estilos/ligantes.css">
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" href="icon.png">
+  
 </head>
 <body>
-    <h1>Bem-vindo à Página Secreta!</h1>
-    <p>Esta é uma área restrita para administradores.</p>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="nav-brand">
+      <img src="assets/logo-labem.png" alt="Logo Ligantes" class="logo">
+      <span>Ligantes de Biomedicina</span>
+    </div>
+  </nav>
+
+  <!-- Conteúdo Principal -->
+  <main class="container">
+    <header class="hero">
+      <h1 class="hero-title">Bem-vindos Ligantes! <span class="highlight">🎓</span></h1>
+      <p class="hero-subtitle">Sua plataforma de apoio e materiais!</p>
+    </header>
+
+    <!-- Cards de Encontros -->
+    <section class="encontros-grid">
+      <div class="encontro-card">
+        <div class="card-header">
+          <h2>Encontro 1</h2>
+          <i class="fas fa-book-open"></i>
+        </div>
+        <div class="card-content">
+          <a href="#" class="download-btn">
+            <i class="fas fa-file-pdf"></i>
+            Slides Teóricos
+            <span class="file-size">PDF - 2.4MB</span>
+          </a>
+          <a href="#" class="download-btn">
+            <i class="fas fa-file-alt"></i>
+            Material Prático
+            <span class="file-size">PDF - 1.1MB</span>
+          </a>
+        </div>
+        <div class="card-footer">
+          <span class="progress-text">Disponível desde: 01/08</span>
+          <div class="progress-bar">
+            <div class="progress" style="width: 25%"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="encontros-grid">
+        <div class="encontro-card">
+          <div class="card-header">
+            <h2>Encontro 2</h2>
+            <i class="fas fa-book-open"></i>
+          </div>
+          <div class="card-content">
+            <a href="#" class="download-btn">
+              <i class="fas fa-file-pdf"></i>
+              Slides Teóricos
+              <span class="file-size">PDF - 2.4MB</span>
+            </a>
+            <a href="#" class="download-btn">
+              <i class="fas fa-file-alt"></i>
+              Material Prático
+              <span class="file-size">PDF - 1.1MB</span>
+            </a>
+          </div>
+          <div class="card-footer">
+            <span class="progress-text">Aula de quinta-feira 12/03</span>
+            <div class="progress-bar">
+              <div class="progress" style="width: 25%"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="encontros-grid">
+        <div class="encontro-card">
+          <div class="card-header">
+            <h2>Encontro 3</h2>
+            <i class="fas fa-book-open"></i>
+          </div>
+          <div class="card-content">
+            <a href="#" class="download-btn">
+              <i class="fas fa-file-pdf"></i>
+              Slides Teóricos
+              <span class="file-size">PDF - 2.4MB</span>
+            </a>
+            <a href="#" class="download-btn">
+              <i class="fas fa-file-alt"></i>
+              Material Prático
+              <span class="file-size">PDF - 1.1MB</span>
+            </a>
+          </div>
+          <div class="card-footer">
+            <span class="progress-text">Alguma informação como semana, dia da aula e afins</span>
+            <div class="progress-bar">
+              <div class="progress" style="width: 25%"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+    <!-- Botão PWA Estilizado -->
+    <div class="pwa-install">
+      <button id="addToHomeScreen" class="install-btn">
+        <i class="fas fa-home"></i>
+        Adicionar à Tela Inicial
+      </button>
+    </div>
+  </main>
+
+  <footer>
+      
+    <!-- <p>LABEM - Liga Acadêmica de Estética e Bem-Estar</p> -->
+    <p>UNISUL - Universidade do Sul de Santa Catarina</p>
+    <p>CIS UNISUL – Florianópolis-SC.</p>
+    <p>CIS PB Pedra – Palhoça-SC.</p>
+  </footer>
+  <script src="ligantes.js"></script>
 </body>
 </html>
