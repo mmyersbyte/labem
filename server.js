@@ -50,6 +50,9 @@ app.post('/contato', (req, res) => {
       res.status(500).json({ error: 'Erro ao salvar contato' });
     });
 });
+// login segurança
+const authRoutes = require('./authRoutes');
+app.use('/', authRoutes);
 
 // Inicia o servidor
 app.listen(port, () => {
