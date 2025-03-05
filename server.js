@@ -2,6 +2,8 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const { Pool } = require('pg');
 const cors = require('cors');
+const { router: authRouter, authenticateToken } = require('./authRoutes');
+app.use('/', authRouter);
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -9,7 +11,7 @@ const port = process.env.PORT || 3000;
 // Configuração do CORS 
 app.use(cors({
   origin: '*', 
-  methods: ['GET', 'POST', 'OPTIONS'], // Métodos permitidos
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'], // Métodos permitidos
   allowedHeaders: ['Content-Type'], // Cabeçalhos permitidos
   credentials: true // Permite credenciais (cookies, tokens)
 }));
@@ -17,6 +19,17 @@ app.use(cors({
 // Middleware para processar dados do formulário
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+
+// Rotas de autenticação
+app.use('/', authRoutes);
+
+// Rotas do CRUD de updates
+app.use('/updates', updatesRoutes);
+
+// Rota raiz
+app.get('/', (req, res) => {
+  res.send('Backend está funcionando!');
+});
 
 // Configuração do banco de dados Neon
 const pool = new Pool({
