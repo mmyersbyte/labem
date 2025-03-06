@@ -76,4 +76,7 @@ router.get('/secreta', authenticateToken, (req, res) => {
   res.status(200).json({ message: 'Bem-vindo à página secreta!' });
 });
 
-module.exports = router;
+module.exports = {
+  router,
+  authenticateToken
+};
