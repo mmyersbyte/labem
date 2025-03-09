@@ -16,13 +16,12 @@ input[type=checkbox] {
 
   
   .navbar{
-    width: 100%;
-    height: 100px; 
+    width: 100%; 
+    height: 80px;
   }
   .logo-mobile{
-    width: 55%;
+    width: 53%;
     max-width: 100%; 
-    height: auto;  
   }
 
 
@@ -44,53 +43,53 @@ input[type=checkbox] {
   }
 
 .custom-dot {
-  background-color: #0FBCE1 !important; /* Cor azul-turquesa */
+  background-color: #0FBCE1 !important;
 }
 
 
 .navbar-toggler {
-  border: none; /* Remove a borda padrão */
-  padding: 0.8rem; /* Espaçamento interno */
-  outline: none; /* Remove o outline ao focar */
+  border: none; 
+  padding: 0.8rem; 
+  outline: none; 
 }
 
 .navbar-toggler-icon {
   background-image: none; 
   position: relative;
-  width: 24px; /* Largura do ícone */
-  height: 2px; /* Altura das linhas */
-  background-color: #146677; /* Cor das linhas */
-  transition: all 0.3s ease; /* Transição suave */
+  width: 24px;
+  height: 2px; 
+  background-color: #146677; 
+  transition: all 0.3s ease; 
 }
 
 .navbar-toggler-icon::before,
 .navbar-toggler-icon::after {
   content: '';
   position: absolute;
-  width: 24px; /* Largura das linhas */
-  height: 2px; /* Altura das linhas */
-  background-color: #146677; /* Cor das linhas */
+  width: 24px; 
+  height: 2px; 
+  background-color: #146677; 
   left: 0;
-  transition: all 0.3s ease; /* Transição suave */
+  transition: all 0.3s ease; 
 }
 
 .navbar-toggler-icon::before {
-  transform: translateY(-6px); /* Posiciona a linha de cima */
+  transform: translateY(-6px); 
 }
 
 .navbar-toggler-icon::after {
-  transform: translateY(6px); /* Posiciona a linha de baixo */
+  transform: translateY(6px); 
 }
 
 /* Animação ao abrir o menu */
 .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
-  background-color: transparent; /* Remove a linha do meio */
+  background-color: transparent; 
 }
 
 .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon::before {
-  transform: rotate(45deg); /* Gira a linha de cima */
+  transform: rotate(45deg); 
 }
 
 .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon::after {
-  transform: rotate(-45deg); /* Gira a linha de baixo */
+  transform: rotate(-45deg); 
 }
