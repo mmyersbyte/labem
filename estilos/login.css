@@ -22,9 +22,9 @@
   }
 
   .card {
-    width: 100%;
+    width: 95%;
     max-width: 400px;
-    border-radius: 10px;
+    border-radius: 15px;
     border: none;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     background-color: #fff;
@@ -80,6 +80,7 @@
     font-size: 1.4em;
     color: #146677 !important;
     padding: 2rem;
+    white-space: nowrap;
     font-weight: 500;
     background: white;
     color: var(--primary-color);
@@ -88,6 +89,7 @@
     align-items: center;
     box-shadow: 0 2px 10px rgba(0,0,0,0.1);
   }
+  
   
   .nav-brand {
     display: flex;
