@@ -8,7 +8,6 @@ document.getElementById('formulario-contato').addEventListener('submit', functio
     mensagem: document.getElementById('mensagem-unico').value,
   };
 
-  // Use a URL correta do backend (com a rota /contato)
   fetch('https://labem.onrender.com/contato', {
     method: 'POST',
     headers: {

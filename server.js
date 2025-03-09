@@ -1,63 +1,35 @@
-// server.js
 const express = require('express');
 const bodyParser = require('body-parser');
 const { Pool } = require('pg');
 const cors = require('cors');
 
-// Importa as rotas do CRUD (updates)
-const updatesRoutes = require('./CRUD/updatesRoutes');
-
-// Importa o router e o authenticateToken do authRoutes
-const { router: authRouter } = require('./authRoutes');
-
 const app = express();
 const port = process.env.PORT || 3000;
-
-// --------------------------------------------------
-// Configuração do CORS
-// --------------------------------------------------
+//
+// Configuração do CORS 
 app.use(cors({
-  origin: '*',
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'], // Métodos permitidos
-  allowedHeaders: ['Content-Type', 'Authorization'],    // Cabeçalhos permitidos
-  credentials: true                                     // Permite credenciais (cookies, tokens)
+  origin: '*', 
+  methods: ['GET', 'POST', 'OPTIONS'], // Métodos permitidos
+  allowedHeaders: ['Content-Type'], // Cabeçalhos permitidos
+  credentials: true // Permite credenciais (cookies, tokens)
 }));
 
-// --------------------------------------------------
 // Middleware para processar dados do formulário
-// --------------------------------------------------
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-// --------------------------------------------------
-// Rotas de autenticação (login)
-// --------------------------------------------------
-app.use('/', authRouter);
+// Configuração do banco de dados Neon
+const pool = new Pool({
+  connectionString: process.env.DATABASE_URL || 'postgresql://neondb_owner:npg_akCQIUW4Aw6v@ep-royal-pine-a89zrpwb-pooler.eastus2.azure.neon.tech/contatos_db?sslmode=require',
+  ssl: { rejectUnauthorized: false }
+});
 
-// --------------------------------------------------
-// Rotas do CRUD de updates
-// --------------------------------------------------
-app.use('/updates', updatesRoutes);
-
-// --------------------------------------------------
-// Rota raiz (verificação do backend)
-// --------------------------------------------------
+// Rota raiz (para verificar se o backend está funcionando)
 app.get('/', (req, res) => {
   res.send('Backend está funcionando!');
 });
 
-// --------------------------------------------------
-// Configuração do banco de dados Neon
-// --------------------------------------------------
-const pool = new Pool({
-  connectionString: process.env.DATABASE_URL
-    || 'postgresql://neondb_owner:npg_akCQIUW4Aw6v@ep-royal-pine-a89zrpwb-pooler.eastus2.azure.neon.tech/contatos_db?sslmode=require',
-  ssl: { rejectUnauthorized: false }
-});
-
-// --------------------------------------------------
-// Rota para receber dados do formulário /contato
-// --------------------------------------------------
+// Rota para receber dados do formulário
 app.post('/contato', (req, res) => {
   const { nome, email, assunto, mensagem } = req.body;
 
@@ -78,10 +50,11 @@ app.post('/contato', (req, res) => {
       res.status(500).json({ error: 'Erro ao salvar contato' });
     });
 });
+// login segurança
+const authRoutes = require('./authRoutes');
+app.use('/', authRoutes);
 
-// --------------------------------------------------
 // Inicia o servidor
-// --------------------------------------------------
 app.listen(port, () => {
   console.log(`Servidor rodando em http://localhost:${port}`);
 });

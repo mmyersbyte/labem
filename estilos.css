@@ -194,12 +194,15 @@ body {
 
 
 .instagram-section {
+  color: white;
   padding: 40px 20px;
   text-align: center;
+  background-color: #0b3d4b;
 }
 
 .instagram-section h2 {
   font-size: 22px;
+  color: white;
   margin-bottom: 20px;
 }
 

@@ -182,16 +182,10 @@
       grid-template-columns: repeat(3, 1fr);
     }
   }
-  .admin-icon {
-    margin-left: 3px; 
-    margin-top: 2px !important;
+  .admin-icon { 
+    margin-top: 3px !important;
     color: var(--primary-color); 
-    font-size: 1.4rem; 
-    text-shadow: 
-    -1px -1px 0 #000,
-    1px -1px 0 #000, 
-    -1px 1px 0 #000, 
-    1px 1px 0 #000;   
+    font-size: 1.1rem; 
     transition: color 0.3s ease; 
   }
   

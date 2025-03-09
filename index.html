@@ -166,12 +166,44 @@
 <section id="eventos1" class="atualizacoes">
   <div class="container">
     <h2 class="text-center">Últimas Atualizações</h2>
-    <div id="updates-container"></div>
-  </div>
+    <div class="update-box">
+      <i class="fa-solid fa-calendar-check"></i>
+      <div class="update-text">
+        <h3>Encontro Teórico</h3>
+        <p>O primeiro encontro teórico da liga será realizado no dia 15/03 e abordará temas essenciais como sistema tegumentar, barreira cutânea e gerenciamento de pele. Será uma oportunidade para aprofundar conhecimentos fundamentais para a prática estética.</p>
+      </div>
+    </div>
+    <div class="update-box">
+      <i class="fa-solid fa-users"></i>
+      <div class="update-text">
+        <h3>Encontro Prático</h3>
+       <p>A prática de limpeza de pele será conduzida por um especialista na área. O encontro será marcado em breve, proporcionando aprendizado técnico e aplicação dos conceitos discutidos na teoria. Fiquem Ligados!</p>
+      </div>
+    </div>
+
+</div>
+
 </section>
 
 
+    
+<section class="instagram-section">
+  <h2>Nosso Instagram</h2>
+  <div class="instagram-content row align-items-center"> 
 
+    <div class="col-lg-2 text-center"> 
+      <i class="fab fa-instagram"></i>
+      </div>
+      <div class="col-lg-10"> 
+      <div class="instagram-info">
+          <p>O Instagram é nossa principal plataforma de comunicação. Lá você encontra novidades, promoções e eventos exclusivos.</p>
+          <p>Nosso espaço também é ponto de encontro. Acompanhe nossas publicações e participe das experiências que organizamos.</p>
+          <p><a href="https://www.instagram.com/labemunisul" target="_blank">@labemunisul</a></p>
+      </div>
+    </div>
+  </div>
+
+</section>
 
 <hr>
 <!-- ULTIMA SECTION -->
@@ -205,8 +237,7 @@
   <div class="footer-container">
     <div class="footer-info">
       <p>UNISUL - Universidade do Sul de Santa Catarina</p>
-      <p>CIS UNISUL – Florianópolis-SC.</p>
-      <p>CIS PB Pedra – Palhoça-SC.</p>
+      <p>&copy; 2025 Labem. Todos os direitos reservados.</p>
     </div>
     <div class="footer-dev">
       <p>Desenvolvido por 
@@ -216,54 +247,10 @@
       </p>
     </div>
   </div>
-  </footer>
+</footer>
       <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
       <script src="script.js"></script>
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-      <script>
-        const baseUrl = 'https://labem-2.onrender.com';
-      
-        async function loadUpdates() {
-          try {
-            const res = await fetch(`${baseUrl}/updates`);
-            const data = await res.json();
-            if (data.success) {
-              renderUpdates(data.updates);
-            } else {
-              console.error('Erro ao obter updates:', data.error);
-            }
-          } catch (err) {
-            console.error('Erro na requisição:', err);
-          }
-        }
-      
-        function renderUpdates(updates) {
-          const container = document.getElementById('updates-container');
-          container.innerHTML = ''; // Limpa
-      
-          updates.forEach((up) => {
-            const box = document.createElement('div');
-            box.classList.add('update-box');
-      
-            // Você pode criar o ícone se quiser:
-            // <i class="fa-solid fa-calendar-check"></i> ...
-            // ou personalizar de acordo com a "categoria"
-      
-            box.innerHTML = `
-              <i class="fa-solid fa-calendar-check"></i>
-              <div class="update-text">
-                <h3>${up.title}</h3>
-                <p>${up.description}</p>
-              </div>
-            `;
-      
-            container.appendChild(box);
-          });
-        }
-      
-        // Carrega ao abrir a página
-        window.addEventListener('DOMContentLoaded', loadUpdates);
-      </script>
       
     </body>
 </html>
