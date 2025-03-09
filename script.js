@@ -76,12 +76,10 @@ document.getElementById('formulario-contato').addEventListener('submit', functio
   styleEl.appendChild(document.createTextNode(css));
   document.head.appendChild(styleEl);
 
-  // Cria o botão flutuante
   var button = document.createElement('button');
   button.className = 'instagram-float-btn';
   button.setAttribute('aria-label', 'Instagram');
 
-  // Ícone minimalista e moderno do Instagram em SVG
   button.innerHTML = `
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
       <rect x="3" y="3" width="18" height="18" rx="4" ry="4" fill="none" stroke="#fff" stroke-width="2"/>
@@ -90,9 +88,9 @@ document.getElementById('formulario-contato').addEventListener('submit', functio
     </svg>
   `;
 
-  // Evento para redirecionar ao clicar no botão, abrindo em uma nova aba
+ 
   button.addEventListener('click', function() {
-    window.open('https://www.instagram.com/seuperfil', '_blank'); // Substitua pelo seu perfil
+    window.open('https://www.instagram.com/seuperfil', '_blank'); 
   });
 
   // Adiciona o botão ao documento

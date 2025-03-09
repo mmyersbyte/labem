@@ -3,34 +3,32 @@
 }
 
 .small-caption {
-  display: inline-block; /* Alterado para block para melhor controle */
-  font-size: 1rem; /* Aumentei o tamanho da fonte */
+  display: inline-block; 
+  font-size: 1rem; 
   font-weight: 700;
   background-color: #146677;
-  padding: 8px 16px; /* Aumentei o padding para melhorar a legibilidade */
+  padding: 8px 16px; 
   border: solid #146677;
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   color: white;
   white-space: nowrap;
-  border-radius: 5px; /* Adicionei borda arredondada */
-  text-align: center; /* Centralizei o texto */
+  border-radius: 5px; 
+  text-align: center; 
 }
 
-/* Ajustar o posicionamento da legenda */
 .carousel-caption {
   position: absolute;
-  bottom: 30px; /* Ajuste conforme necessário */
+  bottom: 30px; 
   left: 50%;
   transform: translateX(-50%);
-  width: 90%; /* Aumentei a largura para aproveitar melhor o espaço */
-  max-width: 600px; /* Limitei a largura máxima para não ficar muito largo em telas grandes */
+  width: 90%;
+  max-width: 600px; 
 }
 
-/* Garantir que as imagens tenham um tamanho fixo */
 .carousel-item img {
-  height: 300px; /* Defina uma altura fixa para todas as imagens */
-  object-fit: cover; /* Garante que a imagem cubra o espaço sem distorcer */
-  width: 100%; /* Garante que a imagem ocupe 100% da largura */
+  height: 300px; 
+  object-fit: cover; 
+  width: 100%; 
   border-radius: 8px;
 }
 
@@ -40,18 +38,33 @@
   border-radius: 8px;
 }
 
-/* Responsividade para mobile */
 @media (max-width: 768px) {
   .small-caption {
-      font-size: 0.9rem; /* Reduzi o tamanho da fonte para mobile */
-      padding: 6px 12px; /* Reduzi o padding para mobile */
+      font-size: 0.9rem; 
+      padding: 6px 12px; 
   }
 
   .carousel-item img {
-      height: 300px; /* Reduzi a altura das imagens para mobile */
+      height: 300px;
   }
 
   .carousel-caption {
-      bottom: 10px; /* Ajustei o posicionamento para mobile */
+      bottom: 10px; 
   }
 }
+@media (min-width: 1024px) { 
+  .carousel-caption {
+    position: absolute;
+    bottom: 30px; 
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    max-width: 1000px; 
+  }
+  .carousel-item img {
+    height: 1400px; 
+    object-fit: cover; 
+    border-radius: 128px;
+    padding: 90px;
+  }
+  }

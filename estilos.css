@@ -32,9 +32,12 @@ body {
   
  
 
-.avisoDesk{
-  display: none;
-}
+  @media (min-width: 1024px) { 
+    .apresentacao p{
+      display: none;
+    }
+      
+    }
 .apresentacao {
   background-color: white;
   padding: 25px 8px;
@@ -236,9 +239,7 @@ body {
   /* header, #miniCarrossel, .banner-principal, main, hr, .apresentacao, .carrossel, .atualizacoes, footer, #contato-unico{
     display: none;
   } */
-.avisoDesk{
-  display: block;
-}
+
 
 
 }
