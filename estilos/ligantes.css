@@ -6,6 +6,7 @@
     --text-color: #2c3e50;
   }
   
+  
   * {
     margin: 0;
     padding: 0;
@@ -19,10 +20,12 @@
     line-height: 1.6;
   }
   
-  /* Navbar Estilizada */
   .navbar {
-    padding: 1.5rem;
-    font-weight: bold;
+    font-size: 1.4em;
+    color: #146677 !important;
+    padding: 2rem;
+    white-space: nowrap;
+    font-weight: 500;
     background: white;
     color: var(--primary-color);
     display: flex;
@@ -37,6 +40,10 @@
     gap: 0.75rem;
   }
   
+  .logo {
+    width: 40px;
+    height: 40px;
+  }
   .logo {
     width: 40px;
     height: 40px;
@@ -120,7 +127,6 @@
     opacity: 0.8;
   }
   
-  /* Progress Bar */
   .progress-bar {
     height: 6px;
     background: #ecf0f1;
@@ -134,7 +140,6 @@
     transition: width 0.5s ease;
   }
   
-  /* Botão PWA Moderno */
   .install-btn {
     display: flex;
     align-items: center;
@@ -156,7 +161,6 @@
     transform: scale(1.05);
   }
   
-  /* Animações */
   @keyframes fadeIn {
     from { opacity: 0; transform: translateY(20px); }
     to { opacity: 1; transform: translateY(0); }
@@ -178,27 +182,65 @@
       grid-template-columns: repeat(3, 1fr);
     }
   }
-
-  footer p {
-    font-size: 0.6em;
-    color: white;
-  }
-  footer {
-    padding: 15px 20px;
-    text-align: center;
-    background-color: var(--primary-color);
-  }
-  footer a{
-    padding-left: 2px;
-    color: white;
-    font-size: 18px;
+  .admin-icon {
+    margin-left: 3px; 
+    margin-top: 2px !important;
+    color: var(--primary-color); 
+    font-size: 1.4rem; 
+    text-shadow: 
+    -1px -1px 0 #000,
+    1px -1px 0 #000, 
+    -1px 1px 0 #000, 
+    1px 1px 0 #000;   
+    transition: color 0.3s ease; 
   }
   
-
-  footer a :hover{
-    font-size: 19px;
-    color: #02408d;
+  .admin-icon:hover {
+    color: #007bff; 
+    cursor: pointer; 
   }
-.bi{
-    color: #02408d;
+  .footer {
+    background: transparent;
+    color: #f2f2f2;
+    padding: 20px 15px;
+    font-size: 14px;
+    text-align: center;
+}
+
+.footer-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.footer-info p,
+.footer-dev p {
+    margin: 5px 0;
+    line-height: 1.4;
+}
+
+.footer-dev a {
+    color: #b3e0ff;
+    margin: 0 5px;
+    font-size: 18px;
+    transition: color 0.3s ease;
+}
+
+.footer-dev a:hover {
+    color: #6db3ff;
+}
+
+/* Ajustes para telas maiores */
+@media (min-width: 768px) {
+    .footer-container {
+        flex-direction: row;
+        justify-content: space-between;
+        max-width: 900px;
+        margin: auto;
+    }
+
+    .footer-info, .footer-dev {
+        text-align: left;
+    }
 }
