@@ -44,7 +44,8 @@ body {
 
 
 .admin-icon {
-color: #146677;
+
+color: #146677 !important;
 font-size: 1em;
 text-decoration: none;
 margin-left: 0.5rem; 
