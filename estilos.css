@@ -100,29 +100,53 @@ body {
   background: var(--azul-escuro);
   color: white;
 }
-
-footer p {
-  font-size: 0.9em;
-  color: #555;
-}
-footer {
-  padding: 15px 20px;
+.footer {
+  font-weight: 500;
+  background: transparent;
+  color: var(--azul-escuro);
+  padding: 20px 15px;
+  font-size: 1em;
   text-align: center;
 }
-footer a{
-  padding-left: 2px;
-  color: slategrey;
-  font-size: 18px;
+
+.footer-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
 }
 
-footer :hover{
+.footer-info p,
+.footer-dev p {
+  margin: 5px 0;
+  line-height: 1.4;
+}
+
+.footer-dev a {
   color: var(--azul-escuro);
-  font-size: 1em;
+  font-weight: 800;
+  margin: 0 2px;
+  font-size: 1.2em;
+  transition: color 0.3s ease;
 }
-footer a :hover{
-  font-size: 19px;
-  color: #02408d;
+
+.footer-dev a:hover {
+  color: #6db3ff;
 }
+
+@media (min-width: 768px) {
+  .footer-container {
+      flex-direction: row;
+      justify-content: space-between;
+      max-width: 900px;
+      margin: auto;
+  }
+
+  .footer-info, .footer-dev {
+      text-align: left;
+  }
+}
+
 
 
 .atualizacoes {

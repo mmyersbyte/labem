@@ -21,11 +21,11 @@
 </head>
 <body>
   <h2 class="avisoDesk">EM BREVE PARA DESKTOP</h2>
-    <header >
+    <header id="header">
       
-      <nav class="navbar navbar-expand-lg bg-body-tertiary fixed-top navbar-custom">
+      <nav  class="navbar navbar-expand-lg bg-body-tertiary fixed-top navbar-custom">
         <div class="container-fluid">
-          <a class="navbar-brand" href="index.html"><img class="logo-mobile"  src="/assets/logo-labem.png" alt="Logo da LABEM"></a>
+          <a class="navbar-brand" href="#header"><img class="logo-mobile"  src="/assets/logo-labem.png" alt="Logo da LABEM"></a>
           <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
             <i class="bi bi-list" style="color: #146677; font-size: 33px;"></i>
           </button>
@@ -201,16 +201,22 @@
   </div>
 </div>
 <hr>
-<footer>
-      
-  <!-- <p>LABEM - Liga Acadêmica de Estética e Bem-Estar</p> -->
-  <p>UNISUL - Universidade do Sul de Santa Catarina</p>
-  <p>CIS UNISUL – Florianópolis-SC.</p>
-  <p>CIS PB Pedra – Palhoça-SC.</p>
-  <p>Desenvolvido por <a href="https://github.com/mmyersbyte" target="_blank"><i class="bi bi-github"></i></a> <a href="https://www.instagram.com/pedrovicstro" target="_blank"><i class="bi bi-instagram"></i></a>
-    <a href="https://portfolio-dev-six-pied.vercel.app/" target="_blank"><i class="bi bi-rocket-fill"></i></a> 
-  </p>
-</footer>
+<footer class="footer">
+  <div class="footer-container">
+    <div class="footer-info">
+      <p>UNISUL - Universidade do Sul de Santa Catarina</p>
+      <p>CIS UNISUL – Florianópolis-SC.</p>
+      <p>CIS PB Pedra – Palhoça-SC.</p>
+    </div>
+    <div class="footer-dev">
+      <p>Desenvolvido por 
+        <a href="https://github.com/mmyersbyte" target="_blank"><i class="fab fa-github"></i></a>
+        <a href="https://www.instagram.com/pedrovicstro" target="_blank"><i class="fab fa-instagram"></i></a>
+        <a href="https://portfolio-dev-six-pied.vercel.app/" target="_blank"><i class="fas fa-rocket"></i></a>
+      </p>
+    </div>
+  </div>
+  </footer>
       <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
       <script src="script.js"></script>
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
