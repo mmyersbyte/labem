@@ -90,7 +90,7 @@ document.getElementById('formulario-contato').addEventListener('submit', functio
 
  
   button.addEventListener('click', function() {
-    window.open('https://www.instagram.com/seuperfil', '_blank'); 
+    window.open('https://www.instagram.com/labemunisul', '_blank'); 
   });
 
   // Adiciona o botão ao documento
