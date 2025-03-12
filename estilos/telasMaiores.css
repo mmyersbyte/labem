@@ -3,70 +3,12 @@
     .avisoDesk {
       display: none !important;
     }
-  
-    .navbar-toggler {
-        display: none; /* Esconde o botão hamburguer */
-      }
-    
-      /* Transforma o offcanvas em navbar horizontal */
-      .offcanvas {
-        position: static;
-        visibility: visible;
-        transform: none;
-        width: auto;
-        max-width: none;
-        background: transparent;
-        border: none;
-      }
-    
-      .offcanvas-header {
-        display: none; /* Esconde o cabeçalho do offcanvas */
-      }
-    
-      .offcanvas-body {
-        display: flex !important;
-        padding: 0;
-      }
-    
-      /* Estilização dos links */
-      .navbar-nav {
-        flex-direction: row;
-        align-items: center;
-        gap: 1rem;
-        height: 90px; /* Altura específica para desktop */
-        padding: 0 1rem; /* Espaçamento interno horizontal */
-          
+  #header{
+    display: none;
+  }
 
-      }
     
-      .nav-link {
-        color: #146677 !important;
-        font-weight: 600;
-        transition: color 0.3s;
-        position: relative;
-      }
     
-      .nav-link:hover {
-        color: #0FBCE1 !important;
-      }
-    
-      .nav-link.active {
-        color: #0FBCE1 !important;
-        border-bottom: 2px solid #0FBCE1;
-      }
-    
-      /* Ajustes do logo */
-      .logo-mobile {
-        width: 70px;
-      }
-    
-      /* Altura da navbar */
-      .navbar {
-        height: 90px;
-        padding: 0 2rem;
-      }
-  
-    /* BANNER PRINCIPAL */
   
   
     .banner-conteudo h1 {
@@ -76,37 +18,117 @@
     }
   
     /* SEÇÃO O QUE É LABEM */
-    .apresentacao {
-      padding: 4rem 0;
+
+.pc-tablet-section {
+  padding: 4rem 0;
+  background: white;
+}
+
+.pc-tablet-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.pc-tablet-title {
+  text-align: center;
+  font-size: 3.3rem;
+  color: #146677;
+  margin-bottom: 3rem;
+}
+
+.pc-tablet-main {
+  display: flex;
+  gap: 3rem;
+  align-items: center;
+  margin-bottom: 4rem;
+}
+
+.pc-tablet-image {
+  flex: 1;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.pc-tablet-image img {
+  width: 800990px !important;
+  height: auto;
+  display: block;
+}
+
+.pc-tablet-text {
+  flex: 1;
+}
+
+.pc-tablet-lead {
+  font-size: 1.7rem;
+  line-height: 1.6;
+  color: #4a5568;
+  
+}
+
+.pc-tablet-features {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  margin-bottom: 3rem;
+}
+
+.pc-tablet-card {
+  border: solid 1px cadetblue;
+  padding: 2rem;
+  border-radius: 8px;
+  text-align: center;
+  transition: transform 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.pc-tablet-card:hover {
+  transform: translateY(-5px);
+}
+
+.pc-tablet-icon {
+  font-size: 2.5rem;
+  color: #146677;
+  margin-bottom: 1rem;
+}
+
+.pc-tablet-subtitle {
+  color: #2d3748;
+  margin: 1rem 0;
+}
+
+.pc-tablet-description {
+  color: #718096;
+  line-height: 1.5;
+}
+
+.pc-tablet-button {
+  display: inline-block;
+  margin: 0rem auto 0;
+  padding: 1rem 3rem;
+  background: #146677;
+  color: white;
+  text-decoration: none;
+  border-radius: 25px;
+  transition: background 0.3s ease;
+  font-weight: 500;
+}
+
+.pc-tablet-button:hover {
+  background: #0e4d5a;
+}
+
+
+
+    .apresentacao { 
+      display: none !important;
     }
-    .apresentacao {
-        background-color: white;
-        padding: 25px 8px;
-        text-align: center;
-        margin-top: 0px;
-      
-      }
-      .apresentacao h2 {
-        font-size: 4em !important;
-        margin-bottom: 20px;
-        color: var(--azul-escuro);
-      }
-      .apresentacao img {
-        display: block; /* Para evitar espaçamentos extras */
-        max-width: calc(100% - 40px); /* Garante que respeita o espaço das margens */
-        margin-left: auto;
-        margin-right: auto;
-    }
-    
-      .apresentacao p {
-        font-size: 1.4rem !important;
-        color: #555;
-        max-width: 800px;
-        margin: 0 auto 40px;
-      }
 
     .destaques {
       display: flex;
+ 
       gap: 20rem !important;
       margin-top: 3rem;
     }
@@ -157,4 +179,24 @@
     }
   }
 
+  /* Responsividade Tablet */
+@media (max-width: 992px) {
+  .pc-tablet-main {
+    flex-direction: column;
+  }
   
+  .pc-tablet-features {
+    grid-template-columns: 1fr;
+  }
+  
+  .pc-tablet-title {
+    font-size: 2rem;
+  }
+}
+
+/* Esconder no Mobile */
+@media (max-width: 768px) {
+  .pc-tablet-section {
+    display: none;
+  }
+}
