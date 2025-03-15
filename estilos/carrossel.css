@@ -52,19 +52,39 @@
       bottom: 10px; 
   }
 }
-@media (min-width: 1024px) { 
-  .carousel-caption {
-    position: absolute;
-    bottom: 30px; 
-    left: 50%;
-    transform: translateX(-50%);
-    width: 100%;
-    max-width: 1000px; 
+@media (min-width: 768px) {
+  .small-caption {
+      font-size: 1.2rem; 
+      padding: 10px 20px; 
   }
+
   .carousel-item img {
-    height: 1400px; 
-    object-fit: cover; 
-    border-radius: 128px;
-    padding: 90px;
+      height: 600px !important; 
   }
+
+  .carousel-caption {
+      bottom: 50px; 
   }
+}
+
+@media (min-width: 1024px) {
+  .carrossel {
+      max-width: 1200px; /* Limita a largura máxima do carrossel */
+      margin: 0 auto; /* Centraliza o carrossel na tela */
+      padding: 20px; /* Adiciona mais espaço nas laterais */
+  }
+
+  .small-caption {
+      font-size: 1.2rem; 
+      padding: 12px 24px; 
+  }
+
+  .carousel-item img {
+      height: 450px; /* Altura um pouco menor para não ficar muito grande */
+  }
+
+  .carousel-caption {
+      bottom: 60px; 
+      max-width: 800px; /* Aumenta a largura máxima da legenda */
+  }
+}

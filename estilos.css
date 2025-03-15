@@ -137,18 +137,6 @@ body {
   color: #6db3ff;
 }
 
-@media (min-width: 768px) {
-  .footer-container {
-      flex-direction: row;
-      justify-content: space-between;
-      max-width: 900px;
-      margin: auto;
-  }
-
-  .footer-info, .footer-dev {
-      text-align: left;
-  }
-}
 
 
 
@@ -198,7 +186,7 @@ body {
 
 .instagram-section {
   color: white;
-  padding: 40px 20px;
+  padding: 0px 5px;
   text-align: center;
   background-color: #0b3d4b;
 }
@@ -206,7 +194,6 @@ body {
 .instagram-section h2 {
   font-size: 22px;
   color: white;
-  margin-bottom: 20px;
 }
 
 .instagram-content {
@@ -245,4 +232,19 @@ body {
 
 
 
+}
+@media (min-width: 768px) {
+  .instagram-section {
+    padding: 20px 15px;
+  }
+  
+  .instagram-info {
+    max-width: 700px;
+    font-size: 17px;
+  }
+}
+
+/* Media query para desktop (992px pra cima) */
+@media (min-width: 992px) {
+  
 }

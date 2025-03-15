@@ -64,25 +64,7 @@ h4{
     font-size: bold;
 }
 
-@media (min-width: 768px) {
-    .map-container {
-        flex-direction: row;
-    }
 
-    .map-container iframe {
-        width: 70%;
-        height: 100%;
-    }
-
-    .map-container .address {
-        width: 40%;
-        text-align: left;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        padding-left: 40px;
-    }
-}
 
 .address {
     padding: 15px;
