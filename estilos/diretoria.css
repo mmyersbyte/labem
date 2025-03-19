@@ -1,121 +1,179 @@
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
 body {
-    background-color: white;
-    color: #555;
-
+  background-color: white;
+  color: #555;
 }
 
 .card {
-    background: linear-gradient(to right, #146677, #022c33);
-    
-    border: none;
-    color: white;
-    text-align: center;
-    padding: 20px;
-    min-height: 250px;
-    border-radius: 26px;
-    box-shadow: 8px 8px 20px rgba(0, 0, 0, 0.2); /* Sombra suave */
-    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  background: linear-gradient(to right, #146677, #022c33);
 
+  border: none;
+  color: white;
+  text-align: center;
+  padding: 20px;
+  min-height: 250px;
+  border-radius: 26px;
+  box-shadow: 8px 8px 20px rgba(0, 0, 0, 0.2); /* Sombra suave */
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
 }
-.card:hover{
-    transform: translateY(-5px);
-    box-shadow: 6px 6px 20px rgba(0, 0, 0, 0.3); /* Efeito ao passar o mouse */
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 6px 6px 20px rgba(0, 0, 0, 0.3); /* Efeito ao passar o mouse */
 }
 
 /* Ajuste do tamanho da imagem */
 .card img {
-    width: 180px;
-    height: 180px;
-    object-fit: cover !important; 
-    margin: 10px auto;
-    display: block; 
+  width: 180px;
+  height: 180px;
+  object-fit: cover !important;
+  margin: 10px auto;
+  display: block;
 }
 
 /* Ícones de redes sociais */
 .social-icons {
-    display: flex;
-    justify-content: center;
-    gap: 15px; /* Espaçamento entre os ícones */
-    margin-bottom: 2px;
+  display: flex;
+  justify-content: center;
+  gap: 15px; /* Espaçamento entre os ícones */
+  margin-bottom: 2px;
 }
 
 .social-icons a {
-    text-decoration: none;
-    font-size: 1.8em;
-    transition: transform 0.2s ease-in-out;
+  text-decoration: none;
+  font-size: 1.8em;
+  transition: transform 0.2s ease-in-out;
 }
 
 .social-icons a:hover {
-    transform: scale(1.1);
+  transform: scale(1.1);
 }
 
 .instagram-icon {
-    color: #E4405F;
+  color: #e4405f;
 }
 
 .linkedin-icon {
-    color: #0077B5;
+  color: #0077b5;
 }
 
 .btn-liga {
-    background: var(--azul-escuro);
-    color: white;
+  background: var(--azul-escuro);
+  color: white;
 }
 
-/* Ajuste de margens */
 main {
-    margin-top: 10px;
+  margin-top: 10px;
 }
 
 .titulos {
-    margin-top: 70px;
+  margin-top: 70px;
 }
 
 h2 {
-    font-size: 2.2em;
-    font-family: 'Barlow', sans-serif;
-    font-weight: 600;
-    padding: 35px;
+  font-size: 2.2em;
+  font-family: 'Barlow', sans-serif;
+  font-weight: 600;
+  padding: 35px;
 }
-.card_apresentacao p{
-    color: white;
-    font-size: 1.2em;
-    font-style: italic;
-    padding-top: 3px;
-    font-weight: 400;
-    font-family: "Playfair Display", serif;
-
+.card_apresentacao p {
+  color: white;
+  font-size: 1.2em;
+  font-style: italic;
+  padding-top: 3px;
+  font-weight: 400;
+  font-family: 'Playfair Display', serif;
 }
 
 .main_p {
-    font-size: 1em;
-    font-family: 'Barlow', sans-serif;
-    font-weight: 560;
-    text-align: center;
-    padding: 20px;
+  font-size: 1em;
+  font-family: 'Barlow', sans-serif;
+  font-weight: 560;
+  text-align: center;
+  padding: 20px;
 }
 
 .card_apresentacao {
-    padding: 10px 0;
+  padding: 10px 0;
 }
 
 .card_apresentacao h3 {
-    font-size: 1.5em;
-    color: beige;
-    margin: 0;
+  font-size: 1.5em;
+  color: beige;
+  margin: 0;
 }
 
-.texto_apresentacao_card{
-    font-size: 0.9em;
-    padding: 10px;
+.texto_apresentacao_card {
+  font-size: 0.9em;
+  padding: 10px;
 }
-.comissao{
-    font-size: 1.5em;
-    font-family: 'Barlow', sans-serif;
-    font-weight: 600;
+.comissao {
+  font-size: 1.5em;
+  font-family: 'Barlow', sans-serif;
+  font-weight: 600;
+  text-align: center;
+  color: var(--azul-escuro);
+  padding: 20px;
+  padding-top: 40px;
+}
+@media (min-width: 768px) {
+  main .container {
     text-align: center;
-    color: var(--azul-escuro);
-    padding: 20px;
-    padding-top: 40px;
+  }
+
+  main .container > .row:first-of-type {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  main .container > .row:first-of-type > .col-md-4 {
+    width: 45%;
+    margin: 0 2%;
+  }
+
+  main .container > .row:not(:first-of-type) {
+    display: inline-block !important;
+    width: 30% !important;
+    margin: 1.5% !important;
+    vertical-align: top !important;
+  }
+
+  main .container > .row:not(:first-of-type) > .col-md-4 {
+    width: 100% !important;
+    padding: 0 !important;
+  }
+
+  main .container > .row {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    padding: 0 !important;
+  }
+
+  .comissao {
+    display: block;
+    width: 100%;
+    clear: both;
+  }
+  .card {
+    height: 725px;
+    width: 100%;
+    font-size: 16px;
+    padding: 4px;
+  }
+}
+
+@media (min-width: 992px) {
+  .card {
+    height: 600px;
+  }
+  .card_apresentacao p {
+    font-size: 28px;
+  }
+  h2 {
+    font-size: 3em;
+  }
+  main .container > .row:not(:first-of-type) {
+    width: 30% !important;
+    margin: 1.5% !important;
+  }
 }

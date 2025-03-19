@@ -1,109 +1,108 @@
 @import url('https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300..700;1,300..700&display=swap');
 
 .banner-principal {
+  position: relative;
+  width: 100%;
+  height: 790px;
+  background-image: url('/assets/banner-principal.jpg');
+  background-size: cover; /* Cobrir todo o espaço */
+  background-position: center; /* Centralizar a imagem */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: white; /* Cor do texto */
+  overflow: hidden;
+  margin-top: 100px;
+}
+
+/* Overlay escuro para melhorar a legibilidade do texto */
+.banner-principal::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Overlay escuro */
+  z-index: 1;
+}
+
+/* Conteúdo do Banner */
+.banner-conteudo {
+  position: relative;
+  z-index: 2; /* Garante que o conteúdo fique acima do overlay */
+}
+
+.banner-conteudo h1 {
+  font-size: 1.6rem;
+  font-family: 'Barlow', sans-serif;
+  font-weight: 700;
+  padding: 15px;
+  margin-bottom: 500px;
+  color: var(--azul-pastel);
+}
+
+.banner-conteudo .slogan {
+  font-size: 1.2em;
+  margin-bottom: 20px;
+  padding: 15px;
+  color: var(--azul-pastel);
+}
+
+.botoes-cta {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+}
+
+.btn-cta {
+  padding: 10px 20px;
+  background-color: var(--azul-escuro);
+  color: white;
+  text-decoration: none;
+  border-radius: 38px;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
+}
+
+.btn-cta:hover {
+  background-color: rgba(28, 28, 85, 0.5);
+}
+
+@media (min-width: 1024px) {
+  .banner-principal {
+    height: auto;
+    background-size: cover;
+    width: AUTO;
+    margin-top: 0;
+  }
+  .botoes-cta {
+    display: none;
+  }
+  .banner-conteudo h1 {
+    font-size: 4em !important;
+    font-family: 'Barlow', sans-serif;
+    font-weight: 700;
+    margin-bottom: 500px;
+    color: var(--azul-pastel);
+  }
+  .banner-conteudo .slogan {
+    font-size: 2em;
+
+    margin-bottom: 420px;
+    color: var(--azul-pastel);
+  }
+  .banner-principal {
     position: relative;
-    width: 100%;
-    height: 790px; 
-    background-image: url('/assets/banner-principal.jpg'); 
-    background-size: cover; /* Cobrir todo o espaço */
-    background-position: center; /* Centralizar a imagem */
+    background-image: url('https://images.pexels.com/photos/3762636/pexels-photo-3762636.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
+    background-size: cover;
+    background-position: center;
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
-    color: white; /* Cor do texto */
-    overflow: hidden;
-    margin-top: 100px;
-
-  }
-  
-  /* Overlay escuro para melhorar a legibilidade do texto */
-  .banner-principal::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5); /* Overlay escuro */
-    z-index: 1;
-  }
-  
-  /* Conteúdo do Banner */
-  .banner-conteudo {
-    position: relative;
-    z-index: 2; /* Garante que o conteúdo fique acima do overlay */
-  }
-  
-  .banner-conteudo h1 {
-    font-size: 1.6rem; 
-    font-family: 'Barlow', sans-serif;
-    font-weight: 700;
-    padding: 15px;
-    margin-bottom: 500px;
-    color: var(--azul-pastel);
-  }
-  
-  .banner-conteudo .slogan {
-    font-size: 1.2em;
-    margin-bottom: 20px;
-    padding: 15px;
-    color: var(--azul-pastel); 
-  }
-  
-  .botoes-cta {
-    display: flex;
-    gap: 15px;
-    justify-content: center;
-  }
-  
-  .btn-cta {
-    padding: 10px 20px;
-    background-color: var(--azul-escuro); 
     color: white;
-    text-decoration: none;
-    border-radius: 38px;
-    font-size: 1rem;
-    transition: background-color 0.3s ease;
+    overflow: hidden;
   }
-  
-  .btn-cta:hover {
-    background-color: rgba(28, 28, 85, 0.5);
-  }
-
-  @media (min-width: 1024px) { 
-    .banner-principal {
-      height: auto;
-      background-size: cover;
-      width: AUTO;
-      margin-top: 0;
-    }
-    .botoes-cta {
-     display: none;
-    }
-    .banner-conteudo h1 {
-      font-size: 4em !important; 
-      font-family: 'Barlow', sans-serif;
-      font-weight: 700;
-      margin-bottom: 500px;
-      color: var(--azul-pastel);
-    }
-    .banner-conteudo .slogan {
-      font-size: 2em;
-
-      margin-bottom: 420px;
-      color: var(--azul-pastel); 
-    }
-    .banner-principal {
-      position: relative;
-      background-image: url('https://images.pexels.com/photos/3762636/pexels-photo-3762636.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'); 
-      background-size: cover; 
-      background-position: center; 
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      color: white; 
-      overflow: hidden;  
-    }
-  }
+}

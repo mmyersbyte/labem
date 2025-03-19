@@ -1,240 +1,219 @@
-
 :root {
-    --primary-color: #146677;
-    --secondary-color: #e3f5f8;
-    --accent-color: #ff6b6b;
-    --text-color: #2c3e50;
-  }
-  
-  
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Segoe UI', system-ui, sans-serif;
-  }
-  
-  body {
-    background-color: var(--primary-color);
-    color: var(--text-color);
-    line-height: 1.6;
-  }
-  
-  .navbar {
-    font-size: 1.4em;
-    color: #146677 !important;
-    padding: 2rem;
-    white-space: nowrap;
-    font-weight: 500;
-    background: white;
-    color: var(--primary-color);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-  }
-  
-  .nav-brand {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-  }
-  
-  .logo {
-    width: 40px;
-    height: 40px;
-  }
-  .logo {
-    width: 40px;
-    height: 40px;
-  }
-  
-  /* Hero Section */
-  .hero {
-    text-align: center;
-    padding: 3rem 1rem;
-  }
-  
-  .hero-title {
-    font-size: 2rem;
-    margin-bottom: 1rem;
-    color: white;
-  }
-  
-  .highlight {
-    color: var(--accent-color);
-  }
-  
-  .hero-subtitle {
-    font-size: 1.2rem;
-    color: #7f8c8d;
-  }
-  
-  /* Cards de Encontros */
-  .encontros-grid {
-    display: grid;
-    gap: 1.5rem;
-    padding: 1rem;
-  }
-  
-  .encontro-card {
-    background: white;
-    border-radius: 12px;
-    padding: 1.5rem;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-    transition: transform 0.3s ease;
-  }
-  
-  .encontro-card:hover {
-    transform: translateY(-3px);
-  }
-  
-  .card-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 1.5rem;
-    position: relative;
-  }
-  
+  --primary-color: #146677;
+  --secondary-color: #e3f5f8;
+  --accent-color: #ff6b6b;
+  --text-color: #2c3e50;
+}
 
-  
-  .download-btn {
-    display: flex;
-    align-items: center;
-    padding: 1rem;
-    margin: 0.5rem 0;
-    background: var(--secondary-color);
-    border-radius: 8px;
-    color: var(--primary-color);
-    text-decoration: none;
-    transition: all 0.2s ease;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', system-ui, sans-serif;
+}
+
+body {
+  background-color: var(--primary-color);
+  color: var(--text-color);
+  line-height: 1.6;
+}
+
+.navbar {
+  font-size: 1.4em;
+  color: #146677 !important;
+  padding: 2rem;
+  white-space: nowrap;
+  font-weight: 500;
+  background: white;
+  color: var(--primary-color);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.nav-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.logo {
+  width: 40px;
+  height: 40px;
+}
+.logo {
+  width: 40px;
+  height: 40px;
+}
+
+/* Hero Section */
+.hero {
+  text-align: center;
+  padding: 3rem 1rem;
+}
+
+.hero-title {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  color: white;
+}
+
+.highlight {
+  color: var(--accent-color);
+}
+
+.hero-subtitle {
+  font-size: 1.2rem;
+  color: #7f8c8d;
+}
+
+/* Cards de Encontros */
+.encontros-grid {
+  display: flex;
+  display: grid;
+  align-items: center !important;
+  gap: 1.5rem;
+  padding: 1rem;
+}
+
+.encontro-card {
+  background: white;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease;
+}
+
+.encontro-card:hover {
+  transform: translateY(-3px);
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  position: relative;
+}
+
+.download-btn {
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+  margin: 0.5rem 0;
+  background: var(--secondary-color);
+  border-radius: 8px;
+  color: var(--primary-color);
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.download-btn:hover {
+  background: var(--primary-color);
+  color: white;
+}
+
+.download-btn i {
+  margin-right: 1rem;
+  font-size: 1.2rem;
+}
+
+.file-size {
+  margin-left: auto;
+  font-size: 0.9rem;
+  opacity: 0.8;
+}
+
+.progress-bar {
+  height: 6px;
+  background: #ecf0f1;
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.progress {
+  height: 100%;
+  background: var(--primary-color);
+  transition: width 0.5s ease;
+}
+
+.install-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem 2rem;
+  background: white;
+  color: var(--primary-color);
+  border: none;
+  border-radius: 50px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin: 2rem auto;
+  box-shadow: 0 4px 15px rgba(20, 102, 119, 0.2);
+}
+
+.install-btn:hover {
+  background: #0e4d5a;
+  transform: scale(1.05);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
   }
-  
-  .download-btn:hover {
-    background: var(--primary-color);
-    color: white;
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
-  
-  .download-btn i {
-    margin-right: 1rem;
-    font-size: 1.2rem;
-  }
-  
-  .file-size {
-    margin-left: auto;
-    font-size: 0.9rem;
-    opacity: 0.8;
-  }
-  
-  .progress-bar {
-    height: 6px;
-    background: #ecf0f1;
-    border-radius: 3px;
-    overflow: hidden;
-  }
-  
-  .progress {
-    height: 100%;
-    background: var(--primary-color);
-    transition: width 0.5s ease;
-  }
-  
-  .install-btn {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    padding: 1rem 2rem;
-    background: white;
-    color: var(--primary-color);
-    border: none;
-    border-radius: 50px;
-    font-weight: 500;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    margin: 2rem auto;
-    box-shadow: 0 4px 15px rgba(20,102,119,0.2);
-  }
-  
-  .install-btn:hover {
-    background: #0e4d5a;
-    transform: scale(1.05);
-  }
-  
-  @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-  
-  .encontro-card {
-    animation: fadeIn 0.6s ease forwards;
-  }
-  
-  /* Mobile First */
-  @media (min-width: 768px) {
-    .encontros-grid {
-      grid-template-columns: repeat(2, 1fr);
-    }
-  }
-  
-  @media (min-width: 1024px) {
-    .encontros-grid {
-      grid-template-columns: repeat(3, 1fr);
-    }
-  }
-  .admin-icon { 
-    margin-top: 3px !important;
-    color: var(--primary-color); 
-    font-size: 1.1rem; 
-    transition: color 0.3s ease; 
-  }
-  
-  .admin-icon:hover {
-    color: #007bff; 
-    cursor: pointer; 
-  }
-  .footer {
-    background: transparent !important;
-    color: #f2f2f2;
-    padding: 20px 15px;
-    font-size: 14px;
-    text-align: center;
+}
+
+.encontro-card {
+  animation: fadeIn 0.6s ease forwards;
+  align-items: center !important;
+}
+
+.admin-icon {
+  margin-top: 3px !important;
+  color: var(--primary-color);
+  font-size: 1.1rem;
+  transition: color 0.3s ease;
+}
+
+.admin-icon:hover {
+  color: #007bff;
+  cursor: pointer;
+}
+.footer {
+  background: transparent !important;
+  color: #f2f2f2;
+  padding: 20px 15px;
+  font-size: 14px;
+  text-align: center;
 }
 
 .footer-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
 }
 
 .footer-info p,
 .footer-dev p {
-    margin: 5px 0;
-    line-height: 1.4;
+  margin: 5px 0;
+  line-height: 1.4;
 }
 
 .footer-dev a {
-    color: #b3e0ff;
-    margin: 0 5px;
-    font-size: 18px;
-    transition: color 0.3s ease;
+  color: #b3e0ff;
+  margin: 0 5px;
+  font-size: 18px;
+  transition: color 0.3s ease;
 }
 
 .footer-dev a:hover {
-    color: #6db3ff;
-}
-
-/* Ajustes para telas maiores */
-@media (min-width: 768px) {
-    .footer-container {
-        flex-direction: row;
-        justify-content: space-between;
-        max-width: 900px;
-        margin: auto;
-    }
-
-    .footer-info, .footer-dev {
-        text-align: left;
-    }
+  color: #6db3ff;
 }

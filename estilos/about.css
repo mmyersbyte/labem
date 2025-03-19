@@ -1,78 +1,199 @@
-body{
-    height: 520px !important;
-
+body {
+  height: 520px !important;
 }
 about body {
-    font-family: 'Barlow', sans-serif;
-    font-weight: 700;
-    display: flex;
-    flex-direction: column;
-    max-height: 100vh;
-
+  font-family: 'Barlow', sans-serif;
+  font-weight: 700;
+  display: flex;
+  flex-direction: column;
+  max-height: 100vh;
 }
-
 
 .about-section {
-    padding: 60px 20px;
-    background-color: white;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 60px 20px;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.titulo_principal_about{
-    font-size: 1.8em;
-    margin-top: 8px;
-    font-family: 'Barlow', sans-serif;
-    font-weight: 600;
-    padding: 35px;
-    color: var(--azul-escuro);
+.titulo_principal_about {
+  font-size: 1.8em;
+  margin-top: 8px;
+  font-family: 'Barlow', sans-serif;
+  font-weight: 600;
+  padding: 35px;
+  color: var(--azul-escuro);
 }
-
 
 .about-section p {
-    font-size: 1.1rem;
-    line-height: 1.8;
-    color: #555;
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: #555;
 }
 
 .about-section .highlight {
-    color: var(--azul-turquesa);
-    font-weight: bold;
+  color: var(--azul-turquesa);
+  font-weight: bold;
 }
 
 .outrosAbout {
-    margin-top: 40px;
+  margin-top: 40px;
 }
 
-
-.img_about{
-    max-width: 100%; /* Largura máxima da imagem igual à largura do contêiner */
-    height: auto; /* Altura ajustada automaticamente para manter a proporção */
-    display: block; /* Evita espaços em branco abaixo da imagem */
-    padding-bottom: 16px;
+.img_about {
+  max-width: 100%; /* Largura máxima da imagem igual à largura do contêiner */
+  height: auto; /* Altura ajustada automaticamente para manter a proporção */
+  display: block; /* Evita espaços em branco abaixo da imagem */
+  padding-bottom: 16px;
 }
-.main_about, .h2_about{
-    font-size: 1.4em;
-    font-family: 'Barlow', sans-serif;
-    font-weight: 600;
-    padding: 35px;
-    color: var(--azul-escuro);
-
+.main_about,
+.h2_about {
+  font-size: 1.4em;
+  font-family: 'Barlow', sans-serif;
+  font-weight: 600;
+  padding: 35px;
+  color: var(--azul-escuro);
 }
-.main_about, ul, li{
+.main_about,
+ul,
+li {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: #555;
+}
+
+.outras {
+  white-space: nowrap;
+  text-align: start;
+  font-size: 1em;
+  padding: 30px;
+
+  color: black;
+  font-weight: 800;
+}
+
+@media screen and (min-width: 768px) {
+  .container_about {
+    width: 90%;
+    margin: 0 auto;
+  }
+
+  .titulo_principal_about {
+    font-size: 2.2em;
+    padding: 45px;
+    text-align: center;
+  }
+
+  .about-section {
+    padding: 70px 40px;
+  }
+
+  .img_about {
+    max-width: 80%;
+    margin: 0 auto 20px;
+  }
+
+  .h2_about {
+    font-size: 1.6em;
+    padding: 25px 35px;
+  }
+
+  .outrosAbout {
+    margin-top: 50px;
+  }
+
+  .footer-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 40px;
+  }
+}
+
+@media screen and (min-width: 992px) {
+  .container_about {
+    width: 80%;
+    max-width: 1200px;
+  }
+
+  .titulo_principal_about {
+    font-size: 2.5em;
+    padding: 60px;
+  }
+
+  .about-section {
+    padding: 80px 60px;
+  }
+
+  .about-section p {
+    font-size: 1.2rem;
+    line-height: 1.9;
+  }
+
+  .img_about {
+    max-width: 50%;
+    float: right;
+    margin: 0 0 20px 30px;
+  }
+
+  .h2_about {
+    font-size: 1.8em;
+    padding: 30px 40px;
+  }
+
+  .outrosAbout {
+    clear: both;
+    margin-top: 60px;
+  }
+
+  .btn-liga {
+    padding: 12px 24px;
     font-size: 1.1rem;
-    line-height: 1.8;
-    color: #555;
+    transition: all 0.3s ease;
+  }
 
+  .btn-liga:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
 }
 
-.outras{
-    white-space: nowrap;
-    text-align: start;
-    font-size: 1em;
-    padding: 30px;
+@media screen and (min-width: 1200px) {
+  .container_about {
+    width: 75%;
+  }
 
-    color: black;
-    font-weight: 800;
+  .about-section {
+    padding: 100px 80px;
+  }
 
+  .titulo_principal_about {
+    font-size: 2.8em;
+  }
+
+  .about-section p {
+    font-size: 1.25rem;
+    line-height: 2;
+  }
+
+  .h2_about {
+    font-size: 2em;
+  }
+
+  .outrosAbout {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 40px;
+    margin-top: 80px;
+  }
+
+  /* Keep headings full width */
+  .outrosAbout h2 {
+    grid-column: 1 / -1;
+  }
+
+  /* Footer enhancements */
+  .footer-container {
+    padding: 20px 80px;
+  }
 }

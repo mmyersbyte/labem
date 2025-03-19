@@ -1,220 +1,450 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
     <title>Diretoria</title>
-    <link rel="shortcut icon" href="assets/logo-labem.png" type="image/x-icon">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link
+      rel="shortcut icon"
+      href="assets/logo-labem.png"
+      type="image/x-icon"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <link rel="stylesheet" href="estilos.css">
-</head>
-<body>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="estilos.css"
+    />
+  </head>
+  <body>
     <header>
-        <nav class="navbar navbar-expand-lg bg-body-tertiary fixed-top navbar-custom">
-            <div class="container-fluid">
-              <a class="navbar-brand" href="index.html"><img class="logo-mobile" src="/assets/logo-labem.png" alt="Logo da LABEM"></a>
-              <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
-                <i class="bi bi-list" style="color: #146677; font-size: 33px;"></i>
-              </button>
-              <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" 
-              aria-labelledby="offcanvasNavbarLabel" style="width: 70%; max-width: 400px;">
-         
-                <div style="background-color: #146677;" class="offcanvas-header">
-                  <h5 class="offcanvas-title" id="offcanvasNavbarLabel"><p class="pLogo"><strong class="logoP">LABEM </strong> <br> Liga Acadêmica de Estética e Bem-Estar da Unisul</p></h5>
-                  <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-                </div>
-                
-                <div class="offcanvas-body">
-                  <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
-                    <li class="nav-item">
-                      <a class="nav-link" aria-current="page" href="index.html">Voltar</a>
-                    </li>
-                    <li class="nav-item">
-                      <a class="nav-link active" href="diretoria.html">Diretoria</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="about.html">Sobre</a>
-                      </li>
-                    <li class="nav-item"><a class="nav-link" href="login.html">Login</a></li>
-                    
-                  </ul>
-                </div>
-              </div>
+      <nav
+        class="navbar navbar-expand-lg bg-body-tertiary fixed-top navbar-custom"
+      >
+        <div class="container-fluid">
+          <a
+            class="navbar-brand"
+            href="index.html"
+            ><img
+              class="logo-mobile"
+              src="/assets/logo-labem.png"
+              alt="Logo da LABEM"
+          /></a>
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="offcanvas"
+            data-bs-target="#offcanvasNavbar"
+            aria-controls="offcanvasNavbar"
+            aria-label="Toggle navigation"
+          >
+            <i
+              class="bi bi-list"
+              style="color: #146677; font-size: 33px"
+            ></i>
+          </button>
+          <div
+            class="offcanvas offcanvas-end"
+            tabindex="-1"
+            id="offcanvasNavbar"
+            aria-labelledby="offcanvasNavbarLabel"
+            style="width: 70%; max-width: 400px"
+          >
+            <div
+              style="background-color: #146677"
+              class="offcanvas-header"
+            >
+              <h5
+                class="offcanvas-title"
+                id="offcanvasNavbarLabel"
+              >
+                <p class="pLogo">
+                  <strong class="logoP">LABEM </strong> <br />
+                  Liga Acadêmica de Estética e Bem-Estar da Unisul
+                </p>
+              </h5>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="offcanvas"
+                aria-label="Close"
+              ></button>
             </div>
-          </nav>
+
+            <div class="offcanvas-body">
+              <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                <li class="nav-item">
+                  <a
+                    class="nav-link"
+                    aria-current="page"
+                    href="index.html"
+                    >Voltar</a
+                  >
+                </li>
+                <li class="nav-item">
+                  <a
+                    class="nav-link active"
+                    href="diretoria.html"
+                    >Diretoria</a
+                  >
+                </li>
+                <li class="nav-item">
+                  <a
+                    class="nav-link"
+                    href="about.html"
+                    >Sobre</a
+                  >
+                </li>
+                <li class="nav-item">
+                  <a
+                    class="nav-link"
+                    href="login.html"
+                    >Login</a
+                  >
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </nav>
     </header>
     <section class="titulos">
-        <h2 class="text-center" style="color: var(--azul-escuro);">Nossa Diretoria</h2>
-        <p class="main_p">Formada por acadêmicos de Biomedicina e professoras estetas orientadoras experientes. Nossa equipe atua de forma colaborativa, promovendo conhecimento, pesquisa e inovação na estética.</p>
+      <h2
+        class="text-center"
+        style="color: var(--azul-escuro)"
+      >
+        Nossa Diretoria
+      </h2>
+      <p class="main_p">
+        Formada por acadêmicos de Biomedicina e professoras estetas orientadoras
+        experientes. Nossa equipe atua de forma colaborativa, promovendo
+        conhecimento, pesquisa e inovação na estética.
+      </p>
     </section>
     <main>
-        <div class="container py-4">
-            <!-- Destaque para Presidente e Professoras -->
-            <div class="row text-center g-3">
-                <div class="col-md-4">
-                    <div class="card presidente">
-                        <div class="card_apresentacao">
-                            <h3>Ademar da Silva</h3>
-                            <p>Presidente</p>
-                        </div>
-                        <img src="assets/diretoria/ademar-diretoria.png" class="rounded-circle">
-                        <!-- Ícones das redes sociais -->
-                        <div class="social-icons">
-                            <a href="https://www.instagram.com/ademardsilva?igsh=MXVhNTB6bDg4Z3h3eQ==" target="_blank" class="instagram-icon"><i class="bi bi-instagram"></i></a>
-                            <a href="https://www.linkedin.com/in/ademar-da-silva-521594241?originalSubdomain=br" target="_blank" class="linkedin-icon"><i class="bi bi-linkedin"></i></a>
-                        </div>
-                        <p class="texto_apresentacao_card">Líder da liga acadêmica, representando-a em eventos e garantindo o alinhamento com a instituição de ensino. Coordena a equipe, impulsiona o crescimento da liga e assegura o cumprimento de metas. Supervisiona a organização de eventos, palestras e coffee breaks, promovendo a integração dos membros e fortalecendo sua presença no meio acadêmico e profissional. Além disso, atua na comunicação institucional, fomentando parcerias e oportunidades para os ligantes.</p>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card presidente">
-                        <div class="card_apresentacao">
-                            <h3>Msc. Carline Rudolf</h3>
-                            <p>Professora Orientadora</p>
-                        </div>
-                        <img src="assets/diretoria/professora1.png" class="rounded-circle">
-                        <!-- Ícones das redes sociais -->
-                        <div class="social-icons">
-                            <a href="https://www.instagram.com/carlinerudolf?igsh=eTFzbm41Ym9mMGRj" target="_blank" class="instagram-icon"><i class="bi bi-instagram"></i></a>
-                            <a href="https://www.linkedin.com/in/carline-rudolf-72571b74?originalSubdomain=br" target="_blank" class="linkedin-icon"><i class="bi bi-linkedin"></i></a>
-                        </div>
-                        <p class="texto_apresentacao_card">Biomédica e cosmetóloga, Carline atua como professora orientadora da liga, sendo a principal referência acadêmica e científica. Todos os materiais produzidos passam por sua revisão, garantindo qualidade e rigor técnico. Sua experiência e conhecimento são essenciais para direcionar os membros da liga no desenvolvimento de pesquisas e atividades práticas.</p>
-                    </div>
-                </div>
+      <div class="container py-4">
+        <!-- Destaque para Presidente e Professoras -->
+        <div class="row text-center g-3">
+          <div class="col-md-4">
+            <div class="card presidente">
+              <div class="card_apresentacao">
+                <h3>Ademar da Silva</h3>
+                <p>Presidente</p>
+              </div>
+              <img
+                src="assets/diretoria/ademar-diretoria.png"
+                class="rounded-circle"
+              />
+              <!-- Ícones das redes sociais -->
+              <div class="social-icons">
+                <a
+                  href="https://www.instagram.com/ademardsilva?igsh=MXVhNTB6bDg4Z3h3eQ=="
+                  target="_blank"
+                  class="instagram-icon"
+                  ><i class="bi bi-instagram"></i
+                ></a>
+                <a
+                  href="https://www.linkedin.com/in/ademar-da-silva-521594241?originalSubdomain=br"
+                  target="_blank"
+                  class="linkedin-icon"
+                  ><i class="bi bi-linkedin"></i
+                ></a>
+              </div>
+              <p class="texto_apresentacao_card">
+                Líder da liga acadêmica, representando-a em eventos e garantindo
+                o alinhamento com a instituição de ensino. Coordena a equipe,
+                impulsiona o crescimento da liga e assegura o cumprimento de
+                metas. Supervisiona a organização de eventos, palestras e coffee
+                breaks, promovendo a integração dos membros e fortalecendo sua
+                presença no meio acadêmico e profissional. Além disso, atua na
+                comunicação institucional, fomentando parcerias e oportunidades
+                para os ligantes.
+              </p>
             </div>
-    
-            <h4 class="comissao">Comissão</h4>
-    
-            <div class="row text-center g-3 mt-3">
-                <div class="col-md-4">
-                    <div class="card presidente">
-                        <div class="card_apresentacao">
-                            <h3>Eduarda Venturi</h3>
-                            <p>Vice-Presidente</p>
-                        </div>
-                        <img src="assets/diretoria/duda.png" class="rounded-circle">
-                        <!-- Ícones das redes sociais -->
-                        <div class="social-icons">
-                            <a href="https://www.instagram.com/duda.venturi?igsh=MTh6YWw0MWRmMXB6MQ==" target="_blank" class="instagram-icon"><i class="bi bi-instagram"></i></a>
-                        </div>
-                        <p class="texto_apresentacao_card">Como vice-presidente, Eduarda auxilia diretamente o presidente em suas funções e assume sua posição em caso de ausência. Ela está envolvida em diversas áreas da gestão, contribuindo para a organização dos eventos e auxiliando os demais membros na execução de suas funções. Sua versatilidade e comprometimento garantem a eficiência das operações da liga.</p>
-                    </div>
-                </div>
-            </div>
-    
-            <div class="row text-center g-3 mt-3">
-                <div class="col-md-4">
-                    <div class="card presidente">
-                        <div class="card_apresentacao">
-                            <h3>Bianca Vieira</h3>
-                            <p>Diretora Científica</p>
-                        </div>
-                        <img src="assets/diretoria/bianca-cavalheiro.jpeg" class="rounded-circle">
-                        <!-- Ícones das redes sociais -->
-                        <div class="social-icons">
-                            <a href="https://www.instagram.com/biancaacvl?igsh=MTlnMDV2YmwxenVocA==" target="_blank" class="instagram-icon"><i class="bi bi-instagram"></i></a>
-                        </div>
-                        <p class="texto_apresentacao_card">Responsável pela área científica da liga, Bianca coordena pesquisas e elabora materiais acadêmicos utilizados em encontros, palestras e eventos. Sua função é essencial para garantir que o conteúdo trabalhado seja baseado em evidências científicas, promovendo o desenvolvimento técnico dos membros.</p>
-                    </div>
-                </div>
-            </div>
-    
-            <div class="row text-center g-3 mt-3">
-                <div class="col-md-4">
-                    <div class="card presidente">
-                        <div class="card_apresentacao">
-                            <h3>Geovana Stella</h3>
-                            <p>Diretora Acadêmica</p>
-                        </div>
-                        <img src="assets/diretoria/Geovana.jpeg" class="rounded-circle">
-                        <!-- Ícones das redes sociais -->
-                        <div class="social-icons">
-                            <a href="https://www.instagram.com/geovanastella_?igsh=MXFxZ3dxcnEya2ltdg==" target="_blank" class="instagram-icon"><i class="bi bi-instagram"></i></a>
-                        </div>
-                        <p class="texto_apresentacao_card">Geovana é a responsável por coordenar projetos acadêmicos dentro da liga. Ela organiza palestras, workshops e cursos, promovendo o aprimoramento técnico e científico dos membros. Sua atuação garante que a liga esteja sempre atualizada e oferecendo oportunidades de aprendizado para seus integrantes.</p>
-                    </div>
-                </div>
-            </div>
-    
-            <div class="row text-center g-3 mt-3">
-                <div class="col-md-4">
-                    <div class="card presidente">
-                        <div class="card_apresentacao">
-                            <h3>Nicole Martins</h3>
-                            <p>Marketing</p>
-                        </div>
-                        <img src="assets/diretoria/nicole.png" class="rounded-circle">
-                        <!-- Ícones das redes sociais -->
-                        <div class="social-icons">
-                            <a href="https://www.instagram.com/_.nicolems?igsh=YmdoMjBoNXl3Yndq" target="_blank" class="instagram-icon"><i class="bi bi-instagram"></i></a>
-                        </div>
-                        <p class="texto_apresentacao_card">Nicole é responsável pela divulgação da liga, utilizando redes sociais, cartazes e e-mails para atrair novos membros e manter a comunidade acadêmica informada sobre as atividades da liga. Seu trabalho fortalece a imagem da instituição e amplia seu alcance.</p>
-                    </div>
-                </div>
-            </div>
-    
-            <div class="row text-center g-3 mt-3">
-                <div class="col-md-4">
-                    <div class="card presidente">
-                        <div class="card_apresentacao">
-                            <h3>Fernanda Prado</h3>
-                            <p>Marketing</p>
-                        </div>
-                        <img src="assets/diretoria/fernanda.jpeg" class="rounded-circle">
-                        <!-- Ícones das redes sociais -->
-                        <div class="social-icons">
-                            <a href="https://www.instagram.com/fernanda_praado?igsh=cXRkbm9yNjVuYzZi" target="_blank" class="instagram-icon"><i class="bi bi-instagram"></i></a>
-                        </div>
-                        <p class="texto_apresentacao_card">Fernanda também atua na área de marketing, trabalhando na criação de campanhas de divulgação, materiais gráficos e estratégias para promover a liga e suas atividades. Sua criatividade e comunicação são fundamentais para o engajamento do público.</p>
-                    </div>
-                </div>
-            </div>
-    
-            <div class="row text-center g-3 mt-3">
-                <div class="col-md-4">
-                    <div class="card presidente">
-                        <div class="card_apresentacao">
-                            <h3>Beatriz Ramos</h3>
-                            <p>Tesoureira e Assistente Acadêmica</p>
-                        </div>
-                        <img src="assets/diretoria/beatriz.png" class="rounded-circle">
-                        <!-- Ícones das redes sociais -->
-                        <div class="social-icons">
-                            <a href="https://www.instagram.com/beatrizaramos?igsh=MWN5NGhueTRoa3pnYw==" target="_blank" class="instagram-icon"><i class="bi bi-instagram"></i></a>
-                        </div>
-                        <p class="texto_apresentacao_card">Beatriz gerencia as finanças da liga, controlando o orçamento, buscando financiamento e mantendo registros financeiros organizados. Além disso, auxilia a diretora acadêmica na realização de projetos, eventos e cursos, garantindo suporte para o crescimento da liga.</p>
-                    </div>
-                </div>
-            </div>
-    
-            <!-- Botões padrões -->
-            <div class="text-center mt-4">
-                <a href="index.html" class="btn btn-liga">Volte para página anterior</a>
-            </div>
-        </div>
-    </main>
-    <hr>
-    <footer class="footer">
-        <div class="footer-container">
-          <div class="footer-info">
-            <p>UNISUL - Universidade do Sul de Santa Catarina</p>
-            <p>&copy; 2025 Labem. Todos os direitos reservados.</p>
           </div>
-          <div class="footer-dev">
-            <p>Desenvolvido por 
-              <a href="https://github.com/mmyersbyte" target="_blank"><i class="fab fa-github"></i></a>
-              <a href="https://www.instagram.com/pedrovicstro" target="_blank"><i class="fab fa-instagram"></i></a>
-              <a href="https://portfolio-dev-six-pied.vercel.app/" target="_blank"><i class="fas fa-rocket"></i></a>
-            </p>
+          <div class="col-md-4">
+            <div class="card presidente">
+              <div class="card_apresentacao">
+                <h3>Msc. Carline Rudolf</h3>
+                <p>Professora Orientadora</p>
+              </div>
+              <img
+                src="assets/diretoria/professora1.png"
+                class="rounded-circle"
+              />
+              <!-- Ícones das redes sociais -->
+              <div class="social-icons">
+                <a
+                  href="https://www.instagram.com/carlinerudolf?igsh=eTFzbm41Ym9mMGRj"
+                  target="_blank"
+                  class="instagram-icon"
+                  ><i class="bi bi-instagram"></i
+                ></a>
+                <a
+                  href="https://www.linkedin.com/in/carline-rudolf-72571b74?originalSubdomain=br"
+                  target="_blank"
+                  class="linkedin-icon"
+                  ><i class="bi bi-linkedin"></i
+                ></a>
+              </div>
+              <p class="texto_apresentacao_card">
+                Biomédica e cosmetóloga, Carline atua como professora
+                orientadora da liga, sendo a principal referência acadêmica e
+                científica. Todos os materiais produzidos passam por sua
+                revisão, garantindo qualidade e rigor técnico. Sua experiência e
+                conhecimento são essenciais para direcionar os membros da liga
+                no desenvolvimento de pesquisas e atividades práticas.
+              </p>
+            </div>
           </div>
         </div>
-      </footer>
-        <script src="app.js"></script>
-        <script src="https://kit.fontawesome.com/YOUR_KIT_CODE.js" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>
 
+        <h4 class="comissao">Comissão</h4>
+
+        <div class="row text-center g-3 mt-3">
+          <div class="col-md-4">
+            <div class="card presidente">
+              <div class="card_apresentacao">
+                <h3>Eduarda Venturi</h3>
+                <p>Vice-Presidente</p>
+              </div>
+              <img
+                src="assets/diretoria/duda.png"
+                class="rounded-circle"
+              />
+              <!-- Ícones das redes sociais -->
+              <div class="social-icons">
+                <a
+                  href="https://www.instagram.com/duda.venturi?igsh=MTh6YWw0MWRmMXB6MQ=="
+                  target="_blank"
+                  class="instagram-icon"
+                  ><i class="bi bi-instagram"></i
+                ></a>
+              </div>
+              <p class="texto_apresentacao_card">
+                Como vice-presidente, Eduarda auxilia diretamente o presidente
+                em suas funções e assume sua posição em caso de ausência. Ela
+                está envolvida em diversas áreas da gestão, contribuindo para a
+                organização dos eventos e auxiliando os demais membros na
+                execução de suas funções. Sua versatilidade e comprometimento
+                garantem a eficiência das operações da liga.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="row text-center g-3 mt-3">
+          <div class="col-md-4">
+            <div class="card presidente">
+              <div class="card_apresentacao">
+                <h3>Bianca Vieira</h3>
+                <p>Diretora Científica</p>
+              </div>
+              <img
+                src="assets/diretoria/bianca-cavalheiro.jpeg"
+                class="rounded-circle"
+              />
+              <!-- Ícones das redes sociais -->
+              <div class="social-icons">
+                <a
+                  href="https://www.instagram.com/biancaacvl?igsh=MTlnMDV2YmwxenVocA=="
+                  target="_blank"
+                  class="instagram-icon"
+                  ><i class="bi bi-instagram"></i
+                ></a>
+              </div>
+              <p class="texto_apresentacao_card">
+                Responsável pela área científica da liga, Bianca coordena
+                pesquisas e elabora materiais acadêmicos utilizados em
+                encontros, palestras e eventos. Sua função é essencial para
+                garantir que o conteúdo trabalhado seja baseado em evidências
+                científicas, promovendo o desenvolvimento técnico dos membros.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="row text-center g-3 mt-3">
+          <div class="col-md-4">
+            <div class="card presidente">
+              <div class="card_apresentacao">
+                <h3>Geovana Stella</h3>
+                <p>Diretora Acadêmica</p>
+              </div>
+              <img
+                src="assets/diretoria/Geovana.jpeg"
+                class="rounded-circle"
+              />
+              <!-- Ícones das redes sociais -->
+              <div class="social-icons">
+                <a
+                  href="https://www.instagram.com/geovanastella_?igsh=MXFxZ3dxcnEya2ltdg=="
+                  target="_blank"
+                  class="instagram-icon"
+                  ><i class="bi bi-instagram"></i
+                ></a>
+              </div>
+              <p class="texto_apresentacao_card">
+                Geovana é a responsável por coordenar projetos acadêmicos dentro
+                da liga. Ela organiza palestras, workshops e cursos, promovendo
+                o aprimoramento técnico e científico dos membros. Sua atuação
+                garante que a liga esteja sempre atualizada e oferecendo
+                oportunidades de aprendizado para seus integrantes.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="row text-center g-3 mt-3">
+          <div class="col-md-4">
+            <div class="card presidente">
+              <div class="card_apresentacao">
+                <h3>Nicole Martins</h3>
+                <p>Marketing</p>
+              </div>
+              <img
+                src="assets/diretoria/nicole.png"
+                class="rounded-circle"
+              />
+              <!-- Ícones das redes sociais -->
+              <div class="social-icons">
+                <a
+                  href="https://www.instagram.com/_.nicolems?igsh=YmdoMjBoNXl3Yndq"
+                  target="_blank"
+                  class="instagram-icon"
+                  ><i class="bi bi-instagram"></i
+                ></a>
+              </div>
+              <p class="texto_apresentacao_card">
+                Nicole é responsável pela divulgação da liga, utilizando redes
+                sociais, cartazes e e-mails para atrair novos membros e manter a
+                comunidade acadêmica informada sobre as atividades da liga. Seu
+                trabalho fortalece a imagem da instituição e amplia seu alcance.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="row text-center g-3 mt-3">
+          <div class="col-md-4">
+            <div class="card presidente">
+              <div class="card_apresentacao">
+                <h3>Fernanda Prado</h3>
+                <p>Marketing</p>
+              </div>
+              <img
+                src="assets/diretoria/fernanda.jpeg"
+                class="rounded-circle"
+              />
+              <!-- Ícones das redes sociais -->
+              <div class="social-icons">
+                <a
+                  href="https://www.instagram.com/fernanda_praado?igsh=cXRkbm9yNjVuYzZi"
+                  target="_blank"
+                  class="instagram-icon"
+                  ><i class="bi bi-instagram"></i
+                ></a>
+              </div>
+              <p class="texto_apresentacao_card">
+                Fernanda também atua na área de marketing, trabalhando na
+                criação de campanhas de divulgação, materiais gráficos e
+                estratégias para promover a liga e suas atividades. Sua
+                criatividade e comunicação são fundamentais para o engajamento
+                do público.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="row text-center g-3 mt-3">
+          <div class="col-md-4">
+            <div class="card presidente">
+              <div class="card_apresentacao">
+                <h3>Beatriz Ramos</h3>
+                <p>Tesoureira e Assistente Acadêmica</p>
+              </div>
+              <img
+                src="assets/diretoria/beatriz.png"
+                class="rounded-circle"
+              />
+              <!-- Ícones das redes sociais -->
+              <div class="social-icons">
+                <a
+                  href="https://www.instagram.com/beatrizaramos?igsh=MWN5NGhueTRoa3pnYw=="
+                  target="_blank"
+                  class="instagram-icon"
+                  ><i class="bi bi-instagram"></i
+                ></a>
+              </div>
+              <p class="texto_apresentacao_card">
+                Beatriz gerencia as finanças da liga, controlando o orçamento,
+                buscando financiamento e mantendo registros financeiros
+                organizados. Além disso, auxilia a diretora acadêmica na
+                realização de projetos, eventos e cursos, garantindo suporte
+                para o crescimento da liga.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Botões padrões -->
+        <div class="text-center mt-4">
+          <a
+            href="index.html"
+            class="btn btn-liga"
+            >Volte para página anterior</a
+          >
+        </div>
+      </div>
+    </main>
+    <hr />
+    <footer class="footer">
+      <div class="footer-container">
+        <div class="footer-info">
+          <p>UNISUL - Universidade do Sul de Santa Catarina</p>
+          <p>&copy; 2025 Labem. Todos os direitos reservados.</p>
+        </div>
+        <div class="footer-dev">
+          <p>
+            Desenvolvido por
+            <a
+              href="https://github.com/mmyersbyte"
+              target="_blank"
+              ><i class="fab fa-github"></i
+            ></a>
+            <a
+              href="https://www.instagram.com/pedrovicstro"
+              target="_blank"
+              ><i class="fab fa-instagram"></i
+            ></a>
+            <a
+              href="https://portfolio-dev-six-pied.vercel.app/"
+              target="_blank"
+              ><i class="fas fa-rocket"></i
+            ></a>
+          </p>
+        </div>
+      </div>
+    </footer>
+    <script src="app.js"></script>
+    <script
+      src="https://kit.fontawesome.com/YOUR_KIT_CODE.js"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>
