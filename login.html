@@ -1,126 +1,193 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Página de Login</title>
-  <link rel="shortcut icon" href="assets/logo-labem.png" type="image/x-icon">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-  <link rel="icon" href="assets/logo-labem.png">
-  <link
-    rel="stylesheet"
-    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
-  />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+    <title>Página de Login</title>
+    <link
+      rel="shortcut icon"
+      href="assets/logo-labem.png"
+      type="image/x-icon"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+    <link
+      rel="icon"
+      href="assets/logo-labem.png"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
 
-  <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
-  />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
 
-  <link rel="stylesheet" href="estilos/login.css" />
-
- 
-</head>
-<header>
-    <nav class="navbar">
+    <link
+      rel="stylesheet"
+      href="estilos/login.css"
+    />
+  </head>
+  <body>
+    <header>
+      <nav class="navbar">
         <div class="nav-brand">
-          <img src="assets/logo-labem.png" alt="Logo Ligantes" class="logo">
+          <img
+            src="assets/logo-labem.png"
+            alt="Logo Ligantes"
+            class="logo"
+          />
           <span>Ligantes LABEM</span>
         </div>
       </nav>
-</header>
+    </header>
 
-<body>
-  <div class="login-wrapper">
-    <div class="card p-4">
-      <h2 class="text-center mb-4">Login dos Ligantes</h2>
-      
+    <div class="login-wrapper">
+      <div class="card p-4">
+        <h2 class="text-center mb-4">Login dos Ligantes</h2>
 
-      <form id="loginForm">
-        <div class="mb-3">
-          <label for="email" class="form-label visually-hidden">Email</label>
-          <input
-            type="email"
-            id="email"
-            placeholder="Email"
-            class="form-control"
-            required
-            autocomplete="email"
-          />
+        <form id="loginForm">
+          <div class="mb-3">
+            <label
+              for="email"
+              class="form-label visually-hidden"
+              >Email</label
+            >
+            <div class="input-group">
+              <span class="input-group-text">
+                <i class="fas fa-envelope"></i>
+              </span>
+              <input
+                type="email"
+                id="email"
+                placeholder="Email"
+                class="form-control"
+                required
+                autocomplete="email"
+              />
+            </div>
+            <div
+              class="invalid-feedback"
+              id="emailFeedback"
+            ></div>
+          </div>
+
+          <div class="mb-3">
+            <label
+              for="senha"
+              class="visually-hidden"
+              >Senha</label
+            >
+            <div class="input-group">
+              <span class="input-group-text">
+                <i class="fas fa-lock"></i>
+              </span>
+              <input
+                type="password"
+                id="senha"
+                placeholder="Senha"
+                class="form-control"
+                required
+                autocomplete="current-password"
+              />
+              <span
+                class="input-group-text"
+                id="toggleSenha"
+              >
+                <i class="fa fa-eye"></i>
+              </span>
+            </div>
+            <div
+              class="invalid-feedback"
+              id="senhaFeedback"
+            ></div>
+          </div>
+
+          <div class="form-check mb-3">
+            <input
+              class="form-check-input"
+              type="checkbox"
+              id="lembrarSenha"
+            />
+            <label
+              class="form-check-label"
+              for="lembrarSenha"
+            >
+              Manter-me logado
+            </label>
+          </div>
+
+          <button
+            type="submit"
+            class="btn btn-custom"
+            id="btnEntrar"
+          >
+            <span class="btn-text">Entrar</span>
+            <span
+              class="spinner-border spinner-border-sm d-none"
+              role="status"
+              aria-hidden="true"
+            ></span>
+          </button>
+
+          <p
+            id="mensagem"
+            class="mt-3 text-center"
+          ></p>
+        </form>
+
+        <div class="login-links mt-3 text-center">
+          <a
+            href="mailto:pedrovicstro@gmail.com"
+            target="_blank"
+            >Esqueceu a senha?</a
+          >
+          <a href="index.html">Voltar</a>
         </div>
-
-        <div class="mb-3 input-group">
-          <label for="senha" class="visually-hidden">Senha</label>
-          <input
-            type="password"
-            id="senha"
-            placeholder="Senha"
-            class="form-control"
-            required
-            autocomplete="current-password"
-          />
-          <span class="input-group-text" id="toggleSenha">
-            <i class="fa fa-eye"></i>
-          </span>
-        </div>
-
-        <div class="form-check mb-3">
-          <input
-            class="form-check-input"
-            type="checkbox"
-            id="lembrarSenha"
-          />
-          <label class="form-check-label" for="lembrarSenha">
-            Manter-me logado
-          </label>
-        </div>
-
-        <button type="submit" class="btn btn-custom">Entrar</button>
-
-        <p id="mensagem" class="mt-3 text-danger fw-bold text-center"></p>
-      </form>
-
-      <div class="login-links mt-3 text-center">
-        <a href="mailto:pedrovicstro@gmail.com" target="_blank">Esqueceu a senha?</a>        <a href="index.html">Voltar</a>
       </div>
     </div>
-  </div>
-  <footer class="footer">
-    <div class="footer-container">
-      <div class="footer-info">
-        <p>UNISUL - Universidade do Sul de Santa Catarina</p>
-        <p>&copy; 2025 Labem. Todos os direitos reservados.</p>
+
+    <footer class="footer">
+      <div class="footer-container">
+        <div class="footer-info">
+          <p>UNISUL - Universidade do Sul de Santa Catarina</p>
+          <p>&copy; 2025 Labem. Todos os direitos reservados.</p>
+        </div>
+        <div class="footer-dev">
+          <p>
+            Desenvolvido por
+            <a
+              href="https://github.com/mmyersbyte"
+              target="_blank"
+              ><i class="fab fa-github"></i
+            ></a>
+            <a
+              href="https://www.instagram.com/pedrovicstro"
+              target="_blank"
+              ><i class="fab fa-instagram"></i
+            ></a>
+            <a
+              href="https://portfolio-dev-six-pied.vercel.app/"
+              target="_blank"
+              ><i class="fas fa-rocket"></i
+            ></a>
+          </p>
+        </div>
       </div>
-      <div class="footer-dev">
-        <p>Desenvolvido por 
-          <a href="https://github.com/mmyersbyte" target="_blank"><i class="fab fa-github"></i></a>
-          <a href="https://www.instagram.com/pedrovicstro" target="_blank"><i class="fab fa-instagram"></i></a>
-          <a href="https://portfolio-dev-six-pied.vercel.app/" target="_blank"><i class="fas fa-rocket"></i></a>
-        </p>
-      </div>
-    </div>
-  </footer>
-  
+    </footer>
 
-  <script src="auth.js"></script>
-
-  <script>
-    document.getElementById("toggleSenha").addEventListener("click", function () {
-      const senhaInput = document.getElementById("senha");
-      const icon = this.querySelector("i");
-
-      if (senhaInput.type === "password") {
-        senhaInput.type = "text";
-        icon.classList.remove("fa-eye");
-        icon.classList.add("fa-eye-slash");
-      } else {
-        senhaInput.type = "password";
-        icon.classList.remove("fa-eye-slash");
-        icon.classList.add("fa-eye");
-      }
-    });
-  </script>
-
-</body>
+    <script src="auth.js"></script>
+    <script src="login.js"></script>
+  </body>
 </html>
