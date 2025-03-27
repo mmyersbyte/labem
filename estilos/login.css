@@ -259,7 +259,6 @@ h2 {
   transform: translate(-50%, -50%);
 }
 
-/* Responsividade */
 @media (max-width: 576px) {
   .navbar {
     padding: 1rem;

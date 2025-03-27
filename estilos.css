@@ -9,53 +9,50 @@
 @import url(estilos/telasMaiores.css);
 
 :root {
-    --azul-escuro: #146677;
-    --azul-claro: #EDFAFF;
-    --azul-turquesa: #0FBCE1;
-    --azul-pastel: #E5F7FF;
-    --azul-unisul: #02408d;
-  }
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  --azul-escuro: #146677;
+  --azul-claro: #edfaff;
+  --azul-turquesa: #0fbce1;
+  --azul-pastel: #e5f7ff;
+  --azul-unisul: #02408d;
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body {
-    margin: 0;
-    padding: 0;
-    overflow-x: hidden; /* Evita rolagem horizontal */
-    color: #333;
-    font-family: 'Barlow', sans-serif;
-    height: 5000px;
-  }
-  
- 
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden; /* Evita rolagem horizontal */
+  color: #333;
+  font-family: 'Barlow', sans-serif;
+  height: 5000px;
+}
 
-  @media (min-width: 1024px) { 
-    .apresentacao p{
-      display: none;
-    }
-      
-    }
+@media (min-width: 1024px) {
+  .apresentacao p {
+    display: none;
+  }
+}
 .apresentacao {
   background-color: white;
   padding: 25px 8px;
   text-align: center;
   margin-top: 0px;
-
 }
 .apresentacao h2 {
   font-size: 2.5rem;
   margin-bottom: 20px;
   color: var(--azul-escuro);
 }
-.apresentacao, img{
-    max-width: 100%; 
-    height: auto; 
-    display: block; 
-    padding-bottom: 16px;
-  }
+.apresentacao,
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  padding-bottom: 16px;
+}
 .apresentacao p {
   font-size: 1.1rem;
   color: #555;
@@ -98,7 +95,6 @@ body {
   background-color: #0056b3;
 }
 
-
 .btn-liga {
   background: var(--azul-escuro);
   color: white;
@@ -136,9 +132,6 @@ body {
 .footer-dev a:hover {
   color: #6db3ff;
 }
-
-
-
 
 .atualizacoes {
   background: linear-gradient(135deg, #146677, #0b3d4b);
@@ -181,9 +174,6 @@ body {
   font-size: 1rem;
 }
 
-
-
-
 .instagram-section {
   color: white;
   padding: 0px 5px;
@@ -205,7 +195,6 @@ body {
 
 .instagram-content i {
   font-size: 50px;
-
 }
 
 .instagram-info {
@@ -222,29 +211,192 @@ body {
 .instagram-info a:hover {
   text-decoration: underline;
 }
-#header_pc_tablet{
+#header_pc_tablet {
   display: none;
 }
 @media screen and (min-width: 1024px) and (max-width: 1366px) {
   /* header, #miniCarrossel, .banner-principal, main, hr, .apresentacao, .carrossel, .atualizacoes, footer, #contato-unico{
     display: none;
   } */
-
-
-
 }
 @media (min-width: 768px) {
   .instagram-section {
     padding: 20px 15px;
   }
-  
+
   .instagram-info {
     max-width: 700px;
     font-size: 17px;
   }
 }
 
+/* Estilos para o popup de anúncio do workshop */
+
+/* Overlay (fundo escuro) */
+.popup-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 9998;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.popup-overlay.ativo {
+  display: block;
+  opacity: 1;
+}
+
+/* Container do popup */
+.anuncio-popup {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.9);
+  width: 90%;
+  max-width: 500px;
+  background: linear-gradient(to right, #146677, #022c33);
+  color: white;
+  border-radius: 12px;
+  box-shadow: 0 5px 30px rgba(0, 0, 0, 0.3);
+  z-index: 9999;
+  opacity: 0;
+  transition: all 0.3s ease;
+  overflow: hidden;
+}
+
+.anuncio-popup.ativo {
+  display: block;
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+/* Cabeçalho do popup */
+.popup-cabecalho {
+  background-color: var(--azul-turquesa);
+  padding: 15px 20px;
+  font-size: 1rem !important;
+  display: flex;
+  justify-content: space-between;
+  align-items: center !important;
+}
+
+.popup-titulo {
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-align: center !important;
+  margin: 0;
+  font-family: 'Barlow Condensed', sans-serif;
+}
+
+.popup-fechar {
+  background: transparent;
+  border: none;
+  color: white;
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 0;
+  line-height: 1;
+  transition: transform 0.2s;
+}
+
+.popup-fechar:hover {
+  transform: scale(1.1);
+}
+
+/* Conteúdo do popup */
+.popup-conteudo {
+  padding: 15px;
+  text-align: center;
+}
+
+.popup-destaque {
+  font-size: 1.2rem;
+  margin-bottom: 15px;
+  font-weight: bold;
+  color: var(--azul-claro);
+}
+
+.popup-texto {
+  margin-bottom: 20px;
+  line-height: 1.5;
+  font-size: 1rem;
+}
+
+/* Botão de confirmação */
+.popup-botao {
+  background-color: var(--azul-turquesa);
+  color: white;
+  border: none;
+  padding: 10px 30px;
+  border-radius: 25px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  font-family: 'Barlow', sans-serif;
+  margin-top: 10px;
+}
+
+.popup-botao:hover {
+  background-color: #0ca5c7;
+}
+
+@keyframes brilho {
+  0% {
+    opacity: 0.7;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.7;
+  }
+}
+
+.popup-estrela {
+  display: inline-block;
+  animation: brilho 1.5s infinite;
+}
+
+@media (min-width: 768px) {
+  .anuncio-popup {
+    width: 80%;
+    max-width: 600px;
+  }
+
+  .popup-titulo {
+    font-size: 1.4rem;
+  }
+
+  .popup-destaque {
+    font-size: 1.2rem;
+  }
+
+  .popup-texto {
+    font-size: 1rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .anuncio-popup {
+    width: 70%;
+    max-width: 700px;
+  }
+
+  .popup-cabecalho {
+    padding: 18px 25px;
+  }
+
+  .popup-conteudo {
+    padding: 25px 30px;
+  }
+}
+
 /* Media query para desktop (992px pra cima) */
 @media (min-width: 992px) {
-  
 }

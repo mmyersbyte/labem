@@ -1,333 +1,699 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="assets/logo-labem.png" type="image/x-icon">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+    <link
+      rel="shortcut icon"
+      href="assets/logo-labem.png"
+      type="image/x-icon"
+    />
     <title>LABEM - LIGA DE ESTETICA DA UNISUL</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" 
-    rel="stylesheet"
-    integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" 
-    crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.4/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="./estilos.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700&family=Barlow:wght@400;600&display=swap" rel="stylesheet">
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.4/font/bootstrap-icons.css"
+    />
+    <link
+      rel="stylesheet"
+      href="./estilos.css"
+    />
+    <link
+      rel="preconnect"
+      href="https://fonts.googleapis.com"
+    />
+    <link
+      rel="preconnect"
+      href="https://fonts.gstatic.com"
+      crossorigin
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700&family=Barlow:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
     <!-- Bootstrap Icons CDN -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-</head>
-<body>
-  <header id="header_pc_tablet">
-    <nav class="navbar-pc-tablet">
-      <div class="navbar-logo">
-        <img src="assets/logo-labem.png" alt="Logo">
-      </div>
-      <ul class="navbar-links">
-        <li class="navbar-item">
-          <a class="navbar-link active" aria-current="page" href="#">Início</a>
-        </li>
-        <li class="navbar-item">
-          <a class="navbar-link" href="about.html">Sobre</a>
-        </li>
-        <li class="navbar-item">
-          <a class="navbar-link" href="diretoria.html">Diretoria</a>
-        </li>
-        <li class="navbar-item">
-          <a class="navbar-link" href="#eventos1">Eventos</a>
-        </li>
-        <li class="navbar-item">
-          <a class="navbar-link" href="#formulario-contato">Fale Conosco</a>
-        </li>
-        <li class="navbar-item">
-          <a class="navbar-link" href="login.html">Login</a>
-        </li>
-      </ul>
-    </nav>
-  </header>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <header id="header_pc_tablet">
+      <nav class="navbar-pc-tablet">
+        <div class="navbar-logo">
+          <img
+            src="assets/logo-labem.png"
+            alt="Logo"
+          />
+        </div>
+        <ul class="navbar-links">
+          <li class="navbar-item">
+            <a
+              class="navbar-link active"
+              aria-current="page"
+              href="#"
+              >Início</a
+            >
+          </li>
+          <li class="navbar-item">
+            <a
+              class="navbar-link"
+              href="about.html"
+              >Sobre</a
+            >
+          </li>
+          <li class="navbar-item">
+            <a
+              class="navbar-link"
+              href="diretoria.html"
+              >Diretoria</a
+            >
+          </li>
+          <li class="navbar-item">
+            <a
+              class="navbar-link"
+              href="#eventos1"
+              >Eventos</a
+            >
+          </li>
+          <li class="navbar-item">
+            <a
+              class="navbar-link"
+              href="#formulario-contato"
+              >Fale Conosco</a
+            >
+          </li>
+          <li class="navbar-item">
+            <a
+              class="navbar-link"
+              href="login.html"
+              >Login</a
+            >
+          </li>
+        </ul>
+      </nav>
+    </header>
 
     <header id="header">
-      
-      <nav  class="navbar navbar-expand-lg bg-body-tertiary fixed-top navbar-custom">
+      <nav
+        class="navbar navbar-expand-lg bg-body-tertiary fixed-top navbar-custom"
+      >
         <div class="container-fluid">
-          <a class="navbar-brand" href="#header"><img class="logo-mobile"  src="/assets/logo-labem.png" alt="Logo da LABEM"></a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
-            <i class="bi bi-list" style="color: #146677; font-size: 33px;"></i>
+          <a
+            class="navbar-brand"
+            href="#header"
+            ><img
+              class="logo-mobile"
+              src="/assets/logo-labem.png"
+              alt="Logo da LABEM"
+          /></a>
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="offcanvas"
+            data-bs-target="#offcanvasNavbar"
+            aria-controls="offcanvasNavbar"
+            aria-label="Toggle navigation"
+          >
+            <i
+              class="bi bi-list"
+              style="color: #146677; font-size: 33px"
+            ></i>
           </button>
-          <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" 
-          aria-labelledby="offcanvasNavbarLabel" style="width: 70%; max-width: 400px;">
-     
-            <div style="background-color: #146677;" class="offcanvas-header">
-              <h5 class="offcanvas-title" id="offcanvasNavbarLabel"><p class="pLogo"><strong class="logoP">LABEM </strong> <br> Liga Acadêmica de Estética e Bem-Estar da Unisul</p></h5>
-              <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+          <div
+            class="offcanvas offcanvas-end"
+            tabindex="-1"
+            id="offcanvasNavbar"
+            aria-labelledby="offcanvasNavbarLabel"
+            style="width: 70%; max-width: 400px"
+          >
+            <div
+              style="background-color: #146677"
+              class="offcanvas-header"
+            >
+              <h5
+                class="offcanvas-title"
+                id="offcanvasNavbarLabel"
+              >
+                <p class="pLogo">
+                  <strong class="logoP">LABEM </strong> <br />
+                  Liga Acadêmica de Estética e Bem-Estar da Unisul
+                </p>
+              </h5>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="offcanvas"
+                aria-label="Close"
+              ></button>
             </div>
-            
+
             <div class="offcanvas-body">
               <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
                 <li class="nav-item">
-                  <a class="nav-link active" aria-current="page" href="#">Início</a>
+                  <a
+                    class="nav-link active"
+                    aria-current="page"
+                    href="#"
+                    >Início</a
+                  >
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="about.html">Sobre</a>
+                  <a
+                    class="nav-link"
+                    href="about.html"
+                    >Sobre</a
+                  >
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="diretoria.html">Diretoria</a>
+                  <a
+                    class="nav-link"
+                    href="diretoria.html"
+                    >Diretoria</a
+                  >
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="#eventos1">Eventos</a>
+                  <a
+                    class="nav-link"
+                    href="#eventos1"
+                    >Eventos</a
+                  >
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="#formulario-contato">Fale Conosco</a>
+                  <a
+                    class="nav-link"
+                    href="#formulario-contato"
+                    >Fale Conosco</a
+                  >
                 </li>
-                <li class="nav-item"><a class="nav-link" href="login.html">Login</a></li>
+                <li class="nav-item">
+                  <a
+                    class="nav-link"
+                    href="login.html"
+                    >Login</a
+                  >
+                </li>
               </ul>
             </div>
           </div>
         </div>
       </nav>
-  </header>
-  
-<!-- banner -->
-  <div class="banner-principal">
-    <div class="banner-conteudo">
-      <h1>Liga Acadêmica de Estética e Bem-Estar da Unisul</h1>
-      <p class="slogan">Transformando conhecimento em prática!</p>
-      <div class="botoes-cta">
-        <a href="about.html" class="btn-cta">Saiba Mais</a>
-        <a href="#eventos1" class="btn-cta">Junte-se a nós</a>
+    </header>
+
+    <!-- banner -->
+    <div class="banner-principal">
+      <div class="banner-conteudo">
+        <h1>Liga Acadêmica de Estética e Bem-Estar da Unisul</h1>
+        <p class="slogan">Transformando conhecimento em prática!</p>
+        <div class="botoes-cta">
+          <a
+            href="about.html"
+            class="btn-cta"
+            >Saiba Mais</a
+          >
+          <a
+            href="#eventos1"
+            class="btn-cta"
+            >Junte-se a nós</a
+          >
+        </div>
       </div>
     </div>
-  </div>
-<!-- CARROSSEL EFEITO BR AQUIII -->
-<div id="miniCarrossel" class="carousel slide mini-carrossel" data-bs-ride="carousel" data-bs-interval="1500">
-  <div class="carousel-inner">
-    <!-- Item 1 -->
-    <div class="carousel-item active">
-      Eventos, Palestras e Workshops
+    <!-- CARROSSEL EFEITO BR AQUIII -->
+    <div
+      id="miniCarrossel"
+      class="carousel slide mini-carrossel"
+      data-bs-ride="carousel"
+      data-bs-interval="1500"
+    >
+      <div class="carousel-inner">
+        <!-- Item 1 -->
+        <div class="carousel-item active">Eventos, Palestras e Workshops</div>
+        <!-- Item 2 -->
+        <div class="carousel-item">Networking com profissionais renomados</div>
+        <!-- Item 3 -->
+        <div class="carousel-item">Junte-se a LABEM!</div>
+      </div>
     </div>
-    <!-- Item 2 -->
-    <div class="carousel-item">
-      Networking com profissionais renomados
-    </div>
-    <!-- Item 3 -->
-    <div class="carousel-item">
-      Junte-se a LABEM!
-    </div>
-  </div>
-</div>
 
+    <!-- Section o que é a labem CELULAR -->
+    <section class="apresentacao">
+      <div class="container">
+        <h2>O que é a LABEM?</h2>
+        <img
+          src="assets/labem-oq.jpg"
+          alt=""
+        />
+        <p>
+          Somos um grupo acadêmico dedicado ao estudo e prática da estética,
+          promovendo eventos, workshops e trocas de conhecimento entre
+          estudantes e profissionais da área. Nossa missão é proporcionar
+          aprendizado prático e NETWORKING para futuros profissionais da
+          estética.
+        </p>
 
-
-<!-- Section o que é a labem CELULAR -->
-<section class="apresentacao">
-  <div class="container">
-    <h2>O que é a LABEM?</h2>
-    <img src="assets/labem-oq.jpg" alt="">
-     <p>
-        Somos um grupo acadêmico dedicado ao estudo e prática da estética, promovendo eventos, workshops e trocas de conhecimento entre estudantes e profissionais da área. Nossa missão é proporcionar aprendizado prático e NETWORKING para futuros profissionais da estética.
-      </p>
-
-      <!-- <div class="destaques">
+        <!-- <div class="destaques">
         <div class="destaque-item"> -->
-          <div class="destaques row g-4"> <!-- Alteração aqui -->
-            <div class="destaque-item col-lg-4">
-          <i style="color: #146677;" class="fa-solid fa-microscope"></i>          <h3>Ensino</h3>
-          <p>A LABEM complementa a formação dos estudantes com aulas teóricas e práticas, aprofundando conhecimentos sobre saúde e estética da pele.</p>
-        </div>
-        <!-- <div class="destaque-item"> -->
+        <div class="destaques row g-4">
+          <!-- Alteração aqui -->
           <div class="destaque-item col-lg-4">
-          <i style="color: #146677;" class="fa-solid fa-syringe"></i>          <h3>Pesquisa</h3>
-          <p>Incentivamos a produção científica por meio de estudos, projetos e publicações, contribuindo para o avanço da estética e o desenvolvimento acadêmico dos membros.
-          </p>
-        </div>
-        <!-- <div class="destaque-item"> -->
-          <div class="destaque-item col-lg-4">
-          <i style="color: #146677;" class="fa-solid fa-dna"></i>          <h3>Extensão</h3>
-          <p>Promovemos ações para a comunidade, como atendimentos e palestras, aplicando o conhecimento na prática e gerando impacto social</p>
-        </div>
-      </div>
-
-      <!-- Botão Saiba Mais -->
-      <a href="about.html" class="btn-saiba-mais">Saiba mais sobre a história da liga →</a>
-    </div>
-  </section>
-
-  <!-- Section o que é a labem PC/TABLET -->
-
-  <section class="pc-tablet-section">
-    <div class="pc-tablet-container">
-      <h2 class="pc-tablet-title">O que é a LABEM?</h2>
-      
-      <div class="pc-tablet-content">
-        <div class="pc-tablet-main">
-          <div class="pc-tablet-image">
-            <img src="assets/labem-oq.jpg" alt="Mulheres felizes rindo">
-
-          </div>
-          
-          <div class="pc-tablet-text">
-            <p class="pc-tablet-lead">
-              Somos um grupo acadêmico dedicado ao estudo e prática da estética, promovendo eventos, workshops e trocas de conhecimento entre estudantes e profissionais da área.
+            <i
+              style="color: #146677"
+              class="fa-solid fa-microscope"
+            ></i>
+            <h3>Ensino</h3>
+            <p>
+              A LABEM complementa a formação dos estudantes com aulas teóricas e
+              práticas, aprofundando conhecimentos sobre saúde e estética da
+              pele.
             </p>
           </div>
-                
+          <!-- <div class="destaque-item"> -->
+          <div class="destaque-item col-lg-4">
+            <i
+              style="color: #146677"
+              class="fa-solid fa-syringe"
+            ></i>
+            <h3>Pesquisa</h3>
+            <p>
+              Incentivamos a produção científica por meio de estudos, projetos e
+              publicações, contribuindo para o avanço da estética e o
+              desenvolvimento acadêmico dos membros.
+            </p>
+          </div>
+          <!-- <div class="destaque-item"> -->
+          <div class="destaque-item col-lg-4">
+            <i
+              style="color: #146677"
+              class="fa-solid fa-dna"
+            ></i>
+            <h3>Extensão</h3>
+            <p>
+              Promovemos ações para a comunidade, como atendimentos e palestras,
+              aplicando o conhecimento na prática e gerando impacto social
+            </p>
+          </div>
+        </div>
 
-        </div>
-  
-        <div class="pc-tablet-features">
-          <div class="pc-tablet-card">
-            <i class="fa-solid fa-microscope pc-tablet-icon"></i>
-            <h3 class="pc-tablet-subtitle">Ensino</h3>
-            <p class="pc-tablet-description">Complementamos a formação com aulas teóricas e práticas sobre saúde e estética da pele.</p>
-          </div>
-  
-          <div class="pc-tablet-card">
-            <i class="fa-solid fa-syringe pc-tablet-icon"></i>
-            <h3 class="pc-tablet-subtitle">Pesquisa</h3>
-            <p class="pc-tablet-description">Incentivamos estudos e publicações científicas para avanço da área.</p>
-          </div>
-  
-          <div class="pc-tablet-card">
-            <i class="fa-solid fa-dna pc-tablet-icon"></i>
-            <h3 class="pc-tablet-subtitle">Extensão</h3>
-            <p class="pc-tablet-description">Promovemos atendimentos e palestras para a comunidade.</p>
-          </div>
-        </div>
+        <!-- Botão Saiba Mais -->
+        <a
+          href="about.html"
+          class="btn-saiba-mais"
+          >Saiba mais sobre a história da liga →</a
+        >
       </div>
-      <a href="about.html" class="pc-tablet-button">Saiba mais sobre a história da liga →</a>
-    </div>
-    
-  </section>
+    </section>
 
+    <!-- Section o que é a labem PC/TABLET -->
 
-      <!-- carrossel PRINCIPAL -->
+    <section class="pc-tablet-section">
+      <div class="pc-tablet-container">
+        <h2 class="pc-tablet-title">O que é a LABEM?</h2>
 
-<section class="carrossel">
-        <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
-            <!-- Indicadores (pontinhos) -->
-            <div class="carousel-indicators">
-                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active custom-dot" aria-current="true" aria-label="Slide 1"></button>
-                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" class="custom-dot" aria-label="Slide 2"></button>
-                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" class="custom-dot" aria-label="Slide 3"></button>
+        <div class="pc-tablet-content">
+          <div class="pc-tablet-main">
+            <div class="pc-tablet-image">
+              <img
+                src="assets/labem-oq.jpg"
+                alt="Mulheres felizes rindo"
+              />
             </div>
-    
-            <!-- Imagens do carrossel -->
-            <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <img src="assets/diretoria-carrossel.png" class="d-block w-100" alt="Imagem 1">
-                    <div class="carousel-caption">
-                      <p class="small-caption">Conheça a nossa Diretoria</p>
-                    </div>
-                </div>
-                <div class="carousel-item">
-                    <img src="assets/recepcao-calouros-2025.jpg" class="d-block w-100" alt="Imagem 2">
-                    <div class="carousel-caption">
-                        <p class="small-caption">Recepção de calouros</p>
-                    </div>
-                </div>
-                <div class="carousel-item">
-                    <img src="assets/workshop-carrossel1.png" class="d-block w-100" alt="Imagem 3">
-                    <div class="carousel-caption">
-                        <p class="small-caption">Saiba mais sobre nossos workshops</p>
-                    </div>
-                </div>
+
+            <div class="pc-tablet-text">
+              <p class="pc-tablet-lead">
+                Somos um grupo acadêmico dedicado ao estudo e prática da
+                estética, promovendo eventos, workshops e trocas de conhecimento
+                entre estudantes e profissionais da área.
+              </p>
+            </div>
+          </div>
+
+          <div class="pc-tablet-features">
+            <div class="pc-tablet-card">
+              <i class="fa-solid fa-microscope pc-tablet-icon"></i>
+              <h3 class="pc-tablet-subtitle">Ensino</h3>
+              <p class="pc-tablet-description">
+                Complementamos a formação com aulas teóricas e práticas sobre
+                saúde e estética da pele.
+              </p>
+            </div>
+
+            <div class="pc-tablet-card">
+              <i class="fa-solid fa-syringe pc-tablet-icon"></i>
+              <h3 class="pc-tablet-subtitle">Pesquisa</h3>
+              <p class="pc-tablet-description">
+                Incentivamos estudos e publicações científicas para avanço da
+                área.
+              </p>
+            </div>
+
+            <div class="pc-tablet-card">
+              <i class="fa-solid fa-dna pc-tablet-icon"></i>
+              <h3 class="pc-tablet-subtitle">Extensão</h3>
+              <p class="pc-tablet-description">
+                Promovemos atendimentos e palestras para a comunidade.
+              </p>
+            </div>
+          </div>
+        </div>
+        <a
+          href="about.html"
+          class="pc-tablet-button"
+          >Saiba mais sobre a história da liga →</a
+        >
+      </div>
+    </section>
+
+    <!-- carrossel PRINCIPAL -->
+
+    <section class="carrossel">
+      <div
+        id="carouselExampleIndicators"
+        class="carousel slide"
+        data-bs-ride="carousel"
+      >
+        <!-- Indicadores (pontinhos) -->
+        <div class="carousel-indicators">
+          <button
+            type="button"
+            data-bs-target="#carouselExampleIndicators"
+            data-bs-slide-to="0"
+            class="active custom-dot"
+            aria-current="true"
+            aria-label="Slide 1"
+          ></button>
+          <button
+            type="button"
+            data-bs-target="#carouselExampleIndicators"
+            data-bs-slide-to="1"
+            class="custom-dot"
+            aria-label="Slide 2"
+          ></button>
+          <button
+            type="button"
+            data-bs-target="#carouselExampleIndicators"
+            data-bs-slide-to="2"
+            class="custom-dot"
+            aria-label="Slide 3"
+          ></button>
+        </div>
+
+        <!-- Imagens do carrossel -->
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <img
+              src="assets/diretoria-carrossel.png"
+              class="d-block w-100"
+              alt="Imagem 1"
+            />
+            <div class="carousel-caption">
+              <p class="small-caption">Conheça a nossa Diretoria</p>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <img
+              src="assets/recepcao-calouros-2025.jpg"
+              class="d-block w-100"
+              alt="Imagem 2"
+            />
+            <div class="carousel-caption">
+              <p class="small-caption">Recepção de calouros</p>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <img
+              src="assets/workshop-carrossel1.png"
+              class="d-block w-100"
+              alt="Imagem 3"
+            />
+            <div class="carousel-caption">
+              <p class="small-caption">Saiba mais sobre nossos workshops</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- CONTEUDO ATT -->
+
+    <section
+      id="eventos1"
+      class="atualizacoes"
+    >
+      <div class="container">
+        <h2 class="text-center">Últimas Atualizações</h2>
+        <div class="update-box">
+          <i class="fa-solid fa-calendar-check"></i>
+          <div class="update-text">
+            <h3>WORKSHOP COM A ADCOS!</h3>
+            <p>
+              No dia 29 de março, nossos ligantes terão uma oportunidade única:
+              um workshop exclusivo de Limpeza de Pele Profissional, ministrado
+              por Mariane Dias, profissional com mais de 15 anos na área da
+              estética, em parceria com a Adcos Florianópolis.
+            </p>
+          </div>
+        </div>
+        <div class="update-box">
+          <i class="fa-solid fa-users"></i>
+          <div class="update-text">
+            <h3>Encontro Teórico</h3>
+            <p>
+              O primeiro encontro teórico da liga FOI REALIZADO COM SUCESSO!
+              abordamos temas essenciais como sistema tegumentar, barreira
+              cutânea e gerenciamento de pele. Fique de olho nos próximos
+              encontros!
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="instagram-section">
+      <h2>Nosso Instagram</h2>
+      <div class="instagram-content row align-items-center">
+        <div class="col-lg-2 text-center">
+          <i class="fab fa-instagram"></i>
+        </div>
+        <div class="col-lg-10">
+          <div class="instagram-info">
+            <p>
+              O Instagram é nossa principal plataforma de comunicação. Lá você
+              encontra novidades, promoções e eventos exclusivos.
+            </p>
+            <p>
+              Nosso espaço também é ponto de encontro. Acompanhe nossas
+              publicações e participe das experiências que organizamos.
+            </p>
+            <p>
+              <a
+                href="https://www.instagram.com/labemunisul"
+                target="_blank"
+                >@labemunisul</a
+              >
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <hr />
+    <!-- ULTIMA SECTION -->
+    <form
+      id="formulario-contato"
+      class="formulario-contato"
+    >
+      <h4>Contato, Sugestões, Dúvidas e Parcerias</h4>
+      <label for="nome-unico">Nome:</label>
+      <input
+        type="text"
+        id="nome-unico"
+        name="nome"
+        required
+      />
+
+      <label for="email-unico">E-mail:</label>
+      <input
+        type="email"
+        id="email-unico"
+        name="email"
+        required
+      />
+
+      <label for="assunto-unico">Assunto:</label>
+      <input
+        type="text"
+        id="assunto-unico"
+        name="assunto"
+        required
+      />
+
+      <label for="mensagem-unico">Mensagem:</label>
+      <textarea
+        id="mensagem-unico"
+        name="mensagem"
+        rows="5"
+        required
+      ></textarea>
+
+      <button
+        type="submit"
+        class="botao-enviar-contato"
+      >
+        Enviar
+      </button>
+    </form>
+    <section>
+      <div class="map-container">
+        <h4>SEDE PRINCIPAL</h4>
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3453.793751515257!2d-48.5583567848877!3d-27.59258288190772!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x952739f4e2469c47%3A0x89e27a6962f33f9f!2sUnisul%20-%20Universidade%20do%20Sul%20de%20Santa%20Catarina!5e0!3m2!1spt-BR!2sbr!4v1700000000000"
+          width="600"
+          height="450"
+          style="border: 0"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+        ></iframe>
+        <div class="address">
+          <p><strong>Unisul - Universidade do Sul de Santa Catarina</strong></p>
+          <p>
+            R. Antônio Dib Mussi, 366 - Centro, Florianópolis - SC, 88015-110
+          </p>
+        </div>
+      </div>
+    </section>
+    <hr />
+    <footer class="footer">
+      <div class="footer-container">
+        <div class="footer-info">
+          <p>UNISUL - Universidade do Sul de Santa Catarina</p>
+          <p>&copy; 2025 Labem. Todos os direitos reservados.</p>
+        </div>
+        <div class="footer-dev">
+          <p>
+            Desenvolvido por
+            <a
+              href="https://github.com/mmyersbyte"
+              target="_blank"
+              ><i class="fab fa-github"></i
+            ></a>
+            <a
+              href="https://www.instagram.com/pedrovicstro"
+              target="_blank"
+              ><i class="fab fa-instagram"></i
+            ></a>
+            <a
+              href="https://portfolio-dev-six-pied.vercel.app/"
+              target="_blank"
+              ><i class="fas fa-rocket"></i
+            ></a>
+          </p>
+        </div>
+      </div>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="script.js"></script>
+    <script>
+      // Arquivo: popup-inline.js
+      // Versão simplificada para inserção direta no index.html
+
+      document.addEventListener('DOMContentLoaded', () => {
+        // Cria os elementos do popup
+        const popupHTML = `
+        <!-- Overlay (fundo escuro) -->
+        <div id="popup-overlay" class="popup-overlay"></div>
+        
+        <!-- Container do popup -->
+        <div id="anuncio-popup" class="anuncio-popup" role="dialog" aria-labelledby="popup-titulo" aria-modal="true">
+            <!-- Cabeçalho do popup -->
+            <div class="popup-cabecalho">
+                <h3 id="popup-titulo" class="popup-titulo">GRANDE EVENTO COM A ADCOS!!!</h3>
+                <button id="fechar-popup" class="popup-fechar" aria-label="Fechar popup">×</button>
+            </div>
+            
+            <!-- Conteúdo do popup -->
+            <div class="popup-conteudo">
+                <p class="popup-destaque">
+                    <span class="popup-estrela">✨</span> EXPERIÊNCIA EXCLUSIVA PARA LIGANTES! <span class="popup-estrela">✨</span>
+                </p>
+                <p class="popup-texto">
+                    No dia 29 de março, nossos ligantes terão uma oportunidade única: um workshop exclusivo de Limpeza de Pele Profissional, ministrado por Mariane Dias, profissional com mais de 15 anos na área da estética, em parceria com a Adcos Florianópolis.
+                </p>
+                <button id="ok-popup" class="popup-botao">OK</button>
             </div>
         </div>
-</section>
-<!-- CONTEUDO ATT -->
+    `;
 
-<section id="eventos1" class="atualizacoes">
-  <div class="container">
-    <h2 class="text-center">Últimas Atualizações</h2>
-    <div class="update-box">
-      <i class="fa-solid fa-calendar-check"></i>
-      <div class="update-text">
-        <h3>Encontro Teórico</h3>
-        <p>O primeiro encontro teórico da liga será realizado no dia 15/03 e abordará temas essenciais como sistema tegumentar, barreira cutânea e gerenciamento de pele. Será uma oportunidade para aprofundar conhecimentos fundamentais para a prática estética.</p>
-      </div>
-    </div>
-    <div class="update-box">
-      <i class="fa-solid fa-users"></i>
-      <div class="update-text">
-        <h3>Encontro Prático</h3>
-       <p>A prática de limpeza de pele será conduzida por um especialista na área. O encontro será marcado em breve, proporcionando aprendizado técnico e aplicação dos conceitos discutidos na teoria. Fiquem Ligados!</p>
-      </div>
-    </div>
+        // Insere o HTML do popup no início do bodi
+        document.body.insertAdjacentHTML('afterbegin', popupHTML);
 
-</div>
+        // Elementos do DOM
+        const popup = document.getElementById('anuncio-popup');
+        const fecharBtn = document.getElementById('fechar-popup');
+        const okBtn = document.getElementById('ok-popup');
+        const overlay = document.getElementById('popup-overlay');
 
-</section>
+        // Função para mostrar o popup
+        function mostrarPopup() {
+          popup.classList.add('ativo');
+          overlay.classList.add('ativo');
+          document.body.style.overflow = 'hidden'; // Impede rolagem da página
+        }
 
+        // Função para fechar o popup
+        function fecharPopup() {
+          popup.classList.remove('ativo');
+          overlay.classList.remove('ativo');
+          document.body.style.overflow = ''; // Restaura rolagem da página
 
-    
-<section class="instagram-section">
-  <h2>Nosso Instagram</h2>
-  <div class="instagram-content row align-items-center"> 
+          // Salva no localStorage para não mostrar novamente na mesma sessão
+          sessionStorage.setItem('popupMostrado', 'true');
+        }
 
-    <div class="col-lg-2 text-center"> 
-      <i class="fab fa-instagram"></i>
-      </div>
-      <div class="col-lg-10"> 
-      <div class="instagram-info">
-          <p>O Instagram é nossa principal plataforma de comunicação. Lá você encontra novidades, promoções e eventos exclusivos.</p>
-          <p>Nosso espaço também é ponto de encontro. Acompanhe nossas publicações e participe das experiências que organizamos.</p>
-          <p><a href="https://www.instagram.com/labemunisul" target="_blank">@labemunisul</a></p>
-      </div>
-    </div>
-  </div>
+        // Verifica se o popup já foi mostrado nesta sessão
+        if (!sessionStorage.getItem('popupMostrado')) {
+          // Mostra o popup após um pequeno delay para garantir que a página carregou
+          setTimeout(mostrarPopup, 500);
 
-</section>
+          // Fecha o popup automaticamente após segundos
+          setTimeout(fecharPopup, 100000);
+        }
 
-<hr>
-<!-- ULTIMA SECTION -->
-<form id="formulario-contato" class="formulario-contato">
-  <h4>Contato, Sugestões, Dúvidas e Parcerias</h4>
-  <label for="nome-unico">Nome:</label>
-  <input type="text" id="nome-unico" name="nome" required>
+        // Adiciona evento de clique aos botões
+        fecharBtn.addEventListener('click', fecharPopup);
+        okBtn.addEventListener('click', fecharPopup);
 
-  <label for="email-unico">E-mail:</label>
-  <input type="email" id="email-unico" name="email" required>
+        // Fecha o popup ao clicar fora dele (no overlay)
+        overlay.addEventListener('click', (e) => {
+          if (e.target === overlay) {
+            fecharPopup();
+          }
+        });
 
-  <label for="assunto-unico">Assunto:</label>
-  <input type="text" id="assunto-unico" name="assunto" required>
-
-  <label for="mensagem-unico">Mensagem:</label>
-  <textarea id="mensagem-unico" name="mensagem" rows="5" required></textarea>
-
-  <button type="submit" class="botao-enviar-contato">Enviar</button>
-  
-</form>
-<section>
-  <div class="map-container">
-    <h4>SEDE PRINCIPAL</h4>
-    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3453.793751515257!2d-48.5583567848877!3d-27.59258288190772!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x952739f4e2469c47%3A0x89e27a6962f33f9f!2sUnisul%20-%20Universidade%20do%20Sul%20de%20Santa%20Catarina!5e0!3m2!1spt-BR!2sbr!4v1700000000000" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-    <div class="address">
-        <p><strong>Unisul - Universidade do Sul de Santa Catarina</strong></p>
-        <p>R. Antônio Dib Mussi, 366 - Centro, Florianópolis - SC, 88015-110</p>
-    </div>
-  </div>
-</section>
-<hr>
-<footer class="footer">
-  <div class="footer-container">
-    <div class="footer-info">
-      <p>UNISUL - Universidade do Sul de Santa Catarina</p>
-      <p>&copy; 2025 Labem. Todos os direitos reservados.</p>
-    </div>
-    <div class="footer-dev">
-      <p>Desenvolvido por 
-        <a href="https://github.com/mmyersbyte" target="_blank"><i class="fab fa-github"></i></a>
-        <a href="https://www.instagram.com/pedrovicstro" target="_blank"><i class="fab fa-instagram"></i></a>
-        <a href="https://portfolio-dev-six-pied.vercel.app/" target="_blank"><i class="fas fa-rocket"></i></a>
-      </p>
-    </div>
-  </div>
-</footer>
-      <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-      <script src="script.js"></script>
-      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-      
-    </body>
+        // Fecha o popup ao pressionar ESC
+        document.addEventListener('keydown', (e) => {
+          if (e.key === 'Escape' && popup.classList.contains('ativo')) {
+            fecharPopup();
+          }
+        });
+      });
+    </script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"
+    ></script>
+  </body>
 </html>
