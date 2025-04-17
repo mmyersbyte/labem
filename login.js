@@ -1,106 +1,122 @@
 document.addEventListener('DOMContentLoaded', () => {
-  // Elementos do DOM
-  const loginForm = document.getElementById('loginForm');
-  const emailInput = document.getElementById('email');
-  const senhaInput = document.getElementById('senha');
-  const lembrarSenhaCheckbox = document.getElementById('lembrarSenha');
-  const mensagemElement = document.getElementById('mensagem');
-  const btnEntrar = document.getElementById('btnEntrar');
-  const toggleSenhaBtn = document.getElementById('toggleSenha');
-  const emailFeedback = document.getElementById('emailFeedback');
-  const senhaFeedback = document.getElementById('senhaFeedback');
+  // Cache de elementos do DOM
+  const elements = {
+    loginForm: document.getElementById('loginForm'),
+    emailInput: document.getElementById('email'),
+    senhaInput: document.getElementById('senha'),
+    lembrarSenhaCheckbox: document.getElementById('lembrarSenha'),
+    mensagemElement: document.getElementById('mensagem'),
+    btnEntrar: document.getElementById('btnEntrar'),
+    toggleSenhaBtn: document.getElementById('toggleSenha'),
+    emailFeedback: document.getElementById('emailFeedback'),
+    senhaFeedback: document.getElementById('senhaFeedback'),
+  };
 
-  // Verificar se há dados salvos no localStorage
+  // Cache de regex e constantes
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  const MIN_SENHA_LENGTH = 6;
+
+  // Verificar dados salvos
   verificarDadosSalvos();
 
-  // Adicionar eventos
-  toggleSenhaBtn.addEventListener('click', alternarVisibilidadeSenha);
-  emailInput.addEventListener('input', validarEmail);
-  senhaInput.addEventListener('input', validarSenha);
+  // Adicionar eventos com debounce para validação
+  let emailTimeout;
+  let senhaTimeout;
 
-  // gerenciado pelo auth.js
+  elements.emailInput.addEventListener('input', () => {
+    clearTimeout(emailTimeout);
+    emailTimeout = setTimeout(validarEmail, 300);
+  });
 
-  // Função para alternar visibilidade da senha
+  elements.senhaInput.addEventListener('input', () => {
+    clearTimeout(senhaTimeout);
+    senhaTimeout = setTimeout(validarSenha, 300);
+  });
+
+  elements.toggleSenhaBtn.addEventListener('click', alternarVisibilidadeSenha);
+
   function alternarVisibilidadeSenha() {
-    const icon = toggleSenhaBtn.querySelector('i');
+    const icon = elements.toggleSenhaBtn.querySelector('i');
+    const isPassword = elements.senhaInput.type === 'password';
 
-    if (senhaInput.type === 'password') {
-      senhaInput.type = 'text';
-      icon.classList.remove('fa-eye');
-      icon.classList.add('fa-eye-slash');
-    } else {
-      senhaInput.type = 'password';
-      icon.classList.remove('fa-eye-slash');
-      icon.classList.add('fa-eye');
-    }
+    elements.senhaInput.type = isPassword ? 'text' : 'password';
+    icon.classList.toggle('fa-eye', !isPassword);
+    icon.classList.toggle('fa-eye-slash', isPassword);
   }
 
-  // Função para verificar dados salvos
   function verificarDadosSalvos() {
     const savedEmail = localStorage.getItem('lembrarEmail');
     const savedLembrar = localStorage.getItem('lembrarSenha');
 
     if (savedEmail && savedLembrar === 'true') {
-      emailInput.value = savedEmail;
-      lembrarSenhaCheckbox.checked = true;
+      elements.emailInput.value = savedEmail;
+      elements.lembrarSenhaCheckbox.checked = true;
     }
   }
 
-  // Função para validar email
   function validarEmail() {
-    const email = emailInput.value.trim();
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const email = elements.emailInput.value.trim();
 
-    if (email === '') {
-      setInvalid(emailInput, emailFeedback, 'O email é obrigatório');
+    if (!email) {
+      setInvalid(
+        elements.emailInput,
+        elements.emailFeedback,
+        'O email é obrigatório'
+      );
       return false;
-    } else if (!emailRegex.test(email)) {
-      setInvalid(emailInput, emailFeedback, 'Digite um email válido');
-      return false;
-    } else {
-      setValid(emailInput);
-      return true;
     }
+
+    if (!emailRegex.test(email)) {
+      setInvalid(
+        elements.emailInput,
+        elements.emailFeedback,
+        'Digite um email válido'
+      );
+      return false;
+    }
+
+    setValid(elements.emailInput);
+    return true;
   }
 
-  // Função para validar senha
   function validarSenha() {
-    const senha = senhaInput.value;
+    const senha = elements.senhaInput.value;
 
-    if (senha === '') {
-      setInvalid(senhaInput, senhaFeedback, 'A senha é obrigatória');
-      return false;
-    } else if (senha.length < 6) {
+    if (!senha) {
       setInvalid(
-        senhaInput,
-        senhaFeedback,
+        elements.senhaInput,
+        elements.senhaFeedback,
+        'A senha é obrigatória'
+      );
+      return false;
+    }
+
+    if (senha.length < MIN_SENHA_LENGTH) {
+      setInvalid(
+        elements.senhaInput,
+        elements.senhaFeedback,
         'A senha deve ter pelo menos 6 caracteres'
       );
       return false;
-    } else {
-      setValid(senhaInput);
-      return true;
     }
+
+    setValid(elements.senhaInput);
+    return true;
   }
 
-  // Função para definir campo como inválido
   function setInvalid(input, feedback, message) {
     input.classList.add('is-invalid');
     input.classList.remove('is-valid');
     feedback.textContent = message;
   }
 
-  // Função para definir campo como válido
   function setValid(input) {
     input.classList.remove('is-invalid');
     input.classList.add('is-valid');
   }
 
-  // Interceptar o evento de submit original para adicionar validação
-  // antes de passar para o auth.js
-  const originalSubmitEvent = loginForm.onsubmit;
-  loginForm.onsubmit = (event) => {
-    // Validar campos
+  // Interceptar submit
+  elements.loginForm.onsubmit = (event) => {
     const emailValido = validarEmail();
     const senhaValida = validarSenha();
 
@@ -110,57 +126,36 @@ document.addEventListener('DOMContentLoaded', () => {
       return false;
     }
 
-    // Salvar preferência de "lembrar sena"
-    if (lembrarSenhaCheckbox.checked) {
-      localStorage.setItem('lembrarEmail', emailInput.value);
+    // Salvar preferências
+    if (elements.lembrarSenhaCheckbox.checked) {
+      localStorage.setItem('lembrarEmail', elements.emailInput.value);
       localStorage.setItem('lembrarSenha', 'true');
     } else {
       localStorage.removeItem('lembrarEmail');
       localStorage.removeItem('lembrarSenha');
     }
 
-    // Mostrar estado de carregamento
     setLoadingState(true);
-
-    // Continuar com o evento original
     return true;
   };
 
-  // Function para exibir mensagem (pode ser usada pelo auth.js)
   window.exibirMensagem = (texto, tipo) => {
-    mensagemElement.textContent = texto;
-
-    // Limpar clasesses
-    mensagemElement.classList.remove('text-success', 'text-danger');
-
-    if (tipo === 'success') {
-      mensagemElement.classList.add('text-success');
-    } else if (tipo === 'error') {
-      mensagemElement.classList.add('text-danger');
-    }
-
-    // Dstv estado de carregamento
+    elements.mensagemElement.textContent = texto;
+    elements.mensagemElement.classList.remove('text-success', 'text-danger');
+    elements.mensagemElement.classList.add(`text-${tipo}`);
     setLoadingState(false);
   };
 
-  // Função para definir estado de carregamento
   function setLoadingState(isLoading) {
-    if (isLoading) {
-      btnEntrar.classList.add('loading');
-      btnEntrar.querySelector('.spinner-border').classList.remove('d-none');
-      btnEntrar.disabled = true;
-    } else {
-      btnEntrar.classList.remove('loading');
-      btnEntrar.querySelector('.spinner-border').classList.add('d-none');
-      btnEntrar.disabled = false;
-    }
+    elements.btnEntrar.classList.toggle('loading', isLoading);
+    elements.btnEntrar
+      .querySelector('.spinner-border')
+      .classList.toggle('d-none', !isLoading);
+    elements.btnEntrar.disabled = isLoading;
   }
 
-  // Função para efeito de shake no formulário
   function shakeFeedback() {
-    loginForm.classList.add('shake');
-    setTimeout(() => {
-      loginForm.classList.remove('shake');
-    }, 500);
+    elements.loginForm.classList.add('shake');
+    setTimeout(() => elements.loginForm.classList.remove('shake'), 500);
   }
 });

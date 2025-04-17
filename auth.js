@@ -1,12 +1,17 @@
-document.getElementById('loginForm').addEventListener('submit', async (e) => {
-  e.preventDefault();
+// Cache de elementos e constantes
+const elements = {
+  loginForm: document.getElementById('loginForm'),
+  email: document.getElementById('email'),
+  senha: document.getElementById('senha'),
+  mensagem: document.getElementById('mensagem'),
+};
 
-  const email = document.getElementById('email').value;
-  const senha = document.getElementById('senha').value;
-  const mensagem = document.getElementById('mensagem');
+const API_URL = 'https://labem-2.onrender.com/login';
 
+// Função para fazer a requisição de login
+async function fazerLogin(email, senha) {
   try {
-    const response = await fetch('https://labem-2.onrender.com/login', {
+    const response = await fetch(API_URL, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -14,44 +19,57 @@ document.getElementById('loginForm').addEventListener('submit', async (e) => {
       body: JSON.stringify({ email, senha }),
     });
 
-    const data = await response.json();
-    console.log('Resposta do servidor:', data);
-
-    if (data.success) {
-      // Armazena o token JWT no localStorage para uso em requisições protegidas
-      localStorage.setItem('token', data.token);
-      // Redireciona para a página do ligante
-      window.location.href = './painel-do-ligante.html';
-    } else {
-      // Usa a função exibircMensagem do login.js se disponível
-      if (window.exibirMensagem) {
-        window.exibirMensagem(data.error || 'Erro ao fazer login', 'error');
-      } else {
-        mensagem.textContent = data.error || 'Erro ao fazer login';
-      }
-      // Adiciona efeito de ---- balançar ---- se a função estiver ok
-      if (document.querySelector('#loginForm').classList.contains('shake')) {
-        document.querySelector('#loginForm').classList.add('shake');
-        setTimeout(() => {
-          document.querySelector('#loginForm').classList.remove('shake');
-        }, 500);
-      }
+    if (!response.ok) {
+      throw new Error('Erro na requisição');
     }
+
+    return await response.json();
   } catch (error) {
     console.error('Erro:', error);
-    // Usa a function exibir Mensagem do login.js se disponível
+    throw error;
+  }
+}
+
+// Função para lidar com o sucesso do login
+function handleLoginSuccess(data) {
+  localStorage.setItem('token', data.token);
+  window.location.href = './painel-do-ligante.html';
+}
+
+// Função para lidar com o erro do login
+function handleLoginError(error) {
+  const errorMessage = error.error || 'Erro ao fazer login';
+  if (window.exibirMensagem) {
+    window.exibirMensagem(errorMessage, 'error');
+  } else {
+    elements.mensagem.textContent = errorMessage;
+  }
+
+  // Adiciona efeito de shake
+  elements.loginForm.classList.add('shake');
+  setTimeout(() => elements.loginForm.classList.remove('shake'), 500);
+}
+
+// Event listener para o formulário
+elements.loginForm.addEventListener('submit', async (e) => {
+  e.preventDefault();
+
+  const email = elements.email.value;
+  const senha = elements.senha.value;
+
+  try {
+    const data = await fazerLogin(email, senha);
+
+    if (data.success) {
+      handleLoginSuccess(data);
+    } else {
+      handleLoginError(data);
+    }
+  } catch (error) {
     if (window.exibirMensagem) {
       window.exibirMensagem('Erro ao conectar ao servidor', 'error');
     } else {
-      mensagem.textContent = 'Erro ao conectar ao servidor';
-    }
-  } finally {
-    // Desativa o estado de carregamento se a função estiver disponível
-    const btnEntrar = document.getElementById('btnEntrar');
-    if (btnEntrar && btnEntrar.classList.contains('loading')) {
-      btnEntrar.classList.remove('loading');
-      btnEntrar.querySelector('.spinner-border').classList.add('d-none');
-      btnEntrar.disabled = false;
+      elements.mensagem.textContent = 'Erro ao conectar ao servidor';
     }
   }
 });
