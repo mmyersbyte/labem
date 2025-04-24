@@ -47,10 +47,20 @@ let validationState = {
   senha: false,
 };
 
+// Cache de timeouts para debounce
+let timeouts = {
+  email: null,
+  senha: null,
+};
+
 // Inicialização otimizada
 document.addEventListener('DOMContentLoaded', () => {
-  verificarDadosSalvos();
+  // Carrega dados salvos de forma assíncrona
+  requestIdleCallback(verificarDadosSalvos);
+
+  // Configura eventos de forma otimizada
   setupEventListeners();
+
   // Carregamento lazy de recursos não críticos
   requestIdleCallback(() => {
     loadNonCriticalResources();
@@ -59,26 +69,33 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // Configuração de eventos otimizada
 function setupEventListeners() {
-  let emailTimeout, senhaTimeout;
-
-  // Debounce otimizado para validação de email
-  elements.emailInput.addEventListener('input', () => {
-    clearTimeout(emailTimeout);
-    emailTimeout = setTimeout(() => {
+  // Eventos de input com debounce otimizado
+  elements.emailInput.addEventListener(
+    'input',
+    debounce(() => {
       validationState.email = validarEmail();
-    }, DEBOUNCE_DELAY);
-  });
+    }, DEBOUNCE_DELAY)
+  );
 
-  // Debounce otimizado para validação de senha
-  elements.senhaInput.addEventListener('input', () => {
-    clearTimeout(senhaTimeout);
-    senhaTimeout = setTimeout(() => {
+  elements.senhaInput.addEventListener(
+    'input',
+    debounce(() => {
       validationState.senha = validarSenha();
-    }, DEBOUNCE_DELAY);
-  });
+    }, DEBOUNCE_DELAY)
+  );
 
+  // Eventos de clique otimizados
   elements.toggleSenhaBtn.addEventListener('click', alternarVisibilidadeSenha);
-  elements.loginForm.onsubmit = handleSubmit;
+  elements.loginForm.addEventListener('submit', handleSubmit);
+}
+
+// Função de debounce otimizada
+function debounce(callback, delay) {
+  return function (...args) {
+    const context = this;
+    clearTimeout(timeouts[args[0]]);
+    timeouts[args[0]] = setTimeout(() => callback.apply(context, args), delay);
+  };
 }
 
 // Funções de validação otimizadas
@@ -174,9 +191,10 @@ function alternarVisibilidadeSenha() {
 
 // Funções de manipulação de eventos otimizadas
 function handleSubmit(event) {
+  event.preventDefault();
+
   // Usa o cache de estado de validação
   if (!validationState.email || !validationState.senha) {
-    event.preventDefault();
     shakeFeedback();
     return false;
   }
@@ -200,8 +218,19 @@ function shakeFeedback() {
 
 // Função para carregamento lazy de recursos não críticos
 function loadNonCriticalResources() {
-  // Aqui você pode adicionar carregamento de recursos não críticos
-  // como ícones, fontes adicionais, etc.
+  // Carrega fontes de forma assíncrona
+  const fontLink = document.createElement('link');
+  fontLink.rel = 'stylesheet';
+  fontLink.href =
+    'https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&display=swap';
+  document.head.appendChild(fontLink);
+
+  // Carrega ícones de forma assíncrona
+  const iconLink = document.createElement('link');
+  iconLink.rel = 'stylesheet';
+  iconLink.href =
+    'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css';
+  document.head.appendChild(iconLink);
 }
 
 // Função global para exibir mensagens otimizada

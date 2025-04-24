@@ -1,3 +1,7 @@
+// Importação de módulos usando ES6
+import { router as authRouter, authenticateToken } from './authRoutes.js';
+
+// Configuração do servidor Express
 const express = require('express');
 const bodyParser = require('body-parser');
 const { Pool } = require('pg');
@@ -6,23 +10,26 @@ const cors = require('cors');
 const app = express();
 const port = process.env.PORT || 3000;
 //
-// Configuração do CORS 
-app.use(cors({
-  origin: '*',
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'], 
-  allowedHeaders: ['Content-Type', 'Authorization'],     
-  credentials: true
-}));
-
+// Configuração do CORS
+app.use(
+  cors({
+    origin: '*',
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
+    credentials: true,
+  })
+);
 
 // Middleware para processar dados do formulário
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
+app.use(express.json());
 
 // Configuração do banco de dados Neon
 const pool = new Pool({
-  connectionString: process.env.DATABASE_URL || 'postgresql://neondb_owner:npg_akCQIUW4Aw6v@ep-royal-pine-a89zrpwb-pooler.eastus2.azure.neon.tech/contatos_db?sslmode=require',
-  ssl: { rejectUnauthorized: false }
+  connectionString:
+    process.env.DATABASE_URL ||
+    'postgresql://neondb_owner:npg_akCQIUW4Aw6v@ep-royal-pine-a89zrpwb-pooler.eastus2.azure.neon.tech/contatos_db?sslmode=require',
+  ssl: { rejectUnauthorized: false },
 });
 
 // Rota raiz (para verificar se o backend está funcionando)
@@ -41,19 +48,26 @@ app.post('/contato', (req, res) => {
 
   // Insere os dados no banco de dados
   const query = `INSERT INTO contatos (nome, email, assunto, mensagem) VALUES ($1, $2, $3, $4)`;
-  
-  pool.query(query, [nome, email, assunto, mensagem])
+
+  pool
+    .query(query, [nome, email, assunto, mensagem])
     .then(() => {
       res.status(200).json({ message: 'Contato salvo com sucesso' });
     })
-    .catch((err) => {
+    .catch(err => {
       console.error('Erro ao salvar contato:', err);
       res.status(500).json({ error: 'Erro ao salvar contato' });
     });
 });
 // login segurança
-const authRoutes = require('./authRoutes');
-app.use('/', authRoutes);
+app.use('/auth', authRouter);
+
+// Rota protegida de exemplo
+app.get('/api/protegido', authenticateToken, (req, res) => {
+  res.json({ message: 'Rota protegida acessada com sucesso!' });
+});
+
+app.use(express.static('public'));
 
 // Inicia o servidor
 app.listen(port, () => {
