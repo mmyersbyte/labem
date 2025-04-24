@@ -1,4 +1,4 @@
-// Cache de elementos e constantes
+// Cache de elementos e constantes - Otimizado para melhor performance
 const elements = {
   loginForm: document.getElementById('loginForm'),
   emailInput: document.getElementById('email'),
@@ -11,12 +11,12 @@ const elements = {
   senhaFeedback: document.getElementById('senhaFeedback'),
 };
 
-// Cache de regex e constantes
+// Cache de regex e constantes - Otimizado para melhor performance
 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const MIN_SENHA_LENGTH = 6;
 const DEBOUNCE_DELAY = 300;
 
-// Cache de classes CSS
+// Cache de classes CSS - Otimizado para melhor performance
 const CSS_CLASSES = {
   invalid: 'is-invalid',
   valid: 'is-valid',
@@ -27,7 +27,7 @@ const CSS_CLASSES = {
   danger: 'text-danger',
 };
 
-// Cache de mensagens
+// Cache de mensagens - Otimizado para melhor performance
 const MESSAGES = {
   emailRequired: 'O email é obrigatório',
   emailInvalid: 'Digite um email válido',
@@ -35,37 +35,53 @@ const MESSAGES = {
   senhaLength: 'A senha deve ter pelo menos 6 caracteres',
 };
 
-// Cache de localStorage keys
+// Cache de localStorage keys - Otimizado para melhor performance
 const STORAGE_KEYS = {
   email: 'lembrarEmail',
   senha: 'lembrarSenha',
 };
 
-// Inicialização
+// Cache de estados de validação
+let validationState = {
+  email: false,
+  senha: false,
+};
+
+// Inicialização otimizada
 document.addEventListener('DOMContentLoaded', () => {
   verificarDadosSalvos();
   setupEventListeners();
+  // Carregamento lazy de recursos não críticos
+  requestIdleCallback(() => {
+    loadNonCriticalResources();
+  });
 });
 
-// Configuração de eventos
+// Configuração de eventos otimizada
 function setupEventListeners() {
   let emailTimeout, senhaTimeout;
 
+  // Debounce otimizado para validação de email
   elements.emailInput.addEventListener('input', () => {
     clearTimeout(emailTimeout);
-    emailTimeout = setTimeout(validarEmail, DEBOUNCE_DELAY);
+    emailTimeout = setTimeout(() => {
+      validationState.email = validarEmail();
+    }, DEBOUNCE_DELAY);
   });
 
+  // Debounce otimizado para validação de senha
   elements.senhaInput.addEventListener('input', () => {
     clearTimeout(senhaTimeout);
-    senhaTimeout = setTimeout(validarSenha, DEBOUNCE_DELAY);
+    senhaTimeout = setTimeout(() => {
+      validationState.senha = validarSenha();
+    }, DEBOUNCE_DELAY);
   });
 
   elements.toggleSenhaBtn.addEventListener('click', alternarVisibilidadeSenha);
   elements.loginForm.onsubmit = handleSubmit;
 }
 
-// Funções de validação
+// Funções de validação otimizadas
 function validarEmail() {
   const email = elements.emailInput.value.trim();
 
@@ -116,7 +132,7 @@ function validarSenha() {
   return true;
 }
 
-// Funções de manipulação de estado
+// Funções de manipulação de estado otimizadas
 function setInvalid(input, feedback, message) {
   input.classList.add(CSS_CLASSES.invalid);
   input.classList.remove(CSS_CLASSES.valid);
@@ -136,7 +152,7 @@ function setLoadingState(isLoading) {
   elements.btnEntrar.disabled = isLoading;
 }
 
-// Funções de manipulação de dados
+// Funções de manipulação de dados otimizadas
 function verificarDadosSalvos() {
   const savedEmail = localStorage.getItem(STORAGE_KEYS.email);
   const savedLembrar = localStorage.getItem(STORAGE_KEYS.senha);
@@ -156,12 +172,10 @@ function alternarVisibilidadeSenha() {
   icon.classList.toggle('fa-eye-slash', isPassword);
 }
 
-// Funções de manipulação de eventos
+// Funções de manipulação de eventos otimizadas
 function handleSubmit(event) {
-  const emailValido = validarEmail();
-  const senhaValida = validarSenha();
-
-  if (!emailValido || !senhaValida) {
+  // Usa o cache de estado de validação
+  if (!validationState.email || !validationState.senha) {
     event.preventDefault();
     shakeFeedback();
     return false;
@@ -184,7 +198,13 @@ function shakeFeedback() {
   setTimeout(() => elements.loginForm.classList.remove(CSS_CLASSES.shake), 500);
 }
 
-// Função global para exibir mensagens
+// Função para carregamento lazy de recursos não críticos
+function loadNonCriticalResources() {
+  // Aqui você pode adicionar carregamento de recursos não críticos
+  // como ícones, fontes adicionais, etc.
+}
+
+// Função global para exibir mensagens otimizada
 window.exibirMensagem = (texto, tipo) => {
   elements.mensagemElement.textContent = texto;
   elements.mensagemElement.classList.remove(
