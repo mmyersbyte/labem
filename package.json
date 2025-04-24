@@ -1,5 +1,8 @@
 {
   "dependencies": {
-    "dotenv": "^16.5.0"
+    "dotenv": "^16.5.0",
+    "express-rate-limit": "^7.5.0",
+    "helmet": "^8.1.0",
+    "xss-clean": "^0.1.4"
   }
 }
