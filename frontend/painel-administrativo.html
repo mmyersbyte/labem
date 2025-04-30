@@ -351,50 +351,132 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
     <script>
-      // Função para adicionar um novo tópico
-      function adicionarTopico() {
-        const icone = document.getElementById('icone').value;
-        const titulo = document.getElementById('titulo').value;
-        const paragrafo = document.getElementById('paragrafo').value;
+      // URL base da API de atualizações
+      const API_URL = 'https://labem.onrender.com/api/updates';
 
+      // Elementos do DOM
+      const form = document.getElementById('form-topicos');
+      const iconeInput = document.getElementById('icone');
+      const tituloInput = document.getElementById('titulo');
+      const paragrafoInput = document.getElementById('paragrafo');
+      const topicosContainer = document.getElementById('topicos-container');
+
+      // Carrega as atualizações ao abrir o painel
+      window.addEventListener('DOMContentLoaded', carregarAtualizacoes);
+
+      // Função para renderizar as atualizações
+      async function carregarAtualizacoes() {
+        topicosContainer.innerHTML = '<p style="color:white">Carregando...</p>';
+        try {
+          const res = await fetch(API_URL);
+          const data = await res.json();
+          if (data.success) {
+            if (data.updates.length === 0) {
+              topicosContainer.innerHTML =
+                '<p style="color:white">Nenhuma atualização cadastrada.</p>';
+              return;
+            }
+            topicosContainer.innerHTML = '';
+            data.updates.forEach((update) => {
+              topicosContainer.innerHTML += criarHTMLUpdate(update);
+            });
+          } else {
+            topicosContainer.innerHTML =
+              '<p style="color:red">Erro ao carregar atualizações.</p>';
+          }
+        } catch (err) {
+          topicosContainer.innerHTML =
+            '<p style="color:red">Erro de conexão com o servidor.</p>';
+        }
+      }
+
+      // Função para criar o HTML de uma atualização
+      function criarHTMLUpdate(update) {
+        return `
+          <div class="update-box" data-id="${update._id}">
+            <i class="fa-solid ${update.icone}"></i>
+            <div class="update-text">
+              <h3 contenteditable="true" onblur="salvarEdicao('${update._id}', 'titulo', this.innerText)">${update.titulo}</h3>
+              <p contenteditable="true" onblur="salvarEdicao('${update._id}', 'paragrafo', this.innerText)">${update.paragrafo}</p>
+            </div>
+            <button type="button" class="btn btn-danger btn-custom" onclick="deletarUpdate('${update._id}')">Deletar</button>
+          </div>
+        `;
+      }
+
+      // Adiciona novo tópico (atualização)
+      form.addEventListener('submit', async function (e) {
+        e.preventDefault();
+        const icone = iconeInput.value.trim();
+        const titulo = tituloInput.value.trim();
+        const paragrafo = paragrafoInput.value.trim();
         if (!icone || !titulo || !paragrafo) {
           alert('Preencha todos os campos!');
           return;
         }
-
-        const novoTopico = `
-        <div class="update-box">
-          <i class="fa-solid ${icone}"></i>
-          <div class="update-text">
-            <h3>${titulo}</h3>
-            <p>${paragrafo}</p>
-          </div>
-          <button type="button" class="btn btn-danger btn-custom" onclick="confirmarDelecao(this)">Deletar</button>
-        </div>
-      `;
-
-        document
-          .getElementById('topicos-container')
-          .insertAdjacentHTML('beforeend', novoTopico);
-        alert('Tópico adicionado com sucesso!');
-      }
-
-      // Função para finalizar alterações
-      function finalizarAlteracao() {
-        alert('Alterações finalizadas com sucesso!');
-      }
-
-      // Função para confirmar deleção
-      function confirmarDelecao(elemento) {
-        if (confirm('Você tem certeza? Se sim, delete. Senão, cancele.')) {
-          if (typeof elemento === 'string') {
-            document.getElementById(elemento).remove();
+        try {
+          const res = await fetch(API_URL, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            credentials: 'include', // importante para cookies de sessão
+            body: JSON.stringify({ icone, titulo, paragrafo }),
+          });
+          const data = await res.json();
+          if (data.success) {
+            form.reset();
+            carregarAtualizacoes();
+            alert('Tópico adicionado com sucesso!');
           } else {
-            elemento.parentElement.remove();
+            alert(data.message || 'Erro ao adicionar tópico.');
           }
-          alert('Tópico deletado com sucesso!');
+        } catch (err) {
+          alert('Erro de conexão.');
         }
-      }
+      });
+
+      // Função global para deletar atualização
+      window.deletarUpdate = async function (id) {
+        if (!confirm('Tem certeza que deseja deletar?')) return;
+        try {
+          const res = await fetch(`${API_URL}/${id}`, {
+            method: 'DELETE',
+            credentials: 'include',
+          });
+          const data = await res.json();
+          if (data.success) {
+            carregarAtualizacoes();
+            alert('Tópico deletado com sucesso!');
+          } else {
+            alert(data.message || 'Erro ao deletar tópico.');
+          }
+        } catch (err) {
+          alert('Erro de conexão.');
+        }
+      };
+
+      // Função global para salvar edição inline
+      window.salvarEdicao = async function (id, campo, valor) {
+        // Busca o update atual para manter os outros campos
+        const box = document.querySelector(`.update-box[data-id='${id}']`);
+        const titulo = box.querySelector('h3').innerText;
+        const paragrafo = box.querySelector('p').innerText;
+        const icone = box.querySelector('i').classList[1].replace('fa-', '');
+        try {
+          const res = await fetch(`${API_URL}/${id}`, {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            credentials: 'include',
+            body: JSON.stringify({ icone, titulo, paragrafo }),
+          });
+          const data = await res.json();
+          if (!data.success) {
+            alert(data.message || 'Erro ao editar tópico.');
+            carregarAtualizacoes();
+          }
+        } catch (err) {
+          alert('Erro de conexão.');
+        }
+      };
     </script>
   </body>
 </html>

@@ -1,26 +1,26 @@
-# 🚀 LABEM - Backend
+# LABEM
 
-Bem-vindo ao backend da LABEM! Aqui a gente conecta, protege e faz a mágica acontecer nos bastidores do site da Liga Acadêmica de Estética e Bem-Estar da Unisul. 💅✨
+## Objetivo do Projeto
 
-## 🧑‍💻 Objetivo do Projeto
+Um sistema para networking, compartilhar eventos, workshops e parcerias com marcas
+Sistema separado EXCLUSIVO para professores e coordenadores compartilharem os conteudos com ligantes e marcar eventos com os mesmos;
 
-Este backend foi criado para:
+## Backend
 
-- Gerenciar o sistema de login dos ligantes (com segurança de verdade, nada de senha "1234" aqui!)
+- Gerenciar o sistema de login dos ligantes
 - Receber e armazenar mensagens do formulário de contato do site
 - Servir de ponte entre o frontend e o banco de dados MongoDB Atlas
 
-## 🛠️ Tecnologias Usadas
+## Tecs Usadas
 
-- **Node.js**: O motor por trás de tudo
-- **Express.js**: Framework web rápido e flexível
-- **MongoDB Atlas**: Banco de dados na nuvem, escalável e seguro
-- **Mongoose**: Modelagem de dados elegante para MongoDB
-- **bcrypt**: Para proteger as senhas dos usuários
-- **dotenv**: Gerenciamento de variáveis de ambiente (segurança em primeiro lugar!)
+- **Node.js**:
+- **Express.js**: Framework
+- **MongoDB Atlas**: nosql
+- **Mongoose**: Modelagem de dados
+- **bcrypt**: Para proteger a senha do user
+- **dotenv**: Gerenciamento de variáveis de ambiente
 - **CORS**: Libera geral pro frontend conversar com o backend
-
-## 📦 Estrutura Básica
+-
 
 ```
 backend/
@@ -34,9 +34,9 @@ backend/
 └── package.json        # Dependências e scripts
 ```
 
-## 🏁 Como rodar localmente
+## Como rodar localmente
 
-1. Clone o repositório
+1. Clone
 2. Crie um arquivo `.env` com sua string do MongoDB Atlas
 3. Instale as dependências:
    ```bash
@@ -48,23 +48,13 @@ backend/
    ```
 5. O backend vai rodar em `http://localhost:5555` (ou a porta do seu `.env`)
 
-## 🔒 Segurança
-
-- Nunca suba o `.env` pro GitHub (já está no `.gitignore`)
-- Senhas são sempre criptografadas
-- Use HTTPS em produção
-
-## 📚 Documentação útil
+## Documentação
 
 - [Express.js](https://expressjs.com/pt-br/)
 - [Mongoose](https://mongoosejs.com/)
 - [MongoDB Atlas](https://www.mongodb.com/docs/atlas/)
 - [bcrypt](https://www.npmjs.com/package/bcrypt)
 
-## 🤙 Dúvidas?
+## Duvidas
 
-Abre uma issue, chama no direct ou manda aquele e-mail maroto. Bora construir junto!
-
----
-
-> Feito com 💙 pela galera da LABEM
+- Manda um email pedrovicstro@gmail.com
