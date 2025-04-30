@@ -12,7 +12,12 @@ const PORT = process.env.PORT || 5555;
 dotenv.config();
 connectDB(process.env.MONGODB_URI);
 
-app.use(cors());
+app.use(
+  cors({
+    origin: 'https://www.labemunisul.com.br',
+    credentials: true,
+  })
+);
 app.use(express.json());
 app.use('/auth', authRoutes);
 app.use('/api', contactRoutes);
