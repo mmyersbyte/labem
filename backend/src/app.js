@@ -5,6 +5,7 @@ import cors from 'cors';
 import authRoutes from './routes/auth.js';
 import contactRoutes from './routes/contact.js';
 import updatesRoutes from './routes/updates.js';
+import session from 'express-session';
 
 const app = express();
 const PORT = process.env.PORT || 5555;
@@ -19,6 +20,21 @@ app.use(
   })
 );
 app.use(express.json());
+
+// Configuração do express-session usando a chave secreta do .env
+// SESSION_SECRET deve ser única e nunca compartilhada publicamente
+app.use(
+  session({
+    secret: process.env.SESSION_SECRET, // Chave secreta vinda do .env
+    resave: false,
+    saveUninitialized: false,
+    cookie: {
+      secure: true, // obrigatório para HTTPS
+      sameSite: 'none', // obrigatório para cross-domain
+    },
+  })
+);
+
 app.use('/auth', authRoutes);
 app.use('/api', contactRoutes);
 app.use('/api/updates', updatesRoutes);
