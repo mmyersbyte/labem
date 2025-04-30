@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+    <title>Painel Administrativo</title>
+    <link
+      rel="icon"
+      href="assets/logo-labem.png"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Segoe UI', system-ui, sans-serif;
+      }
+
+      body {
+        background-color: var(--primary-color);
+        line-height: 1.6;
+        background-color: #146677;
+      }
+
+      .navbar {
+        font-size: 1.4em;
+        color: #146677 !important;
+        padding: 2rem;
+        white-space: nowrap;
+        font-weight: 500;
+        background: white;
+        margin-bottom: 2rem;
+        color: var(--primary-color);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      }
+
+      .nav-brand {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+      }
+
+      .logo {
+        width: 40px;
+        height: 40px;
+      }
+      .logo {
+        width: 40px;
+        height: 40px;
+      }
+
+      .admin-icon {
+        margin-top: 3px !important;
+        color: var(--primary-color);
+        font-size: 1.1rem;
+        transition: color 0.3s ease;
+      }
+
+      .update-box {
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        padding: 10px;
+        margin-bottom: 20px;
+        display: flex;
+        align-items: center;
+        gap: 15px;
+      }
+
+      .update-box i {
+        font-size: 2rem;
+        color: #007bff;
+      }
+
+      .update-text {
+        flex: 1;
+        color: white;
+      }
+
+      .btn-custom {
+        margin: 5px;
+      }
+
+      .admin-panel {
+        background-color: #f8f9fa;
+        padding: 20px;
+        border-radius: 10px;
+        margin-bottom: 30px;
+      }
+
+      .admin-panel img {
+        max-width: 100%;
+        border-radius: 10px;
+        margin-top: 20px;
+      }
+
+      img {
+        width: 100%;
+      }
+      .footer {
+        background: transparent;
+        color: #f2f2f2;
+        padding: 20px 15px;
+        font-size: 14px;
+        text-align: center;
+      }
+
+      .footer-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .footer-info p,
+      .footer-dev p {
+        margin: 5px 0;
+        line-height: 1.4;
+      }
+
+      .footer-dev a {
+        color: #b3e0ff;
+        margin: 0 5px;
+        font-size: 18px;
+        transition: color 0.3s ease;
+      }
+
+      .footer-dev a:hover {
+        color: #6db3ff;
+      }
+
+      .hero {
+        text-align: center;
+        padding: 3rem 1rem;
+      }
+
+      .hero-title {
+        font-size: 2rem;
+        margin-bottom: 1rem;
+        color: white;
+      }
+
+      .highlight {
+        color: var(--accent-color);
+      }
+
+      .hero-subtitle {
+        font-size: 1.2rem;
+        color: #7f8c8d !important;
+      }
+      .linkzinho {
+        text-decoration: none;
+        font-size: 16px;
+      }
+      .text-center {
+        color: white;
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="navbar">
+      <div class="nav-brand">
+        <img
+          src="assets/logo-labem.png"
+          alt="Logo Ligantes"
+          class="logo"
+        />
+        <span>Ligantes LABEM</span>
+        <a
+          href="painel-do-ligante.html"
+          class="admin-icon"
+          title="Painel Administrativo"
+        >
+          <i class="fa-regular fa-user"></i
+        ></a>
+      </div>
+    </nav>
+    <header class="hero">
+      <h1 class="hero-title">
+        Bem-vindo ao Painel Administrativo!<span class="highlight">🎓</span>
+      </h1>
+      <p class="hero-subtitle">
+        Aqui você pode adicionar, editar ou deletar os tópicos da seção "Últimas
+        Atualizações" APENAS AUTORIZADOS!
+      </p>
+    </header>
+    <section
+      id="eventos1"
+      class="atualizacoes"
+    >
+      <div class="container">
+        <div class="admin-panel">
+          <img
+            src="assets/painel-img.png"
+            alt="Painel de Atualizações"
+          />
+
+          <form
+            id="form-topicos"
+            class="mt-4"
+          >
+            <div class="mb-3">
+              <label
+                for="icone"
+                class="form-label"
+                >Ícone (classe do Font Awesome):</label
+              >
+              <a
+                class="linkzinho"
+                href="https://fontawesome.com/icons"
+                >Biblioteca de Ícones</a
+              >
+              <input
+                type="text"
+                class="form-control"
+                id="icone"
+                placeholder="Ex: fa-calendar-check"
+              />
+            </div>
+            <div class="mb-3">
+              <label
+                for="titulo"
+                class="form-label"
+                >Título:</label
+              >
+              <input
+                type="text"
+                class="form-control"
+                id="titulo"
+                placeholder="Ex: Encontro Teórico"
+              />
+            </div>
+            <div class="mb-3">
+              <label
+                for="paragrafo"
+                class="form-label"
+                >Parágrafo:</label
+              >
+              <textarea
+                class="form-control"
+                id="paragrafo"
+                rows="3"
+                placeholder="Ex: O primeiro encontro teórico..."
+              ></textarea>
+            </div>
+            <button
+              type="button"
+              class="btn btn-primary btn-custom"
+              onclick="adicionarTopico()"
+            >
+              Adicionar Tópico
+            </button>
+            <button
+              type="button"
+              class="btn btn-success btn-custom"
+              onclick="finalizarAlteracao()"
+            >
+              Finalizar Alteração
+            </button>
+          </form>
+        </div>
+
+        <h2 class="text-center">Últimas Atualizações</h2>
+        <div id="topicos-container">
+          <div
+            class="update-box"
+            id="topico-1"
+          >
+            <i class="fa-solid fa-calendar-check"></i>
+            <div class="update-text">
+              <h3>Encontro Teórico</h3>
+              <p>
+                O primeiro encontro teórico da liga será realizado no dia 15/03
+                e abordará temas essenciais como sistema tegumentar, barreira
+                cutânea e gerenciamento de pele.
+              </p>
+            </div>
+            <button
+              type="button"
+              class="btn btn-danger btn-custom"
+              onclick="confirmarDelecao('topico-1')"
+            >
+              Deletar Tópico 1
+            </button>
+          </div>
+          <div
+            class="update-box"
+            id="topico-2"
+          >
+            <i class="fa-solid fa-users"></i>
+            <div class="update-text">
+              <h3>Encontro Prático</h3>
+              <p>
+                A prática de limpeza de pele será conduzida pelo Msc. Weslley da
+                França, esteticista com mais de 15 anos de experiência e atuação
+                internacional.
+              </p>
+            </div>
+            <button
+              type="button"
+              class="btn btn-danger btn-custom"
+              onclick="confirmarDelecao('topico-2')"
+            >
+              Deletar Tópico 2
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+    <footer class="footer">
+      <div class="footer-container">
+        <div class="footer-info">
+          <p>UNISUL - Universidade do Sul de Santa Catarina</p>
+          <p>&copy; 2025 Labem. Todos os direitos reservados.</p>
+        </div>
+        <div class="footer-dev">
+          <p>
+            Desenvolvido por
+            <a
+              href="https://github.com/mmyersbyte"
+              target="_blank"
+              ><i class="fab fa-github"></i
+            ></a>
+            <a
+              href="https://www.instagram.com/pedrovicstro"
+              target="_blank"
+              ><i class="fab fa-instagram"></i
+            ></a>
+            <a
+              href="https://portfolio-dev-six-pied.vercel.app/"
+              target="_blank"
+              ><i class="fas fa-rocket"></i
+            ></a>
+          </p>
+        </div>
+      </div>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
+    <script>
+      // Função para adicionar um novo tópico
+      function adicionarTopico() {
+        const icone = document.getElementById('icone').value;
+        const titulo = document.getElementById('titulo').value;
+        const paragrafo = document.getElementById('paragrafo').value;
+
+        if (!icone || !titulo || !paragrafo) {
+          alert('Preencha todos os campos!');
+          return;
+        }
+
+        const novoTopico = `
+        <div class="update-box">
+          <i class="fa-solid ${icone}"></i>
+          <div class="update-text">
+            <h3>${titulo}</h3>
+            <p>${paragrafo}</p>
+          </div>
+          <button type="button" class="btn btn-danger btn-custom" onclick="confirmarDelecao(this)">Deletar</button>
+        </div>
+      `;
+
+        document
+          .getElementById('topicos-container')
+          .insertAdjacentHTML('beforeend', novoTopico);
+        alert('Tópico adicionado com sucesso!');
+      }
+
+      // Função para finalizar alterações
+      function finalizarAlteracao() {
+        alert('Alterações finalizadas com sucesso!');
+      }
+
+      // Função para confirmar deleção
+      function confirmarDelecao(elemento) {
+        if (confirm('Você tem certeza? Se sim, delete. Senão, cancele.')) {
+          if (typeof elemento === 'string') {
+            document.getElementById(elemento).remove();
+          } else {
+            elemento.parentElement.remove();
+          }
+          alert('Tópico deletado com sucesso!');
+        }
+      }
+    </script>
+  </body>
+</html>
