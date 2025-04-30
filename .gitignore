@@ -61,4 +61,16 @@ debug.*
 # Arquivos de documentação
 /docs
 *.md
-!README.md 
+!README.md
+
+# Cursor AI/Editor
+.cursor/
+.cursor-tmp/
+
+# Sistema Linux
+.Trash-*
+
+# Node modules e locks do front-end
+frontend/node_modules/
+frontend/package-lock.json
+frontend/yarn.lock 

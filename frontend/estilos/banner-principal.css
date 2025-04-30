@@ -4,7 +4,7 @@
   position: relative;
   width: 100%;
   height: 790px;
-  background-image: url('/assets/banner-principal.jpg');
+  background-image: url('../assets/banner-principal.jpg');
   background-size: cover; /* Cobrir todo o espaço */
   background-position: center; /* Centralizar a imagem */
   display: flex;
