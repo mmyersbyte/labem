@@ -515,7 +515,7 @@
       class="formulario-contato"
     >
       <h4>Contato, Sugestões, Dúvidas e Parcerias</h4>
-      <label for="nome-unico">Nome:</label>
+      <label for="nome-unico">Seu nome:</label>
       <input
         type="text"
         id="nome-unico"
@@ -604,7 +604,79 @@
       </div>
     </footer>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="script.js"></script>
+
+    <script>
+      // Seleciona o formulário de contato
+      const formContato = document.getElementById('formulario-contato');
+      if (formContato) {
+        formContato.addEventListener('submit', async function (e) {
+          e.preventDefault();
+
+          // Pega os valores dos campos
+          const nome = document.getElementById('nome-unico').value.trim();
+          const email = document.getElementById('email-unico').value.trim();
+          const assunto = document.getElementById('assunto-unico').value.trim();
+          const mensagem = document
+            .getElementById('mensagem-unico')
+            .value.trim();
+
+          // Validação simples no front-end
+          if (!nome || !email || !assunto || !mensagem) {
+            Swal.fire({
+              icon: 'warning',
+              title: 'Preencha todos os campos!',
+              confirmButtonColor: '#146677',
+            });
+            return;
+          }
+
+          // Validação de e-mail simples
+          const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+          if (!emailRegex.test(email)) {
+            Swal.fire({
+              icon: 'error',
+              title: 'E-mail inválido!',
+              confirmButtonColor: '#146677',
+            });
+            return;
+          }
+
+          // Envia os dados para o backend
+          try {
+            const response = await fetch(
+              'https://labem.onrender.com/api/contact',
+              {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ nome, email, assunto, mensagem }),
+              }
+            );
+            const data = await response.json();
+
+            if (data.success) {
+              Swal.fire({
+                icon: 'success',
+                title: data.message,
+                confirmButtonColor: '#146677',
+              });
+              formContato.reset();
+            } else {
+              Swal.fire({
+                icon: 'error',
+                title: data.message || 'Erro ao enviar mensagem.',
+                confirmButtonColor: '#146677',
+              });
+            }
+          } catch (err) {
+            Swal.fire({
+              icon: 'error',
+              title: 'Erro de conexão. Tente novamente mais tarde.',
+              confirmButtonColor: '#146677',
+            });
+          }
+        });
+      }
+    </script>
 
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
