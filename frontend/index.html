@@ -457,32 +457,40 @@
     >
       <div class="container">
         <h2 class="text-center">Últimas Atualizações</h2>
-        <!--
-          O conteúdo das atualizações será inserido dinamicamente via JavaScript.
-          O div abaixo receberá as atualizações vindas do backend (MongoDB).
-        -->
-        <div id="updates-list"></div>
+        <!-- Loader: ícone animado enquanto as notícias são carregadas -->
+        <div
+          id="updates-loader"
+          style="
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 80px;
+          "
+        >
+          <i
+            class="fas fa-spinner fa-spin fa-2x"
+            style="color: #146677"
+          ></i>
+        </div>
+        <!-- O conteúdo das atualizações será inserido aqui via JavaScript -->
+        <div
+          id="updates-list"
+          style="display: none"
+        ></div>
       </div>
     </section>
     <!--
       Script para buscar e renderizar as atualizações do backend.
-      Ele faz um fetch na API e monta o HTML das atualizações.
-      O script deve ser colocado antes do </body> para garantir que o DOM já foi carregado.
+      Exibe um loader enquanto carrega e substitui pelo conteúdo ao finalizar.
+      Agora com cache localStorage: mostra o cache instantaneamente e atualiza em segundo plano.
     -->
     <script>
-      document.addEventListener('DOMContentLoaded', async () => {
-        const updatesList = document.getElementById('updates-list');
-        try {
-          // Faz uma requisição para a API de updates
-          const response = await fetch(
-            'https://labem.onrender.com/api/updates'
-          );
-          const data = await response.json();
-          // Se houver atualizações, renderiza cada uma
-          if (data.success && data.updates.length > 0) {
-            updatesList.innerHTML = data.updates
-              .map(
-                (update) => `
+      // Função para renderizar as atualizações (usada para cache e para API)
+      function renderUpdates(updates, target) {
+        if (updates && updates.length > 0) {
+          target.innerHTML = updates
+            .map(
+              (update) => `
             <div class="update-box">
               <i class="${update.icone}"></i>
               <div class="update-text">
@@ -491,15 +499,57 @@
               </div>
             </div>
           `
-              )
-              .join('');
-          } else {
-            // Caso não haja atualizações cadastradas
-            updatesList.innerHTML = '<p>Nenhuma atualização cadastrada.</p>';
+            )
+            .join('');
+        } else {
+          target.innerHTML = '<p>Nenhuma atualização cadastrada.</p>';
+        }
+      }
+
+      document.addEventListener('DOMContentLoaded', async () => {
+        const updatesList = document.getElementById('updates-list');
+        const updatesLoader = document.getElementById('updates-loader');
+
+        // 1. Tenta exibir o cache imediatamente (se existir)
+        const cached = localStorage.getItem('labem-updates');
+        if (cached) {
+          try {
+            const updates = JSON.parse(cached);
+            renderUpdates(updates, updatesList);
+            updatesList.style.display = 'block';
+            updatesLoader.style.display = 'none';
+          } catch (e) {
+            // Se o cache estiver corrompido, ignora
+            localStorage.removeItem('labem-updates');
           }
+        }
+
+        // 2. Busca atualizações novas no backend
+        try {
+          updatesLoader.style.display = cached ? 'none' : 'flex'; // Só mostra loader se não tem cache
+          updatesList.style.display = 'block';
+
+          const response = await fetch(
+            'https://labem.onrender.com/api/updates'
+          );
+          const data = await response.json();
+
+          if (data.success && data.updates.length > 0) {
+            renderUpdates(data.updates, updatesList);
+            // Salva no cache para a próxima visita
+            localStorage.setItem('labem-updates', JSON.stringify(data.updates));
+          } else {
+            updatesList.innerHTML = '<p>Nenhuma atualização cadastrada.</p>';
+            localStorage.removeItem('labem-updates');
+          }
+          updatesLoader.style.display = 'none';
         } catch (err) {
-          // Em caso de erro na requisição
-          updatesList.innerHTML = '<p>Erro ao carregar atualizações.</p>';
+          // Em caso de erro, mantém o cache (se houver) ou mostra erro
+          if (!cached) {
+            updatesList.innerHTML = '<p>Erro ao carregar atualizações.</p>';
+            updatesList.style.display = 'block';
+            updatesLoader.style.display = 'none';
+          }
         }
       });
     </script>
