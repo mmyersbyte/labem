@@ -583,6 +583,7 @@
     </section>
 
     <hr />
+
     <!-- ULTIMA SECTION -->
     <form
       id="formulario-contato"
@@ -620,6 +621,20 @@
         rows="5"
         required
       ></textarea>
+
+      <!-- Loader visual para feedback de envio -->
+      <div
+        id="contato-loading"
+        style="
+          display: none;
+          margin-bottom: 10px;
+          text-align: center;
+          color: #146677;
+          font-weight: bold;
+        "
+      >
+        <i class="fas fa-spinner fa-spin"></i> Mensagem sendo enviada...
+      </div>
 
       <button
         type="submit"
@@ -698,7 +713,7 @@
           if (!nome || !email || !assunto || !mensagem) {
             Swal.fire({
               icon: 'warning',
-              title: 'Preencha todos os campos!',
+              title: 'Preencha todos os campos!!!',
               confirmButtonColor: '#146677',
             });
             return;
@@ -715,6 +730,16 @@
             return;
           }
 
+          // Seleciona o loader e o botão
+          const loadingDiv = document.getElementById('contato-loading');
+          const botaoEnviar = formContato.querySelector(
+            'button[type="submit"]'
+          );
+
+          // Mostra o loader e desabilita o botão
+          loadingDiv.style.display = 'block';
+          botaoEnviar.disabled = true;
+
           // Envia os dados para o backend
           try {
             const response = await fetch(
@@ -726,6 +751,10 @@
               }
             );
             const data = await response.json();
+
+            // Esconde o loader e reabilita o botão
+            loadingDiv.style.display = 'none';
+            botaoEnviar.disabled = false;
 
             if (data.success) {
               Swal.fire({
@@ -742,6 +771,9 @@
               });
             }
           } catch (err) {
+            // Esconde o loader e reabilita o botão em caso de erro
+            loadingDiv.style.display = 'none';
+            botaoEnviar.disabled = false;
             Swal.fire({
               icon: 'error',
               title: 'Erro de conexão. Tente novamente mais tarde.',
