@@ -28,7 +28,7 @@ document
       const data = await response.json();
 
       if (response.ok) {
-        window.location.href = 'painel-administrativo.html';
+        window.location.href = 'painel-do-ligante.html';
       } else {
         mensagem.innerText = 'Senha ou usuário incorretos!';
         mensagem.style.color = 'red';
