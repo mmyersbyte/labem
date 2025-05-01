@@ -34,6 +34,19 @@ body {
   .apresentacao p {
     display: none;
   }
+  .h3_Form {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 20px;
+    font-weight: 500;
+  }
+}
+
+.h3_Form {
+  text-align: center;
+  font-size: 1.7rem;
+  margin-bottom: 4px;
+  font-weight: 500;
 }
 .apresentacao {
   background-color: white;
