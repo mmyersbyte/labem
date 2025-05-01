@@ -50,4 +50,25 @@ router.get('/contact', async (req, res) => {
   }
 });
 
+// Rota para deletar uma mensagem de contato pelo ID
+// Exemplo de uso: DELETE /api/contact/:id
+router.delete('/contact/:id', async (req, res) => {
+  try {
+    const mensagem = await ContactMessage.findByIdAndDelete(req.params.id);
+    if (!mensagem) {
+      return res
+        .status(404)
+        .json({ success: false, message: 'Mensagem não encontrada.' });
+    }
+    res
+      .status(200)
+      .json({ success: true, message: 'Mensagem deletada com sucesso!' });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: 'Erro ao deletar mensagem.',
+    });
+  }
+});
+
 export default router;

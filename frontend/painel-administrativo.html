@@ -552,11 +552,11 @@
           const res = await fetch('https://labem.onrender.com/api/contact');
           const data = await res.json();
           if (data.success && data.mensagens.length > 0) {
-            // Renderiza cada mensagem
+            // Renderiza cada mensagem com botão de deletar
             container.innerHTML = data.mensagens
               .map(
                 (msg) => `
-              <div class="mensagem-item">
+              <div class="mensagem-item" data-id="${msg._id}">
                 <div class="mensagem-dados">
                   <strong>Nome:</strong> ${msg.nome}<br>
                   <span class="mensagem-email">${msg.email}</span><br>
@@ -565,10 +565,24 @@
                 <div class="mensagem-texto">
                   ${msg.mensagem}
                 </div>
+                <button class="btn btn-danger btn-sm btn-deletar-msg" title="Deletar mensagem">
+                  <i class="fas fa-trash-alt"></i>
+                </button>
               </div>
             `
               )
               .join('');
+
+            // Adiciona evento de click para todos os botões de deletar
+            document.querySelectorAll('.btn-deletar-msg').forEach((btn) => {
+              btn.addEventListener('click', async function () {
+                const mensagemDiv = this.closest('.mensagem-item');
+                const id = mensagemDiv.getAttribute('data-id');
+                if (confirm('Tem certeza que deseja deletar esta mensagem?')) {
+                  await deletarMensagemContato(id);
+                }
+              });
+            });
           } else {
             container.innerHTML =
               '<p style="color:#146677;text-align:center;">Nenhuma mensagem encontrada.</p>';
@@ -576,6 +590,27 @@
         } catch (err) {
           container.innerHTML =
             '<p style="color:red;text-align:center;">Erro ao carregar mensagens.</p>';
+        }
+      }
+
+      // Função para deletar uma mensagem de contato pelo ID
+      async function deletarMensagemContato(id) {
+        try {
+          const res = await fetch(
+            `https://labem.onrender.com/api/contact/${id}`,
+            {
+              method: 'DELETE',
+            }
+          );
+          const data = await res.json();
+          if (data.success) {
+            carregarMensagensContato(); // Atualiza a lista
+            alert('Mensagem deletada com sucesso!');
+          } else {
+            alert(data.message || 'Erro ao deletar mensagem.');
+          }
+        } catch (err) {
+          alert('Erro de conexão ao deletar mensagem.');
         }
       }
 
