@@ -176,7 +176,7 @@
         padding: 1.5rem 1rem;
         margin: 2rem auto;
         max-width: 600px;
-        width: 87%;
+        width: 95%; /* Mais espaço em mobile */
         display: flex;
         flex-direction: column;
         gap: 1.2rem;
@@ -189,7 +189,7 @@
         box-shadow: 0 1px 4px rgba(20, 102, 119, 0.04);
         display: flex;
         flex-direction: column;
-        gap: 0.3rem;
+        gap: 0.7rem;
         word-break: break-word;
       }
       .mensagem-item strong {
@@ -197,9 +197,13 @@
         font-size: 1.05em;
       }
       .mensagem-item .mensagem-email {
-        color: #555;
-        font-size: 0.98em;
+        color: #007bff;
+        font-size: 1em;
         margin-bottom: 0.2em;
+        text-decoration: underline;
+        cursor: pointer;
+        word-break: break-all;
+        display: inline-block;
       }
       .mensagem-item .mensagem-assunto {
         color: #0a3d4d;
@@ -208,7 +212,10 @@
       }
       .mensagem-item .mensagem-texto {
         color: #222;
-        font-size: 1em;
+        font-size: 1.08em;
+        line-height: 1.5;
+        margin-top: 0.2em;
+        word-break: break-word;
       }
       @media (min-width: 700px) {
         #mensagens-banco {
@@ -222,9 +229,14 @@
         }
         .mensagem-item .mensagem-dados {
           min-width: 220px;
+          max-width: 300px;
+          flex-shrink: 0;
         }
         .mensagem-item .mensagem-texto {
           flex: 1;
+          font-size: 1.15em;
+          min-width: 0;
+          word-break: break-word;
         }
       }
     </style>
@@ -575,7 +587,7 @@
               div.innerHTML = `
                 <div class="mensagem-dados">
                   <strong>Nome:</strong> ${msg.nome}<br>
-                  <span class="mensagem-email">${msg.email}</span><br>
+                  <a class="mensagem-email" href="mailto:${msg.email}" title="Enviar e-mail">${msg.email}</a><br>
                   <span class="mensagem-assunto">Assunto: ${msg.assunto}</span>
                 </div>
                 <div class="mensagem-texto">
