@@ -20,6 +20,19 @@
       rel="stylesheet"
     />
     <style>
+      :root {
+        --primary-color: #146677;
+        --primary-light: #1a7d92;
+        --primary-dark: #0a3d4d;
+        --accent-color: #b3e0ff;
+        --text-light: #f2f2f2;
+        --text-dark: #333;
+        --bg-light: #f8f9fa;
+        --card-bg: #ffffff;
+        --border-radius: 12px;
+        --box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+      }
+
       * {
         margin: 0;
         padding: 0;
@@ -29,23 +42,19 @@
 
       body {
         background-color: var(--primary-color);
-        line-height: 1.6;
-        background-color: #146677;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
       }
 
+      /* Header & Navigation */
       .navbar {
-        font-size: 1.4em;
-        color: #146677 !important;
-        padding: 2rem;
-        white-space: nowrap;
-        font-weight: 500;
-        background: white;
-        margin-bottom: 2rem;
-        color: var(--primary-color);
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        background: var(--card-bg);
+        padding: 0.8rem 1rem;
+        box-shadow: var(--box-shadow);
+        position: sticky;
+        top: 0;
+        z-index: 1000;
       }
 
       .nav-brand {
@@ -54,87 +63,254 @@
         gap: 0.75rem;
       }
 
-      .logo {
-        width: 40px;
-        height: 40px;
+      .nav-brand span {
+        font-size: 1.2rem;
+        font-weight: 600;
+        color: var(--primary-color);
       }
+
       .logo {
-        width: 40px;
-        height: 40px;
+        width: 36px;
+        height: 36px;
       }
 
       .admin-icon {
-        margin-top: 3px !important;
         color: var(--primary-color);
         font-size: 1.1rem;
         transition: color 0.3s ease;
+        margin-left: auto;
+      }
+
+      .admin-icon:hover {
+        color: var(--primary-light);
+      }
+
+      /* Main Content */
+      .main-content {
+        flex: 1;
+        padding: 1rem;
+      }
+
+      .page-header {
+        text-align: center;
+        margin-bottom: 1.5rem;
+        color: var(--text-light);
+      }
+
+      .page-header h1 {
+        font-size: 1.8rem;
+        margin-bottom: 0.5rem;
+      }
+
+      .page-header p {
+        font-size: 1rem;
+        opacity: 0.9;
+      }
+
+      /* Card Styles */
+      .admin-card {
+        background: var(--card-bg);
+        border-radius: var(--border-radius);
+        box-shadow: var(--box-shadow);
+        padding: 1.5rem;
+        margin-bottom: 1.5rem;
+      }
+
+      .card-header {
+        display: flex;
+        align-items: center;
+        margin-bottom: 1rem;
+        padding-bottom: 0.75rem;
+        border-bottom: 1px solid #eee;
+      }
+
+      .card-header i {
+        font-size: 1.5rem;
+        color: var(--primary-color);
+        margin-right: 0.75rem;
+      }
+
+      .card-header h2 {
+        font-size: 1.3rem;
+        margin: 0;
+        color: var(--primary-dark);
+      }
+
+      /* Form Styles */
+      .form-label {
+        font-weight: 500;
+        color: var(--primary-dark);
+      }
+
+      .form-control:focus {
+        border-color: var(--primary-light);
+        box-shadow: 0 0 0 0.2rem rgba(20, 102, 119, 0.25);
+      }
+
+      .btn-group {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        margin-top: 1rem;
+      }
+
+      .btn-primary {
+        background-color: var(--primary-color);
+        border-color: var(--primary-color);
+      }
+
+      .btn-primary:hover {
+        background-color: var(--primary-dark);
+        border-color: var(--primary-dark);
+      }
+
+      .btn-danger {
+        background-color: #dc3545;
+      }
+
+      .icon-link {
+        display: inline-flex;
+        align-items: center;
+        color: var(--primary-color);
+        text-decoration: none;
+        margin-bottom: 0.5rem;
+      }
+
+      .icon-link i {
+        margin-right: 0.5rem;
+      }
+
+      /* Update Box Styles */
+      .updates-container {
+        margin-top: 1.5rem;
       }
 
       .update-box {
-        border: 1px solid #ddd;
-        border-radius: 10px;
-        padding: 10px;
-        margin-bottom: 20px;
+        background: var(--bg-light);
+        border-radius: 8px;
+        padding: 1rem;
+        margin-bottom: 1rem;
         display: flex;
-        align-items: center;
-        gap: 15px;
+        flex-direction: column;
+        border-left: 4px solid var(--primary-color);
       }
 
-      .update-box i {
-        font-size: 2rem;
-        color: #007bff;
+      .update-header {
+        display: flex;
+        align-items: flex-start;
+        margin-bottom: 0.75rem;
+      }
+
+      .update-header i {
+        font-size: 1.5rem;
+        color: var(--primary-color);
+        margin-right: 0.75rem;
+        margin-top: 0.25rem;
       }
 
       .update-text {
         flex: 1;
-        color: white;
       }
 
-      .btn-custom {
-        margin: 5px;
+      .update-text h3 {
+        font-size: 1.1rem;
+        margin-bottom: 0.5rem;
+        color: var(--primary-dark);
       }
 
-      .admin-panel {
-        background-color: #f8f9fa;
-        padding: 20px;
-        border-radius: 10px;
-        margin-bottom: 30px;
+      .update-text p {
+        font-size: 0.95rem;
+        color: var(--text-dark);
+        margin-bottom: 0.75rem;
       }
 
-      .admin-panel img {
-        max-width: 100%;
-        border-radius: 10px;
-        margin-top: 20px;
+      .update-actions {
+        display: flex;
+        justify-content: flex-end;
       }
 
-      img {
+      /* Messages Section */
+      #mensagens-banco {
+        background: var(--card-bg);
+        border-radius: var(--border-radius);
+        box-shadow: var(--box-shadow);
+        padding: 1.5rem 1rem;
+        margin: 0 auto 1.5rem;
         width: 100%;
       }
-      .footer {
-        background: transparent;
-        color: #f2f2f2;
-        padding: 20px 15px;
-        font-size: 14px;
+
+      .mensagens-header {
+        color: var(--primary-color);
         text-align: center;
+        margin-bottom: 1.2rem;
+        font-weight: 700;
+        font-size: 1.4rem;
+      }
+
+      .mensagem-item {
+        border-left: 4px solid var(--primary-color);
+        background: #f7fafd;
+        border-radius: 8px;
+        padding: 1rem;
+        margin-bottom: 1rem;
+        box-shadow: 0 1px 4px rgba(20, 102, 119, 0.04);
+      }
+
+      .mensagem-item strong {
+        color: var(--primary-color);
+        font-size: 1.05em;
+      }
+
+      .mensagem-item .mensagem-email {
+        color: #007bff;
+        font-size: 0.95em;
+        margin-bottom: 0.2em;
+        text-decoration: underline;
+        cursor: pointer;
+        word-break: break-all;
+        display: inline-block;
+      }
+
+      .mensagem-item .mensagem-assunto {
+        color: var(--primary-dark);
+        font-weight: 600;
+        margin: 0.5rem 0;
+      }
+
+      .mensagem-item .mensagem-texto {
+        color: var(--text-dark);
+        font-size: 1rem;
+        line-height: 1.5;
+        word-break: break-word;
+      }
+
+      /* Footer */
+      .footer {
+        background: rgba(0, 0, 0, 0.1);
+        color: var(--text-light);
+        padding: 1.5rem 1rem;
+        font-size: 0.9rem;
+        text-align: center;
+        margin-top: auto;
       }
 
       .footer-container {
         display: flex;
         flex-direction: column;
         align-items: center;
-        gap: 10px;
+        gap: 0.75rem;
       }
 
       .footer-info p,
       .footer-dev p {
-        margin: 5px 0;
+        margin: 0.25rem 0;
         line-height: 1.4;
       }
 
       .footer-dev a {
-        color: #b3e0ff;
+        color: var(--accent-color);
         margin: 0 5px;
-        font-size: 18px;
+        font-size: 1.2rem;
         transition: color 0.3s ease;
       }
 
@@ -142,106 +318,100 @@
         color: #6db3ff;
       }
 
-      .hero {
-        text-align: center;
-        padding: 3rem 1rem;
-      }
-
-      .hero-title {
-        font-size: 2rem;
-        margin-bottom: 1rem;
-        color: white;
-      }
-
-      .highlight {
-        color: var(--accent-color);
-      }
-
-      .hero-subtitle {
-        font-size: 1.2rem;
-        color: #7f8c8d !important;
-      }
-      .linkzinho {
-        text-decoration: none;
-        font-size: 16px;
-      }
-      .text-center {
-        color: white;
-      }
-      /* Estilos para a seção de mensagens do banco de dados (mobile first) */
-      #mensagens-banco {
-        background: #fff;
-        border-radius: 12px;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.07);
-        padding: 1.5rem 1rem;
-        margin: 2rem auto;
-        max-width: 600px;
-        width: 95%; /* Mais espaço em mobile */
-        display: flex;
-        flex-direction: column;
-        gap: 1.2rem;
-      }
-      .mensagem-item {
-        border-left: 4px solid #146677;
-        background: #f7fafd;
-        border-radius: 8px;
-        padding: 1rem 1.2rem;
-        box-shadow: 0 1px 4px rgba(20, 102, 119, 0.04);
-        display: flex;
-        flex-direction: column;
-        gap: 0.7rem;
-        word-break: break-word;
-      }
-      .mensagem-item strong {
-        color: #146677;
-        font-size: 1.05em;
-      }
-      .mensagem-item .mensagem-email {
-        color: #007bff;
-        font-size: 1em;
-        margin-bottom: 0.2em;
-        text-decoration: underline;
-        cursor: pointer;
-        word-break: break-all;
-        display: inline-block;
-      }
-      .mensagem-item .mensagem-assunto {
-        color: #0a3d4d;
-        font-weight: 600;
-        margin-bottom: 0.2em;
-      }
-      .mensagem-item .mensagem-texto {
-        color: #222;
-        font-size: 1.08em;
-        line-height: 1.5;
-        margin-top: 0.2em;
-        word-break: break-word;
-      }
-      @media (min-width: 700px) {
-        #mensagens-banco {
-          max-width: 900px;
-          padding: 2.5rem 2rem;
+      /* Responsive Styles */
+      @media (min-width: 576px) {
+        .navbar {
+          padding: 0.8rem 1.5rem;
         }
-        .mensagem-item {
+
+        .nav-brand span {
+          font-size: 1.4rem;
+        }
+
+        .logo {
+          width: 40px;
+          height: 40px;
+        }
+
+        .page-header h1 {
+          font-size: 2rem;
+        }
+
+        .page-header p {
+          font-size: 1.1rem;
+        }
+      }
+
+      @media (min-width: 768px) {
+        .main-content {
+          padding: 1.5rem;
+          max-width: 1200px;
+          margin: 0 auto;
+        }
+
+        .admin-card {
+          padding: 2rem;
+        }
+
+        .update-box {
           flex-direction: row;
-          align-items: flex-start;
-          gap: 2rem;
+          align-items: center;
+          padding: 1.25rem;
         }
+
+        .update-header {
+          margin-bottom: 0;
+          margin-right: 1rem;
+        }
+
+        .update-text {
+          margin-right: 1rem;
+        }
+
+        .update-text p {
+          margin-bottom: 0;
+        }
+
+        .mensagem-item {
+          display: flex;
+          gap: 1.5rem;
+        }
+
         .mensagem-item .mensagem-dados {
           min-width: 220px;
           max-width: 300px;
           flex-shrink: 0;
         }
+
         .mensagem-item .mensagem-texto {
           flex: 1;
-          font-size: 1.15em;
-          min-width: 0;
-          word-break: break-word;
+          font-size: 1.05em;
+        }
+      }
+
+      @media (min-width: 992px) {
+        .main-content {
+          padding: 2rem;
+        }
+
+        .admin-grid {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 1.5rem;
+        }
+
+        .admin-card.full-width {
+          grid-column: 1 / -1;
+        }
+
+        .mensagens-header {
+          font-size: 1.6rem;
         }
       }
     </style>
   </head>
   <body>
+    <!-- Navbar -->
     <nav class="navbar">
       <div class="nav-brand">
         <img
@@ -250,39 +420,37 @@
           class="logo"
         />
         <span>Ligantes LABEM</span>
-        <a
-          href="painel-do-ligante.html"
-          class="admin-icon"
-          title="Painel Administrativo"
-        >
-          <i class="fa-regular fa-user"></i
-        ></a>
       </div>
+      <a
+        href="painel-do-ligante.html"
+        class="admin-icon"
+        title="Painel Administrativo"
+      >
+        <i class="fa-regular fa-user"></i>
+      </a>
     </nav>
-    <header class="hero">
-      <h1 class="hero-title">
-        Bem-vindo ao Painel Administrativo!<span class="highlight">🎓</span>
-      </h1>
-      <p class="hero-subtitle">
-        Aqui você pode adicionar, editar ou deletar os tópicos da seção "Últimas
-        Atualizações" APENAS AUTORIZADOS!
-      </p>
-    </header>
-    <section
-      id="eventos1"
-      class="atualizacoes"
-    >
-      <div class="container">
-        <div class="admin-panel">
-          <img
-            src="assets/painel-img.png"
-            alt="Painel de Atualizações"
-          />
 
-          <form
-            id="form-topicos"
-            class="mt-4"
-          >
+    <!-- Main Content -->
+    <div class="main-content">
+      <!-- Page Header -->
+      <header class="page-header">
+        <h1>Painel Administrativo <i class="fas fa-cogs"></i></h1>
+        <p>Gerencie as atualizações e mensagens do site</p>
+      </header>
+
+      <!-- Admin Grid -->
+      <div class="admin-grid">
+        <!-- Atualizações Section -->
+        <section
+          id="eventos1"
+          class="admin-card atualizacoes"
+        >
+          <div class="card-header">
+            <i class="fas fa-bullhorn"></i>
+            <h2>Gerenciar Atualizações</h2>
+          </div>
+
+          <form id="form-topicos">
             <div class="mb-3">
               <label
                 for="icone"
@@ -290,10 +458,12 @@
                 >Ícone (classe do Font Awesome):</label
               >
               <a
-                class="linkzinho"
+                class="icon-link"
                 href="https://fontawesome.com/icons"
-                >Biblioteca de Ícones</a
+                target="_blank"
               >
+                <i class="fas fa-external-link-alt"></i> Biblioteca de Ícones
+              </a>
               <input
                 type="text"
                 class="form-control"
@@ -327,87 +497,105 @@
                 placeholder="Ex: O primeiro encontro teórico..."
               ></textarea>
             </div>
-            <button
-              type="submit"
-              class="btn btn-primary btn-custom"
-            >
-              Adicionar Tópico
-            </button>
-            <button
-              type="button"
-              class="btn btn-success btn-custom"
-              disabled
-            >
-              Finalizar Alteração
-            </button>
+            <div class="btn-group">
+              <button
+                type="submit"
+                class="btn btn-primary"
+              >
+                <i class="fas fa-plus-circle"></i> Adicionar Tópico
+              </button>
+              <button
+                type="button"
+                class="btn btn-success"
+                disabled
+              >
+                <i class="fas fa-check-circle"></i> Finalizar Alteração
+              </button>
+            </div>
           </form>
-        </div>
+        </section>
 
-        <h2 class="text-center">Modelo do tópico "Últimas Atualizações"</h2>
-        <div id="topicos-container">
-          <div
-            class="update-box"
-            id="topico-1"
-          >
-            <i class="fa-solid fa-calendar-check"></i>
-            <div class="update-text">
-              <h3>Encontro Teórico</h3>
-              <p>
-                O primeiro encontro teórico da liga será realizado no dia 15/03
-                e abordará temas essenciais como sistema tegumentar, barreira
-                cutânea e gerenciamento de pele.
-              </p>
-            </div>
-            <button
-              type="button"
-              class="btn btn-danger btn-custom"
-              onclick="confirmarDelecao('topico-1')"
-            >
-              Deletar Tópico 1
-            </button>
+        <!-- Preview Section -->
+        <section class="admin-card">
+          <div class="card-header">
+            <i class="fas fa-eye"></i>
+            <h2>Visualização dos Tópicos</h2>
           </div>
+          <p>Modelo do tópico "Últimas Atualizações"</p>
+
           <div
-            class="update-box"
-            id="topico-2"
+            id="topicos-container"
+            class="updates-container"
           >
-            <i class="fa-solid fa-users"></i>
-            <div class="update-text">
-              <h3>Encontro Prático</h3>
-              <p>
-                A prática de limpeza de pele será conduzida pelo Msc. Weslley da
-                França, esteticista com mais de 15 anos de experiência e atuação
-                internacional.
-              </p>
-            </div>
-            <button
-              type="button"
-              class="btn btn-danger btn-custom"
-              onclick="confirmarDelecao('topico-2')"
+            <div
+              class="update-box"
+              id="topico-1"
             >
-              Deletar Tópico 2
-            </button>
+              <div class="update-header">
+                <i class="fa-solid fa-calendar-check"></i>
+                <div class="update-text">
+                  <h3>Encontro Teórico</h3>
+                  <p>
+                    O primeiro encontro teórico da liga será realizado no dia
+                    15/03 e abordará temas essenciais como sistema tegumentar,
+                    barreira cutânea e gerenciamento de pele.
+                  </p>
+                </div>
+              </div>
+              <div class="update-actions">
+                <button
+                  type="button"
+                  class="btn btn-sm btn-danger"
+                  onclick="confirmarDelecao('topico-1')"
+                >
+                  <i class="fas fa-trash"></i> Deletar
+                </button>
+              </div>
+            </div>
+
+            <div
+              class="update-box"
+              id="topico-2"
+            >
+              <div class="update-header">
+                <i class="fa-solid fa-users"></i>
+                <div class="update-text">
+                  <h3>Encontro Prático</h3>
+                  <p>
+                    A prática de limpeza de pele será conduzida pelo Msc.
+                    Weslley da França, esteticista com mais de 15 anos de
+                    experiência e atuação internacional.
+                  </p>
+                </div>
+              </div>
+              <div class="update-actions">
+                <button
+                  type="button"
+                  class="btn btn-sm btn-danger"
+                  onclick="confirmarDelecao('topico-2')"
+                >
+                  <i class="fas fa-trash"></i> Deletar
+                </button>
+              </div>
+            </div>
           </div>
-        </div>
+        </section>
+
+        <!-- Mensagens Section -->
+        <section
+          id="mensagens-banco"
+          class="admin-card full-width"
+        >
+          <div class="card-header">
+            <i class="fas fa-envelope"></i>
+            <h2 class="mensagens-header">Mensagens do Formulário de Contato</h2>
+          </div>
+          <!-- Mensagens serão carregadas via JS -->
+        </section>
       </div>
-    </section>
-    <hr />
+    </div>
 
-    <!-- Section para exibir mensagens do banco de dados (formulário de contato) -->
-    <section id="mensagens-banco">
-      <h3
-        style="
-          color: #146677;
-          text-align: center;
-          margin-bottom: 1.2rem;
-          font-weight: 700;
-          font-size: 1.8rem;
-        "
-      >
-        Painel de Controle das Mensagens do Formulário de Contato
-      </h3>
-      <!-- Mensagens serão carregadas via JS -->
-    </section>
-
+    <!-- Footer -->
     <footer class="footer">
       <div class="footer-container">
         <div class="footer-info">
@@ -436,6 +624,8 @@
         </div>
       </div>
     </footer>
+
+    <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
