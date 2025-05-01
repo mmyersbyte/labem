@@ -445,40 +445,64 @@
         </div>
       </div>
     </section>
-    <!-- CONTEUDO ATT -->
+    <!-- CONTEUDO UPDATES -->
+    <!-- CONTEUDO UPDATES -->
+    <!-- CONTEUDO UPDATES -->
+    <!-- CONTEUDO UPDATES -->
 
+    <!-- Section dinâmica de Últimas Atualizações -->
     <section
-      id="eventos1"
+      id="ultimas-atualizacoes"
       class="atualizacoes"
     >
       <div class="container">
         <h2 class="text-center">Últimas Atualizações</h2>
-        <div class="update-box">
-          <i class="fa-solid fa-calendar-check"></i>
-          <div class="update-text">
-            <h3>WORKSHOP COM A ADCOS!</h3>
-            <p>
-              No dia 29 de março, nossos ligantes terão uma oportunidade única:
-              um workshop exclusivo de Limpeza de Pele Profissional, ministrado
-              por Mariane Dias, profissional com mais de 15 anos na área da
-              estética, em parceria com a Adcos Florianópolis.
-            </p>
-          </div>
-        </div>
-        <div class="update-box">
-          <i class="fa-solid fa-users"></i>
-          <div class="update-text">
-            <h3>Encontro Teórico</h3>
-            <p>
-              O primeiro encontro teórico da liga FOI REALIZADO COM SUCESSO!
-              abordamos temas essenciais como sistema tegumentar, barreira
-              cutânea e gerenciamento de pele. Fique de olho nos próximos
-              encontros!
-            </p>
-          </div>
-        </div>
+        <!--
+          O conteúdo das atualizações será inserido dinamicamente via JavaScript.
+          O div abaixo receberá as atualizações vindas do backend (MongoDB).
+        -->
+        <div id="updates-list"></div>
       </div>
     </section>
+    <!--
+      Script para buscar e renderizar as atualizações do backend.
+      Ele faz um fetch na API e monta o HTML das atualizações.
+      O script deve ser colocado antes do </body> para garantir que o DOM já foi carregado.
+    -->
+    <script>
+      document.addEventListener('DOMContentLoaded', async () => {
+        const updatesList = document.getElementById('updates-list');
+        try {
+          // Faz uma requisição para a API de updates
+          const response = await fetch(
+            'https://labem.onrender.com/api/updates'
+          );
+          const data = await response.json();
+          // Se houver atualizações, renderiza cada uma
+          if (data.success && data.updates.length > 0) {
+            updatesList.innerHTML = data.updates
+              .map(
+                (update) => `
+            <div class="update-box">
+              <i class="${update.icone}"></i>
+              <div class="update-text">
+                <h3>${update.titulo}</h3>
+                <p>${update.paragrafo}</p>
+              </div>
+            </div>
+          `
+              )
+              .join('');
+          } else {
+            // Caso não haja atualizações cadastradas
+            updatesList.innerHTML = '<p>Nenhuma atualização cadastrada.</p>';
+          }
+        } catch (err) {
+          // Em caso de erro na requisição
+          updatesList.innerHTML = '<p>Erro ao carregar atualizações.</p>';
+        }
+      });
+    </script>
 
     <section class="instagram-section">
       <h2>Nosso Instagram</h2>
