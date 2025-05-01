@@ -168,6 +168,65 @@
       .text-center {
         color: white;
       }
+      /* Estilos para a seção de mensagens do banco de dados (mobile first) */
+      #mensagens-banco {
+        background: #fff;
+        border-radius: 12px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.07);
+        padding: 1.5rem 1rem;
+        margin: 2rem auto;
+        max-width: 600px;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 1.2rem;
+      }
+      .mensagem-item {
+        border-left: 4px solid #146677;
+        background: #f7fafd;
+        border-radius: 8px;
+        padding: 1rem 1.2rem;
+        box-shadow: 0 1px 4px rgba(20, 102, 119, 0.04);
+        display: flex;
+        flex-direction: column;
+        gap: 0.3rem;
+        word-break: break-word;
+      }
+      .mensagem-item strong {
+        color: #146677;
+        font-size: 1.05em;
+      }
+      .mensagem-item .mensagem-email {
+        color: #555;
+        font-size: 0.98em;
+        margin-bottom: 0.2em;
+      }
+      .mensagem-item .mensagem-assunto {
+        color: #0a3d4d;
+        font-weight: 600;
+        margin-bottom: 0.2em;
+      }
+      .mensagem-item .mensagem-texto {
+        color: #222;
+        font-size: 1em;
+      }
+      @media (min-width: 700px) {
+        #mensagens-banco {
+          max-width: 900px;
+          padding: 2.5rem 2rem;
+        }
+        .mensagem-item {
+          flex-direction: row;
+          align-items: flex-start;
+          gap: 2rem;
+        }
+        .mensagem-item .mensagem-dados {
+          min-width: 220px;
+        }
+        .mensagem-item .mensagem-texto {
+          flex: 1;
+        }
+      }
     </style>
   </head>
   <body>
@@ -319,6 +378,12 @@
         </div>
       </div>
     </section>
+
+    <!-- Section para exibir mensagens do banco de dados (formulário de contato) -->
+    <section id="mensagens-banco">
+      <!-- Mensagens serão carregadas via JS -->
+    </section>
+
     <footer class="footer">
       <div class="footer-container">
         <div class="footer-info">
@@ -476,6 +541,46 @@
           alert('Erro de conexão.');
         }
       };
+
+      // Função para buscar e renderizar as mensagens do formulário de contato
+      async function carregarMensagensContato() {
+        const container = document.getElementById('mensagens-banco');
+        container.innerHTML =
+          '<p style="color:#146677;text-align:center;">Carregando mensagens...</p>';
+        try {
+          // Faz a requisição GET para o backend
+          const res = await fetch('https://labem.onrender.com/api/contact');
+          const data = await res.json();
+          if (data.success && data.mensagens.length > 0) {
+            // Renderiza cada mensagem
+            container.innerHTML = data.mensagens
+              .map(
+                (msg) => `
+              <div class="mensagem-item">
+                <div class="mensagem-dados">
+                  <strong>Nome:</strong> ${msg.nome}<br>
+                  <span class="mensagem-email">${msg.email}</span><br>
+                  <span class="mensagem-assunto">Assunto: ${msg.assunto}</span>
+                </div>
+                <div class="mensagem-texto">
+                  ${msg.mensagem}
+                </div>
+              </div>
+            `
+              )
+              .join('');
+          } else {
+            container.innerHTML =
+              '<p style="color:#146677;text-align:center;">Nenhuma mensagem encontrada.</p>';
+          }
+        } catch (err) {
+          container.innerHTML =
+            '<p style="color:red;text-align:center;">Erro ao carregar mensagens.</p>';
+        }
+      }
+
+      // Chama a função ao carregar a página
+      window.addEventListener('DOMContentLoaded', carregarMensagensContato);
     </script>
   </body>
 </html>

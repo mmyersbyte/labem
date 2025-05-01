@@ -36,4 +36,18 @@ router.post('/contact', async (req, res) => {
   }
 });
 
+// Rota para buscar todas as mensagens de contato (GET)
+// Retorna um array de mensagens ordenadas da mais recente para a mais antiga
+router.get('/contact', async (req, res) => {
+  try {
+    const mensagens = await ContactMessage.find().sort({ dataEnvio: -1 });
+    res.status(200).json({ success: true, mensagens });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: 'Erro ao buscar mensagens de contato.',
+    });
+  }
+});
+
 export default router;
