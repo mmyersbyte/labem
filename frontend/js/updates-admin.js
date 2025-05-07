@@ -41,7 +41,7 @@ async function carregarAtualizacoes() {
 function criarHTMLUpdate(update) {
   return `
     <div class="update-box" data-id="${update._id}">
-      <i class="fa-solid ${update.icone}"></i>
+      <i class="${update.icone}"></i>
       <div class="update-text">
         <h3 contenteditable="true" onblur="salvarEdicao('${update._id}', 'titulo', this.innerText)">${update.titulo}</h3>
         <p contenteditable="true" onblur="salvarEdicao('${update._id}', 'paragrafo', this.innerText)">${update.paragrafo}</p>
