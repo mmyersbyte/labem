@@ -153,70 +153,66 @@ window.addEventListener('DOMContentLoaded', function () {
       modal.show();
     }
   });
-});
 
-const formEditar = document.getElementById('form-editar-topico');
-if (formEditar) {
-  formEditar.addEventListener('submit', async function (e) {
-    e.preventDefault();
-    const id = formEditar.getAttribute('data-id');
-    const icone = document.getElementById('editar-icone')?.value?.trim() || '';
-    const titulo =
-      document.getElementById('editar-titulo')?.value?.trim() || '';
-    const paragrafo =
-      document.getElementById('editar-paragrafo')?.value?.trim() || '';
+  // Definir e adicionar o event listener do formEditar aqui
+  const formEditar = document.getElementById('form-editar-topico');
+  if (formEditar) {
+    formEditar.addEventListener('submit', async function (e) {
+      e.preventDefault();
+      const id = formEditar.getAttribute('data-id');
+      const icone =
+        document.getElementById('editar-icone')?.value?.trim() || '';
+      const titulo =
+        document.getElementById('editar-titulo')?.value?.trim() || '';
+      const paragrafo =
+        document.getElementById('editar-paragrafo')?.value?.trim() || '';
 
-    if (!icone || !titulo || !paragrafo) {
-      Swal.fire({
-        icon: 'warning',
-        title: 'Preencha todos os campos!',
-        confirmButtonColor: '#146677',
-      });
-      return;
-    }
-
-    try {
-      const res = await fetch(`${API_URL}/${id}`, {
-        method: 'PATCH',
-        headers: { 'Content-Type': 'application/json' },
-        credentials: 'include',
-        body: JSON.stringify({ icone, titulo, paragrafo }),
-      });
-      const data = await res.json();
-      if (data.success) {
-        const modal = bootstrap.Modal.getInstance(
-          document.getElementById('modal-editar-topico')
-        );
-        modal.hide();
-        carregarAtualizacoes();
+      if (!icone || !titulo || !paragrafo) {
         Swal.fire({
-          icon: 'success',
-          title: 'Tópico editado!',
-          text: 'As alterações foram salvas com sucesso.',
+          icon: 'warning',
+          title: 'Preencha todos os campos!',
           confirmButtonColor: '#146677',
         });
-      } else {
+        return;
+      }
+
+      try {
+        const res = await fetch(`${API_URL}/${id}`, {
+          method: 'PATCH',
+          headers: { 'Content-Type': 'application/json' },
+          credentials: 'include',
+          body: JSON.stringify({ icone, titulo, paragrafo }),
+        });
+        const data = await res.json();
+        if (data.success) {
+          const modal = bootstrap.Modal.getInstance(
+            document.getElementById('modal-editar-topico')
+          );
+          modal.hide();
+          carregarAtualizacoes();
+          Swal.fire({
+            icon: 'success',
+            title: 'Tópico editado!',
+            text: 'As alterações foram salvas com sucesso.',
+            confirmButtonColor: '#146677',
+          });
+        } else {
+          Swal.fire({
+            icon: 'error',
+            title: 'Erro ao editar',
+            text: data.message || 'Erro ao editar tópico.',
+            confirmButtonColor: '#146677',
+          });
+        }
+      } catch (err) {
         Swal.fire({
           icon: 'error',
-          title: 'Erro ao editar',
-          text: data.message || 'Erro ao editar tópico.',
+          title: 'Erro de conexão',
+          text: 'Erro de conexão ao editar tópico.',
           confirmButtonColor: '#146677',
         });
+        console.error('Erro ao editar tópico:', err);
       }
-    } catch (err) {
-      Swal.fire({
-        icon: 'error',
-        title: 'Erro de conexão',
-        text: 'Erro de conexão ao editar tópico.',
-        confirmButtonColor: '#146677',
-      });
-      console.error('Erro ao editar tópico:', err);
-    }
-  });
-}
-
-formEditar.addEventListener('submit', async function (e) {
-  console.log('Submit do modal de edição chamado!');
-  e.preventDefault();
-  // ...restante do código
+    });
+  }
 });
