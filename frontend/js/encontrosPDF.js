@@ -1,5 +1,5 @@
 // URL base da API de encontros
-const API_ENCONTROS = '/api/encontros';
+const API_ENCONTROS = 'https://labem.onrender.com/api/encontros';
 
 const formEncontro = document.getElementById('form-encontro');
 const previewContainer = document.getElementById('encontros-preview');
@@ -43,6 +43,18 @@ async function carregarEncontros() {
     '<p style="color:#146677">Carregando encontros...</p>';
   try {
     const res = await fetch(API_ENCONTROS);
+    if (!res.ok) {
+      console.error(
+        'Erro HTTP ao buscar encontros:',
+        res.status,
+        res.statusText
+      );
+      previewContainer.innerHTML =
+        '<p style="color:red">Erro ao carregar encontros (HTTP ' +
+        res.status +
+        ').</p>';
+      return;
+    }
     const data = await res.json();
     if (data.success && data.encontros.length > 0) {
       previewContainer.innerHTML = '';
@@ -82,6 +94,13 @@ async function deletarEncontro(id) {
     const res = await fetch(`${API_ENCONTROS}/${id}`, {
       method: 'DELETE',
     });
+    if (!res.ok) {
+      console.error(
+        'Erro HTTP ao deletar encontro:',
+        res.status,
+        res.statusText
+      );
+    }
     const data = await res.json();
     if (data.success) {
       if (window.Swal) {
@@ -106,6 +125,7 @@ async function deletarEncontro(id) {
       } else {
         alert(data.message || 'Erro ao deletar encontro.');
       }
+      console.error('Erro ao deletar encontro:', data.message);
     }
   } catch (err) {
     if (window.Swal) {
@@ -135,6 +155,9 @@ if (formEncontro) {
 
     if (!titulo || !paragrafo || !slideTeorico || !materialApoio) {
       alert('Preencha todos os campos e selecione os dois arquivos PDF!');
+      console.error(
+        'Campos obrigatórios não preenchidos ou arquivos não selecionados.'
+      );
       return;
     }
 
@@ -149,6 +172,13 @@ if (formEncontro) {
         method: 'POST',
         body: formData,
       });
+      if (!res.ok) {
+        console.error(
+          'Erro HTTP ao adicionar encontro:',
+          res.status,
+          res.statusText
+        );
+      }
       const data = await res.json();
       if (data.success) {
         formEncontro.reset();
@@ -174,6 +204,7 @@ if (formEncontro) {
         } else {
           alert(data.message || 'Erro ao adicionar encontro.');
         }
+        console.error('Erro ao adicionar encontro:', data.message);
       }
     } catch (err) {
       if (window.Swal) {
