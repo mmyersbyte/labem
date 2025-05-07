@@ -6,22 +6,26 @@ const createEncontroSchema = new mongoose.Schema({
     required: true,
   },
   slideTeorico: {
-    data: Buffer,
+    data: {
+      type: Buffer,
+      required: true,
+    },
     contentType: {
       type: String,
       required: true,
       default: 'application/pdf',
     },
-    required: true,
   },
   materialApoio: {
-    data: Buffer,
+    data: {
+      type: Buffer,
+      required: true,
+    },
     contentType: {
       type: String,
       required: true,
       default: 'application/pdf',
     },
-    required: true,
   },
   paragrafo: {
     type: String,

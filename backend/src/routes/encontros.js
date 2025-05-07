@@ -48,7 +48,18 @@ router.post(
       res.status(201).json({
         success: true,
         message: 'Encontro criado com sucesso!',
-        encontro: novoEncontro,
+        encontro: {
+          _id: novoEncontro._id,
+          titulo: novoEncontro.titulo,
+          paragrafo: novoEncontro.paragrafo,
+          createdAt: novoEncontro.createdAt,
+          slideTeorico: {
+            contentType: novoEncontro.slideTeorico.contentType,
+          },
+          materialApoio: {
+            contentType: novoEncontro.materialApoio.contentType,
+          },
+        },
       });
     } catch (error) {
       res
@@ -74,6 +85,24 @@ router.delete('/:id', async (req, res) => {
     res
       .status(500)
       .json({ success: false, message: 'Erro ao remover encontro.' });
+  }
+});
+
+// GET /api/encontros - Lista todos os encontros (sem os buffers dos PDFs)
+router.get('/', async (req, res) => {
+  try {
+    const encontros = await CreateEncontro.find(
+      {},
+      {
+        'slideTeorico.data': 0,
+        'materialApoio.data': 0,
+      }
+    ).sort({ createdAt: -1 });
+    res.status(200).json({ success: true, encontros });
+  } catch (error) {
+    res
+      .status(500)
+      .json({ success: false, message: 'Erro ao buscar encontros.' });
   }
 });
 
