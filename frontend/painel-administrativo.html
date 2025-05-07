@@ -513,72 +513,157 @@
               </button>
             </div>
           </form>
+          <section class="admin-card">
+            <div class="card-header">
+              <i class="fas fa-eye"></i>
+              <h2>Visualização dos Tópicos</h2>
+            </div>
+            <p>Modelo do tópico "Últimas Atualizações"</p>
+
+            <div
+              id="topicos-container"
+              class="updates-container"
+            >
+              <div
+                class="update-box"
+                id="topico-1"
+              >
+                <div class="update-header">
+                  <i class="fa-solid fa-calendar-check"></i>
+                  <div class="update-text">
+                    <h3>Encontro Teórico</h3>
+                    <p>
+                      O primeiro encontro teórico da liga será realizado no dia
+                      15/03 e abordará temas essenciais como sistema tegumentar,
+                      barreira cutânea e gerenciamento de pele.
+                    </p>
+                  </div>
+                </div>
+                <div class="update-actions">
+                  <button
+                    type="button"
+                    class="btn btn-sm btn-danger"
+                    onclick="confirmarDelecao('topico-1')"
+                  >
+                    <i class="fas fa-trash"></i> Deletar
+                  </button>
+                </div>
+              </div>
+
+              <div
+                class="update-box"
+                id="topico-2"
+              >
+                <div class="update-header">
+                  <i class="fa-solid fa-users"></i>
+                  <div class="update-text">
+                    <h3>Encontro Prático</h3>
+                    <p>
+                      A prática de limpeza de pele será conduzida pelo Msc.
+                      Weslley da França, esteticista com mais de 15 anos de
+                      experiência e atuação internacional.
+                    </p>
+                  </div>
+                </div>
+                <div class="update-actions">
+                  <button
+                    type="button"
+                    class="btn btn-sm btn-danger"
+                    onclick="confirmarDelecao('topico-2')"
+                  >
+                    <i class="fas fa-trash"></i> Deletar
+                  </button>
+                </div>
+              </div>
+            </div>
+          </section>
         </section>
 
         <!-- Preview Section -->
-        <section class="admin-card">
+
+        <!-- Encontros Section -->
+
+        <section
+          id="encontros-admin"
+          class="admin-card"
+        >
           <div class="card-header">
-            <i class="fas fa-eye"></i>
-            <h2>Visualização dos Tópicos</h2>
+            <i class="fas fa-book-open"></i>
+            <h2>Adicionar Encontro</h2>
           </div>
-          <p>Modelo do tópico "Últimas Atualizações"</p>
-
-          <div
-            id="topicos-container"
-            class="updates-container"
+          <form
+            id="form-encontro"
+            enctype="multipart/form-data"
           >
-            <div
-              class="update-box"
-              id="topico-1"
-            >
-              <div class="update-header">
-                <i class="fa-solid fa-calendar-check"></i>
-                <div class="update-text">
-                  <h3>Encontro Teórico</h3>
-                  <p>
-                    O primeiro encontro teórico da liga será realizado no dia
-                    15/03 e abordará temas essenciais como sistema tegumentar,
-                    barreira cutânea e gerenciamento de pele.
-                  </p>
-                </div>
-              </div>
-              <div class="update-actions">
-                <button
-                  type="button"
-                  class="btn btn-sm btn-danger"
-                  onclick="confirmarDelecao('topico-1')"
-                >
-                  <i class="fas fa-trash"></i> Deletar
-                </button>
-              </div>
+            <div class="mb-3">
+              <label
+                for="encontro-titulo"
+                class="form-label"
+                >Título do Encontro:</label
+              >
+              <input
+                type="text"
+                class="form-control"
+                id="encontro-titulo"
+                placeholder="Encontro 4..."
+                required
+              />
             </div>
-
-            <div
-              class="update-box"
-              id="topico-2"
-            >
-              <div class="update-header">
-                <i class="fa-solid fa-users"></i>
-                <div class="update-text">
-                  <h3>Encontro Prático</h3>
-                  <p>
-                    A prática de limpeza de pele será conduzida pelo Msc.
-                    Weslley da França, esteticista com mais de 15 anos de
-                    experiência e atuação internacional.
-                  </p>
-                </div>
-              </div>
-              <div class="update-actions">
-                <button
-                  type="button"
-                  class="btn btn-sm btn-danger"
-                  onclick="confirmarDelecao('topico-2')"
-                >
-                  <i class="fas fa-trash"></i> Deletar
-                </button>
-              </div>
+            <div class="mb-3">
+              <label
+                for="encontro-slides"
+                class="form-label"
+                >PDF Slides Teóricos:</label
+              >
+              <input
+                type="file"
+                class="form-control"
+                id="encontro-slides"
+                accept="application/pdf"
+                required
+              />
             </div>
-          </div>
+            <div class="mb-3">
+              <label
+                for="encontro-material"
+                class="form-label"
+                >PDF Material de Apoio:</label
+              >
+              <input
+                type="file"
+                class="form-control"
+                id="encontro-material"
+                accept="application/pdf"
+                required
+              />
+            </div>
+            <div class="mb-3">
+              <label
+                for="encontro-paragrafo"
+                class="form-label"
+                >Comentário/Descrição:</label
+              >
+              <textarea
+                class="form-control"
+                id="encontro-paragrafo"
+                rows="3"
+                placeholder="Descrição do encontro..."
+                required
+              ></textarea>
+            </div>
+            <div class="btn-group">
+              <button
+                type="submit"
+                class="btn btn-primary"
+              >
+                <i class="fas fa-plus-circle"></i> Adicionar Encontro
+              </button>
+            </div>
+          </form>
+          <div
+            id="encontros-preview"
+            class="updates-container"
+          ></div>
         </section>
 
         <!-- Mensagens Section -->
@@ -587,8 +672,6 @@
           id="mensagens-banco"
           class="admin-card full-width"
         >
-          <h2 class="mensagens-header">Mensagens do Formulário de Contato</h2>
-
           <div class="card-header">
             <i class="fas fa-envelope"></i>
             <h2 class="mensagens-header">Mensagens do Formulário de Contato</h2>

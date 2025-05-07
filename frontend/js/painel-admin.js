@@ -6,7 +6,7 @@ async function carregarMensagensContato() {
   container.innerHTML = '';
   if (h3) container.appendChild(h3);
   container.innerHTML +=
-    '<p style="color:#146677;text-align:center;">Carregando mensagens...</p>';
+    '<p style="color:#146677;text-align:center;">Mensagens do Formulário de Contato</p>';
   try {
     // Faz a requisição GET para o backend
     const res = await fetch('https://labem.onrender.com/api/contact');
@@ -18,7 +18,7 @@ async function carregarMensagensContato() {
         div.className = 'mensagem-item';
         div.setAttribute('data-id', msg._id);
         div.innerHTML = `
-                    <h2 class="mensagens-header">Mensagens do Formulário de Contato</h2>
+                    
 
           <div class="mensagem-dados">
             <strong>Nome:</strong> ${msg.nome}<br>
