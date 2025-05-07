@@ -1,0 +1,204 @@
+// URL base da API de encontros
+const API_ENCONTROS = '/api/encontros';
+
+const formEncontro = document.getElementById('form-encontro');
+const previewContainer = document.getElementById('encontros-preview');
+
+// Função para criar o HTML do card de preview do encontro, agora com botão de deletar
+function criarCardEncontro(encontro) {
+  return `
+    <div class="encontro-card admin-preview-card" data-id="${encontro._id}">
+      <div class="card-header">
+        <h2>${encontro.titulo}</h2>
+        <i class="fas fa-book-open"></i>
+        <button class="btn btn-danger btn-sm btn-delete-encontro" title="Deletar Encontro" style="margin-left:auto;">
+          <i class="fas fa-trash-alt"></i>
+        </button>
+      </div>
+      <div class="card-content">
+        <a href="#" class="download-btn" target="_blank">
+          <i class="fas fa-file-pdf"></i>
+          Slides Teóricos
+          <span class="file-size">PDF</span>
+        </a>
+        <a href="#" class="download-btn" target="_blank">
+          <i class="fas fa-file-alt"></i>
+          Material de Apoio
+          <span class="file-size">PDF</span>
+        </a>
+      </div>
+      <div class="card-footer">
+        <span class="progress-text">${encontro.paragrafo}</span>
+        <div class="progress-bar">
+          <div class="progress" style="width: 25%"></div>
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+// Função para carregar e exibir todos os encontros
+async function carregarEncontros() {
+  previewContainer.innerHTML =
+    '<p style="color:#146677">Carregando encontros...</p>';
+  try {
+    const res = await fetch(API_ENCONTROS);
+    const data = await res.json();
+    if (data.success && data.encontros.length > 0) {
+      previewContainer.innerHTML = '';
+      data.encontros.forEach((encontro) => {
+        previewContainer.innerHTML += criarCardEncontro(encontro);
+      });
+    } else {
+      previewContainer.innerHTML =
+        '<p style="color:#146677">Nenhum encontro cadastrado.</p>';
+    }
+  } catch (err) {
+    previewContainer.innerHTML =
+      '<p style="color:red">Erro ao carregar encontros.</p>';
+    console.error('Erro ao carregar encontros:', err);
+  }
+}
+
+// Função para deletar um encontro
+async function deletarEncontro(id) {
+  if (window.Swal) {
+    const result = await Swal.fire({
+      title: 'Tem certeza?',
+      text: 'Esta ação não poderá ser desfeita!',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#d33',
+      cancelButtonColor: '#146677',
+      confirmButtonText: 'Sim, deletar!',
+      cancelButtonText: 'Cancelar',
+    });
+    if (!result.isConfirmed) return;
+  } else {
+    if (!confirm('Tem certeza que deseja deletar este encontro?')) return;
+  }
+
+  try {
+    const res = await fetch(`${API_ENCONTROS}/${id}`, {
+      method: 'DELETE',
+    });
+    const data = await res.json();
+    if (data.success) {
+      if (window.Swal) {
+        Swal.fire({
+          icon: 'success',
+          title: 'Encontro deletado!',
+          text: data.message,
+          confirmButtonColor: '#146677',
+        });
+      } else {
+        alert('Encontro deletado com sucesso!');
+      }
+      carregarEncontros();
+    } else {
+      if (window.Swal) {
+        Swal.fire({
+          icon: 'error',
+          title: 'Erro ao deletar',
+          text: data.message || 'Erro ao deletar encontro.',
+          confirmButtonColor: '#146677',
+        });
+      } else {
+        alert(data.message || 'Erro ao deletar encontro.');
+      }
+    }
+  } catch (err) {
+    if (window.Swal) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Erro de conexão',
+        text: 'Erro ao conectar com o servidor.',
+        confirmButtonColor: '#146677',
+      });
+    } else {
+      alert('Erro ao conectar com o servidor.');
+    }
+    console.error('Erro ao deletar encontro:', err);
+  }
+}
+
+// Evento de submit do formulário
+if (formEncontro) {
+  formEncontro.addEventListener('submit', async function (e) {
+    e.preventDefault();
+    const titulo = document.getElementById('encontro-titulo').value.trim();
+    const paragrafo = document
+      .getElementById('encontro-paragrafo')
+      .value.trim();
+    const slideTeorico = document.getElementById('encontro-slides').files[0];
+    const materialApoio = document.getElementById('encontro-material').files[0];
+
+    if (!titulo || !paragrafo || !slideTeorico || !materialApoio) {
+      alert('Preencha todos os campos e selecione os dois arquivos PDF!');
+      return;
+    }
+
+    const formData = new FormData();
+    formData.append('titulo', titulo);
+    formData.append('paragrafo', paragrafo);
+    formData.append('slideTeorico', slideTeorico);
+    formData.append('materialApoio', materialApoio);
+
+    try {
+      const res = await fetch(API_ENCONTROS, {
+        method: 'POST',
+        body: formData,
+      });
+      const data = await res.json();
+      if (data.success) {
+        formEncontro.reset();
+        if (window.Swal) {
+          Swal.fire({
+            icon: 'success',
+            title: 'Encontro adicionado!',
+            text: data.message,
+            confirmButtonColor: '#146677',
+          });
+        } else {
+          alert('Encontro adicionado com sucesso!');
+        }
+        carregarEncontros();
+      } else {
+        if (window.Swal) {
+          Swal.fire({
+            icon: 'error',
+            title: 'Erro',
+            text: data.message || 'Erro ao adicionar encontro.',
+            confirmButtonColor: '#146677',
+          });
+        } else {
+          alert(data.message || 'Erro ao adicionar encontro.');
+        }
+      }
+    } catch (err) {
+      if (window.Swal) {
+        Swal.fire({
+          icon: 'error',
+          title: 'Erro de conexão',
+          text: 'Erro ao conectar com o servidor.',
+          confirmButtonColor: '#146677',
+        });
+      } else {
+        alert('Erro ao conectar com o servidor.');
+      }
+      console.error('Erro ao adicionar encontro:', err);
+    }
+  });
+}
+
+// Delegação de evento para o botão de deletar
+previewContainer.addEventListener('click', function (e) {
+  if (e.target.closest('.btn-delete-encontro')) {
+    const card = e.target.closest('.encontro-card');
+    const id = card.getAttribute('data-id');
+    deletarEncontro(id);
+  }
+});
+
+// Carregar encontros ao abrir a página
+window.addEventListener('DOMContentLoaded', carregarEncontros);
