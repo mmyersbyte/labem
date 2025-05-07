@@ -102,3 +102,9 @@ async function deletarMensagemContato(id) {
 
 // Chama a função ao carregar a página
 window.addEventListener('DOMContentLoaded', carregarMensagensContato);
+
+formEditar.addEventListener('submit', async function (e) {
+  console.log('Submit do modal de edição chamado!');
+  e.preventDefault();
+  // ...restante do código
+});

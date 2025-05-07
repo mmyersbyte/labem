@@ -214,3 +214,9 @@ if (formEditar) {
     }
   });
 }
+
+formEditar.addEventListener('submit', async function (e) {
+  console.log('Submit do modal de edição chamado!');
+  e.preventDefault();
+  // ...restante do código
+});
