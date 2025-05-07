@@ -631,5 +631,92 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="js/painel-admin.js"></script>
+    <script src="js/updates-admin.js"></script>
+
+    <!-- Modal de Edição de Atualização -->
+    <div
+      class="modal fade"
+      id="modal-editar-topico"
+      tabindex="-1"
+      aria-labelledby="modalEditarTopicoLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <form id="form-editar-topico">
+            <div class="modal-header">
+              <h5
+                class="modal-title"
+                id="modalEditarTopicoLabel"
+              >
+                Editar Atualização
+              </h5>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Fechar"
+              ></button>
+            </div>
+            <div class="modal-body">
+              <div class="mb-3">
+                <label
+                  for="editar-icone"
+                  class="form-label"
+                  >Ícone (classe do Font Awesome):</label
+                >
+                <input
+                  type="text"
+                  class="form-control"
+                  id="editar-icone"
+                  placeholder="Ex: fa-calendar-check"
+                />
+              </div>
+              <div class="mb-3">
+                <label
+                  for="editar-titulo"
+                  class="form-label"
+                  >Título:</label
+                >
+                <input
+                  type="text"
+                  class="form-control"
+                  id="editar-titulo"
+                  placeholder="Ex: Encontro Teórico"
+                />
+              </div>
+              <div class="mb-3">
+                <label
+                  for="editar-paragrafo"
+                  class="form-label"
+                  >Parágrafo:</label
+                >
+                <textarea
+                  class="form-control"
+                  id="editar-paragrafo"
+                  rows="3"
+                  placeholder="Ex: O primeiro encontro teórico..."
+                ></textarea>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >
+                Cancelar
+              </button>
+              <button
+                type="submit"
+                class="btn btn-primary"
+              >
+                Salvar Alterações
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
   </body>
 </html>
