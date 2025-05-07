@@ -408,6 +408,92 @@
           font-size: 1.6rem;
         }
       }
+
+      .encontro-card {
+        background: var(--card-bg);
+        border-radius: var(--border-radius);
+        box-shadow: var(--box-shadow);
+        margin-bottom: 1.5rem;
+        padding: 1.2rem 1.5rem;
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      .encontro-card .card-header {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        border-bottom: 1px solid #eee;
+        padding-bottom: 0.5rem;
+      }
+
+      .encontro-card .card-header h2 {
+        font-size: 1.2rem;
+        color: var(--primary-dark);
+        margin: 0;
+        flex: 1;
+      }
+
+      .encontro-card .card-header i {
+        color: var(--primary-color);
+        font-size: 1.3rem;
+      }
+
+      .encontro-card .card-content {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+
+      .encontro-card .download-btn {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        background: var(--bg-light);
+        border-radius: 6px;
+        padding: 0.5rem 1rem;
+        color: var(--primary-color);
+        text-decoration: none;
+        font-weight: 500;
+        transition: background 0.2s;
+      }
+
+      .encontro-card .download-btn:hover {
+        background: var(--accent-color);
+        color: var(--primary-dark);
+      }
+
+      .encontro-card .download-btn i {
+        font-size: 1.1rem;
+      }
+
+      .encontro-card .file-size {
+        margin-left: auto;
+        font-size: 0.95em;
+        color: #888;
+      }
+
+      .encontro-card .card-footer {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+
+      .encontro-card .progress-bar {
+        background: #e9ecef;
+        border-radius: 6px;
+        height: 8px;
+        width: 100%;
+        overflow: hidden;
+      }
+
+      .encontro-card .progress {
+        background: var(--primary-color);
+        height: 100%;
+        border-radius: 6px;
+        transition: width 0.3s;
+      }
     </style>
   </head>
   <body>
@@ -579,8 +665,6 @@
           </section>
         </section>
 
-        <!-- Preview Section -->
-
         <!-- Encontros Section -->
 
         <section
@@ -663,7 +747,46 @@
           <div
             id="encontros-preview"
             class="updates-container"
-          ></div>
+          >
+            <!-- Exemplo de card de preview pronto para receber dados do backend -->
+            <div class="encontro-card admin-preview-card">
+              <div class="card-header">
+                <h2>Encontro 4</h2>
+                <i class="fas fa-book-open"></i>
+              </div>
+              <div class="card-content">
+                <a
+                  href="#"
+                  class="download-btn"
+                  target="_blank"
+                >
+                  <i class="fas fa-file-pdf"></i>
+                  Slides Teóricos
+                  <span class="file-size">PDF</span>
+                </a>
+                <a
+                  href="#"
+                  class="download-btn"
+                  target="_blank"
+                >
+                  <i class="fas fa-file-alt"></i>
+                  Material de Apoio
+                  <span class="file-size">PDF</span>
+                </a>
+              </div>
+              <div class="card-footer">
+                <span class="progress-text"
+                  >Comentário ou descrição do encontro</span
+                >
+                <div class="progress-bar">
+                  <div
+                    class="progress"
+                    style="width: 25%"
+                  ></div>
+                </div>
+              </div>
+            </div>
+          </div>
         </section>
 
         <!-- Mensagens Section -->
