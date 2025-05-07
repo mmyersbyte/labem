@@ -122,9 +122,15 @@ router.patch(
         { new: true, runValidators: true }
       );
       if (!update) {
-        return res
-          .status(404)
-          .json({ success: false, message: 'Atualização não encontrada.' });
+        console.warn(
+          'PATCH: Atualização não encontrada para o id:',
+          req.params.id
+        );
+        return res.status(404).json({
+          success: false,
+          message: 'Atualização não encontrada.',
+          update: null,
+        });
       }
       res.status(200).json({
         success: true,
@@ -132,7 +138,7 @@ router.patch(
         update,
       });
     } catch (error) {
-      console.error(error);
+      console.error('Erro na rota PATCH /api/updates/:id:', error);
       res
         .status(500)
         .json({ success: false, message: 'Erro ao editar atualização.' });
