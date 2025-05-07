@@ -6,6 +6,7 @@ import authRoutes from './routes/auth.js';
 import contactRoutes from './routes/contact.js';
 import updatesRoutes from './routes/updates.js';
 import session from 'express-session';
+import encontrosRoutes from './routes/encontros.js';
 
 const app = express();
 const PORT = process.env.PORT || 5555;
@@ -42,5 +43,6 @@ app.use(
 app.use('/auth', authRoutes);
 app.use('/api', contactRoutes);
 app.use('/api/updates', updatesRoutes);
+app.use('/api/encontros', encontrosRoutes);
 
 app.listen(PORT, () => console.log(`Servidor rodando na porta ${PORT}`));
