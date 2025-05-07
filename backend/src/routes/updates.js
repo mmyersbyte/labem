@@ -16,6 +16,16 @@ router.get('/', async (req, res) => {
   }
 });
 
+router.get('/:id', async (req, res) => {
+  try {
+    const update = await Update.findById(req.params.id);
+    res.status(200).json({ success: true, update });
+  } catch (error) {
+    res
+      .status(500)
+      .json({ success: false, message: 'Erro ao buscar atualização.' });
+  }
+});
 // POST /api/updates - Cria uma nova atualização (protegido)
 // router.post('/', authMiddleware, async (req, res) => {
 router.post(
@@ -67,6 +77,8 @@ router.put(
         update,
       });
     } catch (error) {
+      console.error(error);
+
       res
         .status(500)
         .json({ success: false, message: 'Erro ao editar atualização.' });
@@ -90,9 +102,40 @@ router.delete(
         .status(200)
         .json({ success: true, message: 'Atualização removida com sucesso!' });
     } catch (error) {
+      console.error(error);
       res
         .status(500)
         .json({ success: false, message: 'Erro ao remover atualização.' });
+    }
+  }
+);
+
+// PATCH /api/updates/:id - Atualiza parcialmente uma atualização (protegido)
+// router.patch('/:id', authMiddleware, async (req, res) => {
+router.patch(
+  '/:id',
+  /* authMiddleware, */ async (req, res) => {
+    try {
+      const update = await Update.findByIdAndUpdate(
+        req.params.id,
+        { $set: req.body },
+        { new: true, runValidators: true }
+      );
+      if (!update) {
+        return res
+          .status(404)
+          .json({ success: false, message: 'Atualização não encontrada.' });
+      }
+      res.status(200).json({
+        success: true,
+        message: 'Atualização editada com sucesso!',
+        update,
+      });
+    } catch (error) {
+      console.error(error);
+      res
+        .status(500)
+        .json({ success: false, message: 'Erro ao editar atualização.' });
     }
   }
 );
