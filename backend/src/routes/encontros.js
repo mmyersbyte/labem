@@ -106,4 +106,42 @@ router.get('/', async (req, res) => {
   }
 });
 
+// GET /api/encontros/:id/slide - Baixa o PDF dos slides teóricos
+router.get('/:id/slide', async (req, res) => {
+  try {
+    const encontro = await CreateEncontro.findById(req.params.id);
+    if (!encontro || !encontro.slideTeorico || !encontro.slideTeorico.data) {
+      return res.status(404).send('Arquivo não encontrado');
+    }
+    res.set(
+      'Content-Type',
+      encontro.slideTeorico.contentType || 'application/pdf'
+    );
+    res.set('Content-Disposition', 'inline; filename="slide-teorico.pdf"');
+    res.send(encontro.slideTeorico.data);
+  } catch (err) {
+    console.error('Erro ao baixar slide:', err);
+    res.status(500).send('Erro ao baixar o arquivo');
+  }
+});
+
+// GET /api/encontros/:id/material - Baixa o PDF do material de apoio
+router.get('/:id/material', async (req, res) => {
+  try {
+    const encontro = await CreateEncontro.findById(req.params.id);
+    if (!encontro || !encontro.materialApoio || !encontro.materialApoio.data) {
+      return res.status(404).send('Arquivo não encontrado');
+    }
+    res.set(
+      'Content-Type',
+      encontro.materialApoio.contentType || 'application/pdf'
+    );
+    res.set('Content-Disposition', 'inline; filename="material-apoio.pdf"');
+    res.send(encontro.materialApoio.data);
+  } catch (err) {
+    console.error('Erro ao baixar material:', err);
+    res.status(500).send('Erro ao baixar o arquivo');
+  }
+});
+
 export default router;

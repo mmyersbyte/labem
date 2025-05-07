@@ -6,6 +6,8 @@ const previewContainer = document.getElementById('encontros-preview');
 
 // Função para criar o HTML do card de preview do encontro, agora com botão de deletar
 function criarCardEncontro(encontro) {
+  const slideUrl = `https://labem.onrender.com/api/encontros/${encontro._id}/slide`;
+  const materialUrl = `https://labem.onrender.com/api/encontros/${encontro._id}/material`;
   return `
     <div class="encontro-card admin-preview-card" data-id="${encontro._id}">
       <div class="card-header">
@@ -16,12 +18,12 @@ function criarCardEncontro(encontro) {
         </button>
       </div>
       <div class="card-content">
-        <a href="#" class="download-btn" target="_blank">
+        <a href="${slideUrl}" class="download-btn" target="_blank">
           <i class="fas fa-file-pdf"></i>
           Slides Teóricos
           <span class="file-size">PDF</span>
         </a>
-        <a href="#" class="download-btn" target="_blank">
+        <a href="${materialUrl}" class="download-btn" target="_blank">
           <i class="fas fa-file-alt"></i>
           Material de Apoio
           <span class="file-size">PDF</span>
