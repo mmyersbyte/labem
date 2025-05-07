@@ -18,6 +18,8 @@ async function carregarMensagensContato() {
         div.className = 'mensagem-item';
         div.setAttribute('data-id', msg._id);
         div.innerHTML = `
+                    <h2 class="mensagens-header">Mensagens do Formulário de Contato</h2>
+
           <div class="mensagem-dados">
             <strong>Nome:</strong> ${msg.nome}<br>
             <a class="mensagem-email" href="mailto:${msg.email}" title="Enviar e-mail">${msg.email}</a><br>
@@ -102,9 +104,3 @@ async function deletarMensagemContato(id) {
 
 // Chama a função ao carregar a página
 window.addEventListener('DOMContentLoaded', carregarMensagensContato);
-
-formEditar.addEventListener('submit', async function (e) {
-  console.log('Submit do modal de edição chamado!');
-  e.preventDefault();
-  // ...restante do código
-});
