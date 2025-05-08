@@ -37,13 +37,6 @@
           class="logo"
         />
         <span>Ligantes LABEM</span>
-        <a
-          href="painel-administrativo.html"
-          class="admin-icon"
-          title="Painel Administrativo"
-        >
-          <i class="fas fa-cog"></i>
-        </a>
       </div>
     </nav>
 
@@ -96,50 +89,5 @@
     <script src="js/ligantes.js"></script>
     <!-- Adiciona SweetAlert2 para alertas bonitos -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script>
-      // Script para proteger o acesso ao painel admin com PIN usando SweetAlert2
-      document.addEventListener('DOMContentLoaded', function () {
-        // Seleciona o link do ícone de engrenagem
-        const adminIcon = document.querySelector('.admin-icon');
-        if (adminIcon) {
-          adminIcon.addEventListener('click', async function (e) {
-            e.preventDefault(); // Impede o redirecionamento imediato
-
-            // SweetAlert2 para o user digitar o PIN
-            const { value: pin } = await Swal.fire({
-              title: 'Digite o PIN de acesso',
-              text: 'Apenas professores, coordenadores e a presidenta podem acessar o painel administrativo',
-              input: 'password',
-              inputLabel: 'PIN',
-              inputPlaceholder: 'Digite o PIN',
-              inputAttributes: {
-                maxlength: 10,
-                autocapitalize: 'off',
-                autocorrect: 'off',
-              },
-              showCancelButton: true,
-              confirmButtonText: 'Acessar',
-              cancelButtonText: 'Cancelar',
-              confirmButtonColor: '#146677',
-            });
-
-            // Verifica se o PIN está correto (exemplo: 323)
-            if (pin === '323') {
-              // Se correto, libera o acesso
-              window.location.href = adminIcon.getAttribute('href');
-            } else if (pin !== undefined) {
-              // Se incorreto e não cancelou
-              Swal.fire({
-                icon: 'error',
-                title: 'PIN incorreto!',
-                text: 'Acesso não autorizado!!!!!!!!!!',
-                confirmButtonColor: '#146677',
-              });
-            }
-            // Se cancelou o prompt, nada acontece
-          });
-        }
-      });
-    </script>
   </body>
 </html>
