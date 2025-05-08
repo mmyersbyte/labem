@@ -13,7 +13,7 @@ function criarCardEncontro(encontro) {
       <div class="card-header">
         <h2>${encontro.titulo}</h2>
         <i class="fas fa-book-open"></i>
-        <button class="btn btn-danger btn-sm btn-delete-encontro" title="Deletar Encontro" style="margin-left:auto;">
+        <button class="btn btn-danger btn-sm btn-delete-encontro" title="Deletar Encontro">
           <i class="fas fa-trash-alt"></i>
         </button>
       </div>
@@ -42,7 +42,7 @@ function criarCardEncontro(encontro) {
 // Função para carregar e exibir todos os encontros
 async function carregarEncontros() {
   previewContainer.innerHTML =
-    '<p style="color:#146677">Carregando encontros...</p>';
+    '<p style="color:#146677">Aguarde!! Carregando encontros...</p>';
   try {
     const res = await fetch(API_ENCONTROS);
     if (!res.ok) {

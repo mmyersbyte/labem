@@ -494,6 +494,29 @@
         border-radius: 6px;
         transition: width 0.3s;
       }
+
+      /* Estilos específicos para o botão de deletar encontros */
+      .btn-delete-encontro {
+        margin-left: auto;
+        padding: 0.25rem 0.5rem !important;
+        font-size: 0.75rem !important;
+        line-height: 1.5;
+        border-radius: 0.2rem;
+        box-shadow: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .btn-delete-encontro i {
+        font-size: 0.8rem;
+        margin: 0;
+      }
+
+      .btn-delete-encontro:hover {
+        background-color: #bd2130;
+        border-color: #b21f2d;
+      }
     </style>
   </head>
   <body>
@@ -520,7 +543,7 @@
     <div class="main-content">
       <!-- Page Header -->
       <header class="page-header">
-        <h1>Bem-Vindo aoPainel Administrativo <i class="fas fa-cogs"></i></h1>
+        <h1>Bem-Vindo ao Painel Administrativo <i class="fas fa-cogs"></i></h1>
         <p>Gerencie as atualizações e mensagens do site</p>
       </header>
 
@@ -589,13 +612,6 @@
                 class="btn btn-primary"
               >
                 <i class="fas fa-plus-circle"></i> Adicionar Tópico
-              </button>
-              <button
-                type="button"
-                class="btn btn-success"
-                disabled
-              >
-                <i class="fas fa-check-circle"></i> Finalizar Alteração
               </button>
             </div>
           </form>
@@ -743,49 +759,69 @@
               </button>
             </div>
           </form>
-          <div
-            id="encontros-preview"
-            class="updates-container"
-          >
-            <!-- Exemplo de card de preview pronto para receber dados do backend -->
-            <div class="encontro-card admin-preview-card">
-              <div class="card-header">
-                <h2>Encontro 4</h2>
-                <i class="fas fa-book-open"></i>
-              </div>
-              <div class="card-content">
-                <a
-                  href="#"
-                  class="download-btn"
-                  target="_blank"
-                >
-                  <i class="fas fa-file-pdf"></i>
-                  Slides Teóricos
-                  <span class="file-size">PDF</span>
-                </a>
-                <a
-                  href="#"
-                  class="download-btn"
-                  target="_blank"
-                >
-                  <i class="fas fa-file-alt"></i>
-                  Material de Apoio
-                  <span class="file-size">PDF</span>
-                </a>
-              </div>
-              <div class="card-footer">
-                <span class="progress-text"
-                  >Comentário ou descrição do encontro</span
-                >
-                <div class="progress-bar">
-                  <div
-                    class="progress"
-                    style="width: 25%"
-                  ></div>
+
+          <section class="admin-card">
+            <div class="card-header">
+              <i class="fas fa-eye"></i>
+              <h2>Visualização dos Encontros</h2>
+            </div>
+            <p>
+              Modelo dos encontros que serão visualizados no painel do ligante
+            </p>
+
+            <div
+              id="encontros-preview"
+              class="updates-container"
+            >
+              <!-- Exemplo de card de preview pronto para receber dados do backend -->
+              <div
+                class="encontro-card admin-preview-card"
+                data-id="exemplo"
+              >
+                <div class="card-header">
+                  <h2>Encontro 4</h2>
+                  <i class="fas fa-book-open"></i>
+                  <button
+                    class="btn btn-danger btn-sm btn-delete-encontro"
+                    title="Deletar Encontro"
+                  >
+                    <i class="fas fa-trash-alt"></i>
+                  </button>
+                </div>
+                <div class="card-content">
+                  <a
+                    href="#"
+                    class="download-btn"
+                    target="_blank"
+                  >
+                    <i class="fas fa-file-pdf"></i>
+                    Slides Teóricos
+                    <span class="file-size">PDF</span>
+                  </a>
+                  <a
+                    href="#"
+                    class="download-btn"
+                    target="_blank"
+                  >
+                    <i class="fas fa-file-alt"></i>
+                    Material de Apoio
+                    <span class="file-size">PDF</span>
+                  </a>
+                </div>
+                <div class="card-footer">
+                  <span class="progress-text"
+                    >Comentário ou descrição do encontro</span
+                  >
+                  <div class="progress-bar">
+                    <div
+                      class="progress"
+                      style="width: 25%"
+                    ></div>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
+          </section>
         </section>
 
         <!-- Mensagens Section -->
