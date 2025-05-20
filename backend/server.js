@@ -14,7 +14,14 @@ connectDB(process.env.MONGODB_URI);
 // Configurações de middleware
 app.use(
   cors({
-    origin: ['https://www.labemunisul.com.br'],
+    origin: [
+      'https://www.labemunisul.com.br',
+      'https://labemunisul.com.br',
+      'http://www.labemunisul.com.br',
+      'http://labemunisul.com.br',
+      'http://labemunisul.com.br/login.html',
+      'http://www.labemunisul.com.br/login.html',
+    ],
     credentials: true,
   })
 );
