@@ -1,4 +1,4 @@
-# LABEM
+![Banner da LABEMGITHUB](assets/LABEMGITHUB.png)
 
 ## Objetivo do Projeto
 
