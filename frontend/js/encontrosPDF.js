@@ -13,7 +13,7 @@ function criarCardEncontro(encontro) {
       <div class="card-header">
         <h2>${encontro.titulo}</h2>
         <i class="fas fa-book-open"></i>
-        <button class="btn btn-danger btn-sm btn-delete-encontro" title="Deletar Encontro">
+        <button class="btn btn-transparent text-danger btn-delete-encontro" title="Deletar Encontro" style="background: transparent; border: none;">
           <i class="fas fa-trash-alt"></i>
         </button>
       </div>

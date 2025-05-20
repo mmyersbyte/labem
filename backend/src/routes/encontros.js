@@ -6,7 +6,11 @@ const router = express.Router();
 
 // Configuração do multer para armazenar arquivos in memoria
 const storage = multer.memoryStorage();
-const upload = multer({ storage });
+// Limitar tamanho do arquivo para 5MB (evita o erro de BSON no MongoDB)
+const upload = multer({
+  storage,
+  limits: { fileSize: 5 * 1024 * 1024 }, // 5MB
+});
 
 // Middleware de upload específico para esta rota
 const handleUpload = upload.fields([
@@ -14,8 +18,26 @@ const handleUpload = upload.fields([
   { name: 'materialApoio', maxCount: 1 },
 ]);
 
+// Middleware de erro para capturar erros do multer
+const handleMulterErrors = (err, req, res, next) => {
+  if (err instanceof multer.MulterError) {
+    if (err.code === 'LIMIT_FILE_SIZE') {
+      return res.status(413).json({
+        success: false,
+        message:
+          'O arquivo PDF é muito grande! Por favor, comprima o PDF em ilovepdf.com antes de enviar (limite de 5MB por arquivo).',
+      });
+    }
+    return res.status(400).json({
+      success: false,
+      message: `Erro no upload: ${err.message}`,
+    });
+  }
+  next(err);
+};
+
 // Rota POST para criar um novo encontro com arquivos
-router.post('/', handleUpload, async (req, res) => {
+router.post('/', handleUpload, handleMulterErrors, async (req, res) => {
   try {
     const { titulo, paragrafo } = req.body;
     if (
@@ -63,9 +85,11 @@ router.post('/', handleUpload, async (req, res) => {
     });
   } catch (error) {
     console.error('Erro ao criar encontro:', error);
-    res
-      .status(500)
-      .json({ success: false, message: 'Erro ao criar encontro.' });
+    res.status(500).json({
+      success: false,
+      message:
+        'O arquivo PDF é muito grande! Comprima-o no site ilovepdf.com antes de enviar.',
+    });
   }
 });
 
