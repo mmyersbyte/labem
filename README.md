@@ -1,37 +1,49 @@
+<!-- Aqui é o titulo! -->
+<p align="center">
+  <a href="https://labemunisul.com.br">
+    <img src="https://img.shields.io/badge/LABEM-Universidade_do_Sul_de_Santa_Catarina-146677?style=for-the-badge" alt="LABEM - Universidade do Sul de Santa Catarina">
+  </a>
+</p>
+
+<hr />
+
+<!-- stacks -->
+<p align="center">
+  <img src="https://img.shields.io/badge/JAVASCRIPT-F7DF1E?style=for-the-badge&logo=javascript&logoColor=white" alt="JAVASCRIPT">
+  <img src="https://img.shields.io/badge/NODE-339933?style=for-the-badge&logo=node.js&logoColor=white" alt="NODE">
+  <img src="https://img.shields.io/badge/EXPRESS.JS-FF6F61?style=for-the-badge&logo=express&logoColor=white" alt="EXPRESS.JS">
+  <img src="https://img.shields.io/badge/MONGODB-47A248?style=for-the-badge&logo=mongodb&logoColor=white" alt="MONGODB">
+</p>
+
+<!-- imagem -->
 ![Banner da LABEMGITHUB](assets/LABEMGITHUB.png)
 
 ## Objetivo do Projeto
+Sistema desenvolvido para fortalecer o networking acadêmico, divulgar eventos, workshops e estabelecer parcerias com marcas relevantes da área de estética e biomedicina. A UNISUL não dispunha de uma plataforma própria para disponibilizar materiais exclusivos de palestras e outros eventos, marcar pacientes-modelo para procedimentos estéticos ou reunir marcas de destaque no setor.
+Pensando nisso, o sistema oferece um painel exclusivo para professores, presidentes e coordenadores, que possibilita o compartilhamento de conteúdos com os ligantes, o agendamento de eventos e a interação direta com os membros da liga.
+<hr/>
+Além da interface principal, o projeto conta com um painel administrativo com autenticação e controle de acesso. Usuários com papel de ADMIN têm permissão para realizar operações de CRUD na seção "Últimas Notícias", exibida na página inicial por meio de requisições GET.
+Também foi implementada uma rota POST com suporte a upload de arquivos PDF utilizando a lib Multer, permitindo o envio de materiais diretamente para o Painel do Ligante (Um ambiente com acesso restrito aos membros da universidade, destinado à organização de eventos com profissionais da área biomédica)
+O painel administrativo inclui ainda uma interface para gerenciamento das mensagens recebidas pelo formulário de contato.
+O backend foi desenvolvido com Express, seguindo a estrutura de projeto padrão. O DB utilizado é o MongoDB, com a lib Mongoose responsável pela modelagem e pela conexão com a base de dados.
+Dados sensíveis foram protegidos por meio do uso da lib dotenv, e as senhas dos usuários são armazenadas com segurança utilizando bcrypt para hash. Toda a comunicação entre o frontend e o backend é autorizada via CORS.
+O deploy do backend foi no Render, enquanto o front foi hospedado na Vercel.
+<hr/>
 
-Um sistema para networking, compartilhar eventos, workshops e parcerias com marcas
-Sistema separado EXCLUSIVO para professores e coordenadores compartilharem os conteudos com ligantes e marcar eventos com os mesmos;
-
-## Backend
-
-- Gerenciar o sistema de login dos ligantes
-- Receber e armazenar mensagens do formulário de contato do site
-- Servir de ponte entre o frontend e o banco de dados MongoDB Atlas
-
-## Tecs Usadas
-
-- **Node.js**:
-- **Express.js**: Framework
-- **MongoDB Atlas**: nosql
-- **Mongoose**: Modelagem de dados
-- **bcrypt**: Para proteger a senha do user
-- **dotenv**: Gerenciamento de variáveis de ambiente
-- **CORS**: Libera geral pro frontend conversar com o backend
--
 
 ```
 backend/
 ├── src/
-│   ├── models/         # Modelos do banco (User, ContactMessage)
-│   ├── routes/         # Rotas (auth, contact)
-│   ├── config/         # Configuração do banco
-│   └── app.js          # App principal
-├── .env                # Variáveis sensíveis (NUNCA subir pro GitHub)
-├── .gitignore          # O que não vai pro repositório
-└── package.json        # Dependências e scripts
+│   ├── models/         
+│   ├── routes/       
+│   ├── config/         
+│   └── app.js          
+├── .env                
+├── .gitignore
+├── server.js       
+└── package.json
+ 
+
 ```
 
 ## Como rodar localmente
@@ -53,7 +65,6 @@ backend/
 - [Express.js](https://expressjs.com/pt-br/)
 - [Mongoose](https://mongoosejs.com/)
 - [MongoDB Atlas](https://www.mongodb.com/docs/atlas/)
-- [bcrypt](https://www.npmjs.com/package/bcrypt)
 
 ## Duvidas
 
