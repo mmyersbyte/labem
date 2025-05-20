@@ -8,65 +8,66 @@ const router = express.Router();
 const storage = multer.memoryStorage();
 const upload = multer({ storage });
 
-router.post(
-  '/',
-  upload.fields([
-    { name: 'slideTeorico', maxCount: 1 },
-    { name: 'materialApoio', maxCount: 1 },
-  ]),
-  async (req, res) => {
-    try {
-      const { titulo, paragrafo } = req.body;
-      if (
-        !titulo ||
-        !paragrafo ||
-        !req.files['slideTeorico'] ||
-        !req.files['materialApoio']
-      ) {
-        return res.status(400).json({
-          success: false,
-          message: 'Todos os campos são obrigatórios.',
-        });
-      }
-      const slideTeoricoFile = req.files['slideTeorico'][0];
-      const materialApoioFile = req.files['materialApoio'][0];
+// Middleware de upload específico para esta rota
+const handleUpload = upload.fields([
+  { name: 'slideTeorico', maxCount: 1 },
+  { name: 'materialApoio', maxCount: 1 },
+]);
 
-      const novoEncontro = new CreateEncontro({
-        titulo,
-        paragrafo,
+// Rota POST para criar um novo encontro com arquivos
+router.post('/', handleUpload, async (req, res) => {
+  try {
+    const { titulo, paragrafo } = req.body;
+    if (
+      !titulo ||
+      !paragrafo ||
+      !req.files['slideTeorico'] ||
+      !req.files['materialApoio']
+    ) {
+      return res.status(400).json({
+        success: false,
+        message: 'Todos os campos são obrigatórios.',
+      });
+    }
+    const slideTeoricoFile = req.files['slideTeorico'][0];
+    const materialApoioFile = req.files['materialApoio'][0];
+
+    const novoEncontro = new CreateEncontro({
+      titulo,
+      paragrafo,
+      slideTeorico: {
+        data: slideTeoricoFile.buffer,
+        contentType: slideTeoricoFile.mimetype,
+      },
+      materialApoio: {
+        data: materialApoioFile.buffer,
+        contentType: materialApoioFile.mimetype,
+      },
+    });
+    await novoEncontro.save();
+    res.status(201).json({
+      success: true,
+      message: 'Encontro criado com sucesso!',
+      encontro: {
+        _id: novoEncontro._id,
+        titulo: novoEncontro.titulo,
+        paragrafo: novoEncontro.paragrafo,
+        createdAt: novoEncontro.createdAt,
         slideTeorico: {
-          data: slideTeoricoFile.buffer,
-          contentType: slideTeoricoFile.mimetype,
+          contentType: novoEncontro.slideTeorico.contentType,
         },
         materialApoio: {
-          data: materialApoioFile.buffer,
-          contentType: materialApoioFile.mimetype,
+          contentType: novoEncontro.materialApoio.contentType,
         },
-      });
-      await novoEncontro.save();
-      res.status(201).json({
-        success: true,
-        message: 'Encontro criado com sucesso!',
-        encontro: {
-          _id: novoEncontro._id,
-          titulo: novoEncontro.titulo,
-          paragrafo: novoEncontro.paragrafo,
-          createdAt: novoEncontro.createdAt,
-          slideTeorico: {
-            contentType: novoEncontro.slideTeorico.contentType,
-          },
-          materialApoio: {
-            contentType: novoEncontro.materialApoio.contentType,
-          },
-        },
-      });
-    } catch (error) {
-      res
-        .status(500)
-        .json({ success: false, message: 'Erro ao criar encontro.' });
-    }
+      },
+    });
+  } catch (error) {
+    console.error('Erro ao criar encontro:', error);
+    res
+      .status(500)
+      .json({ success: false, message: 'Erro ao criar encontro.' });
   }
-);
+});
 
 router.delete('/:id', async (req, res) => {
   try {
