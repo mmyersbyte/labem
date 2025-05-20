@@ -110,7 +110,7 @@ router.delete(
   }
 );
 
-// PATCH /api/updates/:id - Atualiza parcialmente uma atualização (protegido)
+// PATCH /api/updates/:id - Atualiza parcialmente uma atualização (protegido) *TROCADA PELA PUT QUE TAVA PODRE*
 // router.patch('/:id', authMiddleware, async (req, res) => {
 router.patch(
   '/:id',

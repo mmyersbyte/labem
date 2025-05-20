@@ -4,7 +4,6 @@ import User from '../models/User.js';
 
 const router = express.Router();
 
-// Rota de login
 router.post('/login', async (req, res) => {
   try {
     const { username, password } = req.body;

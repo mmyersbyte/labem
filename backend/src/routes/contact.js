@@ -3,13 +3,11 @@ import ContactMessage from '../models/ContactMessage.js';
 
 const router = express.Router();
 
-// Rota para receber mensagens de contato
 router.post('/contact', async (req, res) => {
   try {
-    // Extrai os campos do corpo da req
+    // destruturacao do corpo da reqsiçaos
     const { nome, email, assunto, mensagem } = req.body;
 
-    // Validação simples dos campos obrigatorios
     if (!nome || !email || !assunto || !mensagem) {
       return res.status(400).json({
         success: false,
@@ -17,11 +15,11 @@ router.post('/contact', async (req, res) => {
       });
     }
 
-    // Cria e salva a mensagem no banco de dados
+    // Cria e salva a msg no banco de dados
     const novaMensagem = new ContactMessage({ nome, email, assunto, mensagem });
     await novaMensagem.save();
 
-    // Resposta clara para o frontend
+    // Resposta front
     res.status(201).json({
       success: true,
       message: 'Mensagem enviada com sucesso! A LABEM agradece o contato <3 .',
@@ -36,7 +34,6 @@ router.post('/contact', async (req, res) => {
   }
 });
 
-// Rota para buscar todas as mensagens de contato (GET)
 // Retorna um array de mensagens ordenadas da mais recente para a mais antiga
 router.get('/contact', async (req, res) => {
   try {
@@ -50,8 +47,6 @@ router.get('/contact', async (req, res) => {
   }
 });
 
-// Rota para deletar uma mensagem de contato pelo ID
-// Exemplo de uso: DELETE /api/contact/:id
 router.delete('/contact/:id', async (req, res) => {
   try {
     const mensagem = await ContactMessage.findByIdAndDelete(req.params.id);

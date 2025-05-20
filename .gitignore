@@ -63,10 +63,6 @@ debug.*
 *.md
 !README.md
 
-# Cursor AI/Editor
-.cursor/
-.cursor-tmp/
-
 # Sistema Linux
 .Trash-*
 

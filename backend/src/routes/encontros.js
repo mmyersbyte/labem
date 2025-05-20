@@ -4,11 +4,10 @@ import CreateEncontro from '../models/CreateEncontro.js';
 
 const router = express.Router();
 
-// Configuração do multer para armazenar arquivos em memória
+// Configuração do multer para armazenar arquivos in memoria
 const storage = multer.memoryStorage();
 const upload = multer({ storage });
 
-// POST /api/encontros - Cria um novo encontro
 router.post(
   '/',
   upload.fields([
@@ -69,7 +68,6 @@ router.post(
   }
 );
 
-// DELETE /api/encontros/:id - Remove um encontro
 router.delete('/:id', async (req, res) => {
   try {
     const encontro = await CreateEncontro.findByIdAndDelete(req.params.id);
@@ -88,7 +86,7 @@ router.delete('/:id', async (req, res) => {
   }
 });
 
-// GET /api/encontros - Lista todos os encontros (sem os buffers dos PDFs)
+// GET /api/encontros - Lista todos os encontros e tratei os buffers com o 0
 router.get('/', async (req, res) => {
   try {
     const encontros = await CreateEncontro.find(
@@ -111,7 +109,7 @@ router.get('/:id/slide', async (req, res) => {
   try {
     const encontro = await CreateEncontro.findById(req.params.id);
     if (!encontro || !encontro.slideTeorico || !encontro.slideTeorico.data) {
-      return res.status(404).send('Arquivo não encontrado');
+      return res.status(404).send('Slide não encontrado, contate a presidenta');
     }
     res.set(
       'Content-Type',

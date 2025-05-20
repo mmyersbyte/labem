@@ -8,7 +8,7 @@ async function carregarMensagensContato() {
   container.innerHTML +=
     '<p style="color:#146677;text-align:center;">Mensagens do Formulário de Contato</p>';
   try {
-    // Faz a requisição GET para o backend
+    // Faz a requisição GET para o render
     const res = await fetch('https://labem.onrender.com/api/contact');
     const data = await res.json();
     if (data.success && data.mensagens.length > 0) {
