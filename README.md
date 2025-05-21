@@ -23,8 +23,9 @@ Sistema desenvolvido para fortalecer o networking acadêmico, divulgar eventos, 
 Pensando nisso, o sistema oferece um painel exclusivo para professores, presidentes e coordenadores, que possibilita o compartilhamento de conteúdos com os ligantes, o agendamento de eventos e a interação direta com os membros da liga.
 <hr/>
 Além da interface principal, o projeto conta com um painel administrativo com autenticação e controle de acesso. Usuários com papel de ADMIN têm permissão para realizar operações de CRUD na seção "Últimas Notícias", exibida na página inicial por meio de requisições GET.
-Também foi implementada uma rota POST com suporte a upload de arquivos PDF utilizando a lib Multer, permitindo o envio de materiais diretamente para o Painel do Ligante (Um ambiente com acesso restrito aos membros da universidade, destinado à organização de eventos com profissionais da área biomédica)
-O painel administrativo inclui ainda uma interface para gerenciamento das mensagens recebidas pelo formulário de contato.
+Também foi implementada uma rota POST com suporte a upload de arquivos PDF utilizando a lib Multer, permitindo o envio de materiais diretamente para o Painel do Ligante (Um ambiente com acesso restrito aos membros da universidade, destinado à organização de eventos com profissionais da área biomédica), também há a rota DELETE para manutenção de arquivos e início de semestre. 
+Há também rotas GET para o preview de arquivos e alterações na section, guiando o administrador de como está ficando as alterações. 
+O painel também inclui uma section para gerenciamento das mensagens recebidas pelo formulário de contato, GET e DELETE. (A resposta é pelo e-mail enviado no form)
 O backend foi desenvolvido com Express, seguindo a estrutura de projeto padrão. O DB utilizado é o MongoDB, com a lib Mongoose responsável pela modelagem e pela conexão com a base de dados.
 Dados sensíveis foram protegidos por meio do uso da lib dotenv, e as senhas dos usuários são armazenadas com segurança utilizando bcrypt para hash. Toda a comunicação entre o frontend e o backend é autorizada via CORS.
 O deploy do backend foi no Render, enquanto o front foi hospedado na Vercel.
