@@ -1,5 +1,5 @@
 {
-  "name": "backend",
+  "name": "api labem",
   "version": "1.0.0",
   "main": "index.js",
   "type": "module",
@@ -7,7 +7,7 @@
     "start": "node --watch server.js"
   },
   "keywords": [],
-  "author": "",
+  "author": "mmyersbyte",
   "license": "ISC",
   "description": "",
   "dependencies": {
