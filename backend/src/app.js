@@ -19,8 +19,7 @@ app.use(
 
 // Middleware para processamento de JSON
 app.use(express.json());
-
-// Middleware para processamento de formulários urlencoded
+// Middleware para processamento de forms urlencoded
 app.use(express.urlencoded({ extended: true }));
 
 app.use(
