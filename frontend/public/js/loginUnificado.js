@@ -1,17 +1,3 @@
-/**
- * loginUnificado.js
- * Script para autenticação unificada de usuários comuns e administradores.
- * Utiliza a mesma tela de login, sem botões ou campos extras.
- * O sistema identifica automaticamente o tipo de usuário pelas credenciais.
- *
- * Fluxo:
- * 1. O usuário digita email/usuário e senha normalmente.
- * 2. O sistema tenta autenticar como usuário comum.
- * 3. Se falhar, tenta autenticar como admin.
- * 4. Redireciona para o painel correto conforme o tipo de usuário.
- * 5. Se ambos falharem, exibe mensagem de erro.
- */
-
 document.addEventListener('DOMContentLoaded', function () {
   // Seleciona o formulário de login
   const loginForm = document.getElementById('loginForm');

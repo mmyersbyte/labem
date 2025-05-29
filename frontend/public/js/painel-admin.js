@@ -1,3 +1,10 @@
+// Verifica se o usuário está autenticado ao carregar a página
+const token = localStorage.getItem('token');
+if (!token) {
+  window.location.href = 'login.html';
+  // window.location.href = 'index.html';
+}
+
 // Função para buscar e renderizar as mensagens do formulário de contato
 async function carregarMensagensContato() {
   const container = document.getElementById('mensagens-banco');
