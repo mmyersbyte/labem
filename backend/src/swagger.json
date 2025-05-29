@@ -141,7 +141,6 @@
       "post": {
         "summary": "Criar atualização (admin)",
         "description": "Cria uma nova atualização. Requer autenticação JWT de admin.",
-        "security": [{ "bearerAuth": [] }],
         "requestBody": {
           "required": true,
           "content": {
@@ -170,7 +169,6 @@
         "put": {
           "summary": "Editar atualização (admin)",
           "description": "Edita uma atualização existente. Requer autenticação JWT de admin.",
-          "security": [{ "bearerAuth": [] }],
           "parameters": [
             {
               "name": "id",
@@ -208,7 +206,6 @@
         "delete": {
           "summary": "Remover atualização (admin)",
           "description": "Remove uma atualização existente. Requer autenticação JWT de admin.",
-          "security": [{ "bearerAuth": [] }],
           "parameters": [
             {
               "name": "id",
@@ -227,7 +224,6 @@
         "patch": {
           "summary": "Editar parcialmente atualização (admin)",
           "description": "Edita parcialmente uma atualização existente. Requer autenticação JWT de admin.",
-          "security": [{ "bearerAuth": [] }],
           "parameters": [
             {
               "name": "id",
