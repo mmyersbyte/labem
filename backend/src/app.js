@@ -39,5 +39,6 @@ app.use('/api', contactRoutes);
 app.use('/api/updates', updatesRoutes);
 app.use('/api/encontros', encontrosRoutes);
 app.use('/api/admin', authAdminRoutes);
+app.use(swaggerRoute);
 
 export default app;

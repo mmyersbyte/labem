@@ -165,6 +165,102 @@
           "201": { "description": "Atualização criada." },
           "401": { "description": "Não autorizado." }
         }
+      },
+      "/api/updates/{id}": {
+        "put": {
+          "summary": "Editar atualização (admin)",
+          "description": "Edita uma atualização existente. Requer autenticação JWT de admin.",
+          "security": [{ "bearerAuth": [] }],
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "schema": { "type": "string" },
+              "description": "ID da atualização a ser editada"
+            }
+          ],
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "icone": { "type": "string", "example": "fa-star" },
+                    "titulo": { "type": "string", "example": "Título editado" },
+                    "paragrafo": {
+                      "type": "string",
+                      "example": "Texto editado."
+                    }
+                  },
+                  "required": ["icone", "titulo", "paragrafo"]
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": { "description": "Atualização editada com sucesso." },
+            "404": { "description": "Atualização não encontrada." },
+            "401": { "description": "Não autorizado." }
+          }
+        },
+        "delete": {
+          "summary": "Remover atualização (admin)",
+          "description": "Remove uma atualização existente. Requer autenticação JWT de admin.",
+          "security": [{ "bearerAuth": [] }],
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "schema": { "type": "string" },
+              "description": "ID da atualização a ser removida"
+            }
+          ],
+          "responses": {
+            "200": { "description": "Atualização removida com sucesso." },
+            "404": { "description": "Atualização não encontrada." },
+            "401": { "description": "Não autorizado." }
+          }
+        },
+        "patch": {
+          "summary": "Editar parcialmente atualização (admin)",
+          "description": "Edita parcialmente uma atualização existente. Requer autenticação JWT de admin.",
+          "security": [{ "bearerAuth": [] }],
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "schema": { "type": "string" },
+              "description": "ID da atualização a ser editada"
+            }
+          ],
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "icone": { "type": "string", "example": "fa-star" },
+                    "titulo": { "type": "string", "example": "Título editado" },
+                    "paragrafo": {
+                      "type": "string",
+                      "example": "Texto editado."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": { "description": "Atualização editada com sucesso." },
+            "404": { "description": "Atualização não encontrada." },
+            "401": { "description": "Não autorizado." }
+          }
+        }
       }
     },
     "/api/encontros": {
