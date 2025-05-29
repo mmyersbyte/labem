@@ -1,0 +1,201 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Labem API",
+    "version": "1.0.0",
+    "description": "API LABEM"
+  },
+  "servers": [
+    {
+      "url": "https://labem.onrender.com",
+      "description": "Servidor de produção"
+    }
+  ],
+  "paths": {
+    "/auth/login": {
+      "post": {
+        "summary": "Login de usuário comum",
+        "description": "Autentica um usuário ligante e retorna um token JWT.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "username": { "type": "string", "example": "usuario1" },
+                  "password": { "type": "string", "example": "senha123" }
+                },
+                "required": ["username", "password"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Login realizado com sucesso. Exemplo de resposta:",
+            "content": {
+              "application/json": {
+                "example": {
+                  "message": "Login realizado com sucesso!",
+                  "token": "<jwt_token>",
+                  "isLigante": true
+                }
+              }
+            }
+          },
+          "401": { "description": "Usuário ou senha inválidos." }
+        }
+      }
+    },
+    "/api/admin/login": {
+      "post": {
+        "summary": "Login de administrador",
+        "description": "Autentica um admin e retorna um token JWT.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "email": { "type": "string", "example": "admin@labem.com" },
+                  "password": { "type": "string", "example": "senhaAdmin" }
+                },
+                "required": ["email", "password"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Login admin realizado com sucesso. Exemplo de resposta:",
+            "content": {
+              "application/json": {
+                "example": {
+                  "message": "Login administrativo realizado com sucesso!",
+                  "token": "<jwt_token>",
+                  "isAdmin": true
+                }
+              }
+            }
+          },
+          "401": { "description": "Email ou senha inválidos." }
+        }
+      }
+    },
+    "/api/contact": {
+      "post": {
+        "summary": "Envio de mensagem de contato",
+        "description": "Recebe dados do formulário de contato.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "nome": { "type": "string", "example": "João" },
+                  "email": { "type": "string", "example": "joao@email.com" },
+                  "mensagem": {
+                    "type": "string",
+                    "example": "Olá, gostaria de saber mais."
+                  }
+                },
+                "required": ["nome", "email", "mensagem"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": { "description": "Mensagem enviada com sucesso." },
+          "400": { "description": "Dados inválidos." }
+        }
+      }
+    },
+    "/api/updates": {
+      "get": {
+        "summary": "Listar atualizações",
+        "description": "Retorna todas as atualizações cadastradas.",
+        "responses": {
+          "200": {
+            "description": "Lista de atualizações. Exemplo de resposta:",
+            "content": {
+              "application/json": {
+                "example": {
+                  "success": true,
+                  "updates": [
+                    {
+                      "_id": "1",
+                      "icone": "fa-star",
+                      "titulo": "Nova função",
+                      "paragrafo": "Descrição da função."
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Criar atualização (admin)",
+        "description": "Cria uma nova atualização. Requer autenticação JWT de admin.",
+        "security": [{ "bearerAuth": [] }],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "icone": { "type": "string", "example": "fa-star" },
+                  "titulo": { "type": "string", "example": "Nova função" },
+                  "paragrafo": {
+                    "type": "string",
+                    "example": "Descrição da função."
+                  }
+                },
+                "required": ["icone", "titulo", "paragrafo"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": { "description": "Atualização criada." },
+          "401": { "description": "Não autorizado." }
+        }
+      }
+    },
+    "/api/encontros": {
+      "get": {
+        "summary": "Listar encontros",
+        "description": "Retorna todos os encontros cadastrados.",
+        "responses": {
+          "200": {
+            "description": "Lista de encontros. Exemplo de resposta:",
+            "content": {
+              "application/json": {
+                "example": {
+                  "success": true,
+                  "encontros": [
+                    { "_id": "1", "nome": "Encontro 1", "data": "2024-06-01" }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    }
+  }
+}

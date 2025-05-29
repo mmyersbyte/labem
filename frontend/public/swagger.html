@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+    <title>Documentação da API - Swagger UI</title>
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/swagger-ui-dist@5.17.12/swagger-ui.css"
+    />
+    <style>
+      /* Layout simples e responsivo */
+      html,
+      body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        background: #f8f9fa;
+      }
+      #swagger-ui {
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 24px 0;
+      }
+      @media (max-width: 900px) {
+        #swagger-ui {
+          padding: 8px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Container onde o Swagger UI será renderizado -->
+    <div id="swagger-ui"></div>
+
+    <!-- Importa o JS do Swagger UI via CDN -->
+    <script src="https://unpkg.com/swagger-ui-dist@5.17.12/swagger-ui-bundle.js"></script>
+    <script src="https://unpkg.com/swagger-ui-dist@5.17.12/swagger-ui-standalone-preset.js"></script>
+    <script>
+      // Inicializa o Swagger UI apontando para o arquivo swagger.json do backend
+      window.onload = function () {
+        const ui = SwaggerUIBundle({
+          // Altere a URL abaixo para o endpoint real do seu backend
+          url: 'https://labem.onrender.com/swagger.json',
+          dom_id: '#swagger-ui',
+          presets: [SwaggerUIBundle.presets.apis, SwaggerUIStandalonePreset],
+          layout: 'BaseLayout',
+          docExpansion: 'none', // Inicia com os endpoints fechados
+          deepLinking: true,
+          showExtensions: true,
+          showCommonExtensions: true,
+        });
+        // Exponibiliza o objeto ui para debug se necessário
+        window.ui = ui;
+      };
+    </script>
+  </body>
+</html>
