@@ -12,6 +12,22 @@ const topicosContainer = document.getElementById('topicos-container');
 
 window.addEventListener('DOMContentLoaded', carregarAtualizacoes);
 
+// Função utilitária para obter o token JWT salvo
+function getToken() {
+  return localStorage.getItem('token');
+}
+
+// Função utilitária para checar autenticação
+function checarAutenticacao() {
+  const token = getToken();
+  if (!token) {
+    // Se não houver token, redireciona para o login
+    window.location.href = 'login.html';
+    return false;
+  }
+  return token;
+}
+
 async function carregarAtualizacoes() {
   topicosContainer.innerHTML = '<p style="color:white">Carregando...';
   try {
@@ -62,11 +78,15 @@ if (form) {
       alert('Preencha todos os campos!');
       return;
     }
+    const token = checarAutenticacao();
+    if (!token) return;
     try {
       const res = await fetch(API_URL, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        credentials: 'include',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`, // Envia o token JWT
+        },
         body: JSON.stringify({ icone, titulo, paragrafo }),
       });
       const data = await res.json();
@@ -86,10 +106,14 @@ if (form) {
 
 window.deletarUpdate = async function (id) {
   if (!confirm('Tem certeza que deseja deletar?')) return;
+  const token = checarAutenticacao();
+  if (!token) return;
   try {
     const res = await fetch(`${API_URL}/${id}`, {
       method: 'DELETE',
-      credentials: 'include',
+      headers: {
+        Authorization: `Bearer ${token}`, // Envia o token JWT
+      },
     });
     const data = await res.json();
     if (data.success) {
@@ -109,11 +133,15 @@ window.salvarEdicao = async function (id, campo, valor) {
   const titulo = box.querySelector('h3').innerText;
   const paragrafo = box.querySelector('p').innerText;
   const icone = box.querySelector('i').classList[1].replace('fa-', '');
+  const token = checarAutenticacao();
+  if (!token) return;
   try {
     const res = await fetch(`${API_URL}/${id}`, {
       method: 'PATCH',
-      headers: { 'Content-Type': 'application/json' },
-      credentials: 'include',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`, // Envia o token JWT
+      },
       body: JSON.stringify({ icone, titulo, paragrafo }),
     });
     const data = await res.json();
@@ -155,7 +183,6 @@ window.addEventListener('DOMContentLoaded', function () {
     }
   });
 
-  // Definir e adicionar o event listener do formEditar aqui
   const formEditar = document.getElementById('form-editar-topico');
   if (formEditar) {
     formEditar.addEventListener('submit', async function (e) {
@@ -167,7 +194,6 @@ window.addEventListener('DOMContentLoaded', function () {
         document.getElementById('editar-titulo')?.value?.trim() || '';
       const paragrafo =
         document.getElementById('editar-paragrafo')?.value?.trim() || '';
-
       if (!icone || !titulo || !paragrafo) {
         Swal.fire({
           icon: 'warning',
@@ -176,12 +202,15 @@ window.addEventListener('DOMContentLoaded', function () {
         });
         return;
       }
-
+      const token = checarAutenticacao();
+      if (!token) return;
       try {
         const res = await fetch(`${API_URL}/${id}`, {
           method: 'PATCH',
-          headers: { 'Content-Type': 'application/json' },
-          credentials: 'include',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`, // Envia o token JWT
+          },
           body: JSON.stringify({ icone, titulo, paragrafo }),
         });
         const data = await res.json();
@@ -200,7 +229,7 @@ window.addEventListener('DOMContentLoaded', function () {
         } else {
           Swal.fire({
             icon: 'error',
-            title: 'Erro ao editar',
+            title: 'Erro ao editar tópico!',
             text: data.message || 'Erro ao editar tópico.',
             confirmButtonColor: '#146677',
           });
@@ -208,8 +237,8 @@ window.addEventListener('DOMContentLoaded', function () {
       } catch (err) {
         Swal.fire({
           icon: 'error',
-          title: 'Erro de conexão',
-          text: 'Erro de conexão ao editar tópico.',
+          title: 'Erro de conexão!',
+          text: 'Não foi possível editar o tópico.',
           confirmButtonColor: '#146677',
         });
         console.error('Erro ao editar tópico:', err);
