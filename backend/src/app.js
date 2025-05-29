@@ -6,7 +6,7 @@ import contactRoutes from './routes/contact.js';
 import updatesRoutes from './routes/updates.js';
 import encontrosRoutes from './routes/encontros.js';
 import authAdminRoutes from './routes/authAdmin.js';
-
+import swaggerRoute from './routes/swaggerRoute.js';
 const app = express();
 
 // Configuração de middlewares
