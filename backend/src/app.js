@@ -13,7 +13,8 @@ const app = express();
 app.use(
   cors({
     origin: ['https://www.labemunisul.com.br', 'https://labemunisul.com.br'],
-    credentials: true,
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
   })
 );
 
