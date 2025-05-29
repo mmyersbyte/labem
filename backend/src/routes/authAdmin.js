@@ -1,10 +1,11 @@
 import express from 'express';
 import bcrypt from 'bcrypt';
+import jwt from 'jsonwebtoken';
 import UserAdmin from '../models/UserAdmin.js';
 
 const router = express.Router();
 
-// Rota de login administrativo
+// Rota de login administrativo com JWT
 router.post('/login', async (req, res) => {
   try {
     const { email, password } = req.body;
@@ -24,23 +25,18 @@ router.post('/login', async (req, res) => {
       return res.status(401).json({ message: 'Email ou senha inválidos.' });
     }
 
-    // Login admin aceito: salva na sessão
-    req.session.userId = admin._id;
-    req.session.isAdmin = true;
+    // Gera o JWT para o admin autenticado
+    const token = jwt.sign(
+      { id: admin._id, role: 'admin' },
+      process.env.JWT_SECRET,
+      { expiresIn: '2h' }
+    );
 
-    // Salva a sessão antes de retornar a resposta
-    req.session.save((err) => {
-      if (err) {
-        console.error('Erro ao salvar sessão admin:', err);
-        return res.status(500).json({
-          message: 'Erro ao realizar login admin.',
-        });
-      }
-
-      return res.status(200).json({
-        message: 'Login administrativo realizado com sucesso!',
-        isAdmin: true,
-      });
+    // Retorna o token para o frontend
+    return res.status(200).json({
+      message: 'Login administrativo realizado com sucesso!',
+      token,
+      isAdmin: true,
     });
   } catch (error) {
     console.error('Erro no login admin:', error);
