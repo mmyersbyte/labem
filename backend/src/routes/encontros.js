@@ -8,6 +8,7 @@ import {
   listarEncontros,
   baixarSlide,
   baixarMaterial,
+  patchEncontro,
 } from '../controllers/encontrosController.js';
 
 const router = express.Router();
@@ -56,5 +57,7 @@ router.get('/', listarEncontros);
 router.get('/:id/slide', baixarSlide);
 // GET /api/encontros/:id/material
 router.get('/:id/material', baixarMaterial);
+// PATCH /api/encontros/:id (protegido)
+router.patch('/:id', authenticateJWT, authorizeAdmin, patchEncontro);
 
 export default router;

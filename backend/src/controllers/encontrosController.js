@@ -117,3 +117,77 @@ export async function baixarMaterial(req, res) {
     res.status(500).send('Erro ao baixar o arquivo');
   }
 }
+
+export async function patchEncontro(req, res) {
+  try {
+    const updateFields = {};
+    const { titulo, paragrafo } = req.body;
+
+    // Verifica se pelo menos um campo foi enviado
+    if (!titulo && !paragrafo && !req.files) {
+      return res.status(400).json({
+        success: false,
+        message: 'Preencha pelo menos um campo para editar.',
+      });
+    }
+
+    if (titulo) updateFields.titulo = titulo;
+    if (paragrafo) updateFields.paragrafo = paragrafo;
+
+    // Atualização de arquivos PDF, se enviados
+    if (req.files) {
+      if (req.files['slideTeorico']) {
+        const slideTeoricoFile = req.files['slideTeorico'][0];
+        if (slideTeoricoFile.size > 5 * 1024 * 1024) {
+          return res.status(413).json({
+            success: false,
+            message:
+              'O arquivo PDF é muito grande! Por favor, comprima o PDF em ilovepdf.com antes de enviar (limite de 5MB por arquivo).',
+          });
+        }
+        updateFields['slideTeorico'] = {
+          data: slideTeoricoFile.buffer,
+          contentType: slideTeoricoFile.mimetype,
+        };
+      }
+      if (req.files['materialApoio']) {
+        const materialApoioFile = req.files['materialApoio'][0];
+        if (materialApoioFile.size > 5 * 1024 * 1024) {
+          return res.status(413).json({
+            success: false,
+            message:
+              'O arquivo PDF é muito grande! Por favor, comprima o PDF em ilovepdf.com antes de enviar (limite de 5MB por arquivo).',
+          });
+        }
+        updateFields['materialApoio'] = {
+          data: materialApoioFile.buffer,
+          contentType: materialApoioFile.mimetype,
+        };
+      }
+    }
+
+    const encontroEditado = await CreateEncontro.findByIdAndUpdate(
+      req.params.id,
+      { $set: updateFields },
+      { new: true, runValidators: true }
+    );
+
+    if (!encontroEditado) {
+      return res.status(404).json({
+        success: false,
+        message: 'Encontro não encontrado.',
+      });
+    }
+
+    res.status(200).json({
+      success: true,
+      message: 'Encontro editado com sucesso!',
+      encontro: encontroEditado,
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: 'Erro ao editar encontro.',
+    });
+  }
+}
