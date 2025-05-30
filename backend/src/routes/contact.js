@@ -8,7 +8,7 @@ import {
 const router = express.Router();
 
 router.post('/', enviarContato);
-router.get('/contact', listarMensagensContato);
-router.delete('/contact/:id', deletarMensagemContato);
+router.get('/', listarMensagensContato);
+router.delete('/:id', deletarMensagemContato);
 
 export default router;
