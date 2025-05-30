@@ -1,6 +1,8 @@
 import express from 'express';
 import multer from 'multer';
 import CreateEncontro from '../models/CreateEncontro.js';
+import { authenticateJWT } from '../middleware/authenticateJWT.js';
+import { authorizeAdmin } from '../middleware/authorizeAdmin.js';
 
 const router = express.Router();
 
@@ -36,64 +38,72 @@ const handleMulterErrors = (err, req, res, next) => {
   next(err);
 };
 
-// Rota POST para criar um novo encontro com arquivos
-router.post('/', handleUpload, handleMulterErrors, async (req, res) => {
-  try {
-    const { titulo, paragrafo } = req.body;
-    if (
-      !titulo ||
-      !paragrafo ||
-      !req.files['slideTeorico'] ||
-      !req.files['materialApoio']
-    ) {
-      return res.status(400).json({
-        success: false,
-        message: 'Todos os campos são obrigatórios.',
-      });
-    }
-    const slideTeoricoFile = req.files['slideTeorico'][0];
-    const materialApoioFile = req.files['materialApoio'][0];
+// Rota POST para criar um novo encontro com arquivos (protegido)
+router.post(
+  '/',
+  authenticateJWT,
+  authorizeAdmin,
+  handleUpload,
+  handleMulterErrors,
+  async (req, res) => {
+    try {
+      const { titulo, paragrafo } = req.body;
+      if (
+        !titulo ||
+        !paragrafo ||
+        !req.files['slideTeorico'] ||
+        !req.files['materialApoio']
+      ) {
+        return res.status(400).json({
+          success: false,
+          message: 'Todos os campos são obrigatórios.',
+        });
+      }
+      const slideTeoricoFile = req.files['slideTeorico'][0];
+      const materialApoioFile = req.files['materialApoio'][0];
 
-    const novoEncontro = new CreateEncontro({
-      titulo,
-      paragrafo,
-      slideTeorico: {
-        data: slideTeoricoFile.buffer,
-        contentType: slideTeoricoFile.mimetype,
-      },
-      materialApoio: {
-        data: materialApoioFile.buffer,
-        contentType: materialApoioFile.mimetype,
-      },
-    });
-    await novoEncontro.save();
-    res.status(201).json({
-      success: true,
-      message: 'Encontro criado com sucesso!',
-      encontro: {
-        _id: novoEncontro._id,
-        titulo: novoEncontro.titulo,
-        paragrafo: novoEncontro.paragrafo,
-        createdAt: novoEncontro.createdAt,
+      const novoEncontro = new CreateEncontro({
+        titulo,
+        paragrafo,
         slideTeorico: {
-          contentType: novoEncontro.slideTeorico.contentType,
+          data: slideTeoricoFile.buffer,
+          contentType: slideTeoricoFile.mimetype,
         },
         materialApoio: {
-          contentType: novoEncontro.materialApoio.contentType,
+          data: materialApoioFile.buffer,
+          contentType: materialApoioFile.mimetype,
         },
-      },
-    });
-  } catch (error) {
-    console.error('Erro ao criar encontro:', error);
-    res.status(500).json({
-      success: false,
-      message:
-        'O arquivo PDF é muito grande! Comprima-o no site ilovepdf.com antes de enviar.',
-    });
+      });
+      await novoEncontro.save();
+      res.status(201).json({
+        success: true,
+        message: 'Encontro criado com sucesso!',
+        encontro: {
+          _id: novoEncontro._id,
+          titulo: novoEncontro.titulo,
+          paragrafo: novoEncontro.paragrafo,
+          createdAt: novoEncontro.createdAt,
+          slideTeorico: {
+            contentType: novoEncontro.slideTeorico.contentType,
+          },
+          materialApoio: {
+            contentType: novoEncontro.materialApoio.contentType,
+          },
+        },
+      });
+    } catch (error) {
+      console.error('Erro ao criar encontro:', error);
+      res.status(500).json({
+        success: false,
+        message:
+          'O arquivo PDF é muito grande! Comprima-o no site ilovepdf.com antes de enviar.',
+      });
+    }
   }
-});
+);
 
-router.delete('/:id', async (req, res) => {
+// DELETE /api/encontros/:id - Remove um encontro (protegido)
+router.delete('/:id', authenticateJWT, authorizeAdmin, async (req, res) => {
   try {
     const encontro = await CreateEncontro.findByIdAndDelete(req.params.id);
     if (!encontro) {

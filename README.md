@@ -16,11 +16,14 @@
 </p>
 
 <!-- imagem -->
+
 ![Banner da LABEMGITHUB](assets/LABEMGITHUB.png)
 
 ## Objetivo do Projeto
+
 Sistema desenvolvido para fortalecer o networking acadêmico, divulgar eventos, workshops e estabelecer parcerias com marcas relevantes da área de estética e biomedicina. A UNISUL não dispunha de uma plataforma própria para disponibilizar materiais exclusivos de palestras e outros eventos, marcar pacientes-modelo para procedimentos estéticos ou reunir marcas de destaque no setor.
 Pensando nisso, o sistema oferece um painel exclusivo para professores, presidentes e coordenadores, que possibilita o compartilhamento de conteúdos com os ligantes, o agendamento de eventos e a interação direta com os membros da liga.
+
 <hr/>
 Além da interface principal, o projeto conta com um painel administrativo com autenticação e controle de acesso. Usuários com papel de ADMIN têm permissão para realizar operações de CRUD na seção "Últimas Notícias", exibida na página inicial por meio de requisições GET.
 Também foi implementada uma rota POST com suporte a upload de arquivos PDF utilizando a lib Multer, permitindo o envio de materiais diretamente para o Painel do Ligante (Um ambiente com acesso restrito aos membros da universidade, destinado à organização de eventos com profissionais da área biomédica), também há a rota DELETE para manutenção de arquivos e início de semestre. 
@@ -31,26 +34,25 @@ Dados sensíveis foram protegidos por meio do uso da lib dotenv, e as senhas dos
 O deploy do backend foi no Render, enquanto o front foi hospedado na Vercel.
 <hr/>
 
-
 ```
 backend/
 ├── src/
-│   ├── models/         
-│   ├── routes/       
-│   ├── config/         
-│   └── app.js          
-├── .env                
+│   ├── models/
+│   ├── routes/
+│   ├── config/
+│   └── app.js
+├── .env
 ├── .gitignore
-├── server.js       
+├── server.js
 └── package.json
- 
+
 
 ```
 
 ## Como rodar localmente
 
 1. Clone
-2. Crie um arquivo `.env` com sua string do MongoDB Atlas
+2. Crie um arquivo `.env` seguindo o
 3. Instale as dependências:
    ```bash
    npm install
