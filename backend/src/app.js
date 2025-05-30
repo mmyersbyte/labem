@@ -24,7 +24,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use('/auth', authRoutes);
-app.use('/api', contactRoutes);
+app.use('/api/contact', contactRoutes);
 app.use('/api/updates', updatesRoutes);
 app.use('/api/encontros', encontrosRoutes);
 app.use('/api/admin', authAdminRoutes);

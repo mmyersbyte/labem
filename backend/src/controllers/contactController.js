@@ -7,7 +7,7 @@ export async function enviarContato(req, res) {
     if (!nome || !email || !assunto || !mensagem) {
       return res.status(400).json({
         success: false,
-        message: 'PREENCHA TUDO!!!!!!!S.',
+        message: 'PREENCHA TUDO!.',
       });
     }
 
