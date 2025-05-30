@@ -167,9 +167,41 @@
       }
     },
     "/api/updates/{id}": {
+      "get": {
+        "summary": "Obter atualização por ID",
+        "description": "Retorna uma atualização específica pelo ID.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string" },
+            "description": "ID da atualização"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Atualização encontrada.",
+            "content": {
+              "application/json": {
+                "example": {
+                  "success": true,
+                  "update": {
+                    "_id": "1",
+                    "icone": "fa-star",
+                    "titulo": "Nova função",
+                    "paragrafo": "Descrição da função."
+                  }
+                }
+              }
+            }
+          },
+          "404": { "description": "Atualização não encontrada." }
+        }
+      },
       "put": {
         "summary": "Editar atualização (admin)",
-        "description": "Edita uma atualização existente. Requer autenticação JWT de admin.",
+        "description": "Edita uma atualização existente.",
         "parameters": [
           {
             "name": "id",
@@ -203,7 +235,7 @@
       },
       "delete": {
         "summary": "Remover atualização (admin)",
-        "description": "Remove uma atualização existente. Requer autenticação JWT de admin.",
+        "description": "Remove uma atualização existente.",
         "parameters": [
           {
             "name": "id",
@@ -221,7 +253,7 @@
       },
       "patch": {
         "summary": "Editar parcialmente atualização (admin)",
-        "description": "Edita parcialmente uma atualização existente. Requer autenticação JWT de admin.",
+        "description": "Edita parcialmente uma atualização existente.",
         "parameters": [
           {
             "name": "id",
