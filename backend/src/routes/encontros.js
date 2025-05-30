@@ -58,6 +58,12 @@ router.get('/:id/slide', baixarSlide);
 // GET /api/encontros/:id/material
 router.get('/:id/material', baixarMaterial);
 // PATCH /api/encontros/:id (protegido)
-router.patch('/:id', authenticateJWT, authorizeAdmin, patchEncontro);
-
+router.patch(
+  '/:id',
+  authenticateJWT,
+  authorizeAdmin,
+  handleUpload,
+  handleMulterErrors,
+  patchEncontro
+);
 export default router;
