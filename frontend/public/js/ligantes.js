@@ -1,3 +1,10 @@
+// Verifica se o usuário está autenticado ao carregar a página
+const token = localStorage.getItem('token');
+if (!token) {
+  window.location.href = 'login.html';
+  // window.location.href = 'index.html';
+}
+
 // Script para carregar e exibir os encontros na tela do painel do ligante
 const API_ENCONTROS = 'https://labem.onrender.com/api/encontros';
 const grid = document.getElementById('encontros-grid');
