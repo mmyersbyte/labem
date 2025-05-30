@@ -24,18 +24,6 @@ app.use(express.json());
 // Middleware para processamento de forms urlencoded
 app.use(express.urlencoded({ extended: true }));
 
-app.use(
-  session({
-    secret: process.env.SESSION_SECRET,
-    resave: false,
-    saveUninitialized: false,
-    cookie: {
-      secure: true,
-      sameSite: 'none',
-    },
-  })
-);
-
 app.use('/auth', authRoutes);
 app.use('/api', contactRoutes);
 app.use('/api/updates', updatesRoutes);

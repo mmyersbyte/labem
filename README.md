@@ -13,6 +13,9 @@
   <img src="https://img.shields.io/badge/NODE-339933?style=for-the-badge&logo=node.js&logoColor=white" alt="NODE">
   <img src="https://img.shields.io/badge/EXPRESS.JS-FF6F61?style=for-the-badge&logo=express&logoColor=white" alt="EXPRESS.JS">
   <img src="https://img.shields.io/badge/MONGODB-47A248?style=for-the-badge&logo=mongodb&logoColor=white" alt="MONGODB">
+    <a href="https://www.labemunisul.com.br/swagger.html">
+    <img src="https://img.shields.io/badge/SWAGGER-DOCS-85EA2D?style=for-the-badge&logo=swagger&logoColor=black" alt="SWAGGER">
+  </a>
 </p>
 
 <!-- imagem -->
@@ -33,42 +36,38 @@ O backend foi desenvolvido com Express, seguindo a estrutura de projeto padrão.
 Dados sensíveis foram protegidos por meio do uso da lib dotenv, e as senhas dos usuários são armazenadas com segurança utilizando bcrypt para hash. Toda a comunicação entre o frontend e o backend é autorizada via CORS.
 O deploy do backend foi no Render, enquanto o front foi hospedado na Vercel.
 <hr/>
+## Documentação da API
 
-```
+Acesse a documentação Swagger em:  
+[https://www.labemunisul.com.br/swagger.html](https://www.labemunisul.com.br/swagger.html)
+
 backend/
 ├── src/
-│   ├── models/
-│   ├── routes/
-│   ├── config/
-│   └── app.js
-├── .env
+│ ├── models/  
+│ ├── routes/  
+│ ├── config/  
+│ └── app.js  
+├── .env  
 ├── .gitignore
-├── server.js
+├── server.js  
 └── package.json
-
-
-```
 
 ## Como rodar localmente
 
 1. Clone
-2. Crie um arquivo `.env` seguindo o
+2. Crie um arquivo .env com sua string do MongoDB Atlas
 3. Instale as dependências:
-   ```bash
-   npm install
-   ```
+
+bash
+npm install
+
 4. Rode o servidor:
-   ```bash
-   npm start
-   ```
-5. O backend vai rodar em `http://localhost:5555` (ou a porta do seu `.env`)
 
-## Documentação
+bash
+npm start
 
-- [Express.js](https://expressjs.com/pt-br/)
-- [Mongoose](https://mongoosejs.com/)
-- [MongoDB Atlas](https://www.mongodb.com/docs/atlas/)
+5. O backend vai rodar em http://localhost:5555 (ou a porta do seu .env)
 
-## Duvidas
+## Dúvidas
 
-- Manda um email pedrovicstro@gmail.com
+Entre em contato: [pedrovicstro@gmail.com](mailto:pedrovicstro@gmail.com)
