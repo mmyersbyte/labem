@@ -1,6 +1,5 @@
 import express from 'express';
 import cors from 'cors';
-import session from 'express-session';
 import authRoutes from './routes/auth.js';
 import contactRoutes from './routes/contact.js';
 import updatesRoutes from './routes/updates.js';

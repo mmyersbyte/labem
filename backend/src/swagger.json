@@ -304,6 +304,97 @@
             }
           }
         }
+      },
+      "post": {
+        "summary": "Criar encontro (admin)",
+        "description": "Cria um novo encontro com upload de arquivos PDF (admin). Envie os campos como multipart/form-data.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "titulo": { "type": "string", "example": "Encontro 1" },
+                  "paragrafo": {
+                    "type": "string",
+                    "example": "Descrição do encontro."
+                  },
+                  "slideTeorico": { "type": "string", "format": "binary" },
+                  "materialApoio": { "type": "string", "format": "binary" }
+                },
+                "required": [
+                  "titulo",
+                  "paragrafo",
+                  "slideTeorico",
+                  "materialApoio"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": { "description": "Encontro criado com sucesso." },
+          "400": { "description": "Dados inválidos ou arquivos ausentes." },
+          "413": { "description": "Arquivo muito grande." }
+        }
+      }
+    },
+    "/api/encontros/{id}": {
+      "delete": {
+        "summary": "Remover encontro (admin)",
+        "description": "Remove um encontro existente.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string" },
+            "description": "ID do encontro a ser removido"
+          }
+        ],
+        "responses": {
+          "200": { "description": "Encontro removido com sucesso." },
+          "404": { "description": "Encontro não encontrado." }
+        }
+      }
+    },
+    "/api/encontros/{id}/slide": {
+      "get": {
+        "summary": "Baixar slide teórico do encontro",
+        "description": "Baixa o PDF dos slides teóricos do encontro.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string" },
+            "description": "ID do encontro"
+          }
+        ],
+        "responses": {
+          "200": { "description": "Arquivo PDF retornado com sucesso." },
+          "404": { "description": "Slide não encontrado." }
+        }
+      }
+    },
+    "/api/encontros/{id}/material": {
+      "get": {
+        "summary": "Baixar material de apoio do encontro",
+        "description": "Baixa o PDF do material de apoio do encontro.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string" },
+            "description": "ID do encontro"
+          }
+        ],
+        "responses": {
+          "200": { "description": "Arquivo PDF retornado com sucesso." },
+          "404": { "description": "Arquivo não encontrado." }
+        }
       }
     }
   }
