@@ -8,18 +8,13 @@ import authAdminRoutes from './routes/authAdmin.js';
 import swaggerRoute from './routes/swaggerRoute.js';
 const app = express();
 
-// Configuração de middlewares
-const cors = require('cors');
-
 app.use(
   cors({
     origin: function (origin, callback) {
       const allowedOrigins = [/^https:\/\/(www\.)?labemunisul\.com\.br$/];
-
       if (!origin || allowedOrigins.some((regex) => regex.test(origin))) {
         return callback(null, true);
       }
-
       return callback(new Error('Não permitido pelo CORS'));
     },
     credentials: true,
@@ -27,12 +22,8 @@ app.use(
     allowedHeaders: ['Content-Type', 'Authorization'],
   })
 );
-
-// Middleware para processamento de JSON
 app.use(express.json());
-// Middleware para processamento de forms urlencoded
 app.use(express.urlencoded({ extended: true }));
-
 app.use('/auth', authRoutes);
 app.use('/api/contact', contactRoutes);
 app.use('/api/updates', updatesRoutes);
