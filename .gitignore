@@ -1,4 +1,4 @@
-# Dependências
+8# Dependências
 node_modules/
 npm-debug.log
 yarn-debug.log
@@ -70,3 +70,4 @@ debug.*
 frontend/node_modules/
 frontend/package-lock.json
 frontend/yarn.lock 
+resumos/
