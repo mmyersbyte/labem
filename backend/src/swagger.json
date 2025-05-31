@@ -11,9 +11,25 @@
       "description": "Servidor de produção"
     }
   ],
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    }
+  },
+  "tags": [
+    { "name": "Auth", "description": "Autenticação de usuários e admins" },
+    { "name": "Contato", "description": "Mensagens de contato" },
+    { "name": "Atualizações", "description": "Gerenciamento de atualizações" },
+    { "name": "Encontros", "description": "Gerenciamento de encontros" }
+  ],
   "paths": {
     "/auth/login": {
       "post": {
+        "tags": ["Auth"],
         "summary": "Login de usuário comum",
         "description": "Autentica um usuário ligante e retorna um token JWT.",
         "requestBody": {
@@ -33,7 +49,7 @@
         },
         "responses": {
           "200": {
-            "description": "Login realizado com sucesso. Exemplo de resposta:",
+            "description": "Login realizado com sucesso.",
             "content": {
               "application/json": {
                 "example": {
@@ -44,12 +60,20 @@
               }
             }
           },
-          "401": { "description": "Usuário ou senha inválidos." }
+          "401": {
+            "description": "Usuário ou senha inválidos.",
+            "content": {
+              "application/json": {
+                "example": { "message": "Usuário ou senha inválidos." }
+              }
+            }
+          }
         }
       }
     },
     "/api/admin/login": {
       "post": {
+        "tags": ["Auth"],
         "summary": "Login de administrador",
         "description": "Autentica um admin e retorna um token JWT.",
         "requestBody": {
@@ -69,7 +93,7 @@
         },
         "responses": {
           "200": {
-            "description": "Login admin realizado com sucesso. Exemplo de resposta:",
+            "description": "Login admin realizado com sucesso.",
             "content": {
               "application/json": {
                 "example": {
@@ -80,12 +104,20 @@
               }
             }
           },
-          "401": { "description": "Email ou senha inválidos." }
+          "401": {
+            "description": "Email ou senha inválidos.",
+            "content": {
+              "application/json": {
+                "example": { "message": "Email ou senha inválidos." }
+              }
+            }
+          }
         }
       }
     },
     "/api/contact": {
       "post": {
+        "tags": ["Contato"],
         "summary": "Envio de mensagem de contato",
         "description": "Recebe dados do formulário de contato.",
         "requestBody": {
@@ -108,18 +140,137 @@
           }
         },
         "responses": {
-          "200": { "description": "Mensagem enviada com sucesso." },
-          "400": { "description": "Dados inválidos." }
+          "200": {
+            "description": "Mensagem enviada com sucesso.",
+            "content": {
+              "application/json": {
+                "example": {
+                  "success": true,
+                  "message": "Mensagem enviada com sucesso!"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Dados inválidos.",
+            "content": {
+              "application/json": {
+                "example": {
+                  "success": false,
+                  "message": "Todos os campos são obrigatórios."
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Erro interno.",
+            "content": {
+              "application/json": {
+                "example": {
+                  "success": false,
+                  "message": "Erro ao enviar mensagem."
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": ["Contato"],
+        "summary": "Listar mensagens de contato",
+        "description": "Retorna todas as mensagens de contato cadastradas.",
+        "responses": {
+          "200": {
+            "description": "Lista de mensagens.",
+            "content": {
+              "application/json": {
+                "example": {
+                  "success": true,
+                  "mensagens": [
+                    {
+                      "_id": "1",
+                      "nome": "João",
+                      "email": "joao@email.com",
+                      "mensagem": "Olá!"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Erro ao buscar mensagens.",
+            "content": {
+              "application/json": {
+                "example": {
+                  "success": false,
+                  "message": "Erro ao buscar mensagens de contato."
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/contact/{id}": {
+      "delete": {
+        "tags": ["Contato"],
+        "summary": "Deletar mensagem de contato",
+        "description": "Remove uma mensagem de contato pelo ID.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string" },
+            "description": "ID da mensagem a ser removida"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Mensagem deletada com sucesso.",
+            "content": {
+              "application/json": {
+                "example": {
+                  "success": true,
+                  "message": "Mensagem deletada com sucesso!"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Mensagem não encontrada.",
+            "content": {
+              "application/json": {
+                "example": {
+                  "success": false,
+                  "message": "Mensagem não encontrada."
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Erro ao deletar mensagem.",
+            "content": {
+              "application/json": {
+                "example": {
+                  "success": false,
+                  "message": "Erro ao deletar mensagem."
+                }
+              }
+            }
+          }
         }
       }
     },
     "/api/updates": {
       "get": {
+        "tags": ["Atualizações"],
         "summary": "Listar atualizações",
         "description": "Retorna todas as atualizações cadastradas.",
         "responses": {
           "200": {
-            "description": "Lista de atualizações. Exemplo de resposta:",
+            "description": "Lista de atualizações.",
             "content": {
               "application/json": {
                 "example": {
@@ -135,12 +286,25 @@
                 }
               }
             }
+          },
+          "500": {
+            "description": "Erro ao buscar atualizações.",
+            "content": {
+              "application/json": {
+                "example": {
+                  "success": false,
+                  "message": "Erro ao buscar atualizações."
+                }
+              }
+            }
           }
         }
       },
       "post": {
+        "tags": ["Atualizações"],
         "summary": "Criar atualização (admin)",
         "description": "Cria uma nova atualização. Requer autenticação JWT de admin.",
+        "security": [{ "bearerAuth": [] }],
         "requestBody": {
           "required": true,
           "content": {
@@ -161,8 +325,56 @@
           }
         },
         "responses": {
-          "201": { "description": "Atualização criada." },
-          "401": { "description": "Não autorizado." }
+          "201": {
+            "description": "Atualização criada.",
+            "content": {
+              "application/json": {
+                "example": {
+                  "success": true,
+                  "message": "Atualização criada com sucesso!",
+                  "update": {
+                    "_id": "1",
+                    "icone": "fa-star",
+                    "titulo": "Nova função",
+                    "paragrafo": "Descrição da função."
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Dados inválidos.",
+            "content": {
+              "application/json": {
+                "example": {
+                  "success": false,
+                  "message": "Todos os campos são obrigatórios."
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Não autorizado.",
+            "content": {
+              "application/json": {
+                "example": {
+                  "success": false,
+                  "message": "Token inválido ou ausente."
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Erro ao criar atualização.",
+            "content": {
+              "application/json": {
+                "example": {
+                  "success": false,
+                  "message": "Erro ao criar atualização."
+                }
+              }
+            }
+          }
         }
       }
     },

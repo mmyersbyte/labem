@@ -22,52 +22,51 @@
 
 ![Banner da LABEMGITHUB](assets/LABEMGITHUB.png)
 
-## Objetivo do Projeto
-
-Sistema desenvolvido para fortalecer o networking acadêmico, divulgar eventos, workshops e estabelecer parcerias com marcas relevantes da área de estética e biomedicina. A UNISUL não dispunha de uma plataforma própria para disponibilizar materiais exclusivos de palestras e outros eventos, marcar pacientes-modelo para procedimentos estéticos ou reunir marcas de destaque no setor.
-Pensando nisso, o sistema oferece um painel exclusivo para professores, presidentes e coordenadores, que possibilita o compartilhamento de conteúdos com os ligantes, o agendamento de eventos e a interação direta com os membros da liga.
-
+<h2>Objetivo do Projeto</h2> 
+Sistema desenvolvido para fortalecer o networking acadêmico, divulgar eventos e workshops, além de estabelecer parcerias com marcas relevantes da área de estética e biomedicina. A UNISUL não contava com uma plataforma própria para centralizar as atividades da liga, como o compartilhamento de materiais exclusivos de palestras e encontros, as chamadas de pacientes-modelo para procedimentos estéticos via session updates ou a divulgação de marcas parceiras do setor. Pensando nisso, este sistema foi criado para preencher essas lacunas, oferecendo uma solução digital segura e eficiente, que conecta profissionais da biomedicina estética aos membros da liga. A plataforma disponibiliza painéis distintos para professores, coordenadores e membros, cada um com funcionalidades específicas que facilitam a gestão de conteúdos, a organização de eventos e a comunicação interna. Dessa forma, a liga conta agora com um ambiente centralizado, moderno e funcional, que potencializa o engajamento acadêmico e amplia o alcance das suas atividades dentro e fora da universidade. Além disso, o site principal também foi pensado para o público geral, promovendo transparência e aproximando a comunidade das ações desenvolvidas pela liga.
 <hr/>
-Além da interface principal, o projeto conta com um painel administrativo com autenticação e controle de acesso. Usuários com papel de ADMIN têm permissão para realizar operações de CRUD na seção "Últimas Notícias", exibida na página inicial por meio de requisições GET.
-Também foi implementada uma rota POST com suporte a upload de arquivos PDF utilizando a lib Multer, permitindo o envio de materiais diretamente para o Painel do Ligante (Um ambiente com acesso restrito aos membros da universidade, destinado à organização de eventos com profissionais da área biomédica), também há a rota DELETE para manutenção de arquivos e início de semestre. 
-Há também rotas GET para o preview de arquivos e alterações na section, guiando o administrador de como está ficando as alterações. 
-O painel também inclui uma section para gerenciamento das mensagens recebidas pelo formulário de contato, GET e DELETE. (A resposta é pelo e-mail enviado no form)
-O backend foi desenvolvido com Express, seguindo a estrutura de projeto padrão. O DB utilizado é o MongoDB, com a lib Mongoose responsável pela modelagem e pela conexão com a base de dados.
-Dados sensíveis foram protegidos por meio do uso da lib dotenv, e as senhas dos usuários são armazenadas com segurança utilizando bcrypt para hash. Toda a comunicação entre o frontend e o backend é autorizada via CORS.
-O deploy do backend foi no Render, enquanto o front foi hospedado na Vercel.
-<hr/>
-## Documentação da API
+
+<h2>Autenticação e Segurança</h2>
+<p>Autenticação via <code>JWT</code> (token) para rotas protegidas, uso de <code>dotenv</code> para variáveis sensíveis, senhas criptografadas com <code>bcrypt</code> e <code>CORS</code> habilitado para integração front-end/back-end.</p>
+
+<h2>Painéis e Funcionalidades</h2>
+
+<p><strong style="font-weight:600; font-size:1.1em;">Painel Administrativo</strong><br />
+Implementei API para Últimas Notícias para manutenção do sistema principal. Desenvolvi API para upload de PDFs via <code>Multer</code>, com preview de arquivos e atualizações em tempo real. Gerenciei mensagens do formulário de contato com endpoints GET e DELETE, aumentando os números de parceria com o projeto. Automatizei a exclusão de materiais antigos no início de cada semestre. Resumindo, admins podem usar as rotas para CRIAREM, ATUALIZAREM, EDITAREM E APAGAREM dados gerais de todo o sistema.</p>
+
+<p><strong style="font-weight:600; font-size:1.1em;">Painel do Ligante</strong><br />
+Acesso restrito aos membros da UNISUL. Organização de eventos com profissionais da área biomédica. Recepção de conteúdos enviados pelos coordenadores, professores e presidente.</p>
+<h2>Stacks</h2>
+<p>
+  <code>Node</code> com <code>Express</code>, usando <code>MongoDB</code> e <code>Mongoose</code> para o banco de dados e modelagem, <code>JWT</code> e <code>bcrypt</code> para autenticação, <code>Multer</code> para upload de arquivos, <code>CORS</code> para requisições externas e <code>dotenv</code> para variáveis de ambiente. Usei <code>ESModules</code> (import/export). No desenvolvimento do front-end, utilizei <code>HTML</code> e <code>CSS</code> para a estrutura e estilo da interface, <code>Bootstrap</code> para responsividade e componentes visuais, <code>JavaScript Vanilla</code> para interatividade mais leve, e a API nativa do JS, <code>Fetch</code>, para consumir os dados da API de forma assíncrona. Os testes dos endpoints foram realizados com o <code>Thunder Client</code> (extensão do VS Code para requisições HTTP) e com o <code>HTTPie</code> via terminal.
+</p>
+
+<h2>Estrura do projeto</h2>
+
+```bash
+.
+├── frontend
+├── backend
+│   ├── server.js
+│   ├── .env
+│   ├── package.json
+│   └── src
+│       ├── app.js
+│       ├── config
+│       ├── controllers
+│       ├── middleware
+│       ├── models
+│       └── routes
+
+
+```
 
 Acesse a documentação Swagger em:  
 [https://www.labemunisul.com.br/swagger.html](https://www.labemunisul.com.br/swagger.html)
 
-backend/
-├── src/
-│ ├── models/  
-│ ├── routes/  
-│ ├── config/  
-│ └── app.js  
-├── .env  
-├── .gitignore
-├── server.js  
-└── package.json
-
 ## Como rodar localmente
 
 1. Clone
-2. Crie um arquivo .env com sua string do MongoDB Atlas
-3. Instale as dependências:
-
-bash
-npm install
-
-4. Rode o servidor:
-
-bash
-npm start
-
-5. O backend vai rodar em http://localhost:5555 (ou a porta do seu .env)
-
-## Dúvidas
-
-Entre em contato: [pedrovicstro@gmail.com](mailto:pedrovicstro@gmail.com)
+2. Crie um arquivo .env e siga o exemplo do .envexample
+3. Instale as dependências com NPM Install
+4. (Opcional) Ajuste o CORS no backend para testes com a interface grafica
