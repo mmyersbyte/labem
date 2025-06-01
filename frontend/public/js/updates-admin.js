@@ -132,7 +132,16 @@ window.salvarEdicao = async function (id, campo, valor) {
   const box = document.querySelector(`.update-box[data-id='${id}']`);
   const titulo = box.querySelector('h3').innerText;
   const paragrafo = box.querySelector('p').innerText;
-  const icone = box.querySelector('i').className;
+  const icone = Array.from(box.querySelector('i').classList)
+    .filter(
+      (c) =>
+        c.startsWith('fa-') &&
+        c !== 'fa-solid' &&
+        c !== 'fa' &&
+        c !== 'fa-regular' &&
+        c !== 'fa-brands'
+    )
+    .join(' ');
   const token = checarAutenticacao();
   if (!token) return;
   try {
@@ -167,6 +176,7 @@ window.addEventListener('DOMContentLoaded', function () {
             c !== 'fa-solid' &&
             c !== 'fa' &&
             c !== 'fa-regular' &&
+            c !== 'fa-solid' &&
             c !== 'fa-brands'
         )
         .join(' ');
