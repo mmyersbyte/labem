@@ -132,7 +132,7 @@ window.salvarEdicao = async function (id, campo, valor) {
   const box = document.querySelector(`.update-box[data-id='${id}']`);
   const titulo = box.querySelector('h3').innerText;
   const paragrafo = box.querySelector('p').innerText;
-  const icone = box.querySelector('i').classList[1].replace('fa-', '');
+  const icone = box.querySelector('i').className;
   const token = checarAutenticacao();
   if (!token) return;
   try {
