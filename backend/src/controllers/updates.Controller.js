@@ -50,30 +50,30 @@ export async function criarUpdate(req, res) {
   }
 }
 
-export async function editarUpdate(req, res) {
-  try {
-    const { icone, titulo, paragrafo } = req.body;
-    const update = await Update.findByIdAndUpdate(
-      req.params.id,
-      { icone, titulo, paragrafo },
-      { new: true }
-    );
-    if (!update) {
-      return res
-        .status(404)
-        .json({ success: false, message: 'Atualização não encontrada.' });
-    }
-    res.status(200).json({
-      success: true,
-      message: 'Atualização editada com sucesso!',
-      update,
-    });
-  } catch (error) {
-    res
-      .status(500)
-      .json({ success: false, message: 'Erro ao editar atualização.' });
-  }
-}
+// export async function editarUpdate(req, res) {
+//   try {
+//     const { icone, titulo, paragrafo } = req.body;
+//     const update = await Update.findByIdAndUpdate(
+//       req.params.id,
+//       { icone, titulo, paragrafo },
+//       { new: true }
+//     );
+//     if (!update) {
+//       return res
+//         .status(404)
+//         .json({ success: false, message: 'Atualização não encontrada.' });
+//     }
+//     res.status(200).json({
+//       success: true,
+//       message: 'Atualização editada com sucesso!',
+//       update,
+//     });
+//   } catch (error) {
+//     res
+//       .status(500)
+//       .json({ success: false, message: 'Erro ao editar atualização.' });
+//   }
+// }
 
 export async function deletarUpdate(req, res) {
   try {
