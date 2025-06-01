@@ -8,6 +8,8 @@ import {
   deletarUpdate,
   editarParcialUpdate,
 } from '../controllers/updates.Controller.js';
+import { validateBody } from '../middleware/validate.js';
+import { updateSchema } from '../validators/updateValidator.js';
 
 const router = express.Router();
 
@@ -17,7 +19,13 @@ router.get('/', listarUpdates);
 router.get('/:id', obterUpdatePorId);
 
 // POST /api/updates - Cria uma nova atualização (protegido com jWT)
-router.post('/', authenticateJWT, authorizeAdmin, criarUpdate);
+router.post(
+  '/',
+  validateBody(updateSchema),
+  authenticateJWT,
+  authorizeAdmin,
+  criarUpdate
+);
 
 // PUT /api/updates/:id - Edita uma atualização (protegido JWT)
 // router.put('/:id', authenticateJWT, authorizeAdmin, editarUpdate); // TROCADA PELA PUT
