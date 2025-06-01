@@ -8,7 +8,7 @@ import {
   editarUpdate,
   deletarUpdate,
   editarParcialUpdate,
-} from '../controllers/updatesController.js';
+} from '../controllers/updates.Controller.js';
 
 const router = express.Router();
 

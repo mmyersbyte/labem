@@ -9,7 +9,7 @@ import {
   baixarSlide,
   baixarMaterial,
   patchEncontro,
-} from '../controllers/encontrosController.js';
+} from '../controllers/encontros.Controller.js';
 
 const router = express.Router();
 

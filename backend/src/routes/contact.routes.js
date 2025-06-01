@@ -3,7 +3,7 @@ import {
   enviarContato,
   listarMensagensContato,
   deletarMensagemContato,
-} from '../controllers/contactController.js';
+} from '../controllers/contact.Controller.js';
 
 const router = express.Router();
 
