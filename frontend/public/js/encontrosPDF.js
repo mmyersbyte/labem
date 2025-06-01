@@ -92,6 +92,35 @@ function checarAutenticacao() {
   return token;
 }
 
+// Overlay de loading minimalista
+function mostrarLoading() {
+  if (document.getElementById('overlay-loading-encontros')) return;
+  const overlay = document.createElement('div');
+  overlay.id = 'overlay-loading-encontros';
+  overlay.style.position = 'fixed';
+  overlay.style.top = 0;
+  overlay.style.left = 0;
+  overlay.style.width = '100vw';
+  overlay.style.height = '100vh';
+  overlay.style.background = 'rgba(255,255,255,0.6)';
+  overlay.style.display = 'flex';
+  overlay.style.alignItems = 'center';
+  overlay.style.justifyContent = 'center';
+  overlay.style.zIndex = 99999;
+  overlay.innerHTML = `
+    <div style="display:flex;flex-direction:column;align-items:center;gap:1rem;">
+      <div class="spinner" style="width:40px;height:40px;border:4px solid #146677;border-top:4px solid #b3e0ff;border-radius:50%;animation:spin 1s linear infinite;"></div>
+      <span style="color:#146677;font-weight:500;">Processando...</span>
+    </div>
+    <style>@keyframes spin{0%{transform:rotate(0deg);}100%{transform:rotate(360deg);}}</style>
+  `;
+  document.body.appendChild(overlay);
+}
+function esconderLoading() {
+  const overlay = document.getElementById('overlay-loading-encontros');
+  if (overlay) overlay.remove();
+}
+
 // Função para deletar um encontro
 async function deletarEncontro(id) {
   if (window.Swal) {
@@ -112,7 +141,7 @@ async function deletarEncontro(id) {
 
   const token = checarAutenticacao();
   if (!token) return;
-
+  mostrarLoading();
   try {
     const res = await fetch(`${API_ENCONTROS}/${id}`, {
       method: 'DELETE',
@@ -165,6 +194,8 @@ async function deletarEncontro(id) {
       alert('Erro ao conectar com o servidor.');
     }
     console.error('Erro ao deletar encontro:', err);
+  } finally {
+    esconderLoading();
   }
 }
 
@@ -307,7 +338,7 @@ if (formEncontro) {
 
     const token = checarAutenticacao();
     if (!token) return;
-
+    mostrarLoading();
     try {
       const res = await fetch(API_ENCONTROS, {
         method: 'POST',
@@ -362,6 +393,8 @@ if (formEncontro) {
         alert('Erro ao conectar com o servidor.');
       }
       console.error('Erro ao adicionar encontro:', err);
+    } finally {
+      esconderLoading();
     }
   });
 }

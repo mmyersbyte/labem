@@ -10,6 +10,8 @@ import {
   baixarMaterial,
   patchEncontro,
 } from '../controllers/encontros.Controller.js';
+import { validateBody } from '../middleware/validate.js';
+import { encontroSchema } from '../validators/encontroValidator.js';
 
 const router = express.Router();
 
@@ -45,6 +47,7 @@ router.post(
   '/',
   authenticateJWT,
   authorizeAdmin,
+  validateBody(encontroSchema),
   handleUpload,
   handleMulterErrors,
   criarEncontro

@@ -75,7 +75,11 @@ if (form) {
     const titulo = tituloInput.value.trim();
     const paragrafo = paragrafoInput.value.trim();
     if (!icone || !titulo || !paragrafo) {
-      alert('Preencha todos os campos!');
+      Swal.fire({
+        icon: 'warning',
+        title: 'Preencha todos os campos!',
+        confirmButtonColor: '#146677',
+      });
       return;
     }
     const token = checarAutenticacao();
@@ -93,39 +97,80 @@ if (form) {
       if (data.success) {
         form.reset();
         carregarAtualizacoes();
-        alert('Tópico adicionado com sucesso!');
+        Swal.fire({
+          icon: 'success',
+          title: 'Tópico adicionado!',
+          text: 'O tópico foi adicionado com sucesso.',
+          confirmButtonColor: '#146677',
+        });
       } else {
-        alert(data.message || 'Erro ao adicionar tópico.');
+        Swal.fire({
+          icon: 'error',
+          title: 'Erro ao adicionar tópico!',
+          text: data.message || 'Erro ao adicionar tópico.',
+          confirmButtonColor: '#146677',
+        });
       }
     } catch (err) {
-      alert('Erro de conexão.');
+      Swal.fire({
+        icon: 'error',
+        title: 'Erro de conexão!',
+        text: 'Não foi possível adicionar o tópico.',
+        confirmButtonColor: '#146677',
+      });
       console.error('Erro ao adicionar tópico:', err);
     }
   });
 }
 
 window.deletarUpdate = async function (id) {
-  if (!confirm('Tem certeza que deseja deletar?')) return;
-  const token = checarAutenticacao();
-  if (!token) return;
-  try {
-    const res = await fetch(`${API_URL}/${id}`, {
-      method: 'DELETE',
-      headers: {
-        Authorization: `Bearer ${token}`, // Envia o token JWT
-      },
-    });
-    const data = await res.json();
-    if (data.success) {
-      carregarAtualizacoes();
-      alert('Tópico deletado com sucesso!');
-    } else {
-      alert(data.message || 'Erro ao deletar tópico.');
+  Swal.fire({
+    title: 'Tem certeza que deseja deletar?',
+    text: 'Esta ação não poderá ser desfeita!',
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#d33',
+    cancelButtonColor: '#146677',
+    confirmButtonText: 'Sim, deletar!',
+    cancelButtonText: 'Cancelar',
+  }).then(async (result) => {
+    if (!result.isConfirmed) return;
+    const token = checarAutenticacao();
+    if (!token) return;
+    try {
+      const res = await fetch(`${API_URL}/${id}`, {
+        method: 'DELETE',
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      const data = await res.json();
+      if (data.success) {
+        carregarAtualizacoes();
+        Swal.fire({
+          icon: 'success',
+          title: 'Tópico deletado!',
+          text: 'O tópico foi removido com sucesso.',
+          confirmButtonColor: '#146677',
+        });
+      } else {
+        Swal.fire({
+          icon: 'error',
+          title: 'Erro ao deletar tópico!',
+          text: data.message || 'Erro ao deletar tópico.',
+          confirmButtonColor: '#146677',
+        });
+      }
+    } catch (err) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Erro de conexão!',
+        text: 'Não foi possível deletar o tópico.',
+        confirmButtonColor: '#146677',
+      });
+      console.error('Erro ao deletar atualização:', err);
     }
-  } catch (err) {
-    alert('Erro de conexão.');
-    console.error('Erro ao deletar atualização:', err);
-  }
+  });
 };
 
 window.salvarEdicao = async function (id, campo, valor) {

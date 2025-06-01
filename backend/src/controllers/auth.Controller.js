@@ -3,21 +3,21 @@ import User from '../models/User.js';
 
 export async function loginLigante(req, res) {
   try {
-    const { username, password } = req.body;
-    if (!username || !password) {
+    const { email, password } = req.body;
+    if (!email || !password) {
       return res
         .status(400)
-        .json({ message: 'Usuário e senha são obrigatórios.' });
+        .json({ message: 'E-mail e senha são obrigatórios.' });
     }
 
-    const user = await User.findOne({ username });
+    const user = await User.findOne({ email });
     if (!user) {
-      return res.status(401).json({ message: 'Usuário ou senha inválidos.' });
+      return res.status(401).json({ message: 'E-mail ou senha inválidos.' });
     }
 
     const isMatch = await user.comparePassword(password);
     if (!isMatch) {
-      return res.status(401).json({ message: 'Usuário ou senha inválidos.' });
+      return res.status(401).json({ message: 'E-mail ou senha inválidos.' });
     }
 
     const token = jwt.sign(

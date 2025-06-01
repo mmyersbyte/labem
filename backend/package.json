@@ -14,17 +14,16 @@
     "Biomedicina",
     "UNISUL",
     "Express",
-    "MongoDB"
+    "MongoDB",
+    "nodejs"
   ],
-  "author": "mmyersbyte",
+  "author": "Pedro Victor Castro de Sousa",
+  "email": "pedrovicstro@gmail.com",
   "license": "ISC",
   "description": "RESTful API para gestão acadêmica e de networking na área da biomedicina estética.",
   "repository": {
     "type": "git",
-    "url": "https://github.com/mmyersbyte/apilabem.git"
-  },
-  "bugs": {
-    "url": "https://github.com/mmyersbyte/apilabem/issues"
+    "url": "https://github.com/mmyersbyte/labem"
   },
   "homepage": "https://labemunisul.com.br",
   "engines": {

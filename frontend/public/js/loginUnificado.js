@@ -32,7 +32,7 @@ document.addEventListener('DOMContentLoaded', function () {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         credentials: 'include', // Garante envio de cookies de sessão
-        body: JSON.stringify({ username: email, password: senha }),
+        body: JSON.stringify({ email: email, password: senha }),
       });
 
       let data = await response.json();
