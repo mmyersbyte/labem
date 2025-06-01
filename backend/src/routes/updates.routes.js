@@ -5,7 +5,6 @@ import {
   listarUpdates,
   obterUpdatePorId,
   criarUpdate,
-  editarUpdate,
   deletarUpdate,
   editarParcialUpdate,
 } from '../controllers/updates.Controller.js';
@@ -21,7 +20,7 @@ router.get('/:id', obterUpdatePorId);
 router.post('/', authenticateJWT, authorizeAdmin, criarUpdate);
 
 // PUT /api/updates/:id - Edita uma atualização (protegido JWT)
-router.put('/:id', authenticateJWT, authorizeAdmin, editarUpdate);
+// router.put('/:id', authenticateJWT, authorizeAdmin, editarUpdate); // TROCADA PELA PUT
 
 // DELETE /api/updates/:id - Remove uma atualização (protegido JWT)
 router.delete('/:id', authenticateJWT, authorizeAdmin, deletarUpdate);
