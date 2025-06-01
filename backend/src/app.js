@@ -1,13 +1,13 @@
 import express from 'express';
 import cors from 'cors';
+import rootRoutes from './routes/root.routes.js';
 import authRoutes from './routes/auth.js';
 import contactRoutes from './routes/contact.js';
 import updatesRoutes from './routes/updates.js';
 import encontrosRoutes from './routes/encontros.js';
 import authAdminRoutes from './routes/authAdmin.js';
-import swaggerRoute from './routes/swaggerRoute.js';
+import swagger from './routes/swagger.routes.js';
 import notFoundHandler from './middleware/notFoundHandler.js';
-
 import errorHandler from './middleware/errorHandler.js';
 
 const app = express();
@@ -28,12 +28,13 @@ app.use(
 );
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use('/', rootRoutes);
 app.use('/auth', authRoutes);
 app.use('/api/contact', contactRoutes);
 app.use('/api/updates', updatesRoutes);
 app.use('/api/encontros', encontrosRoutes);
 app.use('/api/admin', authAdminRoutes);
-app.use(swaggerRoute);
+app.use(swagger);
 app.use(notFoundHandler);
 app.use(errorHandler);
 export default app;

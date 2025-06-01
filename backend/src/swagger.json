@@ -1,9 +1,9 @@
 {
   "openapi": "3.0.3",
   "info": {
-    "title": "Labem API",
+    "title": "API - LABEM",
     "version": "1.0.0",
-    "description": "API LABEM"
+    "description": "API RESTful escalável e segura desenvolvida com Node.js e Express, oferecendo endpoints para autenticação de usuários, gerenciamento de dados e upload de arquivos.\nImplementa práticas recomendadas do setor, como autenticação stateless com JWT e criptografia de senhas com bcrypt.\nA persistência dos dados é gerenciada pelo MongoDB utilizando o Mongoose ODM.\nConstruída com foco em modularidade e manutenibilidade, sendo ideal para aplicações web ou mobile modernas."
   },
   "servers": [
     {
@@ -178,7 +178,8 @@
       "get": {
         "tags": ["Contato"],
         "summary": "Listar mensagens de contato",
-        "description": "Retorna todas as mensagens de contato cadastradas.",
+        "description": "Retorna todas as mensagens de contato cadastradas. Requer autenticação JWT de admin.",
+        "security": [{ "bearerAuth": [] }],
         "responses": {
           "200": {
             "description": "Lista de mensagens.",
@@ -194,6 +195,17 @@
                       "mensagem": "Olá!"
                     }
                   ]
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Não autorizado.",
+            "content": {
+              "application/json": {
+                "example": {
+                  "success": false,
+                  "message": "Token inválido ou ausente."
                 }
               }
             }
@@ -216,7 +228,8 @@
       "delete": {
         "tags": ["Contato"],
         "summary": "Deletar mensagem de contato",
-        "description": "Remove uma mensagem de contato pelo ID.",
+        "description": "Remove uma mensagem de contato pelo ID. Requer autenticação JWT de admin.",
+        "security": [{ "bearerAuth": [] }],
         "parameters": [
           {
             "name": "id",
@@ -234,6 +247,17 @@
                 "example": {
                   "success": true,
                   "message": "Mensagem deletada com sucesso!"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Não autorizado.",
+            "content": {
+              "application/json": {
+                "example": {
+                  "success": false,
+                  "message": "Token inválido ou ausente."
                 }
               }
             }
@@ -267,7 +291,8 @@
       "get": {
         "tags": ["Atualizações"],
         "summary": "Listar atualizações",
-        "description": "Retorna todas as atualizações cadastradas.",
+        "description": "Retorna todas as atualizações cadastradas. Esta rota é pública e não requer autenticação.",
+        "security": [],
         "responses": {
           "200": {
             "description": "Lista de atualizações.",
@@ -380,8 +405,10 @@
     },
     "/api/updates/{id}": {
       "get": {
+        "tags": ["Atualizações"],
         "summary": "Obter atualização por ID",
-        "description": "Retorna uma atualização específica pelo ID.",
+        "description": "Retorna uma atualização específica pelo ID. Requer autenticação JWT de admin.",
+        "security": [{ "bearerAuth": [] }],
         "parameters": [
           {
             "name": "id",
@@ -408,12 +435,38 @@
               }
             }
           },
-          "404": { "description": "Atualização não encontrada." }
+          "401": {
+            "description": "Não autorizado.",
+            "content": {
+              "application/json": {
+                "example": {
+                  "success": false,
+                  "message": "Token inválido ou ausente."
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Atualização não encontrada."
+          },
+          "500": {
+            "description": "Erro ao buscar atualização.",
+            "content": {
+              "application/json": {
+                "example": {
+                  "success": false,
+                  "message": "Erro ao buscar atualização."
+                }
+              }
+            }
+          }
         }
       },
       "put": {
+        "tags": ["Atualizações"],
         "summary": "Editar atualização (admin)",
-        "description": "Edita uma atualização existente.",
+        "description": "Edita uma atualização existente. Requer autenticação JWT de admin.",
+        "security": [{ "bearerAuth": [] }],
         "parameters": [
           {
             "name": "id",
@@ -441,13 +494,38 @@
         },
         "responses": {
           "200": { "description": "Atualização editada com sucesso." },
-          "404": { "description": "Atualização não encontrada." },
-          "401": { "description": "Não autorizado." }
+          "401": {
+            "description": "Não autorizado.",
+            "content": {
+              "application/json": {
+                "example": {
+                  "success": false,
+                  "message": "Token inválido ou ausente."
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Atualização não encontrada."
+          },
+          "500": {
+            "description": "Erro ao editar atualização.",
+            "content": {
+              "application/json": {
+                "example": {
+                  "success": false,
+                  "message": "Erro ao editar atualização."
+                }
+              }
+            }
+          }
         }
       },
       "delete": {
+        "tags": ["Atualizações"],
         "summary": "Remover atualização (admin)",
-        "description": "Remove uma atualização existente.",
+        "description": "Remove uma atualização existente. Requer autenticação JWT de admin.",
+        "security": [{ "bearerAuth": [] }],
         "parameters": [
           {
             "name": "id",
@@ -459,13 +537,38 @@
         ],
         "responses": {
           "200": { "description": "Atualização removida com sucesso." },
-          "404": { "description": "Atualização não encontrada." },
-          "401": { "description": "Não autorizado." }
+          "401": {
+            "description": "Não autorizado.",
+            "content": {
+              "application/json": {
+                "example": {
+                  "success": false,
+                  "message": "Token inválido ou ausente."
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Atualização não encontrada."
+          },
+          "500": {
+            "description": "Erro ao remover atualização.",
+            "content": {
+              "application/json": {
+                "example": {
+                  "success": false,
+                  "message": "Erro ao remover atualização."
+                }
+              }
+            }
+          }
         }
       },
       "patch": {
+        "tags": ["Atualizações"],
         "summary": "Editar parcialmente atualização (admin)",
-        "description": "Edita parcialmente uma atualização existente.",
+        "description": "Edita parcialmente uma atualização existente. Requer autenticação JWT de admin.",
+        "security": [{ "bearerAuth": [] }],
         "parameters": [
           {
             "name": "id",
@@ -492,15 +595,40 @@
         },
         "responses": {
           "200": { "description": "Atualização editada com sucesso." },
-          "404": { "description": "Atualização não encontrada." },
-          "401": { "description": "Não autorizado." }
+          "401": {
+            "description": "Não autorizado.",
+            "content": {
+              "application/json": {
+                "example": {
+                  "success": false,
+                  "message": "Token inválido ou ausente."
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Atualização não encontrada."
+          },
+          "500": {
+            "description": "Erro ao editar atualização.",
+            "content": {
+              "application/json": {
+                "example": {
+                  "success": false,
+                  "message": "Erro ao editar atualização."
+                }
+              }
+            }
+          }
         }
       }
     },
     "/api/encontros": {
       "get": {
+        "tags": ["Encontros"],
         "summary": "Listar encontros",
-        "description": "Retorna todos os encontros cadastrados.",
+        "description": "Retorna todos os encontros cadastrados. Requer autenticação JWT de admin.",
+        "security": [{ "bearerAuth": [] }],
         "responses": {
           "200": {
             "description": "Lista de encontros. Exemplo de resposta:",
@@ -514,12 +642,36 @@
                 }
               }
             }
+          },
+          "401": {
+            "description": "Não autorizado.",
+            "content": {
+              "application/json": {
+                "example": {
+                  "success": false,
+                  "message": "Token inválido ou ausente."
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Erro ao buscar encontros.",
+            "content": {
+              "application/json": {
+                "example": {
+                  "success": false,
+                  "message": "Erro ao buscar encontros."
+                }
+              }
+            }
           }
         }
       },
       "post": {
+        "tags": ["Encontros"],
         "summary": "Criar encontro (admin)",
-        "description": "Cria um novo encontro com upload de arquivos PDF (admin). Envie os campos como multipart/form-data.",
+        "description": "Cria um novo encontro com upload de arquivos PDF. Requer autenticação JWT de admin. Envie os campos como multipart/form-data.",
+        "security": [{ "bearerAuth": [] }],
         "requestBody": {
           "required": true,
           "content": {
@@ -548,14 +700,38 @@
         "responses": {
           "201": { "description": "Encontro criado com sucesso." },
           "400": { "description": "Dados inválidos ou arquivos ausentes." },
-          "413": { "description": "Arquivo muito grande." }
+          "401": {
+            "description": "Não autorizado.",
+            "content": {
+              "application/json": {
+                "example": {
+                  "success": false,
+                  "message": "Token inválido ou ausente."
+                }
+              }
+            }
+          },
+          "413": { "description": "Arquivo muito grande." },
+          "500": {
+            "description": "Erro ao criar encontro.",
+            "content": {
+              "application/json": {
+                "example": {
+                  "success": false,
+                  "message": "Erro ao criar encontro."
+                }
+              }
+            }
+          }
         }
       }
     },
     "/api/encontros/{id}": {
       "delete": {
+        "tags": ["Encontros"],
         "summary": "Remover encontro (admin)",
-        "description": "Remove um encontro existente.",
+        "description": "Remove um encontro existente. Requer autenticação JWT de admin.",
+        "security": [{ "bearerAuth": [] }],
         "parameters": [
           {
             "name": "id",
@@ -567,14 +743,40 @@
         ],
         "responses": {
           "200": { "description": "Encontro removido com sucesso." },
-          "404": { "description": "Encontro não encontrado." }
+          "401": {
+            "description": "Não autorizado.",
+            "content": {
+              "application/json": {
+                "example": {
+                  "success": false,
+                  "message": "Token inválido ou ausente."
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Encontro não encontrado."
+          },
+          "500": {
+            "description": "Erro ao remover encontro.",
+            "content": {
+              "application/json": {
+                "example": {
+                  "success": false,
+                  "message": "Erro ao remover encontro."
+                }
+              }
+            }
+          }
         }
       }
     },
     "/api/encontros/{id}/slide": {
       "get": {
+        "tags": ["Encontros"],
         "summary": "Baixar slide teórico do encontro",
-        "description": "Baixa o PDF dos slides teóricos do encontro.",
+        "description": "Baixa o PDF dos slides teóricos do encontro. Requer autenticação JWT de admin.",
+        "security": [{ "bearerAuth": [] }],
         "parameters": [
           {
             "name": "id",
@@ -585,15 +787,44 @@
           }
         ],
         "responses": {
-          "200": { "description": "Arquivo PDF retornado com sucesso." },
-          "404": { "description": "Slide não encontrado." }
+          "200": {
+            "description": "Arquivo PDF retornado com sucesso.",
+            "content": {
+              "application/pdf": {}
+            }
+          },
+          "401": {
+            "description": "Não autorizado.",
+            "content": {
+              "application/json": {
+                "example": {
+                  "success": false,
+                  "message": "Token inválido ou ausente."
+                }
+              }
+            }
+          },
+          "404": { "description": "Slide não encontrado." },
+          "500": {
+            "description": "Erro ao buscar slide.",
+            "content": {
+              "application/json": {
+                "example": {
+                  "success": false,
+                  "message": "Erro ao buscar slide."
+                }
+              }
+            }
+          }
         }
       }
     },
     "/api/encontros/{id}/material": {
       "get": {
+        "tags": ["Encontros"],
         "summary": "Baixar material de apoio do encontro",
-        "description": "Baixa o PDF do material de apoio do encontro.",
+        "description": "Baixa o PDF do material de apoio do encontro. Requer autenticação JWT de admin.",
+        "security": [{ "bearerAuth": [] }],
         "parameters": [
           {
             "name": "id",
@@ -604,8 +835,35 @@
           }
         ],
         "responses": {
-          "200": { "description": "Arquivo PDF retornado com sucesso." },
-          "404": { "description": "Arquivo não encontrado." }
+          "200": {
+            "description": "Arquivo PDF retornado com sucesso.",
+            "content": {
+              "application/pdf": {}
+            }
+          },
+          "401": {
+            "description": "Não autorizado.",
+            "content": {
+              "application/json": {
+                "example": {
+                  "success": false,
+                  "message": "Token inválido ou ausente."
+                }
+              }
+            }
+          },
+          "404": { "description": "Arquivo não encontrado." },
+          "500": {
+            "description": "Erro ao buscar material.",
+            "content": {
+              "application/json": {
+                "example": {
+                  "success": false,
+                  "message": "Erro ao buscar material."
+                }
+              }
+            }
+          }
         }
       }
     }

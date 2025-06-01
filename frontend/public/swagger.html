@@ -16,9 +16,7 @@
       href="assets/logo-labem.png"
       type="image/x-icon"
     />
-
     <style>
-      /* Layout simples e responsivo */
       html,
       body {
         height: 100%;
@@ -36,31 +34,70 @@
           padding: 8px;
         }
       }
+      /* Loader estilizado */
+      #loading {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: #ffffff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 9999;
+      }
+
+      .spinner {
+        border: 6px solid #e0e0e0;
+        border-top: 6px solid #007bff;
+        border-radius: 50%;
+        width: 48px;
+        height: 48px;
+        animation: spin 1s linear infinite;
+      }
+
+      @keyframes spin {
+        to {
+          transform: rotate(360deg);
+        }
+      }
     </style>
   </head>
   <body>
-    <!-- Container onde o Swagger UI será renderizado -->
-    <div id="swagger-ui"></div>
+    <!-- Loader -->
+    <div id="loading">
+      <div class="spinner"></div>
+    </div>
 
-    <!-- Importa o JS do Swagger UI via CDN -->
+    <!-- Swagger UI container -->
+    <div
+      id="swagger-ui"
+      style="display: none"
+    ></div>
+
+    <!-- Swagger scripts -->
     <script src="https://unpkg.com/swagger-ui-dist@5.17.12/swagger-ui-bundle.js"></script>
     <script src="https://unpkg.com/swagger-ui-dist@5.17.12/swagger-ui-standalone-preset.js"></script>
     <script>
-      // Inicializa o Swagger UI apontando para o arquivo swagger.json do backend
       window.onload = function () {
         const ui = SwaggerUIBundle({
-          // Altere a URL abaixo para o endpoint real do seu backend
           url: 'https://labem.onrender.com/swagger.json',
           dom_id: '#swagger-ui',
           presets: [SwaggerUIBundle.presets.apis, SwaggerUIStandalonePreset],
           layout: 'BaseLayout',
-          docExpansion: 'none', // Inicia com os endpoints fechados
+          docExpansion: 'none',
           deepLinking: true,
           showExtensions: true,
           showCommonExtensions: true,
           supportedSubmitMethods: [],
+          onComplete: () => {
+            // Esconde o loader e exibe a UI
+            document.getElementById('loading').style.display = 'none';
+            document.getElementById('swagger-ui').style.display = 'block';
+          },
         });
-        // Exponibiliza o objeto ui para debug se necessário
+
         window.ui = ui;
       };
     </script>

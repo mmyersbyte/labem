@@ -5,39 +5,36 @@ import express from 'express';
 
 const router = express.Router();
 
+// Expressões Regulares para domínios permitidos
+const allowedOriginsRegex = [
+  /^https:\/\/(www\.)?labemunisul\.com\.br$/,
+  /^https:\/\/labem\.vercel\.app$/,
+];
+
+// Endpoint para servir o swagger.json com verificação de origem
 router.get('/swagger.json', (req, res) => {
-  const allowedReferers = [
-    'https://www.labemunisul.com.br',
-    'https://labemunisul.com.br',
-    'https://labem.vercel.app',
-  ];
+  // Tenta obter Origin ou Referer
+  const origin = req.get('origin') || req.get('referer') || '';
 
-  // Obtém o header Referer da requisição
-  const referer = req.get('referer') || '';
-  // Verifica se o Referer começa com algum domínio permitido
-  const refererOk = allowedReferers.some((domain) =>
-    referer.startsWith(domain)
-  );
+  // Verifica se o origin/referer corresponde a algum dos domínios permitidos via regex
+  const originOk = allowedOriginsRegex.some((regex) => regex.test(origin));
 
-  if (!refererOk) {
-    // Se não for permitido, retorna 403 (Forbidden)
+  if (!originOk) {
     return res
       .status(403)
       .json({ message: 'Acesso não autorizado à documentação.' });
   }
 
-  // Resolve o caminho absoluto do arquivo swagger.json
+  // Caminho absoluto do arquivo swagger.json
   const __filename = fileURLToPath(import.meta.url);
   const __dirname = path.dirname(__filename);
   const swaggerPath = path.join(__dirname, '../swagger.json');
 
-  // Lê e retorna o conteúdo do arquivo swagger.json
+  // Lê e envia o conteúdo do swagger.json
   fs.readFile(swaggerPath, 'utf8', (err, data) => {
     if (err) {
-      // Se não encontrar o arquivo, retorna 404
       return res.status(404).json({ message: 'swagger.json não encontrado' });
     }
-    // Define o tipo de conteúdo como application/json
     res.type('application/json').send(data);
   });
 });
