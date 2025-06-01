@@ -1,4 +1,4 @@
-export default function notFound(req, res, next) {
+export default function notFoundHandler(req, res, next) {
   res.status(404).json({
     error: 'Rota não encontrada',
     method: req.method,

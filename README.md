@@ -99,7 +99,7 @@ Clone o repositório, crie um arquivo <code>.env</code> baseado no exemplo dispo
 <h2>Deploy</h2>
 
 <p>
-O front-end da aplicação foi publicado com a code>Vercel</code>. O back-end está publicado na 
+O front-end da aplicação foi publicado com a <code>Vercel</code>. O back-end está publicado na 
 <code>Render</code>. A URL gerada permite que o front consuma a API normalmente.
 
 </p>

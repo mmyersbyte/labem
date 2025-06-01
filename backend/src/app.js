@@ -6,8 +6,10 @@ import updatesRoutes from './routes/updates.js';
 import encontrosRoutes from './routes/encontros.js';
 import authAdminRoutes from './routes/authAdmin.js';
 import swaggerRoute from './routes/swaggerRoute.js';
-import notFound from './middleware/notFound.js';
-import errorHandler from './middleware/erroHandler.js';
+import notFoundHandler from './middleware/notFoundHandler.js';
+
+import errorHandler from './middleware/errorHandler.js';
+
 const app = express();
 
 app.use(
@@ -32,6 +34,6 @@ app.use('/api/updates', updatesRoutes);
 app.use('/api/encontros', encontrosRoutes);
 app.use('/api/admin', authAdminRoutes);
 app.use(swaggerRoute);
-app.use(notFound);
+app.use(notFoundHandler);
 app.use(errorHandler);
 export default app;
