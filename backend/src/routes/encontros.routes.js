@@ -47,8 +47,8 @@ router.post(
   '/',
   authenticateJWT,
   authorizeAdmin,
-  validateBody(encontroSchema),
   handleUpload,
+  validateBody(encontroSchema),
   handleMulterErrors,
   criarEncontro
 );
