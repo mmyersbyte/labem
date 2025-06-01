@@ -133,14 +133,7 @@ window.salvarEdicao = async function (id, campo, valor) {
   const titulo = box.querySelector('h3').innerText;
   const paragrafo = box.querySelector('p').innerText;
   const icone = Array.from(box.querySelector('i').classList)
-    .filter(
-      (c) =>
-        c.startsWith('fa-') &&
-        c !== 'fa-solid' &&
-        c !== 'fa' &&
-        c !== 'fa-regular' &&
-        c !== 'fa-brands'
-    )
+    .filter((c) => c.startsWith('fa-'))
     .join(' ');
   const token = checarAutenticacao();
   if (!token) return;
@@ -149,7 +142,7 @@ window.salvarEdicao = async function (id, campo, valor) {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',
-        Authorization: `Bearer ${token}`, // Envia o token JWT
+        Authorization: `Bearer ${token}`,
       },
       body: JSON.stringify({ icone, titulo, paragrafo }),
     });
