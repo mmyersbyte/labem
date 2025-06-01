@@ -163,15 +163,7 @@ window.addEventListener('DOMContentLoaded', function () {
       const box = e.target.closest('.update-box');
       const id = box.getAttribute('data-id');
       const icone = Array.from(box.querySelector('i').classList)
-        .filter(
-          (c) =>
-            c.startsWith('fa-') &&
-            c !== 'fa-solid' &&
-            c !== 'fa' &&
-            c !== 'fa-regular' &&
-            c !== 'fa-solid' &&
-            c !== 'fa-brands'
-        )
+        .filter((c) => c.startsWith('fa-'))
         .join(' ');
       const titulo = box.querySelector('h3').innerText;
       const paragrafo = box.querySelector('p').innerText;
