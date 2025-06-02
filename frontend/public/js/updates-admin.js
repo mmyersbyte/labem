@@ -12,22 +12,6 @@ const topicosContainer = document.getElementById('topicos-container');
 
 window.addEventListener('DOMContentLoaded', carregarAtualizacoes);
 
-// Função utilitária para obter o token JWT salvo
-function getToken() {
-  return localStorage.getItem('token');
-}
-
-// Função utilitária para checar autenticação
-function checarAutenticacao() {
-  const token = getToken();
-  if (!token) {
-    // Se não houver token, redireciona para o login
-    window.location.href = 'login.html';
-    return false;
-  }
-  return token;
-}
-
 async function carregarAtualizacoes() {
   topicosContainer.innerHTML = '<p style="color:white">Carregando...';
   try {
@@ -82,17 +66,19 @@ if (form) {
       });
       return;
     }
-    const token = checarAutenticacao();
-    if (!token) return;
     try {
       const res = await fetch(API_URL, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          Authorization: `Bearer ${token}`, // Envia o token JWT
         },
+        credentials: 'include',
         body: JSON.stringify({ icone, titulo, paragrafo }),
       });
+      if (res.status === 401) {
+        window.location.href = 'login.html';
+        return;
+      }
       const data = await res.json();
       if (data.success) {
         form.reset();
@@ -135,14 +121,10 @@ window.deletarUpdate = async function (id) {
     cancelButtonText: 'Cancelar',
   }).then(async (result) => {
     if (!result.isConfirmed) return;
-    const token = checarAutenticacao();
-    if (!token) return;
     try {
       const res = await fetch(`${API_URL}/${id}`, {
         method: 'DELETE',
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
+        credentials: 'include',
       });
       const data = await res.json();
       if (data.success) {
@@ -180,15 +162,13 @@ window.salvarEdicao = async function (id, campo, valor) {
   const icone = Array.from(box.querySelector('i').classList)
     .filter((c) => c.startsWith('fa-'))
     .join(' ');
-  const token = checarAutenticacao();
-  if (!token) return;
   try {
     const res = await fetch(`${API_URL}/${id}`, {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',
-        Authorization: `Bearer ${token}`,
       },
+      credentials: 'include',
       body: JSON.stringify({ icone, titulo, paragrafo }),
     });
     const data = await res.json();
@@ -242,17 +222,19 @@ window.addEventListener('DOMContentLoaded', function () {
         });
         return;
       }
-      const token = checarAutenticacao();
-      if (!token) return;
       try {
         const res = await fetch(`${API_URL}/${id}`, {
           method: 'PATCH',
           headers: {
             'Content-Type': 'application/json',
-            Authorization: `Bearer ${token}`, // Envia o token JWT
           },
+          credentials: 'include',
           body: JSON.stringify({ icone, titulo, paragrafo }),
         });
+        if (res.status === 401) {
+          window.location.href = 'login.html';
+          return;
+        }
         const data = await res.json();
         if (data.success) {
           const modal = bootstrap.Modal.getInstance(

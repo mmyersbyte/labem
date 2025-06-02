@@ -77,21 +77,6 @@ async function carregarEncontros() {
   }
 }
 
-// Função utilitária para obter o token JWT salvo
-function getToken() {
-  return localStorage.getItem('token');
-}
-
-// Função utilitária para checar autenticação
-function checarAutenticacao() {
-  const token = getToken();
-  if (!token) {
-    window.location.href = 'login.html';
-    return false;
-  }
-  return token;
-}
-
 // Overlay de loading minimalista
 function mostrarLoading() {
   if (document.getElementById('overlay-loading-encontros')) return;
@@ -139,16 +124,16 @@ async function deletarEncontro(id) {
     if (!confirm('Tem certeza que deseja deletar este encontro?')) return;
   }
 
-  const token = checarAutenticacao();
-  if (!token) return;
   mostrarLoading();
   try {
     const res = await fetch(`${API_ENCONTROS}/${id}`, {
       method: 'DELETE',
-      headers: {
-        Authorization: `Bearer ${token}`, // Envia o token JWT
-      },
+      credentials: 'include',
     });
+    if (res.status === 401) {
+      window.location.href = 'login.html';
+      return;
+    }
     if (!res.ok) {
       console.error(
         'Erro HTTP ao deletar encontro:',
@@ -336,17 +321,19 @@ if (formEncontro) {
     formData.append('slideTeorico', slideTeorico);
     formData.append('materialApoio', materialApoio);
 
-    const token = checarAutenticacao();
+    const token = getToken();
     if (!token) return;
     mostrarLoading();
     try {
       const res = await fetch(API_ENCONTROS, {
         method: 'POST',
-        headers: {
-          Authorization: `Bearer ${token}`, // Envia o token JWT
-        },
+        credentials: 'include',
         body: formData,
       });
+      if (res.status === 401) {
+        window.location.href = 'login.html';
+        return;
+      }
       if (!res.ok) {
         console.error(
           'Erro HTTP ao adicionar encontro:',

@@ -22,9 +22,15 @@
   },
   "tags": [
     { "name": "Auth", "description": "Autenticação de usuários e admins" },
-    { "name": "Contato", "description": "Mensagens de contato" },
-    { "name": "Atualizações", "description": "Gerenciamento de atualizações" },
-    { "name": "Encontros", "description": "Gerenciamento de encontros" }
+    { "name": "Contato", "description": "Mensagens de contato via formulário" },
+    {
+      "name": "Atualizações",
+      "description": "Gerenciamento de atualizações de notícias do site"
+    },
+    {
+      "name": "Encontros",
+      "description": "Gerenciamento de encontros e materiais para eventos"
+    }
   ],
   "paths": {
     "/auth/login": {
@@ -462,65 +468,6 @@
           }
         }
       },
-      "put": {
-        "tags": ["Atualizações"],
-        "summary": "Editar atualização (admin)",
-        "description": "Edita uma atualização existente. Requer autenticação JWT de admin.",
-        "security": [{ "bearerAuth": [] }],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": { "type": "string" },
-            "description": "ID da atualização a ser editada"
-          }
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "icone": { "type": "string", "example": "fa-star" },
-                  "titulo": { "type": "string", "example": "Título editado" },
-                  "paragrafo": { "type": "string", "example": "Texto editado." }
-                },
-                "required": ["icone", "titulo", "paragrafo"]
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": { "description": "Atualização editada com sucesso." },
-          "401": {
-            "description": "Não autorizado.",
-            "content": {
-              "application/json": {
-                "example": {
-                  "success": false,
-                  "message": "Token inválido ou ausente."
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Atualização não encontrada."
-          },
-          "500": {
-            "description": "Erro ao editar atualização.",
-            "content": {
-              "application/json": {
-                "example": {
-                  "success": false,
-                  "message": "Erro ao editar atualização."
-                }
-              }
-            }
-          }
-        }
-      },
       "delete": {
         "tags": ["Atualizações"],
         "summary": "Remover atualização (admin)",
@@ -764,6 +711,73 @@
                 "example": {
                   "success": false,
                   "message": "Erro ao remover encontro."
+                }
+              }
+            }
+          }
+        }
+      },
+      "patch": {
+        "tags": ["Encontros"],
+        "summary": "Editar parcialmente encontro (admin)",
+        "description": "Edita parcialmente um encontro existente. Requer autenticação JWT de admin. Envie os campos como multipart/form-data. Pode editar título, parágrafo e/ou enviar novos arquivos PDF.",
+        "security": [{ "bearerAuth": [] }],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string" },
+            "description": "ID do encontro a ser editado"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "titulo": {
+                    "type": "string",
+                    "example": "Novo título do encontro"
+                  },
+                  "paragrafo": {
+                    "type": "string",
+                    "example": "Nova descrição do encontro."
+                  },
+                  "slideTeorico": { "type": "string", "format": "binary" },
+                  "materialApoio": { "type": "string", "format": "binary" }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": { "description": "Encontro editado com sucesso." },
+          "400": { "description": "Dados inválidos ou arquivos ausentes." },
+          "401": {
+            "description": "Não autorizado.",
+            "content": {
+              "application/json": {
+                "example": {
+                  "success": false,
+                  "message": "Token inválido ou ausente."
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Encontro não encontrado."
+          },
+          "413": { "description": "Arquivo muito grande." },
+          "500": {
+            "description": "Erro ao editar encontro.",
+            "content": {
+              "application/json": {
+                "example": {
+                  "success": false,
+                  "message": "Erro ao editar encontro."
                 }
               }
             }

@@ -9,6 +9,7 @@ import authAdminRoutes from './routes/authAdmin.routes.js';
 import swagger from './routes/swagger.routes.js';
 import notFoundHandler from './middleware/notFoundHandler.js';
 import errorHandler from './middleware/errorHandler.js';
+import cookieParser from 'cookie-parser';
 
 const app = express();
 
@@ -28,6 +29,7 @@ app.use(
 );
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(cookieParser());
 app.use('/', rootRoutes);
 app.use('/auth', authRoutes);
 app.use('/api/contact', contactRoutes);

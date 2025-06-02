@@ -26,9 +26,16 @@ export async function loginAdmin(req, res) {
       { expiresIn: '2h' }
     );
 
+    // Envia o token como cookie httpOnly
+    res.cookie('token', token, {
+      httpOnly: true,
+      secure: true, // só HTTPS em produção
+      sameSite: 'strict',
+      maxAge: 2 * 60 * 60 * 1000, // 2 horas
+    });
+
     return res.status(200).json({
       message: 'Login administrativo realizado com sucesso!',
-      token,
       isAdmin: true,
     });
   } catch (error) {

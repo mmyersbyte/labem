@@ -7,17 +7,17 @@ import jwt from 'jsonwebtoken';
  * Se inválido ou ausente, retorna erro 401 (não autorizado).
  */
 export function authenticateJWT(req, res, next) {
-  // O token deve ser enviado no header: Authorization: Bearer <token>
+  // O token pode vir do header ou do cookie
   const authHeader = req.headers.authorization;
-
-  if (!authHeader) {
-    return res.status(401).json({ message: 'Token não fornecido.' });
+  let token;
+  if (authHeader && authHeader.startsWith('Bearer ')) {
+    token = authHeader.split(' ')[1];
+  } else if (req.cookies && req.cookies.token) {
+    token = req.cookies.token;
   }
 
-  // Extrai o token do header
-  const token = authHeader.split(' ')[1];
   if (!token) {
-    return res.status(401).json({ message: 'Token inválido.' });
+    return res.status(401).json({ message: 'Token não fornecido.' });
   }
 
   try {

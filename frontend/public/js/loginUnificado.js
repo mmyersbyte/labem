@@ -38,10 +38,6 @@ document.addEventListener('DOMContentLoaded', function () {
       let data = await response.json();
 
       if (response.ok) {
-        // Salva o token JWT no localStorage se existir
-        if (data.token) {
-          localStorage.setItem('token', data.token);
-        }
         // Login de usuário comum bem-sucedido
         window.location.href = 'painel-do-ligante.html';
         return;
@@ -58,10 +54,6 @@ document.addEventListener('DOMContentLoaded', function () {
       data = await response.json();
 
       if (response.ok) {
-        // Salva o token JWT no localStorage se existir
-        if (data.token) {
-          localStorage.setItem('token', data.token);
-        }
         // Login de admin bem-sucedido
         window.location.href = 'painel-administrativo.html';
         return;

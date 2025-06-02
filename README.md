@@ -37,8 +37,7 @@ Autenticação via <code>JWT</code> (token) para rotas protegidas, uso de <code>
 
 <p>
 <strong style="font-weight:600; font-size:1.1em;">Painel Administrativo</strong><br />
-Implementei API para Últimas Notícias para manutenção do sistema principal. Desenvolvi API para upload de PDFs via <code>Multer</code>, com preview de arquivos e atualizações em tempo real. Gerenciei mensagens do formulário de contato com endpoints GET e DELETE, aumentando os números de parceria com o projeto. Automatizei a exclusão de materiais antigos no início de cada semestre. Resumindo, admins podem usar as rotas para CRIAREM, ATUALIZAREM, EDITAREM E APAGAREM dados gerais de todo o sistema.
-</p>
+Implementei API para Últimas Notícias para manutenção do sistema principal (GET updates é a única rota pública). Desenvolvi API para upload de PDFs via <code>Multer</code>, com preview de arquivos e atualizações em tempo real. Gerenciei mensagens do formulário de contato com endpoints GET e DELETE, aumentando os números de parceria com o projeto. Automatizei a exclusão de materiais antigos no início de cada semestre. Resumindo, administradores podem utilizar as rotas para criar, atualizar, e excluir dados gerais de todo o sistema. </p>
 
 <p>
 <strong style="font-weight:600; font-size:1.1em;">Painel do Ligante</strong><br />
@@ -47,11 +46,14 @@ Acesso restrito aos membros da UNISUL. Organização de eventos com profissionai
 
 <h2>Stacks</h2>
 <p>
-<code>Node</code> com <code>Express</code>, usando <code>MongoDB</code> e <code>Mongoose</code> para o banco de dados e modelagem, <code>JWT</code> e <code>bcrypt</code> para autenticação, <code>Multer</code> para upload de arquivos, <code>CORS</code> para requisições externas e <code>dotenv</code> para variáveis de ambiente. Usei <code>ESModules</code> (import/export). No desenvolvimento do front-end, utilizei <code>HTML</code> e <code>CSS</code> para a estrutura e estilo da interface, <code>Bootstrap</code> para responsividade e componentes visuais, <code>JavaScript Vanilla</code> para interatividade mais leve, e a API nativa do JS, <code>Fetch</code>, para consumir os dados da API de forma assíncrona. Os testes dos endpoints foram realizados com o <code>Thunder Client</code> (extensão do VS Code para requisições HTTP) e com o <code>HTTPie</code> via terminal.
+<code>Node</code> com <code>Express</code>, usando <code>MongoDB</code> e <code>Mongoose</code> para o banco de dados e modelagem, <code>JWT</code> e <code>bcrypt</code> para autenticação, <code>Multer</code> para upload de arquivos, <code>CORS</code> para requisições externas e <code>dotenv</code> para variáveis de ambiente. Usei <code>ESModules</code> (import/export). No desenvolvimento do front-end, utilizei <code>HTML</code> e <code>CSS</code> para a estrutura e estilo da interface, <code>Bootstrap</code> para responsividade e componentes visuais, <code>JavaScript Vanilla</code> para interatividade mais leve, e a API nativa do JS, <code>Fetch</code>, para consumir os dados da API de forma assíncrona.
+
 </p>
-
+<h2> Validação de requests </h2>
+pjoip
+<h2> Testes </h2>
+ Os testes dos endpoints foram realizados com o <code>Thunder Client</code> (extensão do VS Code para requisições HTTP) e com o <code>HTTPie</code> via terminal.
 <h2>Estrutura do Projeto</h2>
-
 <pre><code>.
 ├── frontend
 ├── backend
@@ -63,11 +65,11 @@ Acesso restrito aos membros da UNISUL. Organização de eventos com profissionai
 │       ├── config
 │       │   └── db.js
 │       ├── controllers
-│       │   ├── authAdminController.js
-│       │   ├── authController.js
-│       │   ├── contactController.js
-│       │   ├── encontrosController.js
-│       │   └── updatesController.js
+│       │   ├── authAdmin.Controller.js
+│       │   ├── auth.Controller.js
+│       │   ├── contact.Controller.js
+│       │   ├── encontros.Controller.js
+│       │   └── updates.Controller.js
 │       ├── middleware
 │       │   ├── authenticateJWT.js
 │       │   └── authorizeAdmin.js
@@ -78,12 +80,12 @@ Acesso restrito aos membros da UNISUL. Organização de eventos com profissionai
 │       │   ├── User.js
 │       │   └── UserAdmin.js
 │       └── routes
-│           ├── auth.js
-│           ├── authAdmin.js
-│           ├── contact.js
-│           ├── encontros.js
-│           ├── swaggerRoute.js
-│           └── updates.js
+│           ├── auth.routes.js
+│           ├── authAdmin.routes.js
+│           ├── contact.routes.js
+│           ├── encontros.routes.js
+│           ├── swaggerRoute.routes.js
+│           └── updates.routes.js
 </code></pre>
 
 <p>
