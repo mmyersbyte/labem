@@ -30,7 +30,7 @@ export async function loginLigante(req, res) {
     res.cookie('token', token, {
       httpOnly: true,
       secure: true, // só HTTPS em produção
-      sameSite: 'strict',
+      sameSite: 'none', // para o frontend funcionar em qualquer lugar
       maxAge: 2 * 60 * 60 * 1000, // 2 horas
     });
 
