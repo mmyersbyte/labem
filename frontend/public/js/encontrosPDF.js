@@ -298,50 +298,63 @@ function abrirModalEdicao(encontro) {
 if (formEncontro) {
   formEncontro.addEventListener('submit', async function (e) {
     e.preventDefault();
-    const titulo = document.getElementById('encontro-titulo').value.trim();
-    const paragrafo = document
-      .getElementById('encontro-paragrafo')
-      .value.trim();
-    const slideTeorico = document.getElementById('encontro-slides').files[0];
-    const materialApoio = document.getElementById('encontro-material').files[0];
-
-    if (!titulo || !paragrafo || !slideTeorico || !materialApoio) {
-      alert('Preencha todos os campos e selecione os dois arquivos PDF!');
-      console.error(
-        'Campos obrigatórios não preenchidos ou arquivos não selecionados.'
-      );
-      return;
-    }
-
-    const formData = new FormData();
-    formData.append('titulo', titulo);
-    formData.append('paragrafo', paragrafo);
-    formData.append('slideTeorico', slideTeorico);
-    formData.append('materialApoio', materialApoio);
-
-    const token = getToken();
-    if (!token) return;
-    mostrarLoading();
     try {
-      const res = await fetch(API_ENCONTROS, {
-        method: 'POST',
-        credentials: 'include',
-        body: formData,
-      });
+      const titulo = document.getElementById('encontro-titulo').value.trim();
+      const paragrafo = document
+        .getElementById('encontro-paragrafo')
+        .value.trim();
+      const slideTeorico = document.getElementById('encontro-slides').files[0];
+      const materialApoio =
+        document.getElementById('encontro-material').files[0];
+
+      if (!titulo || !paragrafo || !slideTeorico || !materialApoio) {
+        alert('Preencha todos os campos e selecione os dois arquivos PDF!');
+        console.error(
+          'Campos obrigatórios não preenchidos ou arquivos não selecionados.'
+        );
+        return;
+      }
+
+      const formData = new FormData();
+      formData.append('titulo', titulo);
+      formData.append('paragrafo', paragrafo);
+      formData.append('slideTeorico', slideTeorico);
+      formData.append('materialApoio', materialApoio);
+
+      mostrarLoading();
+      let res;
+      try {
+        res = await fetch(API_ENCONTROS, {
+          method: 'POST',
+          credentials: 'include',
+          body: formData,
+        });
+      } catch (fetchErr) {
+        esconderLoading();
+        console.error('Erro de rede/fetch:', fetchErr);
+        alert('Erro de rede ao enviar o formulário.');
+        return;
+      }
+
       if (res.status === 401) {
+        esconderLoading();
         window.location.href = 'login.html';
         return;
       }
-      if (!res.ok) {
-        console.error(
-          'Erro HTTP ao adicionar encontro:',
-          res.status,
-          res.statusText
-        );
+
+      let data;
+      try {
+        data = await res.json();
+      } catch (jsonErr) {
+        esconderLoading();
+        console.error('Erro ao processar resposta do servidor:', jsonErr);
+        alert('Resposta inesperada do servidor.');
+        return;
       }
-      const data = await res.json();
+
       if (data.success) {
         formEncontro.reset();
+        esconderLoading();
         if (window.Swal) {
           Swal.fire({
             icon: 'success',
@@ -354,6 +367,7 @@ if (formEncontro) {
         }
         carregarEncontros();
       } else {
+        esconderLoading();
         if (window.Swal) {
           Swal.fire({
             icon: 'error',
@@ -367,19 +381,11 @@ if (formEncontro) {
         console.error('Erro ao adicionar encontro:', data.message);
       }
     } catch (err) {
-      if (window.Swal) {
-        Swal.fire({
-          icon: 'error',
-          title: 'Erro de conexão',
-          text: 'Erro ao conectar com o servidor.',
-          confirmButtonColor: '#146677',
-        });
-      } else {
-        alert('Erro ao conectar com o servidor.');
-      }
-      console.error('Erro ao adicionar encontro:', err);
-    } finally {
       esconderLoading();
+      console.error('Erro inesperado no submit:', err);
+      alert(
+        'Erro inesperado ao enviar o formulário. Veja o console para detalhes.'
+      );
     }
   });
 }
