@@ -30,7 +30,9 @@ Sistema desenvolvido para fortalecer o networking acadêmico, divulgar eventos e
 
 <h2>Autenticação e Segurança</h2>
 <p>
-Autenticação via <code>JWT</code> (token) para rotas protegidas, uso de <code>dotenv</code> para variáveis sensíveis, senhas criptografadas com <code>bcrypt</code> e <code>CORS</code> habilitado para integração front-end/back-end.
+A autenticação <code>JWT</code> agora utiliza <strong>cookies httpOnly</strong> para armazenar o token de sessão, aumentando a segurança contra ataques XSS. O backend faz uso do middleware <code>cookie-parser</code> para ler os cookies de autenticação nas requisições protegidas. O frontend foi adaptado para não manipular tokens diretamente, usando <code>credentials: 'include'</code> em todas as requisições autenticadas.
+ uso de <code>dotenv</code> para variáveis sensíveis, senhas criptografadas com <code>bcrypt</code> e <code>CORS</code> habilitado para integração front-end/back-end.
+
 </p>
 
 <h2>Painéis e Funcionalidades</h2>
@@ -49,10 +51,17 @@ Acesso restrito aos membros da UNISUL. Organização de eventos com profissionai
 <code>Node</code> com <code>Express</code>, usando <code>MongoDB</code> e <code>Mongoose</code> para o banco de dados e modelagem, <code>JWT</code> e <code>bcrypt</code> para autenticação, <code>Multer</code> para upload de arquivos, <code>CORS</code> para requisições externas e <code>dotenv</code> para variáveis de ambiente. Usei <code>ESModules</code> (import/export). No desenvolvimento do front-end, utilizei <code>HTML</code> e <code>CSS</code> para a estrutura e estilo da interface, <code>Bootstrap</code> para responsividade e componentes visuais, <code>JavaScript Vanilla</code> para interatividade mais leve, e a API nativa do JS, <code>Fetch</code>, para consumir os dados da API de forma assíncrona.
 
 </p>
-<h2> Validação de requests </h2>
-pjoip
-<h2> Testes </h2>
- Os testes dos endpoints foram realizados com o <code>Thunder Client</code> (extensão do VS Code para requisições HTTP) e com o <code>HTTPie</code> via terminal.
+<h2>Validação de Requests</h2>
+<p>
+Utilizei o <code>Joi</code> para validação robusta dos dados recebidos nas rotas protegidas do backend. Os schemas garantem que os campos obrigatórios estejam presentes e com o formato correto, tanto para criação quanto para edição de recursos (ex: encontros, updates, autenticação). A validação é feita via middleware, retornando mensagens obvias. 
+</p>
+
+<h2>Testes Automatizados</h2>
+<p>
+Os testes unitários foram implementados com o <code>Poku</code>
+Além disso, utilizei <code>Thunder Client</code> e <code>HTTPie</code> para testes manuais dos endpoints.
+</p>
+
 <h2>Estrutura do Projeto</h2>
 <pre><code>.
 ├── frontend
