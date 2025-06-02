@@ -1,13 +1,13 @@
 // URL base da API de encontros
-const API_ENCONTROS = 'https://labem.onrender.com/api/encontros';
+const API_ENCONTROS = 'https://api.labemunisul.com.br/api/encontros';
 
 const formEncontro = document.getElementById('form-encontro');
 const previewContainer = document.getElementById('encontros-preview');
 
 // Função para criar o HTML do card de preview do encontro, agora com botão de editar e deletar
 function criarCardEncontro(encontro) {
-  const slideUrl = `https://labem.onrender.com/api/encontros/${encontro._id}/slide`;
-  const materialUrl = `https://labem.onrender.com/api/encontros/${encontro._id}/material`;
+  const slideUrl = `https://api.labemunisul.com.br/api/encontros/${encontro._id}/slide`;
+  const materialUrl = `https://api.labemunisul.com.br/api/encontros/${encontro._id}/material`;
   return `
     <div class="encontro-card admin-preview-card" data-id="${encontro._id}">
       <div class="card-header">

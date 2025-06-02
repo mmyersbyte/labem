@@ -1,11 +1,11 @@
 // Script para carregar e exibir os encontros na tela do painel do ligante
-const API_ENCONTROS = 'https://labem.onrender.com/api/encontros';
+const API_ENCONTROS = 'https://api.labemunisul.com.br/api/encontros';
 const grid = document.getElementById('encontros-grid');
 const LS_KEY = 'encontrosLigante';
 
 function criarCardLigante(encontro) {
-  const slideUrl = `https://labem.onrender.com/api/encontros/${encontro._id}/slide`;
-  const materialUrl = `https://labem.onrender.com/api/encontros/${encontro._id}/material`;
+  const slideUrl = `https://api.labemunisul.com.br/api/encontros/${encontro._id}/slide`;
+  const materialUrl = `https://api.labemunisul.com.br/api/encontros/${encontro._id}/material`;
   return `
     <div class="encontro-card">
       <div class="card-header">
@@ -100,7 +100,7 @@ async function carregarEncontrosLigante() {
 
 async function checarAutenticacaoLigante() {
   try {
-    const res = await fetch('https://labem.onrender.com/api/encontros', {
+    const res = await fetch('https://api.labemunisul.com.br/api/encontros', {
       credentials: 'include',
     });
     if (res.status === 401) {

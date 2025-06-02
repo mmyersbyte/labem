@@ -16,7 +16,11 @@ const app = express();
 app.use(
   cors({
     origin: function (origin, callback) {
-      const allowedOrigins = [/^https:\/\/(www\.)?labemunisul\.com\.br$/];
+      const allowedOrigins = [
+        /^https:\/\/(www\.)?labemunisul\.com\.br$/,
+        /^https:\/\/api\.labemunisul\.com\.br$/,
+      ];
+      // const allowedOrigins = [/^https:\/\/(www\.)?labemunisul\.com\.br$/];
       if (!origin || allowedOrigins.some((regex) => regex.test(origin))) {
         return callback(null, true);
       }

@@ -28,7 +28,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     try {
       // 1. Tenta autenticar como usuário comum
-      let response = await fetch('https://labem.onrender.com/auth/login', {
+      let response = await fetch('https://api.labemunisul.com.br/auth/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         credentials: 'include', // Garante envio de cookies de sessão
@@ -44,7 +44,7 @@ document.addEventListener('DOMContentLoaded', function () {
       }
 
       // 2. Se falhar, tenta autenticar como administrador
-      response = await fetch('https://labem.onrender.com/api/admin/login', {
+      response = await fetch('https://api.labemunisul.com.br/api/admin/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         credentials: 'include',

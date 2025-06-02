@@ -29,9 +29,10 @@ export async function loginLigante(req, res) {
     // Envia o token como cookie httpOnly
     res.cookie('token', token, {
       httpOnly: true,
-      secure: true, // só HTTPS em produção
-      sameSite: 'none', // para o frontend funcionar em qualquer lugar
-      maxAge: 2 * 60 * 60 * 1000, // 2 horas
+      secure: true,
+      sameSite: 'lax',
+      domain: '.labemunisul.com.br',
+      maxAge: 2 * 60 * 60 * 1000,
     });
 
     return res.status(200).json({

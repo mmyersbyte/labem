@@ -9,7 +9,7 @@ async function carregarMensagensContato() {
     '<p style="color:#146677;text-align:center;">Mensagens do Formulário de Contato</p>';
   try {
     // Faz a requisição GET para o render
-    const res = await fetch('https://labem.onrender.com/api/contact', {
+    const res = await fetch('https://api.labemunisul.com.br/api/contact', {
       credentials: 'include',
     });
     const data = await res.json();
@@ -72,10 +72,13 @@ async function carregarMensagensContato() {
 // Função para deletar uma mensagem de contato pelo ID
 async function deletarMensagemContato(id) {
   try {
-    const res = await fetch(`https://labem.onrender.com/api/contact/${id}`, {
-      method: 'DELETE',
-      credentials: 'include',
-    });
+    const res = await fetch(
+      `https://api.labemunisul.com.br/api/contact/${id}`,
+      {
+        method: 'DELETE',
+        credentials: 'include',
+      }
+    );
     const data = await res.json();
     if (data.success) {
       carregarMensagensContato(); // Atualiza a lista
@@ -110,7 +113,7 @@ window.addEventListener('DOMContentLoaded', carregarMensagensContato);
 
 async function checarAutenticacaoAdmin() {
   try {
-    const res = await fetch('https://labem.onrender.com/api/updates', {
+    const res = await fetch('https://api.labemunisul.com.br/api/updates', {
       credentials: 'include',
     });
     if (res.status === 401) {

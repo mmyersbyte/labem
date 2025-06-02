@@ -1,7 +1,7 @@
 // Lógica de atualizações (updates) do painel administrativo
 
 // URL base da API de atualizações
-const API_URL = 'https://labem.onrender.com/api/updates';
+const API_URL = 'https://api.labemunisul.com.br/api/updates';
 
 // Elementos do DOM para updates
 const form = document.getElementById('form-topicos');
