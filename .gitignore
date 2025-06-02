@@ -69,4 +69,6 @@ debug.*
 # Node modules e locks do front-end
 frontend/node_modules/
 frontend/package-lock.json
-frontend/yarn.lock 
+frontend/yarn.lock
+
+resumo/ 

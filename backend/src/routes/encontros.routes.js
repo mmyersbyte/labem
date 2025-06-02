@@ -48,6 +48,7 @@ router.post(
   authenticateJWT,
   authorizeAdmin,
   handleUpload,
+  validateBody(encontroSchema),
   handleMulterErrors,
   criarEncontro
 );
@@ -65,6 +66,7 @@ router.patch(
   authenticateJWT,
   authorizeAdmin,
   handleUpload,
+  validateBody(encontroSchema),
   handleMulterErrors,
   patchEncontro
 );

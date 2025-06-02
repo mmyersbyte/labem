@@ -107,3 +107,18 @@ async function deletarMensagemContato(id) {
 
 // Chama a função ao carregar a página
 window.addEventListener('DOMContentLoaded', carregarMensagensContato);
+
+async function checarAutenticacaoAdmin() {
+  try {
+    const res = await fetch('https://labem.onrender.com/api/updates', {
+      credentials: 'include',
+    });
+    if (res.status === 401) {
+      window.location.href = 'login.html';
+    }
+  } catch (err) {
+    console.error('Erro ao checar autenticação:', err);
+  }
+}
+
+window.addEventListener('DOMContentLoaded', checarAutenticacaoAdmin);

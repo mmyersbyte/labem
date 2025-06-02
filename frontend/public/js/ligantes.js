@@ -98,4 +98,18 @@ async function carregarEncontrosLigante() {
   }
 }
 
+async function checarAutenticacaoLigante() {
+  try {
+    const res = await fetch('https://labem.onrender.com/api/encontros', {
+      credentials: 'include',
+    });
+    if (res.status === 401) {
+      window.location.href = 'login.html';
+    }
+  } catch (err) {
+    console.error('Erro ao checar autenticação:', err);
+  }
+}
+
 window.addEventListener('DOMContentLoaded', carregarEncontrosLigante);
+window.addEventListener('DOMContentLoaded', checarAutenticacaoLigante);

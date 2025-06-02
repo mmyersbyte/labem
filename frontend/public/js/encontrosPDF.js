@@ -233,27 +233,33 @@ function abrirModalEdicao(encontro) {
     e
   ) {
     e.preventDefault();
-    const titulo = document.getElementById('edit-titulo').value.trim();
-    const paragrafo = document.getElementById('edit-paragrafo').value.trim();
-    const slideTeorico = document.getElementById('edit-slide').files[0];
-    const materialApoio = document.getElementById('edit-material').files[0];
-    if (!titulo && !paragrafo && !slideTeorico && !materialApoio) {
-      alert('Preencha pelo menos um campo para editar.');
-      return;
-    }
-    const formData = new FormData();
-    if (titulo) formData.append('titulo', titulo);
-    if (paragrafo) formData.append('paragrafo', paragrafo);
-    if (slideTeorico) formData.append('slideTeorico', slideTeorico);
-    if (materialApoio) formData.append('materialApoio', materialApoio);
-    const token = getToken();
     try {
+      const titulo = document.getElementById('edit-titulo').value.trim();
+      const paragrafo = document.getElementById('edit-paragrafo').value.trim();
+      const slideTeorico = document.getElementById('edit-slide').files[0];
+      const materialApoio = document.getElementById('edit-material').files[0];
+      if (!titulo && !paragrafo && !slideTeorico && !materialApoio) {
+        alert('Preencha pelo menos um campo para editar.');
+        return;
+      }
+      const formData = new FormData();
+      if (titulo) formData.append('titulo', titulo);
+      if (paragrafo) formData.append('paragrafo', paragrafo);
+      if (slideTeorico) formData.append('slideTeorico', slideTeorico);
+      if (materialApoio) formData.append('materialApoio', materialApoio);
       const res = await fetch(`${API_ENCONTROS}/${encontro._id}`, {
         method: 'PATCH',
         credentials: 'include',
         body: formData,
       });
-      const data = await res.json();
+      let data;
+      try {
+        data = await res.json();
+      } catch (jsonErr) {
+        console.error('Erro ao processar resposta do servidor:', jsonErr);
+        alert('Resposta inesperada do servidor.');
+        return;
+      }
       if (res.ok && data.success) {
         modal.remove();
         if (window.Swal) {
@@ -280,16 +286,10 @@ function abrirModalEdicao(encontro) {
         }
       }
     } catch (err) {
-      if (window.Swal) {
-        Swal.fire({
-          icon: 'error',
-          title: 'Erro de conexão',
-          text: 'Erro ao conectar com o servidor.',
-          confirmButtonColor: '#146677',
-        });
-      } else {
-        alert('Erro ao conectar com o servidor.');
-      }
+      console.error('Erro inesperado ao editar encontro:', err);
+      alert(
+        'Erro inesperado ao editar encontro. Veja o console para detalhes.'
+      );
     }
   };
 }

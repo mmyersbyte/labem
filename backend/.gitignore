@@ -13,4 +13,6 @@ yarn-error.log*
 .DS_Store
 *.swp
 # Ignorar arquivos do sistema
-Thumbs.db 
+Thumbs.db
+# Ignorar exceções
+!.env.example 
