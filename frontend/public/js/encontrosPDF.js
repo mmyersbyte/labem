@@ -250,9 +250,7 @@ function abrirModalEdicao(encontro) {
     try {
       const res = await fetch(`${API_ENCONTROS}/${encontro._id}`, {
         method: 'PATCH',
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
+        credentials: 'include',
         body: formData,
       });
       const data = await res.json();

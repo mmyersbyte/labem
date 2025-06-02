@@ -73,7 +73,9 @@ async function carregarEncontrosLigante() {
 
   // 2. Busca do backend e atualiza localStorage
   try {
-    const res = await fetch(API_ENCONTROS);
+    const res = await fetch(API_ENCONTROS, {
+      credentials: 'include',
+    });
     if (!res.ok) {
       grid.innerHTML =
         '<p style="color:red">Erro ao carregar encontros (HTTP ' +

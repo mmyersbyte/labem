@@ -9,7 +9,9 @@ async function carregarMensagensContato() {
     '<p style="color:#146677;text-align:center;">Mensagens do Formulário de Contato</p>';
   try {
     // Faz a requisição GET para o render
-    const res = await fetch('https://labem.onrender.com/api/contact');
+    const res = await fetch('https://labem.onrender.com/api/contact', {
+      credentials: 'include',
+    });
     const data = await res.json();
     if (data.success && data.mensagens.length > 0) {
       // Renderiza cada mensagem com botão de deletar
@@ -72,6 +74,7 @@ async function deletarMensagemContato(id) {
   try {
     const res = await fetch(`https://labem.onrender.com/api/contact/${id}`, {
       method: 'DELETE',
+      credentials: 'include',
     });
     const data = await res.json();
     if (data.success) {
