@@ -1,5 +1,7 @@
 import express from 'express';
 import cors from 'cors';
+import helmet from 'helmet';
+import cookieParser from 'cookie-parser';
 import rootRoutes from './routes/root.routes.js';
 import authRoutes from './routes/auth.routes.js';
 import contactRoutes from './routes/contact.routes.js';
@@ -9,10 +11,13 @@ import authAdminRoutes from './routes/authAdmin.routes.js';
 import swagger from './routes/swagger.routes.js';
 import notFoundHandler from './middleware/notFoundHandler.js';
 import errorHandler from './middleware/errorHandler.js';
-import cookieParser from 'cookie-parser';
+import { limiter } from './middleware/rateLimiter.js';
 
 const app = express();
 
+app.disable('x-powered-by'); //Esconder detalhes da infraestrutura dificulta ataques automatizados.
+app.use(helmet());
+app.use(limiter);
 app.use(
   cors({
     origin: function (origin, callback) {
@@ -20,7 +25,6 @@ app.use(
         /^https:\/\/(www\.)?labemunisul\.com\.br$/,
         /^https:\/\/api\.labemunisul\.com\.br$/,
       ];
-      // const allowedOrigins = [/^https:\/\/(www\.)?labemunisul\.com\.br$/];
       if (!origin || allowedOrigins.some((regex) => regex.test(origin))) {
         return callback(null, true);
       }
@@ -31,8 +35,8 @@ app.use(
     allowedHeaders: ['Content-Type', 'Authorization'],
   })
 );
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+app.use(express.json({ limit: '2mb' }));
+app.use(express.urlencoded({ extended: true, limit: '2mb' }));
 app.use(cookieParser());
 app.use('/', rootRoutes);
 app.use('/auth', authRoutes);

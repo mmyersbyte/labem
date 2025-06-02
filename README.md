@@ -30,9 +30,11 @@ Sistema desenvolvido para fortalecer o networking acadêmico, divulgar eventos e
 
 <h2>Autenticação e Segurança</h2>
 <p>
-A autenticação <code>JWT</code> agora utiliza <strong>cookies httpOnly</strong> para armazenar o token de sessão, aumentando a segurança contra ataques XSS. O backend faz uso do middleware <code>cookie-parser</code> para ler os cookies de autenticação nas requisições protegidas. O frontend foi adaptado para não manipular tokens diretamente, usando <code>credentials: 'include'</code> em todas as requisições autenticadas.
- uso de <code>dotenv</code> para variáveis sensíveis, senhas criptografadas com <code>bcrypt</code> e <code>CORS</code> habilitado para integração front-end/back-end.
+A autenticação <code>JWT</code> utiliza <strong>cookies httpOnly</strong> para armazenar o token de sessão, aumentando a segurança contra ataques XSS. O backend faz uso do middleware <code>cookie-parser</code> para ler os cookies de autenticação nas requisições protegidas. O frontend foi adaptado para não manipular tokens diretamente, usando <code>credentials: 'include'</code> em todas as requisições autenticadas. Uso a lib <code>dotenv</code> para variáveis sensíveis, senhas criptografadas com <code>bcrypt</code> e <code>CORS</code> habilitado para integração frontend/backend.
+</p>
 
+<h2>Integração de Domínios:</h2>
+O backend está hospedado em um subdomínio e o frontend no domínio principal. Isso garante o funcionamento seguro dos cookies <code>httpOnly</code> para autenticação JWT e integração correta entre frontend e backend.
 </p>
 
 <h2>Painéis e Funcionalidades</h2>
@@ -48,17 +50,22 @@ Acesso restrito aos membros da UNISUL. Organização de eventos com profissionai
 
 <h2>Stacks</h2>
 <p>
-<code>Node</code> com <code>Express</code>, usando <code>MongoDB</code> e <code>Mongoose</code> para o banco de dados e modelagem, <code>JWT</code> e <code>bcrypt</code> para autenticação, <code>Multer</code> para upload de arquivos, <code>CORS</code> para requisições externas e <code>dotenv</code> para variáveis de ambiente. Usei <code>ESModules</code> (import/export). No desenvolvimento do front-end, utilizei <code>HTML</code> e <code>CSS</code> para a estrutura e estilo da interface, <code>Bootstrap</code> para responsividade e componentes visuais, <code>JavaScript Vanilla</code> para interatividade mais leve, e a API nativa do JS, <code>Fetch</code>, para consumir os dados da API de forma assíncrona.
+<code>Node</code> com <code>Express</code>, usando <code>MongoDB</code> e <code>Mongoose</code> para o banco de dados e modelagem, <code>JWT</code> e <code>bcrypt</code> para autenticação, <code>Multer</code> para upload de arquivos, <code>CORS</code> para requisições externas e <code>dotenv</code> para variáveis de ambiente. Usei <code>ESModules</code> (import/export). No desenvolvimento do frontend, utilizei <code>HTML</code> e <code>CSS</code> para a estrutura e estilo da interface, <code>Bootstrap</code> para responsividade e componentes visuais, <code>JavaScript Vanilla</code> para interatividade mais leve, e a API nativa do JS, <code>Fetch</code>, para consumir os dados da API de forma assíncrona.
 
 </p>
+
+<h2>Logging</h2>
+<p>
+O backend utiliza a biblioteca <code>winston</code> para logging estruturado. Todos os erros e eventos importantes são registrados tanto no console quanto em arquivos na pasta <code>logs/</code> do projeto. Isso facilita o monitoramento, auditoria e manutenção do sistema.
+</p>
+
 <h2>Validação de Requests</h2>
 <p>
 Utilizei o <code>Joi</code> para validação robusta dos dados recebidos nas rotas protegidas do backend. Os schemas garantem que os campos obrigatórios estejam presentes e com o formato correto, tanto para criação quanto para edição de recursos (ex: encontros, updates, autenticação). A validação é feita via middleware, retornando mensagens obvias. 
 </p>
 
 <h2>Testes Automatizados</h2>
-<p>
-Os testes unitários foram implementados com o <code>Poku</code>
+<p> Os testes unitários foram implementados com o <code>Poku</code> leve, rápido e brasileiro! 🇧🇷
 Além disso, utilizei <code>Thunder Client</code> e <code>HTTPie</code> para testes manuais dos endpoints.
 </p>
 
@@ -78,23 +85,37 @@ Além disso, utilizei <code>Thunder Client</code> e <code>HTTPie</code> para tes
 │       │   ├── auth.Controller.js
 │       │   ├── contact.Controller.js
 │       │   ├── encontros.Controller.js
+│       │   ├── root.Controller.js
 │       │   └── updates.Controller.js
 │       ├── middleware
 │       │   ├── authenticateJWT.js
-│       │   └── authorizeAdmin.js
+│       │   ├── authorizeAdmin.js
+│       │   ├── errorHandler.js
+│       │   ├── notFoundHandler.js
+│       │   ├── rateLimiter.js
+│       │   └── validate.js
 │       ├── models
 │       │   ├── ContactMessage.js
 │       │   ├── CreateEncontro.js
 │       │   ├── Update.js
 │       │   ├── User.js
 │       │   └── UserAdmin.js
-│       └── routes
-│           ├── auth.routes.js
-│           ├── authAdmin.routes.js
-│           ├── contact.routes.js
-│           ├── encontros.routes.js
-│           ├── swaggerRoute.routes.js
-│           └── updates.routes.js
+│       ├── routes
+│       │   ├── auth.routes.js
+│       │   ├── authAdmin.routes.js
+│       │   ├── contact.routes.js
+│       │   ├── encontros.routes.js
+│       │   ├── root.routes.js
+│       │   ├── swagger.routes.js
+│       │   └── updates.routes.js
+│       ├── utils
+│       │   └── logger.js
+│       ├── validators
+│       │   ├── authValidator.js
+│       │   ├── contactValidator.js
+│       │   ├── encontroValidator.js
+│       │   └── updateValidator.js
+│       └── swagger.json
 </code></pre>
 
 <p>
@@ -110,7 +131,7 @@ Clone o repositório, crie um arquivo <code>.env</code> baseado no exemplo dispo
 <h2>Deploy</h2>
 
 <p>
-O front-end da aplicação foi publicado com a <code>Vercel</code>. O back-end está publicado na 
+O frontend da aplicação foi publicado com a <code>Vercel</code>. O backend está publicado na 
 <code>Render</code>. A URL gerada permite que o front consuma a API normalmente.
 
 </p>
