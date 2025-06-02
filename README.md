@@ -31,6 +31,7 @@ Sistema desenvolvido para fortalecer o networking acadêmico, divulgar eventos e
 <h2>Autenticação e Segurança</h2>
 <p>
 A autenticação <code>JWT</code> utiliza <strong>cookies httpOnly</strong> para armazenar o token de sessão, aumentando a segurança contra ataques XSS. O backend faz uso do middleware <code>cookie-parser</code> para ler os cookies de autenticação nas requisições protegidas. O frontend foi adaptado para não manipular tokens diretamente, usando <code>credentials: 'include'</code> em todas as requisições autenticadas. Uso a lib <code>dotenv</code> para variáveis sensíveis, senhas criptografadas com <code>bcrypt</code> e <code>CORS</code> habilitado para integração frontend/backend.
+<strong>O sistema não há sistema de cadastro, é uma equipe FIXA! Então gerei o acesso por um script temp, salvando a senha com hash por <code>bcrypt.hash()</code>  </strong>
 </p>
 
 <h2>Integração de Domínios:</h2>
@@ -41,7 +42,7 @@ O backend está hospedado em um subdomínio e o frontend no domínio principal. 
 
 <p>
 <strong style="font-weight:600; font-size:1.1em;">Painel Administrativo</strong><br />
-Implementei API para Últimas Notícias para manutenção do sistema principal (GET updates é a única rota pública). Desenvolvi API para upload de PDFs via <code>Multer</code>, com preview de arquivos e atualizações em tempo real. Gerenciei mensagens do formulário de contato com endpoints GET e DELETE, aumentando os números de parceria com o projeto. Automatizei a exclusão de materiais antigos no início de cada semestre. Resumindo, administradores podem utilizar as rotas para criar, atualizar, e excluir dados gerais de todo o sistema. </p>
+Implementei API para Últimas Notícias para manutenção do sistema principal (GET updates é a única rota pública). Desenvolvi API para upload de PDFs via <code>Multer</code>, com preview de arquivos e atualizações em tempo real. Gerenciei mensagens do formulário de contato com endpoints GET e DELETE, aumentando os números de parceria com o projeto. Resumindo, administradores podem utilizar as rotas para criar, atualizar, e excluir dados gerais de todo o sistema. </p>
 
 <p>
 <strong style="font-weight:600; font-size:1.1em;">Painel do Ligante</strong><br />
@@ -50,8 +51,7 @@ Acesso restrito aos membros da UNISUL. Organização de eventos com profissionai
 
 <h2>Stacks</h2>
 <p>
-<code>Node</code> com <code>Express</code>, usando <code>MongoDB</code> e <code>Mongoose</code> para o banco de dados e modelagem, <code>JWT</code> e <code>bcrypt</code> para autenticação, <code>Multer</code> para upload de arquivos, <code>CORS</code> para requisições externas e <code>dotenv</code> para variáveis de ambiente. Usei <code>ESModules</code> (import/export). No desenvolvimento do frontend, utilizei <code>HTML</code> e <code>CSS</code> para a estrutura e estilo da interface, <code>Bootstrap</code> para responsividade e componentes visuais, <code>JavaScript Vanilla</code> para interatividade mais leve, e a API nativa do JS, <code>Fetch</code>, para consumir os dados da API de forma assíncrona.
-
+No backend utilizei <code>Node</code> com <code>Express</code>, <code>MongoDB Atlas</code> e <code>Mongoose</code> para conexão e modelagem do banco de dados, <code>JWT</code> junto com <code>cookie-parser</code> para autenticação segura via cookies httpOnly, <code>bcrypt</code> para hash de senhas, <code>Multer</code> para upload de arquivos, <code>CORS</code> para requisições externas, <code>dotenv</code> para variáveis de ambiente, <code>winston</code> para logging estruturado, <code>express-rate-limit</code> para limitar requisições, <code>Joi</code> para validação de dados e <code>ESModules</code> (import/export). No frontend, utilizei <code>HTML</code> e <code>CSS</code> para a estrutura e estilo da interface, <code>Bootstrap</code> para responsividade e componentes visuais, <code>JavaScript Vanilla</code> para interatividade, e a API nativa do JS, <code>Fetch</code>, para consumir os dados da API de forma assíncrona.
 </p>
 
 <h2>Logging</h2>
@@ -125,7 +125,9 @@ Acesse a documentação Swagger em:
 
 <h2>Como rodar localmente</h2>
 <p>
-Clone o repositório, crie um arquivo <code>.env</code> baseado no exemplo disponível, instale as dependências com <code>npm install</code>, e (opcionalmente) ajuste o <code>CORS</code> com o regex no backend para testes com a interface gráfica.
+Clone este repositório, crie um arquivo <code>.env</code> com base no exemplo fornecido, instale as dependências com <code>npm install</code> e, se necessário, ajuste o <code>CORS</code> para permitir o uso com a interface gráfica local.
+Este sistema não possui fluxo de cadastro: O acesso é limitado a uma equipe fixa. Para gerar um usuário com acesso administrativo, utilize um script temporário que insira manualmente os dados no banco, salvando a senha com <code>bcrypt.hash()</code>.
+Todas as requisições autenticadas do frontend já usam <code>credentials: 'include'</code> para envio de cookies.<br>
 </p>
 
 <h2>Deploy</h2>
