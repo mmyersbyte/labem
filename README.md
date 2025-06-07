@@ -22,8 +22,9 @@
 <img src="assets/LABEMGITHUB.png" alt="Banner da LABEMGITHUB" />
 
 <h2>Objetivo do Projeto</h2> 
-<p>
-Sistema desenvolvido para fortalecer o networking acadêmico, divulgar eventos e workshops, além de estabelecer parcerias com marcas relevantes da área de estética e biomedicina. A UNISUL não contava com uma plataforma própria para centralizar as atividades da liga, como o compartilhamento de materiais exclusivos de palestras e encontros, as chamadas de pacientes-modelo para procedimentos estéticos via session updates ou a divulgação de marcas parceiras do setor. Pensando nisso, este sistema foi criado para preencher essas lacunas, oferecendo uma solução digital segura e eficiente, que conecta profissionais da biomedicina estética aos membros da liga. A plataforma disponibiliza painéis distintos para professores, coordenadores e membros, cada um com funcionalidades específicas que facilitam a gestão de conteúdos, a organização de eventos e a comunicação interna. Dessa forma, a liga conta agora com um ambiente centralizado, moderno e funcional, que potencializa o engajamento acadêmico e amplia o alcance das suas atividades dentro e fora da universidade. Além disso, o site principal também foi pensado para o público geral, promovendo transparência e aproximando a comunidade das ações desenvolvidas pela liga.
+<p> Sistema desenvolvido para aprimorar a gestão da Liga Acadêmica de Biomedicina Estética da UNISUL, proporcionando um ambiente digital centralizado para networking, organização de eventos, workshops e parcerias com marcas do setor. Até então, a instituição não dispunha de uma solução própria capaz de integrar o compartilhamento de materiais exclusivos, chamadas de pacientes-modelo e divulgação de parceiros estratégicos.
+O sistema disponibiliza painéis seguros e personalizados para professores, coordenadores, presidente da liga e ligantes, oferecendo controle eficiente sobre conteúdos, eventos e comunicação interna. Projetado para atender tanto ao público acadêmico quanto à comunidade externa, o projeto reforça o profissionalismo, a transparência e a excelência na gestão das atividades da liga.
+
 </p>
 
 <hr/>
