@@ -34,6 +34,7 @@ O sistema disponibiliza painéis seguros e personalizados para professores, coor
 A autenticação <code>JWT</code> utiliza <strong>cookies httpOnly</strong> para armazenar o token de sessão, aumentando a segurança contra ataques XSS. O backend faz uso do middleware <code>cookie-parser</code> para ler os cookies de autenticação nas requisições protegidas. O frontend foi adaptado para não manipular tokens diretamente, usando <code>credentials: 'include'</code> em todas as requisições autenticadas. Uso a lib <code>dotenv</code> para variáveis sensíveis, senhas criptografadas com <code>bcrypt</code> e <code>CORS</code> habilitado para integração frontend/backend.
 <strong>O sistema não há sistema de cadastro, é uma equipe FIXA! Então gerei o acesso por um script temp, salvando a senha com hash por <code>bcrypt.hash()</code>  </strong>
 </p>
+<img src="assets/cors.png" alt="Configuração CORS segura no backend" width="700" height="auto" style="border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.10);" />
 
 <h2>Integração de Domínios:</h2>
 O backend está hospedado em um subdomínio e o frontend no domínio principal. Isso garante o funcionamento seguro dos cookies <code>httpOnly</code> para autenticação JWT e integração correta entre frontend e backend.
