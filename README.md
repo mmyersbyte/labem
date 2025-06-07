@@ -63,8 +63,11 @@ O backend utiliza a biblioteca <code>winston</code> para logging estruturado. To
 
 <h2>Validação de Requests</h2>
 <p>
-Utilizei o <code>Joi</code> para validação robusta dos dados recebidos nas rotas protegidas do backend. Os schemas garantem que os campos obrigatórios estejam presentes e com o formato correto, tanto para criação quanto para edição de recursos (ex: encontros, updates, autenticação). A validação é feita via middleware, retornando mensagens obvias. 
+Utilizo Joi para garantir a validação rigorosa dos dados enviados às rotas protegidas do backend. Os schemas asseguram que todos os campos obrigatórios estejam presentes e formatados corretamente, tanto para operações de criação quanto de edição (ex: encontros, atualizações, autenticação).
+A validação é implementada como middleware, impedindo que dados inválidos cheguem à lógica da aplicação. Além das validações tradicionais, aplico expressões regulares para bloquear caracteres potencialmente perigosos (como <, >, $, ", '), reforçando a proteção contra ataques de injeção e XSS. As mensagens de erro são claras e objetivas, facilitando a identificação de problemas durante o consumo da API.
 </p>
+<img src="assets/validacao.png" alt="Validação robusta de dados com Joi e regex no backend" width="700" />
+
 
 <h2>Testes Automatizados</h2>
 <p> Os testes unitários foram implementados com o <code>Poku</code> leve, rápido e brasileiro! 🇧🇷
