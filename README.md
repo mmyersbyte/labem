@@ -31,6 +31,13 @@ O sistema disponibiliza painéis seguros e personalizados para professores, coor
 </p>
 
 <hr/>
+<h2>Docs</h2> 
+<img src="assets/swaggerLabem.png" alt="Swagger da API" />
+
+<p>
+Acesse a documentação Swagger em:  
+<a href="https://www.labemunisul.com.br/swagger.html">https://www.labemunisul.com.br/swagger.html</a>
+</p>
 
 <h2>Autenticação e Segurança</h2>
 <p>
@@ -126,10 +133,7 @@ Além disso, utilizei <code>Thunder Client</code> e <code>HTTPie</code> para tes
 │       └── swagger.json
 </code></pre>
 
-<p>
-Acesse a documentação Swagger em:  
-<a href="https://www.labemunisul.com.br/swagger.html">https://www.labemunisul.com.br/swagger.html</a>
-</p>
+
 
 <h2>Como rodar localmente</h2>
 <p>
