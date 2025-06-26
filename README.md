@@ -24,7 +24,10 @@
 </p>
 <p align="center">  <p align="center"> <img src="https://img.shields.io/badge/JWT-JSON_WEB_TOKEN-000000?style=for-the-badge&logoColor=white" alt="JWT">
 <img src="https://img.shields.io/badge/BCRYPT-HASHING-121212?style=for-the-badge&logoColor=white" alt="BCRYPT">
-    <img src="https://img.shields.io/badge/JOI-VALIDATION-31CD52?style=for-the-badge&logoColor=white" alt="JOI"> </p>
+    <img src="https://img.shields.io/badge/JOI-VALIDATION-31CD52?style=for-the-badge&logoColor=white" alt="JOI"> 
+<img src="https://img.shields.io/badge/Auth-JWT_with_httpOnly_Cookies-critical?style=for-the-badge"
+
+</p>
 
 <!-- imagem -->
 <img src="assets/LABEMGITHUB.png" alt="Banner da LABEMGITHUB" />
