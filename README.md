@@ -149,13 +149,23 @@ Além disso, utilizei <code>Thunder Client</code> e <code>HTTPie</code> para tes
 </code></pre>
 
 
-
 <h2>Como rodar localmente</h2>
-<p>
-Clone este repositório, crie um arquivo <code>.env</code> com base no exemplo fornecido, instale as dependências com <code>npm install</code> e, se necessário, ajuste o <code>CORS</code> para permitir o uso com a interface gráfica local.
-Este sistema não possui fluxo de cadastro: O acesso é limitado a uma equipe fixa. Para gerar um usuário com acesso administrativo, utilize um script temporário que insira manualmente os dados no banco, salvando a senha com <code>bcrypt.hash()</code>.
-Todas as requisições autenticadas do frontend já usam <code>credentials: 'include'</code> para envio de cookies.<br>
-</p>
+<p> CLONE A BRANCH MAIN, a Branch com TyypeScript está em dev, adpate<p/>
+<pre><code>cd backend
+npm install
+# Configure .env (MONGODB_URI, PORT=5555, JWT_SECRET, NODE_ENV=development)
+node src/script.js  *cadastro*
+npm start</code></pre>
+
+<h3>Configuração obrigatória - CORS</h3>
+<p>O sistema está em produção, possui dominio e você terá que adpatar o CORS para localhost</p>
+
+<h3>Teste da API</h3>
+<ul>
+  <li><strong>API rodando:</strong> http://localhost:5555</li>
+  <li><strong>Swagger docs:</strong> http://localhost:5555/swagger.html</li>
+  <li><strong>Usuários criados:</strong> ligante@example.com / 123456 | professor@example.com / admin123</li>
+</ul>
 
 <h2>Deploy</h2>
 
