@@ -6,7 +6,12 @@
   "scripts": {
     "start": "node --watch server.js",
     "dev": "nodemon server.js",
-    "test": "poku"
+    "test": "poku",
+    "build": "tsc",
+    "build:watch": "tsc --watch",
+    "type-check": "tsc --noEmit",
+    "clean": "rm -rf dist",
+    "script:users": "npm run build && node dist/src/script.js"
   },
   "keywords": [
     "API",
@@ -45,7 +50,16 @@
     "winston": "^3.17.0"
   },
   "devDependencies": {
+    "@types/bcrypt": "^5.0.2",
+    "@types/cookie-parser": "^1.4.9",
+    "@types/cors": "^2.8.19",
+    "@types/express": "^5.0.3",
+    "@types/express-rate-limit": "^5.1.3",
+    "@types/jsonwebtoken": "^9.0.10",
+    "@types/mongoose": "^5.11.96",
+    "@types/node": "^24.0.4",
     "nodemon": "^3.1.10",
-    "poku": "^3.0.2"
+    "poku": "^3.0.2",
+    "typescript": "^5.8.3"
   }
 }
