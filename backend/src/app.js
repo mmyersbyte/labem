@@ -38,6 +38,7 @@ app.use(
 app.use(express.json({ limit: '2mb' }));
 app.use(express.urlencoded({ extended: true, limit: '2mb' }));
 app.use(cookieParser());
+app.use('/health', (req, res) => res.send('ok')); // Rota health pública
 app.use('/', rootRoutes);
 app.use('/auth', authRoutes);
 app.use('/api/contact', contactRoutes);
