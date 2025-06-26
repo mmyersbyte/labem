@@ -16,6 +16,11 @@
   <a href="https://www.labemunisul.com.br/swagger.html">
     <img src="https://img.shields.io/badge/SWAGGER-DOCS-85EA2D?style=for-the-badge&logo=swagger&logoColor=black" alt="SWAGGER">
   </a>
+<a href="./EnglishREADME.md">
+  <img src="https://img.shields.io/badge/README%20EN-blue?style=for-the-badge&logo=readme&logoColor=white" alt="README EN">
+</a>
+
+
 </p>
 <p align="center">  <p align="center"> <img src="https://img.shields.io/badge/JWT-JSON_WEB_TOKEN-000000?style=for-the-badge&logoColor=white" alt="JWT">
 <img src="https://img.shields.io/badge/BCRYPT-HASHING-121212?style=for-the-badge&logoColor=white" alt="BCRYPT">
@@ -83,6 +88,13 @@ A validação é implementada como middleware, impedindo que dados inválidos ch
 <p> Os testes unitários foram implementados com o <code>Poku</code> leve, rápido e brasileiro! 🇧🇷
 Além disso, utilizei <code>Thunder Client</code> e <code>HTTPie</code> para testes manuais dos endpoints.
 </p>
+
+<h2>App.js do projeto</h2>
+<img src="assets/labemapp.png" alt="app.js do projeto" width="700" />
+
+<h2>Em andamento</h2>
+<p> O aplicativo está sendo "traduzido" para TypeScript para futuras features, já que a equipe atual continuará na LABEM até 2026, e uma nova equipe fixa assumirá com novas regras de négocio e manunteções futuras. </p>
+
 
 <h2>Estrutura do Projeto</h2>
 <pre><code>.
