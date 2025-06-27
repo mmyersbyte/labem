@@ -10,6 +10,7 @@
 <!-- stacks -->
 <p align="center">
   <img src="https://img.shields.io/badge/JAVASCRIPT-F7DF1E?style=for-the-badge&logo=javascript&logoColor=white" alt="JAVASCRIPT">
+  <img src="https://img.shields.io/badge/TYPESCRIPT-3178C6?style=for-the-badge&logo=typescript&logoColor=white" alt="TYPESCRIPT">
   <img src="https://img.shields.io/badge/NODE-339933?style=for-the-badge&logo=node.js&logoColor=white" alt="NODE">
   <img src="https://img.shields.io/badge/EXPRESS.JS-FF6F61?style=for-the-badge&logo=express&logoColor=white" alt="EXPRESS.JS">
   <img src="https://img.shields.io/badge/MONGODB-47A248?style=for-the-badge&logo=mongodb&logoColor=white" alt="MONGODB">
@@ -22,9 +23,7 @@
 
 
 </p>
-<p align="center">  <p align="center"> <img src="https://img.shields.io/badge/JWT-JSON_WEB_TOKEN-000000?style=for-the-badge&logoColor=white" alt="JWT">
-<img src="https://img.shields.io/badge/BCRYPT-HASHING-121212?style=for-the-badge&logoColor=white" alt="BCRYPT">
-    <img src="https://img.shields.io/badge/JOI-VALIDATION-31CD52?style=for-the-badge&logoColor=white" alt="JOI"> 
+<p align="center"> 
 <img src="https://img.shields.io/badge/Auth-JWT_with_httpOnly_Cookies-critical?style=for-the-badge"
 
 </p>
