@@ -1,30 +1,30 @@
-<!-- Aqui é o titulo! -->
-<p align="center">
+<!-- TÍTULO BADGE -->
+<h1 align="center">
   <a href="https://labemunisul.com.br">
-    <img src="https://img.shields.io/badge/LABEM-Universidade_do_Sul_de_Santa_Catarina-146677?style=for-the-badge" alt="LABEM - Universidade do Sul de Santa Catarina">
+    <img width="420" src="https://img.shields.io/badge/LABEM-Universidade_do_Sul_de_Santa_Catarina-146677?style=for-the-badge" alt="LABEM - Universidade do Sul de Santa Catarina">
   </a>
+</h1>
+
+<!-- STACKS -->
+<p align="center">
+  <img src="https://img.shields.io/badge/JAVASCRIPT-%20-%23F7DF1E?style=for-the-badge&logo=javascript&logoColor=black&label=JAVASCRIPT&labelColor=F7DF1E" alt="JAVASCRIPT">
+  <img src="https://img.shields.io/badge/TYPESCRIPT-%20-%233178C6?style=for-the-badge&logo=typescript&logoColor=white&label=TYPESCRIPT&labelColor=3178C6" alt="TYPESCRIPT">
+  <img src="https://img.shields.io/badge/NODE.JS-%20-%23339933?style=for-the-badge&logo=node.js&logoColor=white&label=NODE.JS&labelColor=339933" alt="NODE.JS">
+  <img src="https://img.shields.io/badge/EXPRESS-%20-FF6F61?style=for-the-badge&logo=express&logoColor=white&label=EXPRESS&labelColor=FF6F61" alt="EXPRESS">
+  <img src="https://img.shields.io/badge/MONGODB-%20-47A248?style=for-the-badge&logo=mongodb&logoColor=white&label=MONGODB&labelColor=47A248" alt="MONGODB">
 </p>
 
-<hr />
-
-<!-- stacks -->
+<!-- STACKS 2 -->
 <p align="center">
-  <img src="https://img.shields.io/badge/JAVASCRIPT-F7DF1E?style=for-the-badge&logo=javascript&logoColor=white" alt="JAVASCRIPT">
-  <img src="https://img.shields.io/badge/TYPESCRIPT-3178C6?style=for-the-badge&logo=typescript&logoColor=white" alt="TYPESCRIPT">
-  <img src="https://img.shields.io/badge/NODE-339933?style=for-the-badge&logo=node.js&logoColor=white" alt="NODE">
-  <img src="https://img.shields.io/badge/EXPRESS.JS-FF6F61?style=for-the-badge&logo=express&logoColor=white" alt="EXPRESS.JS">
-  <img src="https://img.shields.io/badge/MONGODB-47A248?style=for-the-badge&logo=mongodb&logoColor=white" alt="MONGODB">
   <a href="https://www.labemunisul.com.br/swagger.html">
     <img src="https://img.shields.io/badge/SWAGGER-DOCS-85EA2D?style=for-the-badge&logo=swagger&logoColor=black" alt="SWAGGER">
   </a>
-<a href="./EnglishREADME.md">
-  <img src="https://img.shields.io/badge/README%20EN-blue?style=for-the-badge&logo=readme&logoColor=white" alt="README EN">
-</a>
-
-
+  <a href="./EnglishREADME.md">
+    <img src="https://img.shields.io/badge/README-EN-blue?style=for-the-badge" alt="README EN">
+  </a>
+  <img src="https://img.shields.io/badge/AUTH-JWT_with_HttpOnly_Cookies-critical?style=for-the-badge" alt="AUTH">
 </p>
-<p align="center"> 
-<img src="https://img.shields.io/badge/Auth-JWT_with_httpOnly_Cookies-critical?style=for-the-badge"
+
 
 </p>
 
